@@ -1,0 +1,22 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "title": "Selalu Update Berita Terbaru",
+            "subtitle": "Dapatkan timeline berita terbaru dari menu Terbaru",
+            "image": "assets/on_boarding_1.svg"
+        },
+        {
+            "id": 2,
+            "title": "Nyaman Dalam Gelap",
+            "subtitle": "Aktifkan mode gelap untuk pengalaman membaca yang lebih nyaman",
+            "image": "assets/on_boarding_2.svg"
+        },
+        {
+            "id": 3,
+            "title": "Buat Akun Gratis",
+            "subtitle": "Nikmati berbagai fitur di aplikasi Interpretasi",
+            "image": "assets/on_boarding_3.svg"
+        }
+    ]
+}
