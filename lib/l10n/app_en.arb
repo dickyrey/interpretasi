@@ -1,8 +1,27 @@
 {
+  "cannot_be_empty": "Cannot be empty",
+  "captize_gmail_com": "captize@gmail.com",
+  "choose_a_password": "Choose a password",
+  "close": "Close",
   "create_an_account": "Create an Account",
+  "email_address": "Email Address",
+  "enter_your_email_address": "Enter your email address",
+  "enter_your_phone_number": "Enter your phone number",
+  "explore_information_without_limits": "Explore Information without limits",
+  "forgot_password": "Forgot password?",
   "have_an_account": "Have an Account",
+  "interpretasi": "Interpretasi",
+  "invalid_email_address_format": "Invalid email address format",
+  "invalid_phone_number_format": "Invalid phone number format",
+  "login": "Log In",
+  "min_6_characters": "min. 6 characters",
   "next": "Next",
+  "or": "or",
+  "password": "Password",
+  "sign_in_with_google": "Sign in with Google",
   "skip": "Skip",
   "something_went_wrong": "Something Went Wrong",
-  "we_encountered_an_error_while_trying_to_connect_to_our_server_please_try_after_some_again": "We encountered an error while trying to connect to our server. Please try after some again."
+  "text_too_short": "Text too short",
+  "we_encountered_an_error_while_trying_to_connect_to_our_server_please_try_after_some_again": "We encountered an error while trying to connect to our server. Please try after some again.",
+  "your_email_address": "Your email address"
 }

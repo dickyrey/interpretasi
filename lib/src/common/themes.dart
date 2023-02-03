@@ -58,12 +58,12 @@ ThemeData themeLight(BuildContext context) {
         fontWeight: FontWeight.w500,
       ),
       titleMedium: GoogleFonts.poppins(
-        color: ColorLight.fontSubtitle,
+        color: ColorLight.fontTitle,
         fontSize: 12,
         fontWeight: FontWeight.w500,
       ),
       titleSmall: GoogleFonts.poppins(
-        color: ColorLight.fontSubtitle,
+        color: ColorLight.fontTitle,
         fontSize: 10,
         fontWeight: FontWeight.w500,
       ),

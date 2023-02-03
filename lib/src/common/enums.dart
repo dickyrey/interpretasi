@@ -5,3 +5,5 @@ enum CardAlignment { horizontal, vertical }
 enum HeadingTileType { normal, dropdown }
 
 enum MapPermission { granted, denied, unkown }
+
+enum SnackbarType { error, success, info }

@@ -180,14 +180,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   AppBar _appBar(ThemeData theme, AppLocalizations lang) {
     return AppBar(
       backgroundColor: theme.colorScheme.background,
-      elevation: .5,
-      leading: IconButton(
-        onPressed: () => Navigator.pop(context),
-        icon: Icon(
-          FeatherIcons.arrowLeft,
-          color: theme.iconTheme.color,
-        ),
-      ),
+      elevation: 0,
       actions: [
         TextButton(
           onPressed: () => Navigator.pushNamed(context, REGISTER),

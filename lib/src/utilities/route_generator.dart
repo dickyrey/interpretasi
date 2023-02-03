@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
+import 'package:interpretasi/src/presentation/pages/login_page.dart';
 import 'package:interpretasi/src/presentation/pages/on_boarding_page.dart';
 import 'package:interpretasi/src/presentation/pages/splash_page.dart';
 
@@ -17,14 +18,10 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const OnBoardingPage(),
         );
-      // case INTEREST:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const InterestPage(),
-      //   );
-      // case INTEREST_SETTING:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const InterestSettingPage(),
-      //   );
+      case LOGIN:
+        return MaterialPageRoute(
+          builder: (_) => const LoginPage(),
+        );
       // case REGISTER:
       //   return MaterialPageRoute(
       //     builder: (_) => const RegisterPage(),
@@ -43,10 +40,6 @@ class RouteGenerator {
       // case FORGOT_PASSWORD:
       //   return MaterialPageRoute(
       //     builder: (_) => const ForgotPasswordPage(),
-      //   );
-      // case LOGIN:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const LoginPage(),
       //   );
       // case HOME:
       //   return MaterialPageRoute(

@@ -85,12 +85,16 @@ class AuthDataSourceImpl extends AuthDataSource {
       );
 
       final response = await http.post(url);
+      print(response.statusCode);
       if (response.statusCode == 200) {
         final accessToken = TokenModel.fromJson(
           json.decode(response.body) as Map<String, dynamic>,
         );
         await prefs.setString(Const.token, accessToken.token);
         return;
+      } else if (response.statusCode == 400) {
+        await googleSignIn.signOut();
+        throw ServerException(ExceptionMessage.invalidToken);
       } else if (response.statusCode == 407) {
         await googleSignIn.signOut();
         throw ServerException(ExceptionMessage.internetNotConnected);
@@ -102,14 +106,14 @@ class AuthDataSourceImpl extends AuthDataSource {
       if (error is PlatformException) {
         if (error.code == 'SIGN_IN_CANCELLED') {
           await googleSignIn.signOut();
-          throw ServerException(ExceptionMessage.internetNotConnected);
+          throw ServerException(ExceptionMessage.signInCancelled);
         } else {
           await googleSignIn.signOut();
           throw ServerException(ExceptionMessage.internetNotConnected);
         }
       } else {
         await googleSignIn.signOut();
-        throw ServerException(ExceptionMessage.internetNotConnected);
+        throw ServerException(ExceptionMessage.invalidToken);
       }
     }
   }

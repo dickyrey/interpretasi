@@ -18,13 +18,16 @@ class Assets {
   // SVG Assets
   static const String logo = 'assets/logo.svg';
   static const String error = 'assets/error.svg';
+  static const String google = 'assets/google.svg';
 
   // PNG Assets
 }
 
 class ExceptionMessage {
   static const String internetNotConnected = 'internet-not-connected';
+  static const String invalidToken = 'invalid-token';
   static const String userAlreadyExist = 'user-already-exist';
   static const String wrongPassword = 'wrong-password';
   static const String userNotFound = 'user-not-found';
+  static const String signInCancelled = 'sign-in-cancelled';
 }
