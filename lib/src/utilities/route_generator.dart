@@ -7,6 +7,7 @@ import 'package:interpretasi/src/presentation/pages/on_boarding_page.dart';
 import 'package:interpretasi/src/presentation/pages/password_page.dart';
 import 'package:interpretasi/src/presentation/pages/register_page.dart';
 import 'package:interpretasi/src/presentation/pages/splash_page.dart';
+import 'package:interpretasi/src/presentation/widgets/bottom_nav_bar_widget.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -41,10 +42,10 @@ class RouteGenerator {
       //   return MaterialPageRoute(
       //     builder: (_) => const ForgotPasswordPage(),
       //   );
-      // case HOME:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const ButtonNavBarWidget(),
-      //   );
+      case HOME:
+        return MaterialPageRoute(
+          builder: (_) =>  const BottomNavBarWidget(),
+        );
       // case MENU:
       //   return MaterialPageRoute(
       //     builder: (_) => const ButtonNavBarWidget(index: 3),
