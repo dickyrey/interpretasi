@@ -85,7 +85,6 @@ class AuthDataSourceImpl extends AuthDataSource {
       );
 
       final response = await http.post(url);
-      print(response.statusCode);
       if (response.statusCode == 200) {
         final accessToken = TokenModel.fromJson(
           json.decode(response.body) as Map<String, dynamic>,
@@ -140,6 +139,9 @@ class AuthDataSourceImpl extends AuthDataSource {
     );
 
     final response = await http.post(url, headers: headers, body: body);
+    print(response.statusCode);
+    print(response.body);
+
     if (response.statusCode == 200) {
       final accessToken = TokenModel.fromJson(
         json.decode(response.body) as Map<String, dynamic>,

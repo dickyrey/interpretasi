@@ -52,11 +52,11 @@ class ElevatedButtonWidget extends StatelessWidget {
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SpinKitThreeBounce(
-                    size: 15,
+                  const SpinKitFadingCircle(
+                    size: 20,
                     color: Colors.white,
                   ),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: Const.space15),
                   Text(
                     labelLoading ?? '',
                     style: theme.textTheme.labelMedium,
