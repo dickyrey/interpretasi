@@ -7,7 +7,7 @@ class SignInWithGoogle {
   
   final AuthRepository repository;
 
-  Future<Either<Failure, void>> execute(String token) {
-    return repository.signInWithGoogle(token);
+  Future<Either<Failure, void>> execute() {
+    return repository.signInWithGoogle();
   }
 }

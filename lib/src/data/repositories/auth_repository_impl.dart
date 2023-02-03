@@ -29,9 +29,9 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Failure, void>> signInWithGoogle(String token) async {
+  Future<Either<Failure, void>> signInWithGoogle() async {
     try {
-      final result = await dataSource.signInWithGoogle(token);
+      final result = await dataSource.signInWithGoogle();
       return Right(result);
     } on PlatformException catch (e) {
       return Left(throw ServerException(e.message ?? ''));
@@ -50,20 +50,6 @@ class AuthRepositoryImpl extends AuthRepository {
       final result = await dataSource.signOut();
       return Right(result);
     } catch (e) {
-      return const Left(
-        ConnectionFailure(ExceptionMessage.internetNotConnected),
-      );
-    }
-  }
-
-  @override
-  Future<Either<Failure, List<String>>> getTimeZone() async {
-    try {
-      final result = await dataSource.getTimeZone();
-      return Right(result);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
-    } on SocketException {
       return const Left(
         ConnectionFailure(ExceptionMessage.internetNotConnected),
       );

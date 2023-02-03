@@ -14,7 +14,7 @@ class SignInWithGoogleActorBloc
       await event.map(
         googleSignIn: (event) async {
           emit(const SignInWithGoogleActorState.signInProgress());
-          final result = await _googleSignIn.execute(event.sha256);
+          final result = await _googleSignIn.execute();
           await result.fold(
             (f) async {
               emit(SignInWithGoogleActorState.signInFailure(f.message));

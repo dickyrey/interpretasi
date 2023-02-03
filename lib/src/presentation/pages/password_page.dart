@@ -9,7 +9,6 @@ import 'package:interpretasi/src/presentation/bloc/password/password_form_bloc.d
 import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_form_field_widget.dart';
 import 'package:interpretasi/src/utilities/snackbar.dart';
-import 'package:interpretasi/src/utilities/toast.dart';
 
 class PasswordPage extends StatefulWidget {
   const PasswordPage({super.key});
@@ -37,7 +36,7 @@ class _PasswordPageState extends State<PasswordPage> {
           );
           ScaffoldMessenger.of(context).showSnackBar(snack);
         } else if (state.state == RequestState.loaded) {
-          // TODO(dickyrey) : Navigate to Loading screen for auto sign in
+          // TODO(dickyrey): Navigate to Loading screen for auto sign in
           Navigator.pushNamedAndRemoveUntil(context, HOME, (route) => false);
         }
       },

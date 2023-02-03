@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:crypto/crypto.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +9,6 @@ import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/sign_in_with_google_actor/sign_in_with_google_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/sign_up_with_email_form/sign_up_with_email_form_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/time_zone_watcher/time_zone_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_form_field_widget.dart';
 import 'package:interpretasi/src/utilities/snackbar.dart';
@@ -197,17 +193,8 @@ class RegisterPage extends StatelessWidget {
                         ],
                       ),
                       onTap: () {
-                        final state = context.read<TimeZoneWatcherBloc>().state;
-                        String generateSHA256(String data) {
-                          final bytes = utf8.encode(data);
-                          final hash = sha256.convert(bytes);
-                          return hash.toString();
-                        }
-
                         context.read<SignInWithGoogleActorBloc>().add(
-                              SignInWithGoogleActorEvent.googleSignIn(
-                                generateSHA256(state.dateTime),
-                              ),
+                              const SignInWithGoogleActorEvent.googleSignIn(),
                             );
                       },
                     ),

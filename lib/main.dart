@@ -23,7 +23,6 @@ import 'package:interpretasi/src/presentation/bloc/comment_article/send_comment_
 import 'package:interpretasi/src/presentation/bloc/email_verification/email_verification_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/password/password_form_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/time_zone_watcher/time_zone_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/change_to_moderated_actor/change_to_moderated_actor_bloc.dart';
@@ -74,8 +73,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.locator<LikeArticleWatcherBloc>()),
         //* Password BLoC folder
         BlocProvider(create: (context) => di.locator<PasswordFormBloc>()),
-        //* TimeZone BLoC folder
-        BlocProvider(create: (context) => di.locator<TimeZoneWatcherBloc>()),
         //* User BLoC folder
         BlocProvider(create: (context) => di.locator<UserFormBloc>()),
         BlocProvider(create: (context) => di.locator<UserWatcherBloc>()),

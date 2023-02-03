@@ -16,20 +16,19 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignInWithGoogleActorEvent {
-  String get sha256 => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String sha256) googleSignIn,
+    required TResult Function() googleSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String sha256)? googleSignIn,
+    TResult? Function()? googleSignIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String sha256)? googleSignIn,
+    TResult Function()? googleSignIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,10 +48,6 @@ mixin _$SignInWithGoogleActorEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $SignInWithGoogleActorEventCopyWith<SignInWithGoogleActorEvent>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -61,8 +56,6 @@ abstract class $SignInWithGoogleActorEventCopyWith<$Res> {
           $Res Function(SignInWithGoogleActorEvent) then) =
       _$SignInWithGoogleActorEventCopyWithImpl<$Res,
           SignInWithGoogleActorEvent>;
-  @useResult
-  $Res call({String sha256});
 }
 
 /// @nodoc
@@ -75,30 +68,13 @@ class _$SignInWithGoogleActorEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? sha256 = null,
-  }) {
-    return _then(_value.copyWith(
-      sha256: null == sha256
-          ? _value.sha256
-          : sha256 // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_GoogleSignInCopyWith<$Res>
-    implements $SignInWithGoogleActorEventCopyWith<$Res> {
+abstract class _$$_GoogleSignInCopyWith<$Res> {
   factory _$$_GoogleSignInCopyWith(
           _$_GoogleSignIn value, $Res Function(_$_GoogleSignIn) then) =
       __$$_GoogleSignInCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String sha256});
 }
 
 /// @nodoc
@@ -108,75 +84,51 @@ class __$$_GoogleSignInCopyWithImpl<$Res>
   __$$_GoogleSignInCopyWithImpl(
       _$_GoogleSignIn _value, $Res Function(_$_GoogleSignIn) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? sha256 = null,
-  }) {
-    return _then(_$_GoogleSignIn(
-      null == sha256
-          ? _value.sha256
-          : sha256 // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_GoogleSignIn implements _GoogleSignIn {
-  const _$_GoogleSignIn(this.sha256);
-
-  @override
-  final String sha256;
+  const _$_GoogleSignIn();
 
   @override
   String toString() {
-    return 'SignInWithGoogleActorEvent.googleSignIn(sha256: $sha256)';
+    return 'SignInWithGoogleActorEvent.googleSignIn()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_GoogleSignIn &&
-            (identical(other.sha256, sha256) || other.sha256 == sha256));
+        (other.runtimeType == runtimeType && other is _$_GoogleSignIn);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, sha256);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_GoogleSignInCopyWith<_$_GoogleSignIn> get copyWith =>
-      __$$_GoogleSignInCopyWithImpl<_$_GoogleSignIn>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String sha256) googleSignIn,
+    required TResult Function() googleSignIn,
   }) {
-    return googleSignIn(sha256);
+    return googleSignIn();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String sha256)? googleSignIn,
+    TResult? Function()? googleSignIn,
   }) {
-    return googleSignIn?.call(sha256);
+    return googleSignIn?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String sha256)? googleSignIn,
+    TResult Function()? googleSignIn,
     required TResult orElse(),
   }) {
     if (googleSignIn != null) {
-      return googleSignIn(sha256);
+      return googleSignIn();
     }
     return orElse();
   }
@@ -211,14 +163,7 @@ class _$_GoogleSignIn implements _GoogleSignIn {
 }
 
 abstract class _GoogleSignIn implements SignInWithGoogleActorEvent {
-  const factory _GoogleSignIn(final String sha256) = _$_GoogleSignIn;
-
-  @override
-  String get sha256;
-  @override
-  @JsonKey(ignore: true)
-  _$$_GoogleSignInCopyWith<_$_GoogleSignIn> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _GoogleSignIn() = _$_GoogleSignIn;
 }
 
 /// @nodoc

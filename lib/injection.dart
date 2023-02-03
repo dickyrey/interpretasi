@@ -35,7 +35,6 @@ import 'package:interpretasi/src/domain/usecases/article/get_latest_article.dart
 import 'package:interpretasi/src/domain/usecases/article/update_article.dart';
 import 'package:interpretasi/src/domain/usecases/auth/check_google_auth.dart';
 import 'package:interpretasi/src/domain/usecases/auth/check_user_verification.dart';
-import 'package:interpretasi/src/domain/usecases/auth/get_time_zone.dart';
 import 'package:interpretasi/src/domain/usecases/auth/resend_email_verification.dart';
 import 'package:interpretasi/src/domain/usecases/auth/sign_in_with_email.dart';
 import 'package:interpretasi/src/domain/usecases/auth/sign_in_with_google.dart';
@@ -76,7 +75,6 @@ import 'package:interpretasi/src/presentation/bloc/comment_article/send_comment_
 import 'package:interpretasi/src/presentation/bloc/email_verification/email_verification_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/password/password_form_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/time_zone_watcher/time_zone_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/change_to_moderated_actor/change_to_moderated_actor_bloc.dart';
@@ -243,11 +241,6 @@ void init() {
   final checkUserVerificationUseCase = CheckUserVerification(locator());
   locator.registerLazySingleton(
     () => checkUserVerificationUseCase,
-  );
-
-  final getTimeZoneUseCase = GetTimeZone(locator());
-  locator.registerLazySingleton(
-    () => getTimeZoneUseCase,
   );
 
   final resendEmailVerificationUseCase = ResendEmailVerification(locator());
@@ -497,10 +490,6 @@ void init() {
 
   //* TimeZone BLoC folder
   //*
-  final timeZoneWatcherBloc = TimeZoneWatcherBloc(locator());
-  locator.registerLazySingleton(
-    () => timeZoneWatcherBloc,
-  );
 
   //* User BLoC folder
   //*

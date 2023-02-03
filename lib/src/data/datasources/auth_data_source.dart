@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:crypto/crypto.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
@@ -11,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthDataSource {
   Future<bool> checkGoogleAuth();
-  Future<void> signInWithGoogle(String base64Date);
+  Future<void> signInWithGoogle();
   Future<bool> signInWithEmail({
     required String email,
     required String password,
@@ -67,8 +68,16 @@ class AuthDataSourceImpl extends AuthDataSource {
   }
 
   @override
-  Future<void> signInWithGoogle(String base64Date) async {
+  Future<void> signInWithGoogle() async {
     final prefs = await SharedPreferences.getInstance();
+
+    final time = await getTimeZone();
+
+    String generateSHA256(String data) {
+      final bytes = utf8.encode(data);
+      final hash = sha256.convert(bytes);
+      return hash.toString();
+    }
 
     try {
       final user = await googleSignIn.signIn();
@@ -80,7 +89,7 @@ class AuthDataSourceImpl extends AuthDataSource {
           'email': user?.email,
           'displayName': user?.displayName,
           'photo': (user!.photoUrl == null) ? Const.photo : user.photoUrl,
-          'token': base64Date
+          'token': generateSHA256(time.first),
         },
       );
 
