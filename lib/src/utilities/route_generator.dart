@@ -4,6 +4,7 @@ import 'package:interpretasi/src/presentation/pages/email_verification_page.dart
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
 import 'package:interpretasi/src/presentation/pages/login_page.dart';
 import 'package:interpretasi/src/presentation/pages/on_boarding_page.dart';
+import 'package:interpretasi/src/presentation/pages/password_page.dart';
 import 'package:interpretasi/src/presentation/pages/register_page.dart';
 import 'package:interpretasi/src/presentation/pages/splash_page.dart';
 
@@ -30,15 +31,12 @@ class RouteGenerator {
         );
       case EMAIL_VERIFICATION:
         return MaterialPageRoute(
-          builder: (_) => EmailVerificationPage(),
+          builder: (_) => const EmailVerificationPage(),
         );
-      // case BACKUP_EMAIL_VERIFICATION:
-      //   if (args is String) {
-      //     return MaterialPageRoute(
-      //       builder: (_) => BackupEmailVerificationPage(email: args),
-      //     );
-      //   }
-      //   return _errorRoute();
+      case PASSWORD:
+        return MaterialPageRoute(
+          builder: (_) => const PasswordPage(),
+        );
       // case FORGOT_PASSWORD:
       //   return MaterialPageRoute(
       //     builder: (_) => const ForgotPasswordPage(),
@@ -75,10 +73,7 @@ class RouteGenerator {
       //   return MaterialPageRoute(
       //     builder: (_) => const AddPhoneNumberPage(),
       //   );
-      // case PASSWORD:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const PasswordPage(),
-      //   );
+
       // case DELETE_ACCOUNT:
       //   return MaterialPageRoute(
       //     builder: (_) => const DeleteAccountPage(),

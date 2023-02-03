@@ -3,8 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:interpretasi/src/common/const.dart';
-
-enum TextFieldType { email, text, phone }
+import 'package:interpretasi/src/common/enums.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
   const TextFormFieldWidget({
