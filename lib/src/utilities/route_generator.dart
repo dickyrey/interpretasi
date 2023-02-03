@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interpretasi/src/common/routes.dart';
+import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
 import 'package:interpretasi/src/presentation/pages/login_page.dart';
 import 'package:interpretasi/src/presentation/pages/on_boarding_page.dart';
@@ -27,10 +28,10 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const RegisterPage(),
         );
-      // case EMAIL_VERIFICATION:
-      //     return MaterialPageRoute(
-      //       builder: (_) => EmailVerificationPage(),
-      //     );
+      case EMAIL_VERIFICATION:
+        return MaterialPageRoute(
+          builder: (_) => EmailVerificationPage(),
+        );
       // case BACKUP_EMAIL_VERIFICATION:
       //   if (args is String) {
       //     return MaterialPageRoute(

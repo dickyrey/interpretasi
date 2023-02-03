@@ -20,7 +20,8 @@ class Assets {
   static const String error = 'assets/error.svg';
   static const String google = 'assets/google.svg';
 
-  // PNG Assets
+  // JSONS Assets
+  static const String emailVerification = 'jsons/email_verification.json';
 }
 
 class ExceptionMessage {

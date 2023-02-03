@@ -54,24 +54,6 @@ class EmailVerificationFormBloc
             ),
           );
         },
-        resendEmail: (event) async {
-          final result = await _resend.execute();
-          result.fold(
-            (f) => emit(
-              state.copyWith(
-                state: RequestState.error,
-                message: f.message,
-                isSubmitting: false,
-              ),
-            ),
-            (_) => emit(
-              state.copyWith(
-                state: RequestState.loaded,
-                isSubmitting: false,
-              ),
-            ),
-          );
-        },
       );
     });
   }

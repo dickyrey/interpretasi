@@ -4,5 +4,4 @@ part of 'email_verification_form_bloc.dart';
 class EmailVerificationFormEvent with _$EmailVerificationFormEvent {
   const factory EmailVerificationFormEvent.onFinished() = _OnFinished;
   const factory EmailVerificationFormEvent.startTimeOut(CountdownController controller) = _StartTimeOut;
-  const factory EmailVerificationFormEvent.resendEmail(String email) = _ResendEmail;
 }

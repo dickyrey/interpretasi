@@ -20,21 +20,18 @@ mixin _$EmailVerificationFormEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() onFinished,
     required TResult Function(CountdownController controller) startTimeOut,
-    required TResult Function(String email) resendEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onFinished,
     TResult? Function(CountdownController controller)? startTimeOut,
-    TResult? Function(String email)? resendEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onFinished,
     TResult Function(CountdownController controller)? startTimeOut,
-    TResult Function(String email)? resendEmail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,21 +39,18 @@ mixin _$EmailVerificationFormEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnFinished value) onFinished,
     required TResult Function(_StartTimeOut value) startTimeOut,
-    required TResult Function(_ResendEmail value) resendEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnFinished value)? onFinished,
     TResult? Function(_StartTimeOut value)? startTimeOut,
-    TResult? Function(_ResendEmail value)? resendEmail,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnFinished value)? onFinished,
     TResult Function(_StartTimeOut value)? startTimeOut,
-    TResult Function(_ResendEmail value)? resendEmail,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -122,7 +116,6 @@ class _$_OnFinished implements _OnFinished {
   TResult when<TResult extends Object?>({
     required TResult Function() onFinished,
     required TResult Function(CountdownController controller) startTimeOut,
-    required TResult Function(String email) resendEmail,
   }) {
     return onFinished();
   }
@@ -132,7 +125,6 @@ class _$_OnFinished implements _OnFinished {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onFinished,
     TResult? Function(CountdownController controller)? startTimeOut,
-    TResult? Function(String email)? resendEmail,
   }) {
     return onFinished?.call();
   }
@@ -142,7 +134,6 @@ class _$_OnFinished implements _OnFinished {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onFinished,
     TResult Function(CountdownController controller)? startTimeOut,
-    TResult Function(String email)? resendEmail,
     required TResult orElse(),
   }) {
     if (onFinished != null) {
@@ -156,7 +147,6 @@ class _$_OnFinished implements _OnFinished {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnFinished value) onFinished,
     required TResult Function(_StartTimeOut value) startTimeOut,
-    required TResult Function(_ResendEmail value) resendEmail,
   }) {
     return onFinished(this);
   }
@@ -166,7 +156,6 @@ class _$_OnFinished implements _OnFinished {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnFinished value)? onFinished,
     TResult? Function(_StartTimeOut value)? startTimeOut,
-    TResult? Function(_ResendEmail value)? resendEmail,
   }) {
     return onFinished?.call(this);
   }
@@ -176,7 +165,6 @@ class _$_OnFinished implements _OnFinished {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnFinished value)? onFinished,
     TResult Function(_StartTimeOut value)? startTimeOut,
-    TResult Function(_ResendEmail value)? resendEmail,
     required TResult orElse(),
   }) {
     if (onFinished != null) {
@@ -257,7 +245,6 @@ class _$_StartTimeOut implements _StartTimeOut {
   TResult when<TResult extends Object?>({
     required TResult Function() onFinished,
     required TResult Function(CountdownController controller) startTimeOut,
-    required TResult Function(String email) resendEmail,
   }) {
     return startTimeOut(controller);
   }
@@ -267,7 +254,6 @@ class _$_StartTimeOut implements _StartTimeOut {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onFinished,
     TResult? Function(CountdownController controller)? startTimeOut,
-    TResult? Function(String email)? resendEmail,
   }) {
     return startTimeOut?.call(controller);
   }
@@ -277,7 +263,6 @@ class _$_StartTimeOut implements _StartTimeOut {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onFinished,
     TResult Function(CountdownController controller)? startTimeOut,
-    TResult Function(String email)? resendEmail,
     required TResult orElse(),
   }) {
     if (startTimeOut != null) {
@@ -291,7 +276,6 @@ class _$_StartTimeOut implements _StartTimeOut {
   TResult map<TResult extends Object?>({
     required TResult Function(_OnFinished value) onFinished,
     required TResult Function(_StartTimeOut value) startTimeOut,
-    required TResult Function(_ResendEmail value) resendEmail,
   }) {
     return startTimeOut(this);
   }
@@ -301,7 +285,6 @@ class _$_StartTimeOut implements _StartTimeOut {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_OnFinished value)? onFinished,
     TResult? Function(_StartTimeOut value)? startTimeOut,
-    TResult? Function(_ResendEmail value)? resendEmail,
   }) {
     return startTimeOut?.call(this);
   }
@@ -311,7 +294,6 @@ class _$_StartTimeOut implements _StartTimeOut {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_OnFinished value)? onFinished,
     TResult Function(_StartTimeOut value)? startTimeOut,
-    TResult Function(_ResendEmail value)? resendEmail,
     required TResult orElse(),
   }) {
     if (startTimeOut != null) {
@@ -328,145 +310,6 @@ abstract class _StartTimeOut implements EmailVerificationFormEvent {
   CountdownController get controller;
   @JsonKey(ignore: true)
   _$$_StartTimeOutCopyWith<_$_StartTimeOut> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_ResendEmailCopyWith<$Res> {
-  factory _$$_ResendEmailCopyWith(
-          _$_ResendEmail value, $Res Function(_$_ResendEmail) then) =
-      __$$_ResendEmailCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String email});
-}
-
-/// @nodoc
-class __$$_ResendEmailCopyWithImpl<$Res>
-    extends _$EmailVerificationFormEventCopyWithImpl<$Res, _$_ResendEmail>
-    implements _$$_ResendEmailCopyWith<$Res> {
-  __$$_ResendEmailCopyWithImpl(
-      _$_ResendEmail _value, $Res Function(_$_ResendEmail) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? email = null,
-  }) {
-    return _then(_$_ResendEmail(
-      null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_ResendEmail implements _ResendEmail {
-  const _$_ResendEmail(this.email);
-
-  @override
-  final String email;
-
-  @override
-  String toString() {
-    return 'EmailVerificationFormEvent.resendEmail(email: $email)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ResendEmail &&
-            (identical(other.email, email) || other.email == email));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, email);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_ResendEmailCopyWith<_$_ResendEmail> get copyWith =>
-      __$$_ResendEmailCopyWithImpl<_$_ResendEmail>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() onFinished,
-    required TResult Function(CountdownController controller) startTimeOut,
-    required TResult Function(String email) resendEmail,
-  }) {
-    return resendEmail(email);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? onFinished,
-    TResult? Function(CountdownController controller)? startTimeOut,
-    TResult? Function(String email)? resendEmail,
-  }) {
-    return resendEmail?.call(email);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? onFinished,
-    TResult Function(CountdownController controller)? startTimeOut,
-    TResult Function(String email)? resendEmail,
-    required TResult orElse(),
-  }) {
-    if (resendEmail != null) {
-      return resendEmail(email);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_OnFinished value) onFinished,
-    required TResult Function(_StartTimeOut value) startTimeOut,
-    required TResult Function(_ResendEmail value) resendEmail,
-  }) {
-    return resendEmail(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_OnFinished value)? onFinished,
-    TResult? Function(_StartTimeOut value)? startTimeOut,
-    TResult? Function(_ResendEmail value)? resendEmail,
-  }) {
-    return resendEmail?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_OnFinished value)? onFinished,
-    TResult Function(_StartTimeOut value)? startTimeOut,
-    TResult Function(_ResendEmail value)? resendEmail,
-    required TResult orElse(),
-  }) {
-    if (resendEmail != null) {
-      return resendEmail(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ResendEmail implements EmailVerificationFormEvent {
-  const factory _ResendEmail(final String email) = _$_ResendEmail;
-
-  String get email;
-  @JsonKey(ignore: true)
-  _$$_ResendEmailCopyWith<_$_ResendEmail> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
