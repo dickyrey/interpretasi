@@ -3,6 +3,7 @@ import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
 import 'package:interpretasi/src/presentation/pages/login_page.dart';
 import 'package:interpretasi/src/presentation/pages/on_boarding_page.dart';
+import 'package:interpretasi/src/presentation/pages/register_page.dart';
 import 'package:interpretasi/src/presentation/pages/splash_page.dart';
 
 class RouteGenerator {
@@ -22,10 +23,10 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const LoginPage(),
         );
-      // case REGISTER:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const RegisterPage(),
-      //   );
+      case REGISTER:
+        return MaterialPageRoute(
+          builder: (_) => const RegisterPage(),
+        );
       // case EMAIL_VERIFICATION:
       //     return MaterialPageRoute(
       //       builder: (_) => EmailVerificationPage(),

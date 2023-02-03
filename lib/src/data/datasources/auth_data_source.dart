@@ -139,8 +139,6 @@ class AuthDataSourceImpl extends AuthDataSource {
     );
 
     final response = await http.post(url, headers: headers, body: body);
-    print(response.statusCode);
-    print(response.body);
 
     if (response.statusCode == 200) {
       final accessToken = TokenModel.fromJson(
