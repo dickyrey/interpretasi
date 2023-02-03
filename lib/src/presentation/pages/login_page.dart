@@ -227,8 +227,9 @@ class LoginPage extends StatelessWidget {
                     const SizedBox(height: Const.space25),
                     ElevatedButtonWidget(
                       color: theme.colorScheme.background,
-                      margin:
-                          const EdgeInsets.symmetric(horizontal: Const.margin),
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: Const.margin,
+                      ),
                       elevation: 1,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
