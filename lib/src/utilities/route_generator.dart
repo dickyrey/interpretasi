@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:interpretasi/src/common/routes.dart';
+import 'package:interpretasi/src/domain/entities/user.dart';
 import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
 import 'package:interpretasi/src/presentation/pages/login_page.dart';
 import 'package:interpretasi/src/presentation/pages/on_boarding_page.dart';
 import 'package:interpretasi/src/presentation/pages/password_page.dart';
+import 'package:interpretasi/src/presentation/pages/profile_form_page.dart';
 import 'package:interpretasi/src/presentation/pages/register_page.dart';
 import 'package:interpretasi/src/presentation/pages/splash_page.dart';
 import 'package:interpretasi/src/presentation/widgets/bottom_nav_bar_widget.dart';
@@ -44,16 +46,21 @@ class RouteGenerator {
       //   );
       case HOME:
         return MaterialPageRoute(
-          builder: (_) =>  const BottomNavBarWidget(),
+          builder: (_) => const BottomNavBarWidget(),
         );
-      // case MENU:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const ButtonNavBarWidget(index: 3),
-      //   );
+      case MENU:
+        return MaterialPageRoute(
+          builder: (_) => const BottomNavBarWidget(index: 3),
+        );
       // case PROFILE:
       //   return MaterialPageRoute(
       //     builder: (_) => const ProfilePage(),
       //   );
+
+      case PROFILE_FORM:
+          return MaterialPageRoute(
+            builder: (_) => const ProfileFormPage(),
+          );
       // case MY_ARTICLE:
       //   return MaterialPageRoute(
       //     builder: (_) => const MyArticlePage(),
@@ -62,10 +69,7 @@ class RouteGenerator {
       //   return MaterialPageRoute(
       //     builder: (_) => const SettingsAndPrivacyPage(),
       //   );
-      // case PROFILE_FORM:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const ProfileFormPage(),
-      //   );
+
       // case ADD_SECOND_EMAIL:
       //   return MaterialPageRoute(
       //     builder: (_) => const AddSecondEmailPage(),

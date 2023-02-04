@@ -5,7 +5,9 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
+import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
@@ -77,13 +79,26 @@ class ProfilePage extends StatelessWidget {
                                 child: CircleAvatar(
                                   backgroundColor: theme.colorScheme.background,
                                   radius: 25,
-                                  child: CircleAvatar(
-                                    radius: 22,
-                                    backgroundColor: theme.primaryColor,
-                                    child: const Icon(
-                                      FeatherIcons.edit3,
-                                      color: Colors.white,
-                                      size: 22,
+                                  child: InkWell(
+                                    onTap: () {
+                                      context.read<UserFormBloc>().add(
+                                            UserFormEvent.initialize(
+                                              state.user,
+                                            ),
+                                          );
+                                      Navigator.pushNamed(
+                                        context,
+                                        PROFILE_FORM,
+                                      );
+                                    },
+                                    child: CircleAvatar(
+                                      radius: 22,
+                                      backgroundColor: theme.primaryColor,
+                                      child: const Icon(
+                                        FeatherIcons.edit3,
+                                        color: Colors.white,
+                                        size: 22,
+                                      ),
                                     ),
                                   ),
                                 ),

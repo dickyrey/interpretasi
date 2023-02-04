@@ -28,6 +28,7 @@ class UserFormBloc extends Bloc<UserFormEvent, UserFormState> {
               isSubmitting: false,
               isShowErrorMessages: false,
               name: event.user.name,
+              email: event.user.email,
               imageUrl: event.user.photo,
               imageFile: null,
             ),

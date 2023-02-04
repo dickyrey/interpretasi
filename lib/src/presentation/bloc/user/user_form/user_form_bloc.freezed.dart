@@ -789,6 +789,7 @@ mixin _$UserFormState {
   RequestState get state => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   File? get imageFile => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
@@ -809,6 +810,7 @@ abstract class $UserFormStateCopyWith<$Res> {
       {RequestState state,
       String message,
       String name,
+      String email,
       String imageUrl,
       File? imageFile,
       bool isSubmitting,
@@ -831,6 +833,7 @@ class _$UserFormStateCopyWithImpl<$Res, $Val extends UserFormState>
     Object? state = null,
     Object? message = null,
     Object? name = null,
+    Object? email = null,
     Object? imageUrl = null,
     Object? imageFile = freezed,
     Object? isSubmitting = null,
@@ -848,6 +851,10 @@ class _$UserFormStateCopyWithImpl<$Res, $Val extends UserFormState>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
@@ -881,6 +888,7 @@ abstract class _$$_UserFormStateCopyWith<$Res>
       {RequestState state,
       String message,
       String name,
+      String email,
       String imageUrl,
       File? imageFile,
       bool isSubmitting,
@@ -901,6 +909,7 @@ class __$$_UserFormStateCopyWithImpl<$Res>
     Object? state = null,
     Object? message = null,
     Object? name = null,
+    Object? email = null,
     Object? imageUrl = null,
     Object? imageFile = freezed,
     Object? isSubmitting = null,
@@ -918,6 +927,10 @@ class __$$_UserFormStateCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
@@ -946,6 +959,7 @@ class _$_UserFormState implements _UserFormState {
       {required this.state,
       required this.message,
       required this.name,
+      required this.email,
       required this.imageUrl,
       required this.imageFile,
       required this.isSubmitting,
@@ -958,6 +972,8 @@ class _$_UserFormState implements _UserFormState {
   @override
   final String name;
   @override
+  final String email;
+  @override
   final String imageUrl;
   @override
   final File? imageFile;
@@ -968,7 +984,7 @@ class _$_UserFormState implements _UserFormState {
 
   @override
   String toString() {
-    return 'UserFormState(state: $state, message: $message, name: $name, imageUrl: $imageUrl, imageFile: $imageFile, isSubmitting: $isSubmitting, isShowErrorMessages: $isShowErrorMessages)';
+    return 'UserFormState(state: $state, message: $message, name: $name, email: $email, imageUrl: $imageUrl, imageFile: $imageFile, isSubmitting: $isSubmitting, isShowErrorMessages: $isShowErrorMessages)';
   }
 
   @override
@@ -979,6 +995,7 @@ class _$_UserFormState implements _UserFormState {
             (identical(other.state, state) || other.state == state) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.imageFile, imageFile) ||
@@ -990,8 +1007,8 @@ class _$_UserFormState implements _UserFormState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, state, message, name, imageUrl,
-      imageFile, isSubmitting, isShowErrorMessages);
+  int get hashCode => Object.hash(runtimeType, state, message, name, email,
+      imageUrl, imageFile, isSubmitting, isShowErrorMessages);
 
   @JsonKey(ignore: true)
   @override
@@ -1005,6 +1022,7 @@ abstract class _UserFormState implements UserFormState {
       {required final RequestState state,
       required final String message,
       required final String name,
+      required final String email,
       required final String imageUrl,
       required final File? imageFile,
       required final bool isSubmitting,
@@ -1016,6 +1034,8 @@ abstract class _UserFormState implements UserFormState {
   String get message;
   @override
   String get name;
+  @override
+  String get email;
   @override
   String get imageUrl;
   @override

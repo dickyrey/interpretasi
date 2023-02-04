@@ -7,12 +7,11 @@ import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watche
 import 'package:interpretasi/src/presentation/bloc/category/category_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/pages/profile_page.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class BottomNavBarWidget extends StatefulWidget {
   const BottomNavBarWidget({
     super.key,
-    this.index = 3,
+    this.index = 0,
   });
 
   final int index;
@@ -22,68 +21,31 @@ class BottomNavBarWidget extends StatefulWidget {
 }
 
 class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
-  late PersistentTabController _controller;
+  late PageController _controller;
+  int _selectedIndex = 3;
 
   @override
   void initState() {
-    _controller = PersistentTabController(initialIndex: widget.index);
+    _controller = PageController(initialPage: widget.index);
     super.initState();
     Future.microtask(() {
       context.read<UserWatcherBloc>().add(const UserWatcherEvent.fetchUser());
-      context
-          .read<CategoryWatcherBloc>()
-          .add(const CategoryWatcherEvent.fetchCategories());
+      context.read<CategoryWatcherBloc>().add(const CategoryWatcherEvent.fetchCategories());
     });
   }
 
   final List<Widget> _tabView = [
-    const Center(child: CircularProgressIndicator()),
-    const Center(child: Text('3')),
-    const Center(child: Text('3')),
+    const SizedBox(),
+    const SizedBox(),
+    const SizedBox(),
     const ProfilePage(),
   ];
 
-  List<PersistentBottomNavBarItem> _listNavItem(BuildContext context) {
-    final theme = Theme.of(context);
-    final lang = AppLocalizations.of(context)!;
-    return [
-      PersistentBottomNavBarItem(
-        icon: const Icon(FeatherIcons.home),
-        activeColorPrimary: theme.primaryColor,
-        inactiveColorPrimary: theme.disabledColor,
-        textStyle: theme.textTheme.bodySmall,
-        iconSize: 20,
-        title: lang.home,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(FeatherIcons.clock),
-        activeColorPrimary: theme.primaryColor,
-        inactiveColorPrimary: theme.disabledColor,
-        iconSize: 20,
-        textStyle: theme.textTheme.bodySmall,
-        title: lang.latest,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(FeatherIcons.bell),
-        activeColorPrimary: theme.primaryColor,
-        inactiveColorPrimary: theme.disabledColor,
-        textStyle: theme.textTheme.bodySmall,
-        iconSize: 20,
-        title: lang.notification,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(FeatherIcons.menu),
-        activeColorPrimary: theme.primaryColor,
-        inactiveColorPrimary: theme.disabledColor,
-        iconSize: 20,
-        textStyle: theme.textTheme.bodySmall,
-        title: lang.menu,
-      ),
-    ];
-  }
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final lang = AppLocalizations.of(context)!;
+
     return BlocListener<AuthWatcherBloc, AuthWatcherState>(
       listener: (context, state) {
         state.maybeMap(
@@ -98,12 +60,48 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
         );
       },
       child: Scaffold(
-        body: PersistentTabView(
-          context,
+        body: PageView(
           controller: _controller,
-          screens: _tabView,
-          items: _listNavItem(context),
-          navBarStyle: NavBarStyle.style14,
+          physics: const NeverScrollableScrollPhysics(),
+          onPageChanged: (v) => setState(() => _selectedIndex = v),
+          children: _tabView,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          onTap: (v) => setState(() {
+            _selectedIndex = v;
+            _controller.animateToPage(
+              v,
+              duration: const Duration(milliseconds: 200),
+              curve: Curves.easeIn,
+            );
+          }),
+          type: BottomNavigationBarType.fixed,
+          iconSize: 20,
+          selectedLabelStyle: theme.textTheme.bodyMedium?.copyWith(
+            fontSize: 9,
+          ),
+          unselectedLabelStyle: theme.textTheme.titleMedium?.copyWith(
+            fontSize: 9,
+          ),
+          items: [
+            BottomNavigationBarItem(
+              icon: const Icon(FeatherIcons.home),
+              label: lang.home,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(FeatherIcons.clock),
+              label: lang.latest,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(FeatherIcons.bell),
+              label: lang.notification,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(FeatherIcons.user),
+              label: lang.menu,
+            ),
+          ],
         ),
       ),
     );

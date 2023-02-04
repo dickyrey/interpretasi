@@ -8,7 +8,6 @@ class ElevatedButtonWidget extends StatelessWidget {
     this.label,
     this.labelLoading,
     this.color,
-    this.textColor,
     this.child,
     required this.onTap,
     this.isLoading = false,
@@ -23,7 +22,6 @@ class ElevatedButtonWidget extends StatelessWidget {
   final String? label;
   final String? labelLoading;
   final Color? color;
-  final Color? textColor;
   final void Function()? onTap;
   final bool isLoading;
   final double width;
@@ -69,7 +67,7 @@ class ElevatedButtonWidget extends StatelessWidget {
                     label ?? '',
                     style: theme.textTheme.labelLarge?.copyWith(
                       fontSize: labelSize,
-                      color: textColor,
+                      color: Colors.white,
                     ),
                   ),
       ),
