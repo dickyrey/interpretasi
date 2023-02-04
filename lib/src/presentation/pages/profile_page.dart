@@ -30,6 +30,7 @@ class ProfilePage extends StatelessWidget {
                   },
                   loaded: (state) {
                     return Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         SizedBox(
                           width: 120,
@@ -75,111 +76,111 @@ class ProfilePage extends StatelessWidget {
                           state.user.email,
                           style: theme.textTheme.bodyMedium,
                         ),
-                        const SizedBox(height: Const.space25),
-                        _ListTileWidget(
-                          icon: FeatherIcons.user,
-                          title: lang.my_profile,
-                          onTap: () {
-                            // Navigator.pushNamed(context, PROFILE);
-                          },
-                        ),
-                        _ListTileWidget(
-                          title: lang.my_articles,
-                          icon: FeatherIcons.fileText,
-                          onTap: () {},
-                        ),
-                        _ListTileWidget(
-                          icon: FeatherIcons.settings,
-                          title: lang.settings_and_privacy,
-                          onTap: () {
-                            // Navigator.pushNamed(context, SETTINGS_AND_PRIVACY);
-                          },
-                        ),
-                        _ListTileWidget(
-                          icon: FeatherIcons.clock,
-                          title: lang.read_history,
-                          onTap: () {
-                            // Navigator.pushNamed(context, READ_HISTORY);
-                          },
-                        ),
-                        _ListTileWidget(
-                          icon: FeatherIcons.trendingUp,
-                          title: lang.trending,
-                          onTap: () {
-                            // Navigator.pushNamed(context, TRENDING_ARTICLE);
-                          },
-                        ),
-                        ExpansionTile(
-                          title: Row(
-                            children: [
-                              const Icon(
-                                FeatherIcons.info,
-                                color: ColorLight.fontTitle,
-                              ),
-                              const SizedBox(width: Const.space15),
-                              Text(
-                                lang.about_interpretasi,
-                                style: theme.textTheme.titleMedium,
-                              ),
-                            ],
-                          ),
-                          children: [
-                            _ListTileWidget(
-                              title: lang.about_us,
-                              fontSize: 12,
-                              onTap: () {
-                                // TODO(dickyrey): life_at_kumparan
-                              },
-                            ),
-                            _ListTileWidget(
-                              title: lang.help,
-                              fontSize: 12,
-                              onTap: () {
-                                // TODO(dickyrey): call center
-                              },
-                            ),
-                            _ListTileWidget(
-                              title: lang.privacy_policy,
-                              fontSize: 12,
-                              onTap: () {
-                                // TODO(dickyrey): terms_and_privacy_policy
-                              },
-                            ),
-                            _ListTileWidget(
-                              title: lang.terms_and_condition,
-                              fontSize: 12,
-                              onTap: () {
-                                // TODO(dickyrey): terms_and_privacy_policy
-                              },
-                            ),
-                          ],
-                        ),
-                        _ListTileWidget(
-                          icon: FeatherIcons.logOut,
-                          title: lang.sign_out,
-                          onTap: () {
-                            showConfirmationDialog(
-                              context,
-                              title: lang.are_you_sure_want_to_sign_out,
-                              primaryButtonLabel: lang.sign_out,
-                              onPrimaryButtonTap: () {
-                                Navigator.pop(context);
-                                context
-                                    .read<AuthWatcherBloc>()
-                                    .add(const AuthWatcherEvent.signOut());
-                                context
-                                    .read<UserWatcherBloc>()
-                                    .add(const UserWatcherEvent.init());
-                              },
-                            );
-                          },
-                        ),
                       ],
                     );
                   },
                 );
               },
-            )
+            ),
+            const SizedBox(height: Const.space25),
+            _ListTileWidget(
+              icon: FeatherIcons.user,
+              title: lang.my_profile,
+              onTap: () {
+                // Navigator.pushNamed(context, PROFILE);
+              },
+            ),
+            _ListTileWidget(
+              title: lang.my_articles,
+              icon: FeatherIcons.fileText,
+              onTap: () {},
+            ),
+            _ListTileWidget(
+              icon: FeatherIcons.settings,
+              title: lang.settings_and_privacy,
+              onTap: () {
+                // Navigator.pushNamed(context, SETTINGS_AND_PRIVACY);
+              },
+            ),
+            _ListTileWidget(
+              icon: FeatherIcons.clock,
+              title: lang.read_history,
+              onTap: () {
+                // Navigator.pushNamed(context, READ_HISTORY);
+              },
+            ),
+            _ListTileWidget(
+              icon: FeatherIcons.trendingUp,
+              title: lang.trending,
+              onTap: () {
+                // Navigator.pushNamed(context, TRENDING_ARTICLE);
+              },
+            ),
+            ExpansionTile(
+              title: Row(
+                children: [
+                  const Icon(
+                    FeatherIcons.info,
+                    color: ColorLight.fontTitle,
+                  ),
+                  const SizedBox(width: Const.space15),
+                  Text(
+                    lang.about_interpretasi,
+                    style: theme.textTheme.titleMedium,
+                  ),
+                ],
+              ),
+              children: [
+                _ListTileWidget(
+                  title: lang.about_us,
+                  fontSize: 12,
+                  onTap: () {
+                    // TODO(dickyrey): life_at_kumparan
+                  },
+                ),
+                _ListTileWidget(
+                  title: lang.help,
+                  fontSize: 12,
+                  onTap: () {
+                    // TODO(dickyrey): call center
+                  },
+                ),
+                _ListTileWidget(
+                  title: lang.privacy_policy,
+                  fontSize: 12,
+                  onTap: () {
+                    // TODO(dickyrey): terms_and_privacy_policy
+                  },
+                ),
+                _ListTileWidget(
+                  title: lang.terms_and_condition,
+                  fontSize: 12,
+                  onTap: () {
+                    // TODO(dickyrey): terms_and_privacy_policy
+                  },
+                ),
+              ],
+            ),
+            _ListTileWidget(
+              icon: FeatherIcons.logOut,
+              title: lang.sign_out,
+              onTap: () {
+                showConfirmationDialog(
+                  context,
+                  title: lang.are_you_sure_want_to_sign_out,
+                  primaryButtonLabel: lang.sign_out,
+                  onPrimaryButtonTap: () {
+                    Navigator.pop(context);
+                    context
+                        .read<AuthWatcherBloc>()
+                        .add(const AuthWatcherEvent.signOut());
+                    context
+                        .read<UserWatcherBloc>()
+                        .add(const UserWatcherEvent.init());
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),

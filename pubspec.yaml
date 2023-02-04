@@ -35,6 +35,7 @@ dependencies:
   octo_image: ^1.0.2
   persistent_bottom_nav_bar_v2: ^4.2.6
   shared_preferences: ^2.0.17
+  shimmer: ^2.0.0
   timer_count_down: ^2.2.2
   very_good_analysis: ^3.1.0
 
