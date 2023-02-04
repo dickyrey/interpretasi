@@ -8,6 +8,7 @@ import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
+import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -27,6 +28,30 @@ class ProfilePage extends StatelessWidget {
                 return state.maybeMap(
                   orElse: () {
                     return const SizedBox();
+                  },
+                  loading: (_) {
+                    return ShimmerWidget(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: 120,
+                            height: 120,
+                            child: CircleAvatar(
+                              radius: 60,
+                              backgroundColor: theme.disabledColor,
+                            ),
+                          ),
+                          const SizedBox(height: Const.space15),
+                          const ShimmerContainerWidget(),
+                          const SizedBox(height: Const.space12),
+                          const ShimmerContainerWidget(
+                            width: 150,
+                            height: 10,
+                          ),
+                        ],
+                      ),
+                    );
                   },
                   loaded: (state) {
                     return Column(
@@ -190,16 +215,13 @@ class ProfilePage extends StatelessWidget {
 
 class _ListTileWidget extends StatelessWidget {
   const _ListTileWidget({
-    super.key,
     required this.title,
     required this.onTap,
     this.icon,
     this.fontSize,
-    this.subtitle,
   });
 
   final String title;
-  final String? subtitle;
   final VoidCallback onTap;
   final IconData? icon;
   final double? fontSize;
@@ -237,10 +259,6 @@ class _ListTileWidget extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  if (subtitle != null)
-                    Text(subtitle!, style: theme.textTheme.bodyMedium)
-                  else
-                    const SizedBox(),
                 ],
               ),
             ),
