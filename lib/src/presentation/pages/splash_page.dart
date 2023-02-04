@@ -36,10 +36,10 @@ class _SplashPageState extends State<SplashPage> {
               return goNextRoute(HOME);
             },
             authInFailure: (_) {
-              return goNextRoute(HOME);
+              return goNextRoute(ON_BOARDING);
             },
             notAuthenticated: (value) {
-              return goNextRoute(HOME);
+              return goNextRoute(ON_BOARDING);
             },
           );
         },

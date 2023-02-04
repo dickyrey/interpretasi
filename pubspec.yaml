@@ -8,6 +8,7 @@ environment:
   sdk: '>=2.19.0 <3.0.0'
 
 dependencies:
+  cached_network_image: ^3.2.3
   crypto: ^3.0.2
   cupertino_icons: ^1.0.5
   dartz: ^0.10.1
@@ -31,6 +32,7 @@ dependencies:
   image_cropper: ^3.0.1
   image_picker: ^0.8.6+1
   lottie: ^2.2.0
+  octo_image: ^1.0.2
   persistent_bottom_nav_bar_v2: ^4.2.6
   shared_preferences: ^2.0.17
   timer_count_down: ^2.2.2

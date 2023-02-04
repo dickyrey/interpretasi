@@ -7,13 +7,14 @@ import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/category/category_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/pages/profile_page.dart';
 import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class BottomNavBarWidget extends StatefulWidget {
   const BottomNavBarWidget({
     super.key,
-    this.index = 0,
+    this.index = 3,
   });
 
   final int index;
@@ -41,7 +42,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
     const Center(child: CircularProgressIndicator()),
     const Center(child: Text('3')),
     const Center(child: Text('3')),
-    const Center(child: Text('4')),
+    const ProfilePage(),
   ];
 
   List<PersistentBottomNavBarItem> _listNavItem(BuildContext context) {

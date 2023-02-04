@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:interpretasi/src/common/colors.dart';
+import 'package:interpretasi/src/common/const.dart';
 
 ThemeData themeLight(BuildContext context) {
   return ThemeData(
@@ -22,12 +23,20 @@ ThemeData themeLight(BuildContext context) {
       surface: ColorLight.background,
       onSurface: ColorLight.background,
     ),
-    cardColor: ColorLight.card,
-    disabledColor: ColorLight.disabledButton,
-    hintColor: ColorLight.fontSubtitle,
-    indicatorColor: ColorLight.primary,
-    iconTheme: const IconThemeData(color: ColorLight.fontTitle),
     primaryColor: ColorLight.primary,
+    cardColor: ColorLight.card,
+    disabledColor: ColorLight.disabled,
+    hintColor: ColorLight.hint,
+    indicatorColor: ColorLight.primary,
+    buttonTheme: ButtonThemeData(
+      disabledColor: ColorLight.disabledButton,
+      buttonColor: ColorLight.primary,
+      height: 45,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(Const.radius),
+      ),
+    ),
+    iconTheme: const IconThemeData(color: ColorLight.fontTitle),
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: ColorLight.primary,
     ),
@@ -52,20 +61,35 @@ ThemeData themeLight(BuildContext context) {
         fontSize: 16,
         fontWeight: FontWeight.w500,
       ),
-      titleLarge: GoogleFonts.poppins(
+      labelLarge: GoogleFonts.poppins(
         color: ColorLight.fontTitle,
         fontSize: 14,
         fontWeight: FontWeight.w500,
       ),
-      titleMedium: GoogleFonts.poppins(
+      labelMedium: GoogleFonts.poppins(
         color: ColorLight.fontTitle,
         fontSize: 12,
         fontWeight: FontWeight.w500,
       ),
-      titleSmall: GoogleFonts.poppins(
+      labelSmall: GoogleFonts.poppins(
         color: ColorLight.fontTitle,
         fontSize: 10,
         fontWeight: FontWeight.w500,
+      ),
+      titleLarge: GoogleFonts.poppins(
+        color: ColorLight.fontTitle,
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
+      ),
+      titleMedium: GoogleFonts.poppins(
+        color: ColorLight.fontTitle,
+        fontSize: 12,
+        fontWeight: FontWeight.normal,
+      ),
+      titleSmall: GoogleFonts.poppins(
+        color: ColorLight.fontTitle,
+        fontSize: 10,
+        fontWeight: FontWeight.normal,
       ),
       bodyLarge: GoogleFonts.poppins(
         color: ColorLight.fontSubtitle,
@@ -79,21 +103,6 @@ ThemeData themeLight(BuildContext context) {
       ),
       bodySmall: GoogleFonts.poppins(
         color: ColorLight.fontSubtitle,
-        fontSize: 10,
-        fontWeight: FontWeight.normal,
-      ),
-      labelLarge: GoogleFonts.poppins(
-        color: Colors.white,
-        fontSize: 14,
-        fontWeight: FontWeight.normal,
-      ),
-      labelMedium: GoogleFonts.poppins(
-        color: Colors.white,
-        fontSize: 12,
-        fontWeight: FontWeight.normal,
-      ),
-      labelSmall: GoogleFonts.poppins(
-        color: Colors.white,
         fontSize: 10,
         fontWeight: FontWeight.normal,
       ),
