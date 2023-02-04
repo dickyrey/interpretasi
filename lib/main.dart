@@ -22,7 +22,8 @@ import 'package:interpretasi/src/presentation/bloc/comment_article/delete_commen
 import 'package:interpretasi/src/presentation/bloc/comment_article/send_comment_actor/send_comment_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/email_verification/email_verification_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_article_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/password/password_form_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/password/add_password_form/add_password_form_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/password/change_password_form/change_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/change_to_moderated_actor/change_to_moderated_actor_bloc.dart';
@@ -72,7 +73,8 @@ class MyApp extends StatelessWidget {
         //* Like/Unlike Article in BLoC folder
         BlocProvider(create: (context) => di.locator<LikeArticleWatcherBloc>()),
         //* Password BLoC folder
-        BlocProvider(create: (context) => di.locator<PasswordFormBloc>()),
+        BlocProvider(create: (context) => di.locator<AddPasswordFormBloc>()),
+        BlocProvider(create: (context) => di.locator<ChangePasswordFormBloc>()),
         //* User BLoC folder
         BlocProvider(create: (context) => di.locator<UserFormBloc>()),
         BlocProvider(create: (context) => di.locator<UserWatcherBloc>()),

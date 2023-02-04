@@ -26,6 +26,7 @@ class Assets {
 
 class ExceptionMessage {
   static const String internetNotConnected = 'internet-not-connected';
+  static const String wrongOldPassword = 'wrong-old-password';
   static const String invalidToken = 'invalid-token';
   static const String userAlreadyExist = 'user-already-exist';
   static const String wrongPassword = 'wrong-password';

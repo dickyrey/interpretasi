@@ -74,7 +74,8 @@ import 'package:interpretasi/src/presentation/bloc/comment_article/delete_commen
 import 'package:interpretasi/src/presentation/bloc/comment_article/send_comment_actor/send_comment_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/email_verification/email_verification_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_article_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/password/password_form_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/password/add_password_form/add_password_form_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/password/change_password_form/change_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/change_to_moderated_actor/change_to_moderated_actor_bloc.dart';
@@ -483,9 +484,14 @@ void init() {
 
   //* Password BLoC folder
   //*
-  final passwordFormBloc = PasswordFormBloc(locator());
+  final addPasswordFormBloc = AddPasswordFormBloc(locator());
   locator.registerLazySingleton(
-    () => passwordFormBloc,
+    () => addPasswordFormBloc,
+  );
+
+  final changePasswordFormBloc = ChangePasswordFormBloc(locator());
+  locator.registerLazySingleton(
+    () => changePasswordFormBloc,
   );
 
   //* TimeZone BLoC folder

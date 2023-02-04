@@ -69,6 +69,7 @@ class _SettingsAndPrivacyPageState extends State<SettingsAndPrivacyPage> {
                       subtitle: state.user.email,
                       icon: FeatherIcons.mail,
                       onTap: () {
+                        // TODO(dickyrey): Email Verification Success / Done
                         // Navigator.pushNamed(context, ADD_SECOND_EMAIL);
                       },
                     );
@@ -97,6 +98,12 @@ class _SettingsAndPrivacyPageState extends State<SettingsAndPrivacyPage> {
                             PASSWORD,
                             arguments: true,
                           );
+                        } else {
+                          Navigator.pushNamed(
+                            context,
+                            CHANGE_PASSWORD,
+                            arguments: true,
+                          );
                         }
                       },
                     );
@@ -108,18 +115,23 @@ class _SettingsAndPrivacyPageState extends State<SettingsAndPrivacyPage> {
               title: lang.notification,
               icon: FeatherIcons.bell,
               onTap: () {
-                Navigator.pushNamed(context, INTEREST_SETTING);
+                // TODO(dickyrey): Notification Settings
+                // Navigator.pushNamed(context, INTEREST_SETTING);
               },
             ),
             ListTileWidget(
               title: lang.dark_mode,
               icon: FeatherIcons.moon,
-              onTap: () {},
+              onTap: () {
+                // TODO(dickyrey): Theme Setting
+              },
             ),
             ListTileWidget(
               title: lang.change_language,
               icon: FeatherIcons.globe,
-              onTap: () {},
+              onTap: () {
+                // TODO(dickyrey): Change Language
+              },
             ),
           ],
         ),

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/screens.dart';
-import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dart';
 
 class ErrorPage extends StatelessWidget {
@@ -44,11 +42,8 @@ class ErrorPage extends StatelessWidget {
             ElevatedButtonWidget(
               onTap: () {
                 Navigator.pop(context);
-                context
-                    .read<AuthWatcherBloc>()
-                    .add(const AuthWatcherEvent.signOut());
               },
-              label: 'Kembali',
+              label: lang.go_back,
             )
           ],
         ),

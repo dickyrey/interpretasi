@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'password_form_bloc.dart';
+part of 'add_password_form_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$PasswordFormEvent {
+mixin _$AddPasswordFormEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -76,16 +76,17 @@ mixin _$PasswordFormEvent {
 }
 
 /// @nodoc
-abstract class $PasswordFormEventCopyWith<$Res> {
-  factory $PasswordFormEventCopyWith(
-          PasswordFormEvent value, $Res Function(PasswordFormEvent) then) =
-      _$PasswordFormEventCopyWithImpl<$Res, PasswordFormEvent>;
+abstract class $AddPasswordFormEventCopyWith<$Res> {
+  factory $AddPasswordFormEventCopyWith(AddPasswordFormEvent value,
+          $Res Function(AddPasswordFormEvent) then) =
+      _$AddPasswordFormEventCopyWithImpl<$Res, AddPasswordFormEvent>;
 }
 
 /// @nodoc
-class _$PasswordFormEventCopyWithImpl<$Res, $Val extends PasswordFormEvent>
-    implements $PasswordFormEventCopyWith<$Res> {
-  _$PasswordFormEventCopyWithImpl(this._value, this._then);
+class _$AddPasswordFormEventCopyWithImpl<$Res,
+        $Val extends AddPasswordFormEvent>
+    implements $AddPasswordFormEventCopyWith<$Res> {
+  _$AddPasswordFormEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -102,7 +103,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$PasswordFormEventCopyWithImpl<$Res, _$_Initial>
+    extends _$AddPasswordFormEventCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -115,7 +116,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'PasswordFormEvent.initial()';
+    return 'AddPasswordFormEvent.initial()';
   }
 
   @override
@@ -209,7 +210,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements PasswordFormEvent {
+abstract class _Initial implements AddPasswordFormEvent {
   const factory _Initial() = _$_Initial;
 }
 
@@ -224,7 +225,7 @@ abstract class _$$_PasswordOnChangedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_PasswordOnChangedCopyWithImpl<$Res>
-    extends _$PasswordFormEventCopyWithImpl<$Res, _$_PasswordOnChanged>
+    extends _$AddPasswordFormEventCopyWithImpl<$Res, _$_PasswordOnChanged>
     implements _$$_PasswordOnChangedCopyWith<$Res> {
   __$$_PasswordOnChangedCopyWithImpl(
       _$_PasswordOnChanged _value, $Res Function(_$_PasswordOnChanged) _then)
@@ -254,7 +255,7 @@ class _$_PasswordOnChanged implements _PasswordOnChanged {
 
   @override
   String toString() {
-    return 'PasswordFormEvent.passwordOnChanged(password: $password)';
+    return 'AddPasswordFormEvent.passwordOnChanged(password: $password)';
   }
 
   @override
@@ -358,7 +359,7 @@ class _$_PasswordOnChanged implements _PasswordOnChanged {
   }
 }
 
-abstract class _PasswordOnChanged implements PasswordFormEvent {
+abstract class _PasswordOnChanged implements AddPasswordFormEvent {
   const factory _PasswordOnChanged(final String password) =
       _$_PasswordOnChanged;
 
@@ -379,7 +380,7 @@ abstract class _$$_RepeatPasswordOnChangedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_RepeatPasswordOnChangedCopyWithImpl<$Res>
-    extends _$PasswordFormEventCopyWithImpl<$Res, _$_RepeatPasswordOnChanged>
+    extends _$AddPasswordFormEventCopyWithImpl<$Res, _$_RepeatPasswordOnChanged>
     implements _$$_RepeatPasswordOnChangedCopyWith<$Res> {
   __$$_RepeatPasswordOnChangedCopyWithImpl(_$_RepeatPasswordOnChanged _value,
       $Res Function(_$_RepeatPasswordOnChanged) _then)
@@ -409,7 +410,7 @@ class _$_RepeatPasswordOnChanged implements _RepeatPasswordOnChanged {
 
   @override
   String toString() {
-    return 'PasswordFormEvent.repeatPasswordOnChanged(repeatPassword: $repeatPassword)';
+    return 'AddPasswordFormEvent.repeatPasswordOnChanged(repeatPassword: $repeatPassword)';
   }
 
   @override
@@ -514,7 +515,7 @@ class _$_RepeatPasswordOnChanged implements _RepeatPasswordOnChanged {
   }
 }
 
-abstract class _RepeatPasswordOnChanged implements PasswordFormEvent {
+abstract class _RepeatPasswordOnChanged implements AddPasswordFormEvent {
   const factory _RepeatPasswordOnChanged(final String repeatPassword) =
       _$_RepeatPasswordOnChanged;
 
@@ -533,7 +534,7 @@ abstract class _$$_AddPasswordPressedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AddPasswordPressedCopyWithImpl<$Res>
-    extends _$PasswordFormEventCopyWithImpl<$Res, _$_AddPasswordPressed>
+    extends _$AddPasswordFormEventCopyWithImpl<$Res, _$_AddPasswordPressed>
     implements _$$_AddPasswordPressedCopyWith<$Res> {
   __$$_AddPasswordPressedCopyWithImpl(
       _$_AddPasswordPressed _value, $Res Function(_$_AddPasswordPressed) _then)
@@ -547,7 +548,7 @@ class _$_AddPasswordPressed implements _AddPasswordPressed {
 
   @override
   String toString() {
-    return 'PasswordFormEvent.addPasswordPressed()';
+    return 'AddPasswordFormEvent.addPasswordPressed()';
   }
 
   @override
@@ -641,7 +642,7 @@ class _$_AddPasswordPressed implements _AddPasswordPressed {
   }
 }
 
-abstract class _AddPasswordPressed implements PasswordFormEvent {
+abstract class _AddPasswordPressed implements AddPasswordFormEvent {
   const factory _AddPasswordPressed() = _$_AddPasswordPressed;
 }
 
@@ -654,7 +655,7 @@ abstract class _$$_ObscureTextPressedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ObscureTextPressedCopyWithImpl<$Res>
-    extends _$PasswordFormEventCopyWithImpl<$Res, _$_ObscureTextPressed>
+    extends _$AddPasswordFormEventCopyWithImpl<$Res, _$_ObscureTextPressed>
     implements _$$_ObscureTextPressedCopyWith<$Res> {
   __$$_ObscureTextPressedCopyWithImpl(
       _$_ObscureTextPressed _value, $Res Function(_$_ObscureTextPressed) _then)
@@ -668,7 +669,7 @@ class _$_ObscureTextPressed implements _ObscureTextPressed {
 
   @override
   String toString() {
-    return 'PasswordFormEvent.obscureTextPressed()';
+    return 'AddPasswordFormEvent.obscureTextPressed()';
   }
 
   @override
@@ -762,12 +763,12 @@ class _$_ObscureTextPressed implements _ObscureTextPressed {
   }
 }
 
-abstract class _ObscureTextPressed implements PasswordFormEvent {
+abstract class _ObscureTextPressed implements AddPasswordFormEvent {
   const factory _ObscureTextPressed() = _$_ObscureTextPressed;
 }
 
 /// @nodoc
-mixin _$PasswordFormState {
+mixin _$AddPasswordFormState {
   RequestState get state => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
@@ -777,15 +778,15 @@ mixin _$PasswordFormState {
   bool get isShowErrorMessages => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PasswordFormStateCopyWith<PasswordFormState> get copyWith =>
+  $AddPasswordFormStateCopyWith<AddPasswordFormState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PasswordFormStateCopyWith<$Res> {
-  factory $PasswordFormStateCopyWith(
-          PasswordFormState value, $Res Function(PasswordFormState) then) =
-      _$PasswordFormStateCopyWithImpl<$Res, PasswordFormState>;
+abstract class $AddPasswordFormStateCopyWith<$Res> {
+  factory $AddPasswordFormStateCopyWith(AddPasswordFormState value,
+          $Res Function(AddPasswordFormState) then) =
+      _$AddPasswordFormStateCopyWithImpl<$Res, AddPasswordFormState>;
   @useResult
   $Res call(
       {RequestState state,
@@ -798,9 +799,10 @@ abstract class $PasswordFormStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PasswordFormStateCopyWithImpl<$Res, $Val extends PasswordFormState>
-    implements $PasswordFormStateCopyWith<$Res> {
-  _$PasswordFormStateCopyWithImpl(this._value, this._then);
+class _$AddPasswordFormStateCopyWithImpl<$Res,
+        $Val extends AddPasswordFormState>
+    implements $AddPasswordFormStateCopyWith<$Res> {
+  _$AddPasswordFormStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -852,11 +854,11 @@ class _$PasswordFormStateCopyWithImpl<$Res, $Val extends PasswordFormState>
 }
 
 /// @nodoc
-abstract class _$$_PasswordFormStateCopyWith<$Res>
-    implements $PasswordFormStateCopyWith<$Res> {
-  factory _$$_PasswordFormStateCopyWith(_$_PasswordFormState value,
-          $Res Function(_$_PasswordFormState) then) =
-      __$$_PasswordFormStateCopyWithImpl<$Res>;
+abstract class _$$_AddPasswordFormStateCopyWith<$Res>
+    implements $AddPasswordFormStateCopyWith<$Res> {
+  factory _$$_AddPasswordFormStateCopyWith(_$_AddPasswordFormState value,
+          $Res Function(_$_AddPasswordFormState) then) =
+      __$$_AddPasswordFormStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -870,11 +872,11 @@ abstract class _$$_PasswordFormStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PasswordFormStateCopyWithImpl<$Res>
-    extends _$PasswordFormStateCopyWithImpl<$Res, _$_PasswordFormState>
-    implements _$$_PasswordFormStateCopyWith<$Res> {
-  __$$_PasswordFormStateCopyWithImpl(
-      _$_PasswordFormState _value, $Res Function(_$_PasswordFormState) _then)
+class __$$_AddPasswordFormStateCopyWithImpl<$Res>
+    extends _$AddPasswordFormStateCopyWithImpl<$Res, _$_AddPasswordFormState>
+    implements _$$_AddPasswordFormStateCopyWith<$Res> {
+  __$$_AddPasswordFormStateCopyWithImpl(_$_AddPasswordFormState _value,
+      $Res Function(_$_AddPasswordFormState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -888,7 +890,7 @@ class __$$_PasswordFormStateCopyWithImpl<$Res>
     Object? isSubmitting = null,
     Object? isShowErrorMessages = null,
   }) {
-    return _then(_$_PasswordFormState(
+    return _then(_$_AddPasswordFormState(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -923,8 +925,8 @@ class __$$_PasswordFormStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PasswordFormState implements _PasswordFormState {
-  const _$_PasswordFormState(
+class _$_AddPasswordFormState implements _AddPasswordFormState {
+  const _$_AddPasswordFormState(
       {required this.state,
       required this.message,
       required this.password,
@@ -950,14 +952,14 @@ class _$_PasswordFormState implements _PasswordFormState {
 
   @override
   String toString() {
-    return 'PasswordFormState(state: $state, message: $message, password: $password, repeatPassword: $repeatPassword, obscureText: $obscureText, isSubmitting: $isSubmitting, isShowErrorMessages: $isShowErrorMessages)';
+    return 'AddPasswordFormState(state: $state, message: $message, password: $password, repeatPassword: $repeatPassword, obscureText: $obscureText, isSubmitting: $isSubmitting, isShowErrorMessages: $isShowErrorMessages)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PasswordFormState &&
+            other is _$_AddPasswordFormState &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.password, password) ||
@@ -979,20 +981,20 @@ class _$_PasswordFormState implements _PasswordFormState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PasswordFormStateCopyWith<_$_PasswordFormState> get copyWith =>
-      __$$_PasswordFormStateCopyWithImpl<_$_PasswordFormState>(
+  _$$_AddPasswordFormStateCopyWith<_$_AddPasswordFormState> get copyWith =>
+      __$$_AddPasswordFormStateCopyWithImpl<_$_AddPasswordFormState>(
           this, _$identity);
 }
 
-abstract class _PasswordFormState implements PasswordFormState {
-  const factory _PasswordFormState(
+abstract class _AddPasswordFormState implements AddPasswordFormState {
+  const factory _AddPasswordFormState(
       {required final RequestState state,
       required final String message,
       required final String password,
       required final String repeatPassword,
       required final bool obscureText,
       required final bool isSubmitting,
-      required final bool isShowErrorMessages}) = _$_PasswordFormState;
+      required final bool isShowErrorMessages}) = _$_AddPasswordFormState;
 
   @override
   RequestState get state;
@@ -1010,6 +1012,6 @@ abstract class _PasswordFormState implements PasswordFormState {
   bool get isShowErrorMessages;
   @override
   @JsonKey(ignore: true)
-  _$$_PasswordFormStateCopyWith<_$_PasswordFormState> get copyWith =>
+  _$$_AddPasswordFormStateCopyWith<_$_AddPasswordFormState> get copyWith =>
       throw _privateConstructorUsedError;
 }

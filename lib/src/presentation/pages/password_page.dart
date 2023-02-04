@@ -6,7 +6,7 @@ import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/verification_status_watcher/verification_status_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/password/password_form_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/password/add_password_form/add_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_form_field_widget.dart';
 import 'package:interpretasi/src/utilities/snackbar.dart';
@@ -33,7 +33,7 @@ class _PasswordPageState extends State<PasswordPage> {
             .add(const VerificationStatusWatcherEvent.fetchStatus());
         return true;
       },
-      child: BlocConsumer<PasswordFormBloc, PasswordFormState>(
+      child: BlocConsumer<AddPasswordFormBloc, AddPasswordFormState>(
         listener: (context, state) {
           if (state.message == ExceptionMessage.internetNotConnected) {
             final snack = showSnackbar(
@@ -103,8 +103,8 @@ class _PasswordPageState extends State<PasswordPage> {
                       hintText: lang.pasword_hint_,
                       suffixIcon: IconButton(
                         onPressed: () {
-                          context.read<PasswordFormBloc>().add(
-                                const PasswordFormEvent.obscureTextPressed(),
+                          context.read<AddPasswordFormBloc>().add(
+                                const AddPasswordFormEvent.obscureTextPressed(),
                               );
                         },
                         icon: Icon(
@@ -115,8 +115,8 @@ class _PasswordPageState extends State<PasswordPage> {
                       ),
                       onChanged: (value) {
                         context
-                            .read<PasswordFormBloc>()
-                            .add(PasswordFormEvent.passwordOnChanged(value));
+                            .read<AddPasswordFormBloc>()
+                            .add(AddPasswordFormEvent.passwordOnChanged(value));
                       },
                     ),
                     const SizedBox(height: Const.space25),
@@ -131,8 +131,8 @@ class _PasswordPageState extends State<PasswordPage> {
                       hintText: lang.pasword_hint_,
                       suffixIcon: IconButton(
                         onPressed: () {
-                          context.read<PasswordFormBloc>().add(
-                                const PasswordFormEvent.obscureTextPressed(),
+                          context.read<AddPasswordFormBloc>().add(
+                                const AddPasswordFormEvent.obscureTextPressed(),
                               );
                         },
                         icon: Icon(
@@ -142,8 +142,10 @@ class _PasswordPageState extends State<PasswordPage> {
                         ),
                       ),
                       onChanged: (value) {
-                        context.read<PasswordFormBloc>().add(
-                              PasswordFormEvent.repeatPasswordOnChanged(value),
+                        context.read<AddPasswordFormBloc>().add(
+                              AddPasswordFormEvent.repeatPasswordOnChanged(
+                                value,
+                              ),
                             );
                       },
                     ),
@@ -161,8 +163,8 @@ class _PasswordPageState extends State<PasswordPage> {
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snack);
                         } else {
-                          context.read<PasswordFormBloc>().add(
-                                const PasswordFormEvent.addPasswordPressed(),
+                          context.read<AddPasswordFormBloc>().add(
+                                const AddPasswordFormEvent.addPasswordPressed(),
                               );
                         }
                       },

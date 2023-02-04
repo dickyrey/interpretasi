@@ -76,9 +76,11 @@ class PasswordDataSourceImpl extends PasswordDataSource {
       headers: header,
       body: body,
     );
-
+    
     if (response.statusCode == 200) {
       return true;
+    } else if (response.statusCode == 403) {
+      throw ServerException(ExceptionMessage.wrongOldPassword);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }

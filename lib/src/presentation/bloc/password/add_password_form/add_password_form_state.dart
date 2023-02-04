@@ -1,8 +1,8 @@
-part of 'password_form_bloc.dart';
+part of 'add_password_form_bloc.dart';
 
 @freezed
-class PasswordFormState with _$PasswordFormState {
-  const factory PasswordFormState({
+class AddPasswordFormState with _$AddPasswordFormState {
+  const factory AddPasswordFormState({
     required RequestState state,
     required String message,
     required String password,
@@ -10,9 +10,9 @@ class PasswordFormState with _$PasswordFormState {
     required bool obscureText,
     required bool isSubmitting,
     required bool isShowErrorMessages,
-  }) = _PasswordFormState;
+  }) = _AddPasswordFormState;
 
-  factory PasswordFormState.initial() => const PasswordFormState(
+  factory AddPasswordFormState.initial() => const AddPasswordFormState(
         state: RequestState.empty,
         message: '',
         password: '',

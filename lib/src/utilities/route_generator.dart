@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interpretasi/src/common/routes.dart';
+import 'package:interpretasi/src/presentation/pages/change_password_page.dart';
 import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
 import 'package:interpretasi/src/presentation/pages/login_page.dart';
@@ -35,6 +36,10 @@ class RouteGenerator {
       case EMAIL_VERIFICATION:
         return MaterialPageRoute(
           builder: (_) => const EmailVerificationPage(),
+        );
+      case CHANGE_PASSWORD:
+        return MaterialPageRoute(
+          builder: (_) => const ChangePasswordPage(),
         );
       case PASSWORD:
         if (args is bool) {
