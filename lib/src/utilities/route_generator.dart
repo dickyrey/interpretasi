@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:interpretasi/src/common/routes.dart';
-import 'package:interpretasi/src/domain/entities/user.dart';
 import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
 import 'package:interpretasi/src/presentation/pages/login_page.dart';

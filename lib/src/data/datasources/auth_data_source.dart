@@ -20,7 +20,6 @@ abstract class AuthDataSource {
   Future<bool> signUpWithEmail(String email);
   Future<void> signOut();
   Future<List<String>> getTimeZone();
-  Future<VerificationStatusModel> checkUserVerification();
   Future<bool> resendEmailVerification();
 }
 
@@ -234,29 +233,6 @@ class AuthDataSourceImpl extends AuthDataSource {
       }
 
       return timeZoneModelFromJson(response.body);
-    } else {
-      throw ServerException(ExceptionMessage.internetNotConnected);
-    }
-  }
-
-  @override
-  Future<VerificationStatusModel> checkUserVerification() async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString(Const.token);
-    final header = {
-      'Authorization': 'Bearer $token',
-      'Accept': 'application/json',
-    };
-    final url = Uri(
-      scheme: Const.scheme,
-      host: Const.host,
-      path: '/api/user/check',
-    );
-    final response = await client.get(url, headers: header);
-    if (response.statusCode == 200) {
-      return VerificationStatusModel.fromJson(
-        json.decode(response.body) as Map<String, dynamic>,
-      );
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }

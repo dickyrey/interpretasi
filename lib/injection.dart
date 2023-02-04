@@ -34,7 +34,6 @@ import 'package:interpretasi/src/domain/usecases/article/get_article_detail.dart
 import 'package:interpretasi/src/domain/usecases/article/get_latest_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/update_article.dart';
 import 'package:interpretasi/src/domain/usecases/auth/check_google_auth.dart';
-import 'package:interpretasi/src/domain/usecases/auth/check_user_verification.dart';
 import 'package:interpretasi/src/domain/usecases/auth/resend_email_verification.dart';
 import 'package:interpretasi/src/domain/usecases/auth/sign_in_with_email.dart';
 import 'package:interpretasi/src/domain/usecases/auth/sign_in_with_google.dart';
@@ -49,6 +48,7 @@ import 'package:interpretasi/src/domain/usecases/like_article/like_article.dart'
 import 'package:interpretasi/src/domain/usecases/on_boarding/get_boarding_list.dart';
 import 'package:interpretasi/src/domain/usecases/password/add_password.dart';
 import 'package:interpretasi/src/domain/usecases/password/change_password.dart';
+import 'package:interpretasi/src/domain/usecases/user/check_user_verification.dart';
 import 'package:interpretasi/src/domain/usecases/user/get_user_profile.dart';
 import 'package:interpretasi/src/domain/usecases/user/update_user_profile.dart';
 import 'package:interpretasi/src/domain/usecases/user_article/change_to_moderated.dart';

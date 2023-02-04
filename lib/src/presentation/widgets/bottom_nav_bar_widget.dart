@@ -11,7 +11,7 @@ import 'package:interpretasi/src/presentation/pages/profile_page.dart';
 class BottomNavBarWidget extends StatefulWidget {
   const BottomNavBarWidget({
     super.key,
-    this.index = 0,
+    this.index = 3,
   });
 
   final int index;
