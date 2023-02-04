@@ -70,6 +70,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
                     context,
                     PASSWORD,
                     (route) => false,
+                    arguments: false,
                   );
                 }
               },

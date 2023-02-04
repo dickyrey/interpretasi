@@ -10,6 +10,7 @@ import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watche
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
+import 'package:interpretasi/src/presentation/widgets/list_tile_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -123,33 +124,33 @@ class ProfilePage extends StatelessWidget {
               },
             ),
             const SizedBox(height: Const.space25),
-            _ListTileWidget(
+            ListTileWidget(
               icon: FeatherIcons.user,
               title: lang.my_profile,
               onTap: () {
                 // Navigator.pushNamed(context, PROFILE);
               },
             ),
-            _ListTileWidget(
+            ListTileWidget(
               title: lang.my_articles,
               icon: FeatherIcons.fileText,
               onTap: () {},
             ),
-            _ListTileWidget(
+            ListTileWidget(
               icon: FeatherIcons.settings,
               title: lang.settings_and_privacy,
               onTap: () {
-                // Navigator.pushNamed(context, SETTINGS_AND_PRIVACY);
+                Navigator.pushNamed(context, SETTINGS_AND_PRIVACY);
               },
             ),
-            _ListTileWidget(
+            ListTileWidget(
               icon: FeatherIcons.clock,
               title: lang.read_history,
               onTap: () {
                 // Navigator.pushNamed(context, READ_HISTORY);
               },
             ),
-            _ListTileWidget(
+            ListTileWidget(
               icon: FeatherIcons.trendingUp,
               title: lang.trending,
               onTap: () {
@@ -171,28 +172,28 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               children: [
-                _ListTileWidget(
+                ListTileWidget(
                   title: lang.about_us,
                   fontSize: 12,
                   onTap: () {
                     // TODO(dickyrey): life_at_kumparan
                   },
                 ),
-                _ListTileWidget(
+                ListTileWidget(
                   title: lang.help,
                   fontSize: 12,
                   onTap: () {
                     // TODO(dickyrey): call center
                   },
                 ),
-                _ListTileWidget(
+                ListTileWidget(
                   title: lang.privacy_policy,
                   fontSize: 12,
                   onTap: () {
                     // TODO(dickyrey): terms_and_privacy_policy
                   },
                 ),
-                _ListTileWidget(
+                ListTileWidget(
                   title: lang.terms_and_condition,
                   fontSize: 12,
                   onTap: () {
@@ -201,7 +202,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ],
             ),
-            _ListTileWidget(
+            ListTileWidget(
               icon: FeatherIcons.logOut,
               title: lang.sign_out,
               onTap: () {
@@ -220,62 +221,6 @@ class ProfilePage extends StatelessWidget {
                   },
                 );
               },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _ListTileWidget extends StatelessWidget {
-  const _ListTileWidget({
-    required this.title,
-    required this.onTap,
-    this.icon,
-    this.fontSize,
-  });
-
-  final String title;
-  final VoidCallback onTap;
-  final IconData? icon;
-  final double? fontSize;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: Const.margin,
-          vertical: Const.space12,
-        ),
-        child: Row(
-          children: [
-            if (icon != null)
-              Icon(icon, color: ColorLight.fontTitle)
-            else
-              const SizedBox(),
-            if (icon != null)
-              const SizedBox(width: Const.space15)
-            else
-              const SizedBox(),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    title,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontSize: fontSize,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                ],
-              ),
             ),
           ],
         ),

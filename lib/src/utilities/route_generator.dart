@@ -7,6 +7,7 @@ import 'package:interpretasi/src/presentation/pages/on_boarding_page.dart';
 import 'package:interpretasi/src/presentation/pages/password_page.dart';
 import 'package:interpretasi/src/presentation/pages/profile_form_page.dart';
 import 'package:interpretasi/src/presentation/pages/register_page.dart';
+import 'package:interpretasi/src/presentation/pages/settings_and_privacy_page.dart';
 import 'package:interpretasi/src/presentation/pages/splash_page.dart';
 import 'package:interpretasi/src/presentation/widgets/bottom_nav_bar_widget.dart';
 
@@ -36,9 +37,12 @@ class RouteGenerator {
           builder: (_) => const EmailVerificationPage(),
         );
       case PASSWORD:
-        return MaterialPageRoute(
-          builder: (_) => const PasswordPage(),
-        );
+        if (args is bool) {
+          return MaterialPageRoute(
+            builder: (_) => PasswordPage(isFromSetting: args),
+          );
+        }
+        return _errorRoute();
       // case FORGOT_PASSWORD:
       //   return MaterialPageRoute(
       //     builder: (_) => const ForgotPasswordPage(),
@@ -57,16 +61,16 @@ class RouteGenerator {
       //   );
 
       case PROFILE_FORM:
-          return MaterialPageRoute(
-            builder: (_) => const ProfileFormPage(),
-          );
+        return MaterialPageRoute(
+          builder: (_) => const ProfileFormPage(),
+        );
+      case SETTINGS_AND_PRIVACY:
+        return MaterialPageRoute(
+          builder: (_) => const SettingsAndPrivacyPage(),
+        );
       // case MY_ARTICLE:
       //   return MaterialPageRoute(
       //     builder: (_) => const MyArticlePage(),
-      //   );
-      // case SETTINGS_AND_PRIVACY:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const SettingsAndPrivacyPage(),
       //   );
 
       // case ADD_SECOND_EMAIL:
