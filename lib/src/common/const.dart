@@ -18,6 +18,7 @@ class Assets {
   // SVG Assets
   static const String logo = 'assets/logo.svg';
   static const String error = 'assets/error.svg';
+  static const String fire = 'assets/fire.svg';
   static const String google = 'assets/google.svg';
 
   // JSONS Assets

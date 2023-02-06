@@ -3,10 +3,10 @@ import 'dart:ui';
 class ColorLight {
   static const Color primary = Color(0xFF3C1361);
   static const Color secondary = Color(0xFF0077B6);
-  static const Color background = Color(0xFFFAFAFA);
+  static const Color background = Color(0xFFF8F8F8);
   static const Color card = Color(0xFFFFFFFF);
   static const Color disabled = Color(0xFFE5DEEB);
-  static const Color hint = Color(0xFF79758C);
+  static const Color hint = Color(0xFFC1C1C1);
 
   static const Color fontTitle = Color(0xFF0B0412);
   static const Color fontSubtitle = Color(0xFF646067);

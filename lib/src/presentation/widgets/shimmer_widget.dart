@@ -23,7 +23,7 @@ class ShimmerContainerWidget extends StatelessWidget {
   const ShimmerContainerWidget({
     super.key,
     this.width = 100,
-    this.height = 15,
+    this.height = 10,
   });
 
   final double width;

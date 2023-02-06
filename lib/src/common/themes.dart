@@ -63,17 +63,17 @@ ThemeData themeLight(BuildContext context) {
       ),
       labelLarge: GoogleFonts.poppins(
         color: ColorLight.fontTitle,
-        fontSize: 14,
+        fontSize: 18,
         fontWeight: FontWeight.w500,
       ),
       labelMedium: GoogleFonts.poppins(
         color: ColorLight.fontTitle,
-        fontSize: 12,
+        fontSize: 16,
         fontWeight: FontWeight.w500,
       ),
       labelSmall: GoogleFonts.poppins(
         color: ColorLight.fontTitle,
-        fontSize: 10,
+        fontSize: 14,
         fontWeight: FontWeight.w500,
       ),
       titleLarge: GoogleFonts.poppins(
