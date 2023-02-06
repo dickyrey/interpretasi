@@ -4,6 +4,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
+import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/bloc/article/latest_article_watcher/latest_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
 
@@ -42,7 +43,11 @@ class LatestPage extends StatelessWidget {
                     article: article,
                     index: index,
                     onTap: () {
-                      // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/5
+                      Navigator.pushNamed(
+                        context,
+                        ARTICLE_DETAIL,
+                        arguments: article,
+                      );
                     },
                   );
                 },

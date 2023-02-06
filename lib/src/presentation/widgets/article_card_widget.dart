@@ -106,114 +106,117 @@ class _HorizontalCard extends StatelessWidget {
       ),
       margin: const EdgeInsets.only(right: Const.space15),
       padding: const EdgeInsets.all(Const.space8 / 2),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CachedNetworkImage(
-            width: 250,
-            height: 150,
-            imageUrl: article.image,
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-            placeholder: (context, url) => const ShimmerWidget(
-              child: ShimmerContainerWidget(
-                width: 250,
-                height: 150,
-              ),
-            ),
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Const.radius),
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
+      child: InkWell(
+        onTap: onTap,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CachedNetworkImage(
+              width: 250,
+              height: 150,
+              imageUrl: article.image,
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              placeholder: (context, url) => const ShimmerWidget(
+                child: ShimmerContainerWidget(
+                  width: 250,
+                  height: 150,
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: Const.space12 / 2,
-              vertical: Const.space8,
-            ),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SvgPicture.asset(
-                      Assets.fire,
-                      width: 10,
-                    ),
-                    const SizedBox(width: Const.space8),
-                    Text(
-                      '${lang.trending_no}${index + 1}',
-                      style: theme.textTheme.bodySmall,
-                    ),
-                    const Spacer(),
-                    Text(
-                      timeago.format(article.createdAt),
-                      style: theme.textTheme.bodySmall,
-                    ),
-                  ],
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Const.radius),
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                const SizedBox(height: Const.space12),
-                Text(
-                  article.title,
-                  style: theme.textTheme.titleLarge,
-                  maxLines: 3,
-                ),
-                const SizedBox(height: Const.space12),
-                Row(
-                  children: [
-                    Icon(
-                      FeatherIcons.eye,
-                      color: theme.hintColor,
-                      size: 12,
-                    ),
-                    const SizedBox(width: Const.space8),
-                    Text(
-                      formatViewsCount(article.viewers),
-                      style: theme.textTheme.bodyMedium,
-                      maxLines: 3,
-                    ),
-                    const SizedBox(width: Const.space12),
-                    Icon(
-                      FeatherIcons.heart,
-                      color: theme.hintColor,
-                      size: 12,
-                    ),
-                    const SizedBox(width: Const.space8),
-                    Text(
-                      formatViewsCount(article.likes),
-                      style: theme.textTheme.bodyMedium,
-                      maxLines: 3,
-                    ),
-                    const SizedBox(width: Const.space12),
-                    Icon(
-                      FeatherIcons.messageCircle,
-                      color: theme.hintColor,
-                      size: 12,
-                    ),
-                    const SizedBox(width: Const.space8),
-                    Text(
-                      formatViewsCount(article.comments),
-                      style: theme.textTheme.bodyMedium,
-                      maxLines: 3,
-                    ),
-                    const Spacer(),
-                    InkWell(
-                      onTap: () {},
-                      child: const Icon(
-                        FeatherIcons.moreHorizontal,
-                        size: 20,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: Const.space12 / 2,
+                vertical: Const.space8,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SvgPicture.asset(
+                        Assets.fire,
+                        width: 10,
                       ),
-                    )
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
+                      const SizedBox(width: Const.space8),
+                      Text(
+                        '${lang.trending_no}${index + 1}',
+                        style: theme.textTheme.bodySmall,
+                      ),
+                      const Spacer(),
+                      Text(
+                        timeago.format(article.createdAt),
+                        style: theme.textTheme.bodySmall,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: Const.space12),
+                  Text(
+                    article.title,
+                    style: theme.textTheme.titleLarge,
+                    maxLines: 3,
+                  ),
+                  const SizedBox(height: Const.space12),
+                  Row(
+                    children: [
+                      Icon(
+                        FeatherIcons.eye,
+                        color: theme.hintColor,
+                        size: 12,
+                      ),
+                      const SizedBox(width: Const.space8),
+                      Text(
+                        formatViewsCount(article.viewers),
+                        style: theme.textTheme.bodyMedium,
+                        maxLines: 3,
+                      ),
+                      const SizedBox(width: Const.space12),
+                      Icon(
+                        FeatherIcons.heart,
+                        color: theme.hintColor,
+                        size: 12,
+                      ),
+                      const SizedBox(width: Const.space8),
+                      Text(
+                        formatViewsCount(article.likes),
+                        style: theme.textTheme.bodyMedium,
+                        maxLines: 3,
+                      ),
+                      const SizedBox(width: Const.space12),
+                      Icon(
+                        FeatherIcons.messageCircle,
+                        color: theme.hintColor,
+                        size: 12,
+                      ),
+                      const SizedBox(width: Const.space8),
+                      Text(
+                        formatViewsCount(article.comments),
+                        style: theme.textTheme.bodyMedium,
+                        maxLines: 3,
+                      ),
+                      const Spacer(),
+                      InkWell(
+                        onTap: () {},
+                        child: const Icon(
+                          FeatherIcons.moreHorizontal,
+                          size: 20,
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -257,115 +260,118 @@ class _VerticalCard extends StatelessWidget {
         Const.space12,
       ),
       padding: const EdgeInsets.all(Const.space8 / 2),
-      child: Row(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: Const.space12 / 2,
-                vertical: Const.space8 / 2,
-              ),
-              child: Column(
-                children: [
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     Text(
-                  //       'News',
-                  //       style: theme.textTheme.bodySmall,
-                  //     ),
-                  //     Text(
-                  //       timeago.format(
-                  //         article.createdAt,
-                  //         locale: 'id',
-                  //       ),
-                  //       style: theme.textTheme.bodySmall,
-                  //     ),
-                  //   ],
-                  // ),
-                  // const SizedBox(height: Const.space8),
-                  Text(
-                    article.title,
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      height: 1.5,
+      child: InkWell(
+        onTap: onTap,
+        child: Row(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Const.space12 / 2,
+                  vertical: Const.space8 / 2,
+                ),
+                child: Column(
+                  children: [
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     Text(
+                    //       'News',
+                    //       style: theme.textTheme.bodySmall,
+                    //     ),
+                    //     Text(
+                    //       timeago.format(
+                    //         article.createdAt,
+                    //         locale: 'id',
+                    //       ),
+                    //       style: theme.textTheme.bodySmall,
+                    //     ),
+                    //   ],
+                    // ),
+                    // const SizedBox(height: Const.space8),
+                    Text(
+                      article.title,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        height: 1.5,
+                      ),
+                      maxLines: 3,
                     ),
-                    maxLines: 3,
-                  ),
-                  const SizedBox(height: Const.space8 - 3),
-                  const Spacer(),
-                  Row(
-                    children: [
-                      Icon(
-                        FeatherIcons.eye,
-                        color: theme.hintColor,
-                        size: 12,
-                      ),
-                      const SizedBox(width: Const.space8),
-                      Text(
-                        formatViewsCount(article.viewers),
-                        style: theme.textTheme.bodyMedium,
-                        maxLines: 3,
-                      ),
-                      const SizedBox(width: Const.space12),
-                      Icon(
-                        FeatherIcons.heart,
-                        color: theme.hintColor,
-                        size: 12,
-                      ),
-                      const SizedBox(width: Const.space8),
-                      Text(
-                        formatViewsCount(article.likes),
-                        style: theme.textTheme.bodyMedium,
-                        maxLines: 3,
-                      ),
-                      const SizedBox(width: Const.space12),
-                      Icon(
-                        FeatherIcons.messageCircle,
-                        color: theme.hintColor,
-                        size: 12,
-                      ),
-                      const SizedBox(width: Const.space8),
-                      Text(
-                        formatViewsCount(article.comments),
-                        style: theme.textTheme.bodyMedium,
-                        maxLines: 3,
-                      ),
-                      const Spacer(),
-                      InkWell(
-                        onTap: () {
-                          // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/8
-                        },
-                        child: const Icon(
-                          FeatherIcons.moreHorizontal,
-                          size: 20,
+                    const SizedBox(height: Const.space8 - 3),
+                    const Spacer(),
+                    Row(
+                      children: [
+                        Icon(
+                          FeatherIcons.eye,
+                          color: theme.hintColor,
+                          size: 12,
                         ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(width: Const.space8),
-          CachedNetworkImage(
-            width: 100,
-            height: 100,
-            imageUrl: article.image,
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-            placeholder: (context, url) => const ShimmerWidget(
-              child: ShimmerContainerWidget(height: 100),
-            ),
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Const.radius),
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
+                        const SizedBox(width: Const.space8),
+                        Text(
+                          formatViewsCount(article.viewers),
+                          style: theme.textTheme.bodyMedium,
+                          maxLines: 3,
+                        ),
+                        const SizedBox(width: Const.space12),
+                        Icon(
+                          FeatherIcons.heart,
+                          color: theme.hintColor,
+                          size: 12,
+                        ),
+                        const SizedBox(width: Const.space8),
+                        Text(
+                          formatViewsCount(article.likes),
+                          style: theme.textTheme.bodyMedium,
+                          maxLines: 3,
+                        ),
+                        const SizedBox(width: Const.space12),
+                        Icon(
+                          FeatherIcons.messageCircle,
+                          color: theme.hintColor,
+                          size: 12,
+                        ),
+                        const SizedBox(width: Const.space8),
+                        Text(
+                          formatViewsCount(article.comments),
+                          style: theme.textTheme.bodyMedium,
+                          maxLines: 3,
+                        ),
+                        const Spacer(),
+                        InkWell(
+                          onTap: () {
+                            // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/8
+                          },
+                          child: const Icon(
+                            FeatherIcons.moreHorizontal,
+                            size: 20,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
                 ),
               ),
             ),
-          ),
-        ],
+            const SizedBox(width: Const.space8),
+            CachedNetworkImage(
+              width: 100,
+              height: 100,
+              imageUrl: article.image,
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              placeholder: (context, url) => const ShimmerWidget(
+                child: ShimmerContainerWidget(height: 100),
+              ),
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Const.radius),
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

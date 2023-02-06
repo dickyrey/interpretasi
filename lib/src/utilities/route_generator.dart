@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interpretasi/src/common/routes.dart';
+import 'package:interpretasi/src/domain/entities/article.dart';
+import 'package:interpretasi/src/presentation/pages/article_detail_page.dart';
 import 'package:interpretasi/src/presentation/pages/change_password_page.dart';
 import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
@@ -56,15 +58,10 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const BottomNavBarWidget(),
         );
-      case MENU:
+      case PROFILE:
         return MaterialPageRoute(
           builder: (_) => const BottomNavBarWidget(index: 3),
         );
-      // case PROFILE:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const ProfilePage(),
-      //   );
-
       case PROFILE_FORM:
         return MaterialPageRoute(
           builder: (_) => const ProfileFormPage(),
@@ -73,6 +70,13 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const SettingsAndPrivacyPage(),
         );
+      case ARTICLE_DETAIL:
+        if (args is Article) {
+          return MaterialPageRoute(
+            builder: (_) => ArticleDetailPage(article: args),
+          );
+        }
+        return _errorRoute();
       // case MY_ARTICLE:
       //   return MaterialPageRoute(
       //     builder: (_) => const MyArticlePage(),

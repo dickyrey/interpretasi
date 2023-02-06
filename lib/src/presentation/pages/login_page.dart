@@ -194,10 +194,13 @@ class LoginPage extends StatelessWidget {
                     const SizedBox(height: Const.space8),
                     Align(
                       child: TextButton(
-                        onPressed: () => Navigator.pushNamed(
-                          context,
-                          FORGOT_PASSWORD,
-                        ),
+                        onPressed: () {
+                          // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/11
+                          // Navigator.pushNamed(
+                          //   context,
+                          //   FORGOT_PASSWORD,
+                          // );
+                        },
                         child: Text(
                           lang.forgot_password,
                           style: theme.textTheme.titleMedium?.copyWith(

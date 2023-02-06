@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
+import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/common/screens.dart';
 import 'package:interpretasi/src/presentation/bloc/article/latest_article_watcher/latest_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
@@ -72,7 +73,11 @@ class HomePage extends StatelessWidget {
                             index: index,
                             align: CardAlignment.horizontal,
                             onTap: () {
-                              // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/5
+                              Navigator.pushNamed(
+                                context,
+                                ARTICLE_DETAIL,
+                                arguments: article,
+                              );
                             },
                           );
                         },
@@ -118,7 +123,11 @@ class HomePage extends StatelessWidget {
                           article: article,
                           index: index,
                           onTap: () {
-                            // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/5
+                            Navigator.pushNamed(
+                              context,
+                              ARTICLE_DETAIL,
+                              arguments: article,
+                            );
                           },
                         );
                       },
