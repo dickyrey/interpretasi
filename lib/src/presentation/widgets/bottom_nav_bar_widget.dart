@@ -8,6 +8,7 @@ import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watche
 import 'package:interpretasi/src/presentation/bloc/category/category_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/pages/home_page.dart';
+import 'package:interpretasi/src/presentation/pages/latest_page.dart';
 import 'package:interpretasi/src/presentation/pages/profile_page.dart';
 
 class BottomNavBarWidget extends StatefulWidget {
@@ -39,7 +40,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
 
   final List<Widget> _tabView = [
     const HomePage(),
-    const SizedBox(),
+    const LatestPage(),
     const SizedBox(),
     const ProfilePage(),
   ];

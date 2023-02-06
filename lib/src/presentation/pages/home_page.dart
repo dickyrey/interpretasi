@@ -17,51 +17,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final lang = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: theme.colorScheme.background,
-        title: Text(
-          lang.interpretasi,
-          style: theme.textTheme.headlineMedium,
-        ),
-        centerTitle: false,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(FeatherIcons.search),
-            color: ColorLight.fontTitle,
-          ),
-          BlocBuilder<UserWatcherBloc, UserWatcherState>(
-            builder: (context, state) {
-              return state.maybeMap(
-                orElse: () {
-                  return const SizedBox();
-                },
-                loading: (_) {
-                  return ShimmerWidget(
-                    child: CircleAvatar(
-                      radius: 20,
-                      backgroundColor: theme.disabledColor,
-                    ),
-                  );
-                },
-                loaded: (state) {
-                  return CircleAvatar(
-                    radius: 20,
-                    backgroundImage:
-                        CachedNetworkImageProvider(state.user.photo),
-                    backgroundColor: theme.disabledColor,
-                  );
-                },
-              );
-            },
-          ),
-          const SizedBox(width: Const.margin),
-        ],
-      ),
+      appBar: _appBar(context),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -171,6 +130,54 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  AppBar _appBar(BuildContext context) {
+    final theme = Theme.of(context);
+    final lang = AppLocalizations.of(context)!;
+
+    return AppBar(
+      backgroundColor: theme.colorScheme.background,
+      title: Text(
+        lang.interpretasi,
+        style: theme.textTheme.headlineMedium,
+      ),
+      centerTitle: false,
+      actions: [
+        IconButton(
+          onPressed: () {
+            // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/10
+          },
+          icon: const Icon(FeatherIcons.search),
+          color: ColorLight.fontTitle,
+        ),
+        BlocBuilder<UserWatcherBloc, UserWatcherState>(
+          builder: (context, state) {
+            return state.maybeMap(
+              orElse: () {
+                return const SizedBox();
+              },
+              loading: (_) {
+                return ShimmerWidget(
+                  child: CircleAvatar(
+                    radius: 20,
+                    backgroundColor: theme.disabledColor,
+                  ),
+                );
+              },
+              loaded: (state) {
+                return CircleAvatar(
+                  radius: 20,
+                  backgroundImage: CachedNetworkImageProvider(state.user.photo),
+                  backgroundColor: theme.disabledColor,
+                );
+              },
+            );
+          },
+        ),
+        const SizedBox(width: Const.margin),
+      ],
     );
   }
 }
