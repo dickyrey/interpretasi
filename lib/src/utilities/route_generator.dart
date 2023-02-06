@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
+import 'package:interpretasi/src/domain/entities/user.dart';
 import 'package:interpretasi/src/presentation/pages/article_detail_page.dart';
 import 'package:interpretasi/src/presentation/pages/change_password_page.dart';
 import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
@@ -8,6 +9,7 @@ import 'package:interpretasi/src/presentation/pages/error_page.dart';
 import 'package:interpretasi/src/presentation/pages/login_page.dart';
 import 'package:interpretasi/src/presentation/pages/on_boarding_page.dart';
 import 'package:interpretasi/src/presentation/pages/password_page.dart';
+import 'package:interpretasi/src/presentation/pages/profile_detail_page.dart';
 import 'package:interpretasi/src/presentation/pages/profile_form_page.dart';
 import 'package:interpretasi/src/presentation/pages/register_page.dart';
 import 'package:interpretasi/src/presentation/pages/settings_and_privacy_page.dart';
@@ -62,6 +64,13 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const BottomNavBarWidget(index: 3),
         );
+      case PROFILE_DETAIL:
+        if (args is User) {
+          return MaterialPageRoute(
+            builder: (_) => ProfileDetailPage(user: args),
+          );
+        }
+        return _errorRoute();
       case PROFILE_FORM:
         return MaterialPageRoute(
           builder: (_) => const ProfileFormPage(),

@@ -13,6 +13,7 @@ class OutlinedButtonWidget extends StatelessWidget {
     this.labelColor,
     this.backgroundColor,
     required this.label,
+    this.icon,
   });
 
   final double width;
@@ -24,6 +25,7 @@ class OutlinedButtonWidget extends StatelessWidget {
   final Color? labelColor;
   final Color? backgroundColor;
   final String label;
+  final Icon? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +46,28 @@ class OutlinedButtonWidget extends StatelessWidget {
           ),
         ),
         onPressed: (isLoading == true) ? () {} : onTap,
-        child: Text(
-          label,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: (labelColor == null) ? theme.primaryColor : labelColor,
-          ),
-        ),
+        child: (icon != null)
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  icon!,
+                  const SizedBox(width: Const.space8),
+                  Text(
+                    label,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: (labelColor == null)
+                          ? theme.primaryColor
+                          : labelColor,
+                    ),
+                  ),
+                ],
+              )
+            : Text(
+                label,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: (labelColor == null) ? theme.primaryColor : labelColor,
+                ),
+              ),
       ),
     );
   }

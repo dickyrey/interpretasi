@@ -124,11 +124,32 @@ class ProfilePage extends StatelessWidget {
               },
             ),
             const SizedBox(height: Const.space25),
-            ListTileWidget(
-              icon: FeatherIcons.user,
-              title: lang.my_profile,
-              onTap: () {
-                // Navigator.pushNamed(context, PROFILE);
+            BlocBuilder<UserWatcherBloc, UserWatcherState>(
+              builder: (context, state) {
+                return state.maybeMap(
+                  orElse: () {
+                    return ListTileWidget(
+                      icon: FeatherIcons.user,
+                      title: lang.my_profile,
+                      onTap: () {
+                        // Navigator.pushNamed(context, PROFILE_DETAIL);
+                      },
+                    );
+                  },
+                  loaded: (state) {
+                    return ListTileWidget(
+                      icon: FeatherIcons.user,
+                      title: lang.my_profile,
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          PROFILE_DETAIL,
+                          arguments: state.user,
+                        );
+                      },
+                    );
+                  },
+                );
               },
             ),
             ListTileWidget(

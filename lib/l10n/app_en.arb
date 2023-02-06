@@ -25,6 +25,7 @@
   "create_an_account": "Create an Account",
   "dark_mode": "Dark Mode",
   "dont_have_an_account_yet": "Don't have an Account yet?",
+  "edit": "Edit",
   "edit_profile": "Edit Profile",
   "email_address": "Email Address",
   "email_verification": "Email Verification",
@@ -48,6 +49,7 @@
   "menu": "Menu",
   "min_6_characters": "min. 6 characters",
   "my_articles": "My Articles",
+  "my_articles_empty": "My Articles Empty",
   "my_profile": "My Profile",
   "new_password": "New Password",
   "next": "Next",
@@ -66,6 +68,7 @@
   "privacy_policy": "Privacy Policy",
   "profile_updated": "Profile Updated!",
   "read_history": "Read History",
+  "read_history_empty": "Read History Empty",
   "register": "Register",
   "register_now": "Register Now",
   "resend_in": "Resend in",
@@ -82,6 +85,7 @@
   "signing": "Signing",
   "skip": "Skip",
   "something_went_wrong": "Something Went Wrong",
+  "start_writing": "Start Writing",
   "take_photo": "Take photo",
   "terms_and_condition": "Terms and Condition",
   "terms_and_privacy_policy": "Terms and Privacy Policy",
@@ -95,7 +99,9 @@
   "we_have_sent_an_email_to": "We have sent an email to",
   "write_comment": "Write comment...",
   "you_are_already_registered_check_your_email_for_verification": "You are already registered check your email for verification",
+  "you_havent_written_any_article_here_yet_lets_write_yours_from_now_on": "You haven't written any article here yet, let's write yours from now on!",
   "your_email_address": "Your email address",
   "your_full_name": "Your full name",
-  "your_old_password": "Your old password"
+  "your_old_password": "Your old password",
+  "your_reading_history_is_still_empty_lets_explore_by_reading_interesting_articles": "Your reading history is still empty! Let's explore by reading interesting articles"
 }

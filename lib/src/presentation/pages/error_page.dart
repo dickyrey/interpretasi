@@ -44,7 +44,8 @@ class ErrorPage extends StatelessWidget {
                 Navigator.pop(context);
               },
               label: lang.go_back,
-            )
+            ),
+            const Spacer(),
           ],
         ),
       ),

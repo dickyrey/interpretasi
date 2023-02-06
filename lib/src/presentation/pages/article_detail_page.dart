@@ -46,6 +46,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final lang = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: _appBar(context, article: widget.article),
@@ -114,9 +115,9 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                             );
                         _showCommentDialog(context);
                       },
-                      child: const TextFormFieldWidget(
+                      child:  TextFormFieldWidget(
                         enabled: false,
-                        hintText: 'lang.write_comment',
+                        hintText: lang.write_comment,
                       ),
                     ),
                   ),

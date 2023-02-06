@@ -7,6 +7,7 @@ const String EMAIL_VERIFICATION = '/email_verification';
 const String LOGIN = '/login';
 const String HOME = '/home';
 const String PROFILE = '/profile';
+const String PROFILE_DETAIL = '/profile_detail';
 const String PASSWORD = '/password';
 const String SETTINGS_AND_PRIVACY = '/settings_and_privacy';
 const String CHANGE_PASSWORD = '/change_password';

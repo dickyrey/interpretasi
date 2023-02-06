@@ -16,10 +16,12 @@ class Const {
 
 class Assets {
   // SVG Assets
-  static const String logo = 'assets/logo.svg';
   static const String error = 'assets/error.svg';
   static const String fire = 'assets/fire.svg';
   static const String google = 'assets/google.svg';
+  static const String logo = 'assets/logo.svg';
+  static const String read = 'assets/read.svg';
+  static const String write = 'assets/write.svg';
 
   // JSONS Assets
   static const String emailVerification = 'jsons/email_verification.json';
