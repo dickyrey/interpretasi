@@ -33,7 +33,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/user/articles/banned',
+      path: '/v1/user/articles/banned',
     );
 
     final response = await client.get(url, headers: header);
@@ -58,7 +58,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/user/articles/drafted',
+      path: '/v1/user/articles/drafted',
     );
 
     final response = await client.get(url, headers: header);
@@ -83,7 +83,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/user/articles/moderated',
+      path: '/v1/user/articles/moderated',
     );
 
     final response = await client.get(url, headers: header);
@@ -108,7 +108,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/user/articles/published',
+      path: '/v1/user/articles/published',
     );
 
     final response = await client.get(url, headers: header);
@@ -133,7 +133,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/user/articles/rejected',
+      path: '/v1/user/articles/rejected',
     );
 
     final response = await client.get(url, headers: header);
@@ -158,7 +158,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/user/articles/history',
+      path: '/v1/user/articles/history',
     );
 
     final response = await client.get(url, headers: header);
@@ -183,7 +183,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/article/$id',
+      path: '/v1/article/$id',
       queryParameters: {'status': 'moderated'},
     );
 

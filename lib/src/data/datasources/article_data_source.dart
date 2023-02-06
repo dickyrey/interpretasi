@@ -45,7 +45,7 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/article/',
+      path: '/v1/article/',
     );
 
     final response = await client.get(url, headers: header);
@@ -68,7 +68,7 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/article/$id',
+      path: '/v1/article/$id',
     );
     final response = await client.get(url, headers: header);
     if (response.statusCode == 200) {
@@ -97,7 +97,7 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/article',
+      path: '/v1/article',
     );
 
     final request = http.MultipartRequest(
@@ -146,7 +146,7 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/article/$id',
+      path: '/v1/article/$id',
     );
 
     final request = http.MultipartRequest(
@@ -192,7 +192,7 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/article/$id',
+      path: '/v1/article/$id',
     );
 
     final response = await client.delete(url, headers: header);

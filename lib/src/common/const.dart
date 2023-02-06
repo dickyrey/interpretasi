@@ -8,9 +8,9 @@ class Const {
   static const double margin = 18;
   
   static const String token = 'access_token';
-  static const String host = 'interpretasi.id';
+  static const String host = 'api.interpretasi.id';
   static const String scheme = 'https';
-  static const String unusedPath = 'https://interpretasi.id/api/article/';
+  static const String unusedPath = 'https://api.interpretasi.id/v1/article/';
   static const String photo = 'https://i.pinimg.com/564x/57/70/f0/5770f01a32c3c53e90ecda61483ccb08.jpg';
 }
 

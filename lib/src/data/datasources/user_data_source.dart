@@ -33,7 +33,7 @@ class UserDataSourceImpl extends UserDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/user/check',
+      path: '/v1/user/check',
     );
     final response = await client.get(url, headers: header);
     if (response.statusCode == 200) {
@@ -60,7 +60,7 @@ class UserDataSourceImpl extends UserDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/user/profile/update',
+      path: '/v1/user/profile/update',
     );
 
     final request = http.MultipartRequest(
@@ -97,7 +97,7 @@ class UserDataSourceImpl extends UserDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/user/profile',
+      path: '/v1/user/profile',
     );
 
     final response = await http.get(url, headers: header);

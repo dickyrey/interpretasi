@@ -44,7 +44,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/user/check',
+      path: '/v1/user/check',
     );
     final response = await client.get(url, headers: header);
     if (response.statusCode == 200) {
@@ -83,7 +83,7 @@ class AuthDataSourceImpl extends AuthDataSource {
       final url = Uri(
         scheme: Const.scheme,
         host: Const.host,
-        path: '/api/signin/google',
+        path: '/v1/signin/google',
         queryParameters: {
           'email': user?.email,
           'displayName': user?.displayName,
@@ -143,7 +143,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/signin',
+      path: '/v1/signin',
     );
 
     final response = await http.post(url, headers: headers, body: body);
@@ -174,7 +174,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/signup',
+      path: '/v1/signup',
     );
 
     final response = await http.post(url, body: body);
@@ -202,7 +202,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/signout',
+      path: '/v1/signout',
     );
 
     final response = await http.post(url, headers: header);
@@ -223,7 +223,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/datetime',
+      path: '/v1/datetime',
     );
     final response = await client.get(url);
     if (response.statusCode == 200) {
@@ -249,7 +249,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,
-      path: '/api/signup/resend',
+      path: '/v1/signup/resend',
     );
 
     final response = await http.post(url, headers: header);
