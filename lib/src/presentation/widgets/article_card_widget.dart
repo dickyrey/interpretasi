@@ -112,8 +112,7 @@ class _HorizontalCard extends StatelessWidget {
           CachedNetworkImage(
             width: 250,
             height: 150,
-            imageUrl:
-                'https://asset.kompas.com/crops/3zTsjSNNfmUIEBfL4EeQw6psRj0=/0x0:1280x640/750x500/data/photo/2022/08/10/62f2e3c340a7e.jpg',
+            imageUrl: article.image,
             errorWidget: (context, url, error) => const Icon(Icons.error),
             placeholder: (context, url) => const ShimmerWidget(
               child: ShimmerContainerWidget(
@@ -351,8 +350,7 @@ class _VerticalCard extends StatelessWidget {
           CachedNetworkImage(
             width: 100,
             height: 100,
-            imageUrl:
-                'https://asset.kompas.com/crops/3zTsjSNNfmUIEBfL4EeQw6psRj0=/0x0:1280x640/750x500/data/photo/2022/08/10/62f2e3c340a7e.jpg',
+            imageUrl: article.image,
             errorWidget: (context, url, error) => const Icon(Icons.error),
             placeholder: (context, url) => const ShimmerWidget(
               child: ShimmerContainerWidget(height: 100),
