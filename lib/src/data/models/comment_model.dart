@@ -33,13 +33,6 @@ class CommentModel extends Equatable {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'body': body,
-        'created_at': createdAt,
-        'user': user.toJson(),
-      };
-
   @override
   List<Object?> get props => [
         id,

@@ -5,36 +5,41 @@ import 'package:interpretasi/src/domain/entities/boarding.dart';
 class BoardingModel extends Equatable {
   const BoardingModel({
     required this.id,
-    required this.title,
-    required this.subtitle,
     required this.image,
+    required this.subtitle,
+    required this.title,
   });
 
   factory BoardingModel.fromJson(Map<String, dynamic> json) {
     return BoardingModel(
       id: json['id'] as int,
-      title: json['title'] as String,
-      subtitle: json['subtitle'] as String,
       image: json['image'] as String,
+      subtitle: json['subtitle'] as String,
+      title: json['title'] as String,
     );
   }
 
   final int id;
-  final String title;
-  final String subtitle;
   final String image;
+  final String subtitle;
+  final String title;
 
   Boarding toEntity() {
     return Boarding(
       id: id,
-      title: title,
-      subtitle: subtitle,
       image: image,
+      subtitle: subtitle,
+      title: title,
     );
   }
 
   @override
-  List<Object?> get props => [id, title, subtitle, image];
+  List<Object?> get props => [
+        id,
+        image,
+        subtitle,
+        title,
+      ];
 }
 
 List<BoardingModel> boardingModelFromJson(String str) {
