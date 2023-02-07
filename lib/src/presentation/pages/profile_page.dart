@@ -168,7 +168,7 @@ class ProfilePage extends StatelessWidget {
               icon: FeatherIcons.clock,
               title: lang.read_history,
               onTap: () {
-                // Navigator.pushNamed(context, READ_HISTORY);
+                Navigator.pushNamed(context, READ_HISTORY);
               },
             ),
             ListTileWidget(

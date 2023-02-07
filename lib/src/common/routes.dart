@@ -13,6 +13,7 @@ const String SETTINGS_AND_PRIVACY = '/settings_and_privacy';
 const String CHANGE_PASSWORD = '/change_password';
 const String PROFILE_FORM = '/profile_form';
 const String ARTICLE_DETAIL = '/article_detail';
+const String READ_HISTORY = '/read_history';
 // const String ADD_SECOND_EMAIL = '/add_second_email';
 // const String READ_ARTICLE = '/read_article';
 // const String ADD_PHONE_NUMBER = '/add_phone_number';

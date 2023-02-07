@@ -11,6 +11,7 @@ import 'package:interpretasi/src/presentation/pages/on_boarding_page.dart';
 import 'package:interpretasi/src/presentation/pages/password_page.dart';
 import 'package:interpretasi/src/presentation/pages/profile_detail_page.dart';
 import 'package:interpretasi/src/presentation/pages/profile_form_page.dart';
+import 'package:interpretasi/src/presentation/pages/read_history_page.dart';
 import 'package:interpretasi/src/presentation/pages/register_page.dart';
 import 'package:interpretasi/src/presentation/pages/settings_and_privacy_page.dart';
 import 'package:interpretasi/src/presentation/pages/splash_page.dart';
@@ -86,6 +87,10 @@ class RouteGenerator {
           );
         }
         return _errorRoute();
+      case READ_HISTORY:
+        return MaterialPageRoute(
+          builder: (_) => const ReadHistoryPage(),
+        );
       // case MY_ARTICLE:
       //   return MaterialPageRoute(
       //     builder: (_) => const MyArticlePage(),
@@ -104,10 +109,7 @@ class RouteGenerator {
       //   return MaterialPageRoute(
       //     builder: (_) => const DeleteAccountPage(),
       //   );
-      // case READ_HISTORY:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const ReadHistoryPage(),
-      //   );
+
       // case TRENDING_ARTICLE:
       //   return MaterialPageRoute(
       //     builder: (_) => const TrendingArticlePage(),
