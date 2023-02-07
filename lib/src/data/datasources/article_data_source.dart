@@ -112,8 +112,7 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     request.fields['title'] = title;
     request.fields['content'] = content;
     request.fields['original_content'] = deltaJson;
-    request.fields['tags'] = tags.map((e) => e).toList().toString();
-
+    request.fields['tags'] = tags.map((e) => '"$e"').toList().toString();
     final storeImage = await http.MultipartFile.fromPath(
       'image',
       image.path,
@@ -122,8 +121,6 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     request.headers.addAll(header);
     request.files.add(storeImage);
     final response = await request.send();
-    final reps = await response.stream.bytesToString();
-    print(reps);
     if (response.statusCode == 200) {
       return true;
     } else {

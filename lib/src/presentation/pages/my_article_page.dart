@@ -13,7 +13,6 @@ import 'package:interpretasi/src/presentation/bloc/user_article/user_article_pub
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_rejected_watcher/user_article_rejected_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/empty_data_widget.dart';
-import 'package:interpretasi/src/presentation/widgets/outlined_button_widget.dart';
 
 class MyArticlePage extends StatefulWidget {
   const MyArticlePage({super.key});
@@ -68,6 +67,9 @@ class _MyArticlePageState extends State<MyArticlePage> {
                     if (state.articleList.isNotEmpty) {
                       return ListView.separated(
                         itemCount: state.articleList.length,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: Const.margin,
+                        ),
                         physics: const ScrollPhysics(),
                         shrinkWrap: true,
                         separatorBuilder: (context, index) {
@@ -81,6 +83,7 @@ class _MyArticlePageState extends State<MyArticlePage> {
                         itemBuilder: (context, index) {
                           return ArticleCardWidget(
                             index: index,
+                            isPublic: false,
                             article: state.articleList[index],
                             onTap: () {
                               // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
@@ -127,6 +130,9 @@ class _MyArticlePageState extends State<MyArticlePage> {
                     if (state.articleList.isNotEmpty) {
                       return ListView.separated(
                         itemCount: state.articleList.length,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: Const.margin,
+                        ),
                         physics: const ScrollPhysics(),
                         shrinkWrap: true,
                         separatorBuilder: (context, index) {
@@ -140,6 +146,7 @@ class _MyArticlePageState extends State<MyArticlePage> {
                         itemBuilder: (context, index) {
                           return ArticleCardWidget(
                             index: index,
+                            isPublic: false,
                             article: state.articleList[index],
                             onTap: () {
                               // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
@@ -186,6 +193,9 @@ class _MyArticlePageState extends State<MyArticlePage> {
                     if (state.articleList.isNotEmpty) {
                       return ListView.separated(
                         itemCount: state.articleList.length,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: Const.margin,
+                        ),
                         physics: const ScrollPhysics(),
                         shrinkWrap: true,
                         separatorBuilder: (context, index) {
@@ -199,6 +209,7 @@ class _MyArticlePageState extends State<MyArticlePage> {
                         itemBuilder: (context, index) {
                           return ArticleCardWidget(
                             index: index,
+                            isPublic: false,
                             article: state.articleList[index],
                             onTap: () {
                               // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
@@ -245,6 +256,9 @@ class _MyArticlePageState extends State<MyArticlePage> {
                     if (state.articleList.isNotEmpty) {
                       return ListView.separated(
                         itemCount: state.articleList.length,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: Const.margin,
+                        ),
                         physics: const ScrollPhysics(),
                         shrinkWrap: true,
                         separatorBuilder: (context, index) {
@@ -258,6 +272,7 @@ class _MyArticlePageState extends State<MyArticlePage> {
                         itemBuilder: (context, index) {
                           return ArticleCardWidget(
                             index: index,
+                            isPublic: false,
                             article: state.articleList[index],
                             onTap: () {
                               // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
@@ -304,6 +319,9 @@ class _MyArticlePageState extends State<MyArticlePage> {
                     if (state.articleList.isNotEmpty) {
                       return ListView.separated(
                         itemCount: state.articleList.length,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: Const.margin,
+                        ),
                         physics: const ScrollPhysics(),
                         shrinkWrap: true,
                         separatorBuilder: (context, index) {
@@ -317,6 +335,7 @@ class _MyArticlePageState extends State<MyArticlePage> {
                         itemBuilder: (context, index) {
                           return ArticleCardWidget(
                             index: index,
+                            isPublic: false,
                             article: state.articleList[index],
                             onTap: () {
                               // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14

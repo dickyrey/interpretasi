@@ -281,6 +281,7 @@ class DetailsWidget extends StatelessWidget {
               const SizedBox(height: Const.space8),
               TextFormFieldWidget(
                 controller: titleCtrl,
+                maxLines: null,
                 hintText: lang.ten_ways_to_explore_this_world,
                 onChanged: (v) {
                   context
@@ -378,16 +379,14 @@ class DetailsWidget extends StatelessWidget {
 
 class _EditorWidget extends StatelessWidget {
   const _EditorWidget({
-    required QuillController controller,
-    required FocusNode focusNode,
-    required ScrollController scrollController,
-  })  : _controller = controller,
-        _focusNode = focusNode,
-        _scrollController = scrollController;
+    required this.controller,
+    required this.focusNode,
+    required this.scrollController,
+  });
 
-  final QuillController _controller;
-  final FocusNode _focusNode;
-  final ScrollController _scrollController;
+  final QuillController controller;
+  final FocusNode focusNode;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -398,14 +397,17 @@ class _EditorWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(Const.margin),
             child: QuillEditor(
-              controller: _controller,
+              controller: controller,
               readOnly: false,
-              focusNode: _focusNode,
-              scrollController: _scrollController,
+              focusNode: focusNode,
+              scrollController: scrollController,
               scrollable: true,
               padding: EdgeInsets.zero,
               autoFocus: false,
               expands: false,
+              onImagePaste: (imageBytes) async {
+                return '';
+              },
               customStyles: DefaultStyles(
                 color: ColorLight.fontTitle,
                 h1: DefaultTextBlockStyle(
@@ -437,10 +439,16 @@ class _EditorWidget extends StatelessWidget {
           ),
         ),
         QuillToolbar.basic(
-          controller: _controller,
+          controller: controller,
           toolbarIconSize: 23,
           showClearFormat: false,
           showListCheck: false,
+          customButtons: [
+            QuillCustomButton(
+              icon: FeatherIcons.image,
+              onTap: (){},
+            ),
+          ],
           showBackgroundColorButton: false,
           showSearchButton: false,
           multiRowsDisplay: false,

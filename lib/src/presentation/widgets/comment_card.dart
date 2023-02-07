@@ -9,6 +9,7 @@ import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/entities/comment.dart';
 import 'package:interpretasi/src/presentation/bloc/comment_article/delete_comment_actor/delete_comment_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class CommentCardWidget extends StatelessWidget {
@@ -74,48 +75,33 @@ class CommentCardWidget extends StatelessWidget {
                     splashRadius: 25,
                     iconSize: 15,
                     onPressed: () {
-                      showDialog<dynamic>(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text(
-                              lang.choose_an_action,
-                              style: theme.textTheme.headlineSmall,
+                      showMultiButtonDialog(
+                        context,
+                        items: [
+                          if (state.user.id == comment.user.id)
+                            TileButtonDialog(
+                              onTap: () {
+                                Navigator.pop(context);
+                                context.read<DeleteCommentActorBloc>().add(
+                                      DeleteCommentActorEvent.delete(
+                                        id: article.url,
+                                        userId: comment.id,
+                                      ),
+                                    );
+                              },
+                              icon: FeatherIcons.trash,
+                              label: lang.delete,
+                              color: theme.colorScheme.error,
+                            )
+                          else
+                            TileButtonDialog(
+                              onTap: () {
+                                // TODO(dickyrey): Report comment
+                              },
+                              icon: FeatherIcons.info,
+                              label: lang.report,
                             ),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                if (state.user.id == comment.user.id)
-                                  _listTileWidget(
-                                    context,
-                                    icon: FeatherIcons.trash,
-                                    label: lang.delete,
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                      context
-                                          .read<DeleteCommentActorBloc>()
-                                          .add(
-                                            DeleteCommentActorEvent.delete(
-                                              id: article.url,
-                                              userId: comment.id,
-                                            ),
-                                          );
-                                    },
-                                  )
-                                else
-                                  const SizedBox(),
-                                _listTileWidget(
-                                  context,
-                                  icon: FeatherIcons.alertCircle,
-                                  label: lang.report,
-                                  onTap: () {
-                                    // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/13
-                                  },
-                                )
-                              ],
-                            ),
-                          );
-                        },
+                        ],
                       );
                     },
                   );

@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/data/models/token_model.dart';
+import 'package:interpretasi/src/data/models/verification_status_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthDataSource {
@@ -36,37 +37,34 @@ class AuthDataSourceImpl extends AuthDataSource {
     final isSignedIn = await googleSignIn.isSignedIn();
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
-    // print(token);
-    // print(token);
-    // final header = {
-    //   'Authorization': 'Bearer $token',
-    //   'Accept': 'application/json',
-    // };
-    // final url = Uri(
-    //   scheme: Const.scheme,
-    //   host: Const.host,
-    //   path: '/v1/user/check',
-    // );
-    // final response = await client.get(url, headers: header);
-    // if (response.statusCode == 200) {
-    //   final status = VerificationStatusModel.fromJson(
-    //     json.decode(response.body) as Map<String, dynamic>,
-    //   );
-    if (isSignedIn && token != null) {
-      return true;
-    } else if (token != null
-        //  &&
-        //     status.isEmailVerified == true &&
-        //     status.isSetPassword == true
-        ) {
-      return true;
+    print(token);
+    final header = {
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+    };
+    final url = Uri(
+      scheme: Const.scheme,
+      host: Const.host,
+      path: '/v1/user/check',
+    );
+    final response = await client.get(url, headers: header);
+    if (response.statusCode == 200) {
+      final status = VerificationStatusModel.fromJson(
+        json.decode(response.body) as Map<String, dynamic>,
+      );
+      if (isSignedIn && token != null) {
+        return true;
+      } else if (token != null &&
+          status.isEmailVerified == true &&
+          status.isSetPassword == true) {
+        return true;
+      } else {
+        await prefs.remove(Const.token);
+        return false;
+      }
     } else {
-      await prefs.remove(Const.token);
-      return false;
+      throw ServerException(ExceptionMessage.internetNotConnected);
     }
-    // } else {
-    //   throw ServerException(ExceptionMessage.internetNotConnected);
-    // }
   }
 
   @override

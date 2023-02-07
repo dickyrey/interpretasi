@@ -158,8 +158,8 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
                 message: 'tag-null',
               ),
             );
-          } 
-          
+          }
+
           final decoded = List<Map<String, dynamic>>.from(event.delta.toJson());
           final html = QuillDeltaToHtmlConverter(decoded);
 
@@ -187,7 +187,7 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
               (_) => emit(
                 state.copyWith(
                   state: RequestState.loaded,
-                  isSubmit: true,
+                  isSubmit: false,
                 ),
               ),
             );

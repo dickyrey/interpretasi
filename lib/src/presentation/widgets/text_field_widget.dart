@@ -11,11 +11,13 @@ class TextFieldWidget extends StatelessWidget {
     this.controller,
     this.hintText,
     this.onSubmitted,
+    this.showBorder = false,
   });
 
   final TextEditingController? controller;
   final String? hintText;
   final ValueChanged<String>? onSubmitted;
+  final bool showBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -30,26 +32,36 @@ class TextFieldWidget extends StatelessWidget {
         hintStyle: theme.textTheme.bodyMedium,
         helperStyle: theme.textTheme.bodySmall,
         contentPadding: const EdgeInsets.symmetric(horizontal: Const.space12),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Const.radius),
-          borderSide: BorderSide(color: theme.disabledColor),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Const.radius),
-          borderSide: BorderSide(color: theme.primaryColor),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Const.radius),
-          borderSide: BorderSide(color: theme.colorScheme.error),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Const.radius),
-          borderSide: BorderSide(color: theme.colorScheme.error),
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Const.radius),
-          borderSide: BorderSide(color: theme.disabledColor),
-        ),
+        enabledBorder: (showBorder == true)
+            ? OutlineInputBorder(
+                borderRadius: BorderRadius.circular(Const.radius),
+                borderSide: BorderSide(color: theme.disabledColor),
+              )
+            : InputBorder.none,
+        focusedBorder: (showBorder == true)
+            ? OutlineInputBorder(
+                borderRadius: BorderRadius.circular(Const.radius),
+                borderSide: BorderSide(color: theme.primaryColor),
+              )
+            : InputBorder.none,
+        errorBorder: (showBorder == true)
+            ? OutlineInputBorder(
+                borderRadius: BorderRadius.circular(Const.radius),
+                borderSide: BorderSide(color: theme.colorScheme.error),
+              )
+            : InputBorder.none,
+        focusedErrorBorder: (showBorder == true)
+            ? OutlineInputBorder(
+                borderRadius: BorderRadius.circular(Const.radius),
+                borderSide: BorderSide(color: theme.colorScheme.error),
+              )
+            : InputBorder.none,
+        disabledBorder: (showBorder == true)
+            ? OutlineInputBorder(
+                borderRadius: BorderRadius.circular(Const.radius),
+                borderSide: BorderSide(color: theme.disabledColor),
+              )
+            : InputBorder.none,
       ),
     );
   }

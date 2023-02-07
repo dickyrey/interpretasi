@@ -17,6 +17,7 @@ import 'package:interpretasi/src/presentation/bloc/comment_article/send_comment_
 import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/comment_card.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
+import 'package:interpretasi/src/presentation/widgets/text_field_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_form_field_widget.dart';
 import 'package:interpretasi/src/utilities/toast.dart';
 import 'package:intl/intl.dart';
@@ -499,14 +500,22 @@ class _CommentDialogState extends State<CommentDialog> {
                 height: 70,
                 color: theme.colorScheme.background,
                 padding: const EdgeInsets.only(left: Const.margin),
+                alignment: Alignment.center,
                 child: Row(
                   children: [
                     Expanded(
-                      child: TextFormFieldWidget(
-                        controller: _commentController,
-                        hintText: lang.write_comment,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: theme.cardColor,
+                          borderRadius: BorderRadius.circular(Const.radius),
+                        ),
+                        child: TextFieldWidget(
+                          controller: _commentController,
+                          hintText: lang.write_comment,
+                        ),
                       ),
                     ),
+                    const SizedBox(width: Const.space15),
                     IconButton(
                       onPressed: () {
                         context.read<SendCommentActorBloc>().add(

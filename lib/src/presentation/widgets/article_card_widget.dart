@@ -7,6 +7,7 @@ import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/screens.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
+import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -16,6 +17,7 @@ class ArticleCardWidget extends StatelessWidget {
     required this.article,
     required this.index,
     required this.onTap,
+    this.isPublic = true,
     this.align = CardAlignment.vertical,
   });
 
@@ -23,6 +25,7 @@ class ArticleCardWidget extends StatelessWidget {
   final int index;
   final VoidCallback onTap;
   final CardAlignment align;
+  final bool isPublic;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +42,7 @@ class ArticleCardWidget extends StatelessWidget {
         content = _VerticalCard(
           article: article,
           onTap: onTap,
+          isPublic: isPublic,
         );
         break;
     }
@@ -226,14 +230,17 @@ class _VerticalCard extends StatelessWidget {
   const _VerticalCard({
     required this.article,
     required this.onTap,
+    this.isPublic = false,
   });
 
   final Article article;
   final VoidCallback onTap;
+  final bool isPublic;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final lang = AppLocalizations.of(context)!;
 
     String formatViewsCount(int viewsCount) {
       if (viewsCount >= 1000000000) {
@@ -272,23 +279,6 @@ class _VerticalCard extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     Text(
-                    //       'News',
-                    //       style: theme.textTheme.bodySmall,
-                    //     ),
-                    //     Text(
-                    //       timeago.format(
-                    //         article.createdAt,
-                    //         locale: 'id',
-                    //       ),
-                    //       style: theme.textTheme.bodySmall,
-                    //     ),
-                    //   ],
-                    // ),
-                    // const SizedBox(height: Const.space8),
                     Text(
                       article.title,
                       style: theme.textTheme.titleLarge?.copyWith(
@@ -338,7 +328,58 @@ class _VerticalCard extends StatelessWidget {
                         const Spacer(),
                         InkWell(
                           onTap: () {
-                            // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/8
+                            if (isPublic == true) {
+                              showMultiButtonDialog(
+                                context,
+                                items: [
+                                  TileButtonDialog(
+                                    onTap: () {
+                                      //TODO: Report Article
+                                    },
+                                    icon: FeatherIcons.info,
+                                    label: lang.report,
+                                  ),
+                                ],
+                              );
+                            } else {
+                              showMultiButtonDialog(
+                                context,
+                                items: [
+                                  TileButtonDialog(
+                                    onTap: () {
+                                      //TODO: Preview
+                                    },
+                                    icon: FeatherIcons.eye,
+                                    label: lang.preview,
+                                  ),
+                                  TileButtonDialog(
+                                    onTap: () {
+                                      //TODO: Publish to moderated
+                                    },
+                                    icon: FeatherIcons.send,
+                                    label: lang.publish,
+                                  ),
+                                  TileButtonDialog(
+                                    onTap: () {
+                                      //TODO: Edit
+                                    },
+                                    icon: FeatherIcons.edit2,
+                                    label: lang.edit,
+                                  ),
+                                  TileButtonDialog(
+                                    onTap: () {
+                                      //TODO: Delete
+                                    },
+                                    icon: FeatherIcons.trash,
+                                    label: lang.delete,
+                                    color: theme.colorScheme.error,
+                                    padding: const EdgeInsets.only(
+                                      top: Const.space15,
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }
                           },
                           child: const Icon(
                             FeatherIcons.moreHorizontal,
