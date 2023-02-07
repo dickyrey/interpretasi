@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -342,6 +340,7 @@ class DetailsWidget extends StatelessWidget {
               const SizedBox(height: Const.space8),
               TextFieldWidget(
                 controller: tagCtrl,
+                showBorder: true,
                 onSubmitted: (v) {
                   context
                       .read<ArticleFormBloc>()

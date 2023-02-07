@@ -119,13 +119,6 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
           );
         },
         create: (event) async {
-          emit(
-            state.copyWith(
-              state: RequestState.loading,
-              isSubmit: true,
-            ),
-          );
-
           if (state.imageFile == null) {
             emit(
               state.copyWith(
@@ -175,7 +168,12 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
               deltaJson: jsonEncode(event.delta.toJson()),
               tags: state.tagList,
             );
-
+            emit(
+              state.copyWith(
+                state: RequestState.loading,
+                isSubmit: true,
+              ),
+            );
             result.fold(
               (f) => emit(
                 state.copyWith(
