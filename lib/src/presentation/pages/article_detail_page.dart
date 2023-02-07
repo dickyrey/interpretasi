@@ -9,12 +9,15 @@ import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/screens.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
+import 'package:interpretasi/src/domain/entities/category.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_detail_watcher/article_detail_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/category/category_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/comment_article/article_comment_watcher/article_comment_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/comment_article/delete_comment_actor/delete_comment_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/comment_article/send_comment_actor/send_comment_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/comment_card.dart';
+import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_form_field_widget.dart';
 import 'package:interpretasi/src/utilities/toast.dart';
 import 'package:intl/intl.dart';
@@ -46,9 +49,10 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final lang = AppLocalizations.of(context)!;
+    final categoryBloc = context.read<CategoryWatcherBloc>().state.categoryList;
 
     return Scaffold(
-      appBar: _appBar(context, article: widget.article),
+      appBar: _appBar(context),
       body: Column(
         children: [
           Expanded(
@@ -61,11 +65,27 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                     padding: const EdgeInsets.symmetric(
                       horizontal: Const.margin,
                     ),
-                    child: Text(
-                      'E-Sports',
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: Colors.red,
-                      ),
+                    child: BlocBuilder<ArticleDetailWatcherBloc,
+                        ArticleDetailWatcherState>(
+                      builder: (context, state) {
+                        return state.maybeMap(
+                          orElse: () {
+                            return const ShimmerWidget(
+                              child: ShimmerContainerWidget(height: 15),
+                            );
+                          },
+                          loaded: (state) {
+                            return Text(
+                              categoryBloc.firstWhere((v) {
+                                return v.id == state.articleDetail.categoryId;
+                              }).name,
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: Colors.red,
+                              ),
+                            );
+                          },
+                        );
+                      },
                     ),
                   ),
                   const SizedBox(height: Const.space8),
@@ -80,13 +100,24 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: Const.space15),
                   BlocBuilder<ArticleDetailWatcherBloc,
                       ArticleDetailWatcherState>(
                     builder: (context, state) {
                       return state.maybeMap(
                         orElse: () {
-                          return const SizedBox();
+                          return ShimmerWidget(
+                            child: ListTile(
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: Const.margin,
+                              ),
+                              leading: CircleAvatar(
+                                radius: 25,
+                                backgroundColor: theme.disabledColor,
+                              ),
+                              title: const ShimmerContainerWidget(height: 15),
+                              subtitle: const ShimmerContainerWidget(),
+                            ),
+                          );
                         },
                         loaded: (state) {
                           return ListTile(
@@ -113,16 +144,65 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                       );
                     },
                   ),
-                  const SizedBox(height: Const.space15),
-                  CachedNetworkImage(imageUrl: widget.article.image),
+                  CachedNetworkImage(
+                    imageUrl: widget.article.image,
+                    errorWidget: (context, url, error) {
+                      return const Icon(Icons.error);
+                    },
+                    placeholder: (context, url) {
+                      return const ShimmerWidget(
+                        child: ShimmerContainerWidget(
+                          width: 250,
+                          height: 150,
+                        ),
+                      );
+                    },
+                    imageBuilder: (context, imageProvider) {
+                      return Container(
+                        width: Screens.width(context),
+                        height: 200,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                   const SizedBox(height: Const.space15),
                   BlocBuilder<ArticleDetailWatcherBloc,
                       ArticleDetailWatcherState>(
                     builder: (context, state) {
                       return state.maybeMap(
                         orElse: () {
-                          return const Center(
-                            child: CircularProgressIndicator(),
+                          return ShimmerWidget(
+                            child: Padding(
+                              padding: const EdgeInsets.all(Const.margin),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ShimmerContainerWidget(
+                                    width: Screens.width(context) / 2,
+                                    height: 15,
+                                  ),
+                                  const SizedBox(height: Const.space8),
+                                  ShimmerContainerWidget(
+                                    width: Screens.width(context) / 1.7,
+                                    height: 15,
+                                  ),
+                                  const SizedBox(height: Const.space8),
+                                  const ShimmerContainerWidget(
+                                    height: 15,
+                                  ),
+                                  const SizedBox(height: Const.space8),
+                                  ShimmerContainerWidget(
+                                    width: Screens.width(context) / 1.4,
+                                    height: 15,
+                                  ),
+                                ],
+                              ),
+                            ),
                           );
                         },
                         loaded: (state) {
@@ -245,7 +325,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
     );
   }
 
-  AppBar _appBar(BuildContext context, {required Article article}) {
+  AppBar _appBar(BuildContext context) {
     final theme = Theme.of(context);
 
     return AppBar(
@@ -373,8 +453,18 @@ class _CommentDialogState extends State<CommentDialog> {
                 builder: (context, state) {
                   return state.maybeMap(
                     orElse: () {
-                      return const Center(
-                        child: CircularProgressIndicator(),
+                      return const ShimmerWidget(
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            radius: 25,
+                          ),
+                          title: ShimmerContainerWidget(height: 15),
+                          subtitle: ShimmerContainerWidget(width: 150),
+                          trailing: Icon(
+                            FeatherIcons.moreHorizontal,
+                            size: 15,
+                          ),
+                        ),
                       );
                     },
                     loaded: (state) {

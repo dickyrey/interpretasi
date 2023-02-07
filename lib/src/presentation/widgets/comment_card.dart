@@ -31,7 +31,7 @@ class CommentCardWidget extends StatelessWidget {
       child: Row(
         children: [
           CircleAvatar(
-            radius: 18,
+            radius: 25,
             backgroundColor: theme.disabledColor,
             backgroundImage: CachedNetworkImageProvider(
               comment.user.photo.isEmpty ? Const.photo : comment.user.photo,
@@ -41,20 +41,23 @@ class CommentCardWidget extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   comment.user.name,
-                  style: theme.textTheme.headlineSmall,
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontSize: 12,
+                  ),
                 ),
                 const SizedBox(height: Const.space8 - 5),
                 Text(
                   comment.body,
-                  style: theme.textTheme.bodyMedium,
+                  style: theme.textTheme.titleMedium,
                 ),
                 const SizedBox(height: Const.space8),
                 Text(
                   timeago.format(comment.createdAt),
-                  style: theme.textTheme.titleMedium,
+                  style: theme.textTheme.bodySmall,
                 ),
               ],
             ),
@@ -68,7 +71,8 @@ class CommentCardWidget extends StatelessWidget {
                 loaded: (state) {
                   return IconButton(
                     icon: const Icon(FeatherIcons.moreVertical),
-                    iconSize: 16,
+                    splashRadius: 25,
+                    iconSize: 15,
                     onPressed: () {
                       showDialog<dynamic>(
                         context: context,
