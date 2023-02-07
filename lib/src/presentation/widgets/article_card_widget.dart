@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,6 +8,8 @@ import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/screens.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
+import 'package:interpretasi/src/presentation/bloc/article/delete_article_actor/delete_article_actor_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/moderated_actor/moderated_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -354,7 +357,10 @@ class _VerticalCard extends StatelessWidget {
                                   ),
                                   TileButtonDialog(
                                     onTap: () {
-                                      //TODO: Publish to moderated
+                                      Navigator.pop(context);
+                                      context
+                                          .read<ModeratedActorBloc>()
+                                          .add(ModeratedActorEvent.change(article.url));
                                     },
                                     icon: FeatherIcons.send,
                                     label: lang.publish,
@@ -368,7 +374,14 @@ class _VerticalCard extends StatelessWidget {
                                   ),
                                   TileButtonDialog(
                                     onTap: () {
-                                      //TODO: Delete
+                                      Navigator.pop(context);
+                                      context
+                                          .read<DeleteArticleActorBloc>()
+                                          .add(
+                                            DeleteArticleActorEvent.delete(
+                                              article.url,
+                                            ),
+                                          );
                                     },
                                     icon: FeatherIcons.trash,
                                     label: lang.delete,

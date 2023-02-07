@@ -124,7 +124,7 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
               state.copyWith(
                 state: RequestState.error,
                 isSubmit: false,
-                message: 'thumbnail-null',
+                message: ExceptionMessage.thumbnailNull,
               ),
             );
           } else if (state.title == '') {
@@ -132,7 +132,7 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
               state.copyWith(
                 state: RequestState.error,
                 isSubmit: false,
-                message: 'title-null',
+                message: ExceptionMessage.titleNull,
               ),
             );
           } else if (state.selectedCategory?.id == null) {
@@ -140,7 +140,7 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
               state.copyWith(
                 state: RequestState.error,
                 isSubmit: false,
-                message: 'category-null',
+                message: ExceptionMessage.categoryNull,
               ),
             );
           } else if (state.tagList.isEmpty) {
@@ -148,10 +148,17 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
               state.copyWith(
                 state: RequestState.error,
                 isSubmit: false,
-                message: 'tag-null',
+                message: ExceptionMessage.tagNull,
               ),
             );
           }
+
+          emit(
+            state.copyWith(
+              state: RequestState.loading,
+              isSubmit: true,
+            ),
+          );
 
           final decoded = List<Map<String, dynamic>>.from(event.delta.toJson());
           final html = QuillDeltaToHtmlConverter(decoded);
@@ -167,12 +174,6 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
               content: html.convert(),
               deltaJson: jsonEncode(event.delta.toJson()),
               tags: state.tagList,
-            );
-            emit(
-              state.copyWith(
-                state: RequestState.loading,
-                isSubmit: true,
-              ),
             );
             result.fold(
               (f) => emit(

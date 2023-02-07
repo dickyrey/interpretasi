@@ -35,4 +35,10 @@ class ExceptionMessage {
   static const String wrongPassword = 'wrong-password';
   static const String userNotFound = 'user-not-found';
   static const String signInCancelled = 'sign-in-cancelled';
+
+  // Article Form Validation
+  static const String thumbnailNull = 'thumbnail-null';
+  static const String titleNull = 'title-null';
+  static const String categoryNull = 'category-null';
+  static const String tagNull = 'tag-null';
 }

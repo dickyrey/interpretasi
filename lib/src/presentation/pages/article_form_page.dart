@@ -10,6 +10,7 @@ import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_form/article_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/category/category_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/user_article_drafted_watcher/user_article_drafted_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_field_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_form_field_widget.dart';
@@ -54,56 +55,50 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
 
     return BlocListener<ArticleFormBloc, ArticleFormState>(
       listener: (context, state) {
-        if (state.message == 'thumbnail-null') {
+        if (state.message == ExceptionMessage.thumbnailNull) {
           final snack = showSnackbar(
             context,
             type: SnackbarType.error,
-            labelText: 'Please select thumbnail',
+            labelText: lang.please_insert_a_thumbnail,
             labelButton: lang.close,
             onTap: () {},
           );
           ScaffoldMessenger.of(context).showSnackBar(snack);
-        } else if (state.message == 'title-null') {
+        } else if (state.message == ExceptionMessage.titleNull) {
           final snack = showSnackbar(
             context,
             type: SnackbarType.error,
-            labelText: 'Please write a title',
+            labelText: lang.please_write_a_title,
             labelButton: lang.close,
             onTap: () {},
           );
           ScaffoldMessenger.of(context).showSnackBar(snack);
-        } else if (state.message == 'category-null') {
+        } else if (state.message == ExceptionMessage.categoryNull) {
           final snack = showSnackbar(
             context,
             type: SnackbarType.error,
-            labelText: 'Please fill select a category',
+            labelText: lang.please_select_a_category,
             labelButton: lang.close,
             onTap: () {},
           );
           ScaffoldMessenger.of(context).showSnackBar(snack);
-        } else if (state.message == 'tag-null') {
+        } else if (state.message == ExceptionMessage.tagNull) {
           final snack = showSnackbar(
             context,
             type: SnackbarType.error,
-            labelText: 'Please fill tag',
-            labelButton: lang.close,
-            onTap: () {},
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snack);
-        } else if (state.message == 'content-null') {
-          final snack = showSnackbar(
-            context,
-            type: SnackbarType.error,
-            labelText: 'Please write a content',
+            labelText: lang.please_fill_in_some_tags,
             labelButton: lang.close,
             onTap: () {},
           );
           ScaffoldMessenger.of(context).showSnackBar(snack);
         } else if (state.state == RequestState.loaded) {
+          context
+              .read<UserArticleDraftedWatcherBloc>()
+              .add(const UserArticleDraftedWatcherEvent.fetch());
           final snack = showSnackbar(
             context,
             type: SnackbarType.success,
-            labelText: 'Success to upload',
+            labelText: lang.saved_successfully_in_draft,
             labelButton: lang.close,
             onTap: () {},
           );
@@ -143,7 +138,6 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
   AppBar _appBar(BuildContext context) {
     final theme = Theme.of(context);
     final lang = AppLocalizations.of(context)!;
-    final state = context.read<ArticleFormBloc>().state;
 
     return AppBar(
       backgroundColor: theme.colorScheme.background,
@@ -188,23 +182,27 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
             ),
           ),
           const Spacer(),
-          ElevatedButtonWidget(
-            width: 80,
-            height: 30,
-            isLoading: (state.isSubmit == true) ? true : false,
-            label: (_selectedIndex == 0) ? lang.next : lang.save,
-            onTap: () {
-              if (_selectedIndex == 0) {
-                _pageCtrl.nextPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeIn,
-                );
-              } else {
-                final delta = _quillCtrl.document.toDelta();
-                context
-                    .read<ArticleFormBloc>()
-                    .add(ArticleFormEvent.create(delta));
-              }
+          BlocBuilder<ArticleFormBloc, ArticleFormState>(
+            builder: (context, state) {
+              return ElevatedButtonWidget(
+                width: 80,
+                height: 30,
+                isLoading: (state.isSubmit == true) ? true : false,
+                label: (_selectedIndex == 0) ? lang.next : lang.save,
+                onTap: () {
+                  if (_selectedIndex == 0) {
+                    _pageCtrl.nextPage(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeIn,
+                    );
+                  } else {
+                    final delta = _quillCtrl.document.toDelta();
+                    context
+                        .read<ArticleFormBloc>()
+                        .add(ArticleFormEvent.create(delta));
+                  }
+                },
+              );
             },
           )
         ],
@@ -445,7 +443,7 @@ class _EditorWidget extends StatelessWidget {
           customButtons: [
             QuillCustomButton(
               icon: FeatherIcons.image,
-              onTap: (){},
+              onTap: () {},
             ),
           ],
           showBackgroundColorButton: false,

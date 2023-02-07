@@ -26,7 +26,7 @@ import 'package:interpretasi/src/presentation/bloc/password/add_password_form/ad
 import 'package:interpretasi/src/presentation/bloc/password/change_password_form/change_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/change_to_moderated_actor/change_to_moderated_actor_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/moderated_actor/moderated_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/read_history_watcher/read_history_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_banned_watcher/user_article_banned_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_drafted_watcher/user_article_drafted_watcher_bloc.dart';
@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.locator<UserFormBloc>()),
         BlocProvider(create: (context) => di.locator<UserWatcherBloc>()),
         //* User Article BLoC folder
-        BlocProvider(create: (context) => di.locator<ChangeToModeratedActorBloc>()),
+        BlocProvider(create: (context) => di.locator<ModeratedActorBloc>()),
         BlocProvider(create: (context) => di.locator<ReadHistoryWatcherBloc>()),
         BlocProvider(create: (context) => di.locator<UserArticleBannedWatcherBloc>()),
         BlocProvider(create: (context) => di.locator<UserArticleDraftedWatcherBloc>()),

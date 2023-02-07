@@ -4,8 +4,11 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
+import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_form/article_form_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/article/delete_article_actor/delete_article_actor_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/moderated_actor/moderated_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_banned_watcher/user_article_banned_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_drafted_watcher/user_article_drafted_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_moderated_watcher/user_article_moderated_watcher_bloc.dart';
@@ -13,6 +16,8 @@ import 'package:interpretasi/src/presentation/bloc/user_article/user_article_pub
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_rejected_watcher/user_article_rejected_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/empty_data_widget.dart';
+import 'package:interpretasi/src/utilities/snackbar.dart';
+import 'package:interpretasi/src/utilities/toast.dart';
 
 class MyArticlePage extends StatefulWidget {
   const MyArticlePage({super.key});
@@ -36,328 +41,378 @@ class _MyArticlePageState extends State<MyArticlePage> {
   Widget build(BuildContext context) {
     final lang = AppLocalizations.of(context)!;
 
-    return DefaultTabController(
-      length: 5,
-      child: Scaffold(
-        appBar: _appBar(context),
-        body: TabBarView(
-          children: [
-            BlocBuilder<UserArticleDraftedWatcherBloc,
-                UserArticleDraftedWatcherState>(
-              builder: (context, state) {
-                return state.maybeMap(
-                  orElse: () {
-                    // TODO(dickyrey): Error View
-                    return const SizedBox();
-                  },
-                  loading: (_) {
-                    return ListView.builder(
-                      itemCount: 3,
-                      physics: const ScrollPhysics(),
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: Const.margin,
-                      ),
-                      itemBuilder: (context, index) {
-                        return const ArticleCardLoadingWidget();
-                      },
-                    );
-                  },
-                  loaded: (state) {
-                    if (state.articleList.isNotEmpty) {
-                      return ListView.separated(
-                        itemCount: state.articleList.length,
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<DeleteArticleActorBloc, DeleteArticleActorState>(
+          listener: (context, state) {
+            state.maybeMap(
+              orElse: () {},
+              error: (_) {
+                final snack = showSnackbar(
+                  context,
+                  type: SnackbarType.error,
+                  labelText: lang.failed_to_delete_article_try_again_later,
+                  labelButton: lang.close,
+                  onTap: () {},
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snack);
+              },
+              success: (_) {
+                showToast(msg: lang.article_deleted);
+                context
+                    .read<UserArticleDraftedWatcherBloc>()
+                    .add(const UserArticleDraftedWatcherEvent.fetch());
+              },
+            );
+          },
+        ),
+        BlocListener<ModeratedActorBloc, ModeratedActorState>(
+          listener: (context, state) {
+            state.maybeMap(
+              orElse: () {},
+              error: (_) {
+                final snack = showSnackbar(
+                  context,
+                  type: SnackbarType.error,
+                  labelText: lang.failed_to_publish_try_again_later,
+                  labelButton: lang.close,
+                  onTap: () {},
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snack);
+              },
+              success: (_) {
+                showToast(msg: lang.articles_are_sent_to_be_checked_by_admin);
+                context
+                    .read<UserArticleDraftedWatcherBloc>()
+                    .add(const UserArticleDraftedWatcherEvent.fetch());
+              },
+            );
+          },
+        ),
+      ],
+      child: DefaultTabController(
+        length: 5,
+        child: Scaffold(
+          appBar: _appBar(context),
+          body: TabBarView(
+            children: [
+              BlocBuilder<UserArticleDraftedWatcherBloc,
+                  UserArticleDraftedWatcherState>(
+                builder: (context, state) {
+                  return state.maybeMap(
+                    orElse: () {
+                      // TODO(dickyrey): Error View
+                      return const SizedBox();
+                    },
+                    loading: (_) {
+                      return ListView.builder(
+                        itemCount: 3,
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
                         padding: const EdgeInsets.symmetric(
                           vertical: Const.margin,
                         ),
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) {
-                          return const Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: Const.margin,
-                            ),
-                            child: Divider(),
-                          );
-                        },
                         itemBuilder: (context, index) {
-                          return ArticleCardWidget(
-                            index: index,
-                            isPublic: false,
-                            article: state.articleList[index],
-                            onTap: () {
-                              // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
-                            },
-                          );
+                          return const ArticleCardLoadingWidget();
                         },
                       );
-                    }
-                    return EmptyDataWidget(
-                      illustration: Assets.write,
-                      title: lang.my_articles_empty,
-                      subtitle: lang
-                          .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
-                      onTap: () {
-                        // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
-                      },
-                    );
-                  },
-                );
-              },
-            ),
-            BlocBuilder<UserArticleModeratedWatcherBloc,
-                UserArticleModeratedWatcherState>(
-              builder: (context, state) {
-                return state.maybeMap(
-                  orElse: () {
-                    // TODO(dickyrey): Error View
-                    return const SizedBox();
-                  },
-                  loading: (_) {
-                    return ListView.builder(
-                      itemCount: 3,
-                      physics: const ScrollPhysics(),
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: Const.margin,
-                      ),
-                      itemBuilder: (context, index) {
-                        return const ArticleCardLoadingWidget();
-                      },
-                    );
-                  },
-                  loaded: (state) {
-                    if (state.articleList.isNotEmpty) {
-                      return ListView.separated(
-                        itemCount: state.articleList.length,
+                    },
+                    loaded: (state) {
+                      if (state.articleList.isNotEmpty) {
+                        return ListView.separated(
+                          itemCount: state.articleList.length,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: Const.margin,
+                          ),
+                          physics: const ScrollPhysics(),
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) {
+                            return const Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: Const.margin,
+                              ),
+                              child: Divider(),
+                            );
+                          },
+                          itemBuilder: (context, index) {
+                            return ArticleCardWidget(
+                              index: index,
+                              isPublic: false,
+                              article: state.articleList[index],
+                              onTap: () {
+                                // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
+                              },
+                            );
+                          },
+                        );
+                      }
+                      return EmptyDataWidget(
+                        illustration: Assets.write,
+                        title: lang.my_articles_empty,
+                        subtitle: lang
+                            .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
+                        onTap: () {
+                          // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+              BlocBuilder<UserArticleModeratedWatcherBloc,
+                  UserArticleModeratedWatcherState>(
+                builder: (context, state) {
+                  return state.maybeMap(
+                    orElse: () {
+                      // TODO(dickyrey): Error View
+                      return const SizedBox();
+                    },
+                    loading: (_) {
+                      return ListView.builder(
+                        itemCount: 3,
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
                         padding: const EdgeInsets.symmetric(
                           vertical: Const.margin,
                         ),
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) {
-                          return const Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: Const.margin,
-                            ),
-                            child: Divider(),
-                          );
-                        },
                         itemBuilder: (context, index) {
-                          return ArticleCardWidget(
-                            index: index,
-                            isPublic: false,
-                            article: state.articleList[index],
-                            onTap: () {
-                              // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
-                            },
-                          );
+                          return const ArticleCardLoadingWidget();
                         },
                       );
-                    }
-                    return EmptyDataWidget(
-                      illustration: Assets.write,
-                      title: lang.my_articles_empty,
-                      subtitle: lang
-                          .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
-                      onTap: () {
-                        // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
-                      },
-                    );
-                  },
-                );
-              },
-            ),
-            BlocBuilder<UserArticleRejectedWatcherBloc,
-                UserArticleRejectedWatcherState>(
-              builder: (context, state) {
-                return state.maybeMap(
-                  orElse: () {
-                    // TODO(dickyrey): Error View
-                    return const SizedBox();
-                  },
-                  loading: (_) {
-                    return ListView.builder(
-                      itemCount: 3,
-                      physics: const ScrollPhysics(),
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: Const.margin,
-                      ),
-                      itemBuilder: (context, index) {
-                        return const ArticleCardLoadingWidget();
-                      },
-                    );
-                  },
-                  loaded: (state) {
-                    if (state.articleList.isNotEmpty) {
-                      return ListView.separated(
-                        itemCount: state.articleList.length,
+                    },
+                    loaded: (state) {
+                      if (state.articleList.isNotEmpty) {
+                        return ListView.separated(
+                          itemCount: state.articleList.length,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: Const.margin,
+                          ),
+                          physics: const ScrollPhysics(),
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) {
+                            return const Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: Const.margin,
+                              ),
+                              child: Divider(),
+                            );
+                          },
+                          itemBuilder: (context, index) {
+                            return ArticleCardWidget(
+                              index: index,
+                              isPublic: false,
+                              article: state.articleList[index],
+                              onTap: () {
+                                // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
+                              },
+                            );
+                          },
+                        );
+                      }
+                      return EmptyDataWidget(
+                        illustration: Assets.write,
+                        title: lang.my_articles_empty,
+                        subtitle: lang
+                            .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
+                        onTap: () {
+                          // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+              BlocBuilder<UserArticleRejectedWatcherBloc,
+                  UserArticleRejectedWatcherState>(
+                builder: (context, state) {
+                  return state.maybeMap(
+                    orElse: () {
+                      // TODO(dickyrey): Error View
+                      return const SizedBox();
+                    },
+                    loading: (_) {
+                      return ListView.builder(
+                        itemCount: 3,
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
                         padding: const EdgeInsets.symmetric(
                           vertical: Const.margin,
                         ),
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) {
-                          return const Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: Const.margin,
-                            ),
-                            child: Divider(),
-                          );
-                        },
                         itemBuilder: (context, index) {
-                          return ArticleCardWidget(
-                            index: index,
-                            isPublic: false,
-                            article: state.articleList[index],
-                            onTap: () {
-                              // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
-                            },
-                          );
+                          return const ArticleCardLoadingWidget();
                         },
                       );
-                    }
-                    return EmptyDataWidget(
-                      illustration: Assets.write,
-                      title: lang.my_articles_empty,
-                      subtitle: lang
-                          .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
-                      onTap: () {
-                        // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
-                      },
-                    );
-                  },
-                );
-              },
-            ),
-            BlocBuilder<UserArticlePublishedWatcherBloc,
-                UserArticlePublishedWatcherState>(
-              builder: (context, state) {
-                return state.maybeMap(
-                  orElse: () {
-                    // TODO(dickyrey): Error View
-                    return const SizedBox();
-                  },
-                  loading: (_) {
-                    return ListView.builder(
-                      itemCount: 3,
-                      physics: const ScrollPhysics(),
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: Const.margin,
-                      ),
-                      itemBuilder: (context, index) {
-                        return const ArticleCardLoadingWidget();
-                      },
-                    );
-                  },
-                  loaded: (state) {
-                    if (state.articleList.isNotEmpty) {
-                      return ListView.separated(
-                        itemCount: state.articleList.length,
+                    },
+                    loaded: (state) {
+                      if (state.articleList.isNotEmpty) {
+                        return ListView.separated(
+                          itemCount: state.articleList.length,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: Const.margin,
+                          ),
+                          physics: const ScrollPhysics(),
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) {
+                            return const Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: Const.margin,
+                              ),
+                              child: Divider(),
+                            );
+                          },
+                          itemBuilder: (context, index) {
+                            return ArticleCardWidget(
+                              index: index,
+                              isPublic: false,
+                              article: state.articleList[index],
+                              onTap: () {
+                                // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
+                              },
+                            );
+                          },
+                        );
+                      }
+                      return EmptyDataWidget(
+                        illustration: Assets.write,
+                        title: lang.my_articles_empty,
+                        subtitle: lang
+                            .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
+                        onTap: () {
+                          // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+              BlocBuilder<UserArticlePublishedWatcherBloc,
+                  UserArticlePublishedWatcherState>(
+                builder: (context, state) {
+                  return state.maybeMap(
+                    orElse: () {
+                      // TODO(dickyrey): Error View
+                      return const SizedBox();
+                    },
+                    loading: (_) {
+                      return ListView.builder(
+                        itemCount: 3,
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
                         padding: const EdgeInsets.symmetric(
                           vertical: Const.margin,
                         ),
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) {
-                          return const Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: Const.margin,
-                            ),
-                            child: Divider(),
-                          );
-                        },
                         itemBuilder: (context, index) {
-                          return ArticleCardWidget(
-                            index: index,
-                            isPublic: false,
-                            article: state.articleList[index],
-                            onTap: () {
-                              // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
-                            },
-                          );
+                          return const ArticleCardLoadingWidget();
                         },
                       );
-                    }
-                    return EmptyDataWidget(
-                      illustration: Assets.write,
-                      title: lang.my_articles_empty,
-                      subtitle: lang
-                          .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
-                      onTap: () {
-                        // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
-                      },
-                    );
-                  },
-                );
-              },
-            ),
-            BlocBuilder<UserArticleBannedWatcherBloc,
-                UserArticleBannedWatcherState>(
-              builder: (context, state) {
-                return state.maybeMap(
-                  orElse: () {
-                    // TODO(dickyrey): Error View
-                    return const SizedBox();
-                  },
-                  loading: (_) {
-                    return ListView.builder(
-                      itemCount: 3,
-                      physics: const ScrollPhysics(),
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: Const.margin,
-                      ),
-                      itemBuilder: (context, index) {
-                        return const ArticleCardLoadingWidget();
-                      },
-                    );
-                  },
-                  loaded: (state) {
-                    if (state.articleList.isNotEmpty) {
-                      return ListView.separated(
-                        itemCount: state.articleList.length,
+                    },
+                    loaded: (state) {
+                      if (state.articleList.isNotEmpty) {
+                        return ListView.separated(
+                          itemCount: state.articleList.length,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: Const.margin,
+                          ),
+                          physics: const ScrollPhysics(),
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) {
+                            return const Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: Const.margin,
+                              ),
+                              child: Divider(),
+                            );
+                          },
+                          itemBuilder: (context, index) {
+                            return ArticleCardWidget(
+                              index: index,
+                              isPublic: false,
+                              article: state.articleList[index],
+                              onTap: () {
+                                // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
+                              },
+                            );
+                          },
+                        );
+                      }
+                      return EmptyDataWidget(
+                        illustration: Assets.write,
+                        title: lang.my_articles_empty,
+                        subtitle: lang
+                            .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
+                        onTap: () {
+                          // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+              BlocBuilder<UserArticleBannedWatcherBloc,
+                  UserArticleBannedWatcherState>(
+                builder: (context, state) {
+                  return state.maybeMap(
+                    orElse: () {
+                      // TODO(dickyrey): Error View
+                      return const SizedBox();
+                    },
+                    loading: (_) {
+                      return ListView.builder(
+                        itemCount: 3,
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
                         padding: const EdgeInsets.symmetric(
                           vertical: Const.margin,
                         ),
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) {
-                          return const Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: Const.margin,
-                            ),
-                            child: Divider(),
-                          );
-                        },
                         itemBuilder: (context, index) {
-                          return ArticleCardWidget(
-                            index: index,
-                            isPublic: false,
-                            article: state.articleList[index],
-                            onTap: () {
-                              // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
-                            },
-                          );
+                          return const ArticleCardLoadingWidget();
                         },
                       );
-                    }
-                    return EmptyDataWidget(
-                      illustration: Assets.write,
-                      title: lang.my_articles_empty,
-                      subtitle: lang
-                          .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
-                      onTap: () {
-                        // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
-                      },
-                    );
-                  },
-                );
-              },
-            ),
-          ],
+                    },
+                    loaded: (state) {
+                      if (state.articleList.isNotEmpty) {
+                        return ListView.separated(
+                          itemCount: state.articleList.length,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: Const.margin,
+                          ),
+                          physics: const ScrollPhysics(),
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) {
+                            return const Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: Const.margin,
+                              ),
+                              child: Divider(),
+                            );
+                          },
+                          itemBuilder: (context, index) {
+                            return ArticleCardWidget(
+                              index: index,
+                              isPublic: false,
+                              article: state.articleList[index],
+                              onTap: () {
+                                // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
+                              },
+                            );
+                          },
+                        );
+                      }
+                      return EmptyDataWidget(
+                        illustration: Assets.write,
+                        title: lang.my_articles_empty,
+                        subtitle: lang
+                            .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
+                        onTap: () {
+                          // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
