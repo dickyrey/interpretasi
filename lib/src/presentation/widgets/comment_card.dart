@@ -75,7 +75,7 @@ class CommentCardWidget extends StatelessWidget {
                         builder: (context) {
                           return AlertDialog(
                             title: Text(
-                              'lang.choose_an_action',
+                              lang.choose_an_action,
                               style: theme.textTheme.headlineSmall,
                             ),
                             content: Column(
@@ -85,7 +85,7 @@ class CommentCardWidget extends StatelessWidget {
                                   _listTileWidget(
                                     context,
                                     icon: FeatherIcons.trash,
-                                    label: 'lang.delete',
+                                    label: lang.delete,
                                     onTap: () {
                                       Navigator.pop(context);
                                       context
@@ -104,8 +104,9 @@ class CommentCardWidget extends StatelessWidget {
                                 _listTileWidget(
                                   context,
                                   icon: FeatherIcons.alertCircle,
-                                  label: 'lang.report',
+                                  label: lang.report,
                                   onTap: () {
+                                    // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/13
                                   },
                                 )
                               ],

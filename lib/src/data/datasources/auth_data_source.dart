@@ -37,6 +37,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
     // print(token);
+    // print(token);
     // final header = {
     //   'Authorization': 'Bearer $token',
     //   'Accept': 'application/json',

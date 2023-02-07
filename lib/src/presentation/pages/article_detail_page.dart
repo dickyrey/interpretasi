@@ -54,25 +54,56 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: Const.margin),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: Const.space25),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(Const.radius),
-                    child: CachedNetworkImage(imageUrl: widget.article.image),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: Const.margin,
+                    ),
+                    child: Text(
+                      'E-Sports',
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: Const.space8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: Const.margin,
+                    ),
+                    child: Text(
+                      widget.article.title,
+                      style: theme.textTheme.headlineMedium?.copyWith(
+                        height: 1.2,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: Const.space15),
-                  Text(
-                    widget.article.title,
-                    style: theme.textTheme.headlineLarge,
+                  ListTile(
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: Const.margin,
+                    ),
+                    leading: CircleAvatar(
+                      radius: 25,
+                      backgroundColor: theme.disabledColor,
+                      backgroundImage: const CachedNetworkImageProvider(
+                        'https://i.pinimg.com/564x/98/57/47/985747db6a1c15cc64fc1723e4da4d63.jpg',
+                      ),
+                    ),
+                    title: Text(
+                      'Byneet Dev',
+                      style: theme.textTheme.labelSmall,
+                    ),
+                    subtitle: Text(
+                      'Author, ${DateFormat('d MMM yy').format(widget.article.createdAt)}',
+                      style: theme.textTheme.titleSmall,
+                    ),
                   ),
-                  const SizedBox(height: Const.space12),
-                  Text(
-                    '${DateFormat.yMMMMEEEEd().format(widget.article.createdAt)} - waktu baca 2 menit',
-                    style: theme.textTheme.titleMedium,
-                  ),
+                  const SizedBox(height: Const.space15),
+                  CachedNetworkImage(imageUrl: widget.article.image),
                   const SizedBox(height: Const.space15),
                   BlocBuilder<ArticleDetailWatcherBloc,
                       ArticleDetailWatcherState>(
@@ -115,7 +146,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                             );
                         _showCommentDialog(context);
                       },
-                      child:  TextFormFieldWidget(
+                      child: TextFormFieldWidget(
                         enabled: false,
                         hintText: lang.write_comment,
                       ),
@@ -242,6 +273,7 @@ class _CommentDialogState extends State<CommentDialog> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final lang = AppLocalizations.of(context)!;
 
     return MultiBlocListener(
       listeners: [
@@ -251,7 +283,7 @@ class _CommentDialogState extends State<CommentDialog> {
               orElse: () {},
               sendFailure: (_) {
                 showToast(
-                  msg: 'lang.an_error_occurred_while_posting_the_comment',
+                  msg: lang.failed_to_post_comment_try_again_later,
                 );
               },
               sendSuccess: (_) {
@@ -282,14 +314,14 @@ class _CommentDialogState extends State<CommentDialog> {
                     .read<DeleteCommentActorBloc>()
                     .add(const DeleteCommentActorEvent.init());
                 showToast(
-                  msg: 'lang.an_error_occurred_while_deleting_the_comment',
+                  msg: lang.failed_to_delete_comment_try_again_later,
                 );
               },
               deleteInSuccess: (_) {
-                showToast(
-                  msg: 'lang.comment_deleted',
-                  gravity: ToastGravity.BOTTOM,
-                );
+                // showToast(
+                //   msg: 'lang.comment_deleted',
+                //   gravity: ToastGravity.BOTTOM,
+                // );
                 context
                     .read<DeleteCommentActorBloc>()
                     .add(const DeleteCommentActorEvent.init());
@@ -316,7 +348,7 @@ class _CommentDialogState extends State<CommentDialog> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'lang.comments',
+                    lang.comments,
                     style: theme.textTheme.headlineSmall,
                   ),
                   InkWell(
@@ -376,7 +408,7 @@ class _CommentDialogState extends State<CommentDialog> {
                     Expanded(
                       child: TextFormFieldWidget(
                         controller: _commentController,
-                        hintText: 'lang.write_comment',
+                        hintText: lang.write_comment,
                       ),
                     ),
                     IconButton(
