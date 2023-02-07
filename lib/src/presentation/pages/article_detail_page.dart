@@ -7,6 +7,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
+import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/screens.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_detail_watcher/article_detail_watcher_bloc.dart';
@@ -243,7 +244,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: Const.space12),
+                  const SizedBox(width: Const.space25),
                   BlocBuilder<LikeArticleWatcherBloc, LikeArticleWatcherState>(
                     builder: (context, state) {
                       return state.maybeMap(
@@ -280,7 +281,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                       );
                     },
                   ),
-                  const SizedBox(width: Const.space15),
+                  const SizedBox(width: Const.space25),
                   GestureDetector(
                     onTap: () {
                       context.read<ArticleCommentWatcherBloc>().add(
@@ -292,17 +293,17 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                     },
                     child: const Icon(FeatherIcons.messageCircle),
                   ),
-                  const SizedBox(width: Const.space15),
-                  GestureDetector(
-                    onTap: () async {
-                      await FlutterShare.share(
-                        title: 'Share message',
-                        linkUrl: widget.article.url,
-                        chooserTitle: 'Example Chooser Title',
-                      );
-                    },
-                    child: const Icon(FeatherIcons.share2),
-                  ),
+                  // const SizedBox(width: Const.space15),
+                  // GestureDetector(
+                  //   onTap: () async {
+                  //     await FlutterShare.share(
+                  //       title: widget.article.url,
+                  //       linkUrl: widget.article.url,
+                  //       chooserTitle: lang.share_with,
+                  //     );
+                  //   },
+                  //   child: const Icon(FeatherIcons.share2),
+                  // ),
                 ],
               ),
             ),
@@ -327,6 +328,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
 
   AppBar _appBar(BuildContext context) {
     final theme = Theme.of(context);
+    final lang = AppLocalizations.of(context)!;
 
     return AppBar(
       backgroundColor: theme.colorScheme.background,
@@ -338,6 +340,59 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           color: theme.iconTheme.color,
         ),
       ),
+      actions: [
+        PopupMenuButton<ArticleValues>(
+          icon: const Icon(
+            FeatherIcons.moreVertical,
+            size: 20,
+            color: ColorLight.fontTitle,
+          ),
+          onSelected: (value) async {
+            switch (value) {
+              case ArticleValues.share:
+                await FlutterShare.share(
+                  title: widget.article.url,
+                  linkUrl: widget.article.url,
+                  chooserTitle: lang.share_with,
+                );
+                break;
+              case ArticleValues.report:
+                await showToast(msg: 'Report');
+                break;
+            }
+          },
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              value: ArticleValues.share,
+              child: Row(
+                children: [
+                  const Icon(
+                    FeatherIcons.share2,
+                    size: 20,
+                    color: ColorLight.fontTitle,
+                  ),
+                  const SizedBox(width: Const.space8),
+                  Text(lang.share, style: theme.textTheme.titleMedium),
+                ],
+              ),
+            ),
+            PopupMenuItem(
+              value: ArticleValues.report,
+              child: Row(
+                children: [
+                  const Icon(
+                    FeatherIcons.info,
+                    size: 20,
+                    color: ColorLight.fontTitle,
+                  ),
+                  const SizedBox(width: Const.space8),
+                  Text(lang.report, style: theme.textTheme.titleMedium),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

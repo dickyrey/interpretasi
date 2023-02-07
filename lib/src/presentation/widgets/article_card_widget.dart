@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
@@ -360,11 +361,16 @@ class _VerticalCard extends StatelessWidget {
                               context,
                               items: [
                                 TileButtonDialog(
-                                  onTap: () {
-                                    //TODO: Share Article
+                                  onTap: () async {
+                                    Navigator.pop(context);
+                                    await FlutterShare.share(
+                                      title: article.url,
+                                      linkUrl: article.url,
+                                      chooserTitle: lang.share_with,
+                                    );
                                   },
                                   isVisible: showShareButton,
-                                  icon: FeatherIcons.share,
+                                  icon: FeatherIcons.share2,
                                   label: lang.share,
                                 ),
                                 TileButtonDialog(
