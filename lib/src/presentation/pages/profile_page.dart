@@ -50,7 +50,6 @@ class ProfilePage extends StatelessWidget {
                           const SizedBox(height: Const.space12),
                           const ShimmerContainerWidget(
                             width: 150,
-                            height: 10,
                           ),
                         ],
                       ),
@@ -132,7 +131,7 @@ class ProfilePage extends StatelessWidget {
                       icon: FeatherIcons.user,
                       title: lang.my_profile,
                       onTap: () {
-                        // Navigator.pushNamed(context, PROFILE_DETAIL);
+                        Navigator.pushNamed(context, PROFILE_DETAIL);
                       },
                     );
                   },
@@ -155,7 +154,9 @@ class ProfilePage extends StatelessWidget {
             ListTileWidget(
               title: lang.my_articles,
               icon: FeatherIcons.fileText,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, MY_ARTICLE);
+              },
             ),
             ListTileWidget(
               icon: FeatherIcons.settings,

@@ -7,6 +7,7 @@ import 'package:interpretasi/src/presentation/pages/change_password_page.dart';
 import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
 import 'package:interpretasi/src/presentation/pages/login_page.dart';
+import 'package:interpretasi/src/presentation/pages/my_article_page.dart';
 import 'package:interpretasi/src/presentation/pages/on_boarding_page.dart';
 import 'package:interpretasi/src/presentation/pages/password_page.dart';
 import 'package:interpretasi/src/presentation/pages/profile_detail_page.dart';
@@ -91,10 +92,10 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const ReadHistoryPage(),
         );
-      // case MY_ARTICLE:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const MyArticlePage(),
-      //   );
+      case MY_ARTICLE:
+        return MaterialPageRoute(
+          builder: (_) => const MyArticlePage(),
+        );
 
       // case ADD_SECOND_EMAIL:
       //   return MaterialPageRoute(

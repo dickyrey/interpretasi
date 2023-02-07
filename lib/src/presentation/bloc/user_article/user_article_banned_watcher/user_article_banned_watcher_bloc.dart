@@ -13,7 +13,7 @@ class UserArticleBannedWatcherBloc
       : super(const UserArticleBannedWatcherState.initial()) {
     on<UserArticleBannedWatcherEvent>((event, emit) async {
       await event.map(
-        fetchArticle: (_) async {
+        fetch: (_) async {
           emit(const UserArticleBannedWatcherState.loading());
           final result = await _article.execute();
           result.fold(

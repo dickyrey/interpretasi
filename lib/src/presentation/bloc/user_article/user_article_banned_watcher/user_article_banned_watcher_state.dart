@@ -5,5 +5,5 @@ class UserArticleBannedWatcherState with _$UserArticleBannedWatcherState {
   const factory UserArticleBannedWatcherState.initial() = _Initial;
   const factory UserArticleBannedWatcherState.loading() = _Loading;
   const factory UserArticleBannedWatcherState.error() = _Error;
-  const factory UserArticleBannedWatcherState.loaded(List<Article> article) = _Loaded;
+  const factory UserArticleBannedWatcherState.loaded(List<Article> articleList) = _Loaded;
 }
