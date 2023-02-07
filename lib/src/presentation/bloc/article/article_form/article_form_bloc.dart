@@ -27,15 +27,15 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
           emit(ArticleFormState.initial());
         },
         initialize: (event) async {
-          final toEntity = event.article.categories
-              .map((e) => CheckBoxState(category: e))
-              .toList();
+          // final toEntity = event.article.categories
+          //     .map((e) => CheckBoxState(category: e))
+          //     .toList();
 
-          toEntity.map((e) {
-            state.categoryList
-                .firstWhere((x) => x.category.id == e.category.id)
-                .value = true;
-          }).toList();
+          // toEntity.map((e) {
+          //   state.categoryList
+          //       .firstWhere((x) => x.category.id == e.category.id)
+          //       .value = true;
+          // }).toList();
 
           final id = event.article.url.replaceFirst(Const.unusedPath, '');
 
@@ -48,7 +48,7 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
               articleId: id,
               title: event.article.title,
               content: event.article.content,
-              imageUrl: event.article.thumbnail,
+              imageUrl: event.article.image,
             ),
           );
         },

@@ -1,45 +1,49 @@
 import 'package:equatable/equatable.dart';
-import 'package:interpretasi/src/data/models/category_model.dart';
 import 'package:interpretasi/src/domain/entities/article_detail.dart';
 
 class ArticleDetailModel extends Equatable {
   const ArticleDetailModel({
-    required this.url,
-    required this.title,
-    required this.content,
-    required this.thumbnail,
-    required this.viewers,
+    required this.categoryId,
     required this.comments,
     required this.likes,
-    required this.categories,
+    required this.viewers,
+    required this.content,
+    required this.originalContent,
+    required this.image,
+    required this.title,
+    required this.url,
+    required this.tags,
     required this.createdAt,
   });
 
   factory ArticleDetailModel.fromJson(Map<String, dynamic> json) {
     return ArticleDetailModel(
-      url: json['url'] as String,
-      title: json['title'] as String,
-      content: json['content'] as String,
-      thumbnail: json['image'] as String,
-      viewers: json['viewers'] as int,
+      categoryId: json['category_id'] as int,
       comments: json['comments'] as int,
       likes: json['likes'] as int,
-      categories: List<CategoryModel>.from(
-        (json['categories'] as Iterable<dynamic>)
-            .map((x) => CategoryModel.fromJson(x as Map<String, dynamic>)),
+      viewers: json['viewers'] as int,
+      content: json['content'] as String,
+      originalContent: json['original_content'] as String,
+      image: json['image'] as String,
+      title: json['title'] as String,
+      url: json['url'] as String,
+      tags: List<String>.from(
+        (json['tags'] as Iterable<dynamic>).map((x) => x),
       ),
       createdAt: DateTime.parse(json['created_at'] as String),
     );
   }
 
-  final String url;
-  final String title;
-  final String content;
-  final String thumbnail;
-  final int viewers;
+  final int categoryId;
   final int comments;
   final int likes;
-  final List<CategoryModel> categories;
+  final int viewers;
+  final String content;
+  final String originalContent;
+  final String image;
+  final String title;
+  final String url;
+  final List<String> tags;
   final DateTime createdAt;
 
   ArticleDetail toEntity() {
@@ -47,37 +51,29 @@ class ArticleDetailModel extends Equatable {
       url: url,
       title: title,
       content: content,
-      thumbnail: thumbnail,
+      image: image,
       viewers: viewers,
       comments: comments,
       likes: likes,
-      categories: categories.map((x) => x.toEntity()).toList(),
+      categoryId: categoryId,
+      tags: tags,
+      originalContent: originalContent,
       createdAt: createdAt,
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'url': url,
-        'title': title,
-        'content': content,
-        'thumbnail': thumbnail,
-        'viewers': viewers,
-        'comments': comments,
-        'likes': likes,
-        'categories': categories,
-        'created_at': createdAt.toIso8601String(),
-      };
-
   @override
   List<Object?> get props => [
-        url,
-        title,
-        content,
-        thumbnail,
-        viewers,
+        categoryId,
         comments,
         likes,
-        categories,
+        viewers,
+        content,
+        originalContent,
+        image,
+        title,
+        url,
+        tags,
         createdAt,
       ];
 }

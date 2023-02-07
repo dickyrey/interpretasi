@@ -1,51 +1,44 @@
 import 'package:equatable/equatable.dart';
-import 'package:interpretasi/src/domain/entities/category.dart';
 
 class ArticleDetail extends Equatable {
   const ArticleDetail({
-    required this.url,
-    required this.title,
-    required this.content,
-    required this.thumbnail,
-    required this.viewers,
+    required this.categoryId,
     required this.comments,
     required this.likes,
-    required this.categories,
+    required this.viewers,
+    required this.content,
+    required this.originalContent,
+    required this.image,
+    required this.title,
+    required this.url,
+    required this.tags,
     required this.createdAt,
   });
 
-  final String url;
-  final String title;
-  final String content;
-  final String thumbnail;
-  final int viewers;
+  final int categoryId;
   final int comments;
   final int likes;
-  final List<Category> categories;
+  final int viewers;
+  final String content;
+  final String originalContent;
+  final String image;
+  final String title;
+  final String url;
+  final List<String> tags;
   final DateTime createdAt;
-
-  Map<String, dynamic> toJson() => {
-        'url': url,
-        'title': title,
-        'content': content,
-        'thumbnail': thumbnail,
-        'viewers': viewers,
-        'comments': comments,
-        'likes': likes,
-        'categories': categories,
-        'created_at': createdAt.toIso8601String(),
-      };
 
   @override
   List<Object?> get props => [
-        url,
-        title,
-        content,
-        thumbnail,
-        viewers,
+        categoryId,
         comments,
         likes,
-        categories,
+        viewers,
+        content,
+        originalContent,
+        image,
+        title,
+        url,
+        tags,
         createdAt,
       ];
 }
