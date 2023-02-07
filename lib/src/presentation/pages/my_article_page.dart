@@ -15,6 +15,7 @@ import 'package:interpretasi/src/presentation/bloc/user_article/user_article_mod
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_published_watcher/user_article_published_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_rejected_watcher/user_article_rejected_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
+import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/empty_data_widget.dart';
 import 'package:interpretasi/src/utilities/snackbar.dart';
 import 'package:interpretasi/src/utilities/toast.dart';
@@ -39,6 +40,7 @@ class _MyArticlePageState extends State<MyArticlePage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final lang = AppLocalizations.of(context)!;
 
     return MultiBlocListener(
@@ -127,21 +129,60 @@ class _MyArticlePageState extends State<MyArticlePage> {
                           physics: const ScrollPhysics(),
                           shrinkWrap: true,
                           separatorBuilder: (context, index) {
-                            return const Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: Const.margin,
-                              ),
-                              child: Divider(),
-                            );
+                            return const SizedBox(height: Const.space15);
                           },
                           itemBuilder: (context, index) {
+                            final article = state.articleList[index];
                             return ArticleCardWidget(
                               index: index,
-                              isPublic: false,
-                              article: state.articleList[index],
+                              article: article,
                               onTap: () {
                                 // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
                               },
+                              buttonDialogList: [
+                                TileButtonDialog(
+                                  onTap: () {
+                                    //TODO: Preview
+                                  },
+                                  icon: FeatherIcons.eye,
+                                  label: lang.preview,
+                                ),
+                                TileButtonDialog(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    context.read<ModeratedActorBloc>().add(
+                                          ModeratedActorEvent.change(
+                                            article.url,
+                                          ),
+                                        );
+                                  },
+                                  icon: FeatherIcons.send,
+                                  label: lang.publish,
+                                ),
+                                TileButtonDialog(
+                                  onTap: () {
+                                    //TODO: Edit
+                                  },
+                                  icon: FeatherIcons.edit2,
+                                  label: lang.edit,
+                                ),
+                                TileButtonDialog(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    context.read<DeleteArticleActorBloc>().add(
+                                          DeleteArticleActorEvent.delete(
+                                            article.url,
+                                          ),
+                                        );
+                                  },
+                                  icon: FeatherIcons.trash,
+                                  label: lang.delete,
+                                  color: theme.colorScheme.error,
+                                  padding: const EdgeInsets.only(
+                                    top: Const.space15,
+                                  ),
+                                ),
+                              ],
                             );
                           },
                         );
@@ -190,21 +231,41 @@ class _MyArticlePageState extends State<MyArticlePage> {
                           physics: const ScrollPhysics(),
                           shrinkWrap: true,
                           separatorBuilder: (context, index) {
-                            return const Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: Const.margin,
-                              ),
-                              child: Divider(),
-                            );
+                            return const SizedBox(height: Const.space15);
                           },
                           itemBuilder: (context, index) {
+                            final article = state.articleList[index];
                             return ArticleCardWidget(
                               index: index,
-                              isPublic: false,
-                              article: state.articleList[index],
+                              article: article,
                               onTap: () {
                                 // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
                               },
+                              buttonDialogList: [
+                                TileButtonDialog(
+                                  onTap: () {
+                                    //TODO: Preview
+                                  },
+                                  icon: FeatherIcons.eye,
+                                  label: lang.preview,
+                                ),
+                                TileButtonDialog(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    context.read<DeleteArticleActorBloc>().add(
+                                          DeleteArticleActorEvent.delete(
+                                            article.url,
+                                          ),
+                                        );
+                                  },
+                                  icon: FeatherIcons.trash,
+                                  label: lang.delete,
+                                  color: theme.colorScheme.error,
+                                  padding: const EdgeInsets.only(
+                                    top: Const.space15,
+                                  ),
+                                ),
+                              ],
                             );
                           },
                         );
@@ -253,21 +314,41 @@ class _MyArticlePageState extends State<MyArticlePage> {
                           physics: const ScrollPhysics(),
                           shrinkWrap: true,
                           separatorBuilder: (context, index) {
-                            return const Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: Const.margin,
-                              ),
-                              child: Divider(),
-                            );
+                            return const SizedBox(height: Const.space15);
                           },
                           itemBuilder: (context, index) {
+                            final article = state.articleList[index];
                             return ArticleCardWidget(
                               index: index,
-                              isPublic: false,
-                              article: state.articleList[index],
+                              article: article,
                               onTap: () {
                                 // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
                               },
+                              buttonDialogList: [
+                                TileButtonDialog(
+                                  onTap: () {
+                                    //TODO: Edit
+                                  },
+                                  icon: FeatherIcons.edit2,
+                                  label: lang.edit,
+                                ),
+                                TileButtonDialog(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    context.read<DeleteArticleActorBloc>().add(
+                                          DeleteArticleActorEvent.delete(
+                                            article.url,
+                                          ),
+                                        );
+                                  },
+                                  icon: FeatherIcons.trash,
+                                  label: lang.delete,
+                                  color: theme.colorScheme.error,
+                                  padding: const EdgeInsets.only(
+                                    top: Const.space15,
+                                  ),
+                                ),
+                              ],
                             );
                           },
                         );
@@ -316,21 +397,41 @@ class _MyArticlePageState extends State<MyArticlePage> {
                           physics: const ScrollPhysics(),
                           shrinkWrap: true,
                           separatorBuilder: (context, index) {
-                            return const Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: Const.margin,
-                              ),
-                              child: Divider(),
-                            );
+                            return const SizedBox(height: Const.space15);
                           },
                           itemBuilder: (context, index) {
+                            final article = state.articleList[index];
                             return ArticleCardWidget(
                               index: index,
-                              isPublic: false,
-                              article: state.articleList[index],
+                              article: article,
                               onTap: () {
                                 // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
                               },
+                              buttonDialogList: [
+                                TileButtonDialog(
+                                  onTap: () {
+                                    //TODO: Edit
+                                  },
+                                  icon: FeatherIcons.edit2,
+                                  label: lang.edit,
+                                ),
+                                TileButtonDialog(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    context.read<DeleteArticleActorBloc>().add(
+                                          DeleteArticleActorEvent.delete(
+                                            article.url,
+                                          ),
+                                        );
+                                  },
+                                  icon: FeatherIcons.trash,
+                                  label: lang.delete,
+                                  color: theme.colorScheme.error,
+                                  padding: const EdgeInsets.only(
+                                    top: Const.space15,
+                                  ),
+                                ),
+                              ],
                             );
                           },
                         );
@@ -379,21 +480,34 @@ class _MyArticlePageState extends State<MyArticlePage> {
                           physics: const ScrollPhysics(),
                           shrinkWrap: true,
                           separatorBuilder: (context, index) {
-                            return const Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: Const.margin,
-                              ),
-                              child: Divider(),
-                            );
+                            return const SizedBox(height: Const.space15);
                           },
                           itemBuilder: (context, index) {
+                            final article = state.articleList[index];
                             return ArticleCardWidget(
                               index: index,
-                              isPublic: false,
-                              article: state.articleList[index],
+                              article: article,
                               onTap: () {
                                 // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
                               },
+                              buttonDialogList: [
+                                TileButtonDialog(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    context.read<DeleteArticleActorBloc>().add(
+                                          DeleteArticleActorEvent.delete(
+                                            article.url,
+                                          ),
+                                        );
+                                  },
+                                  icon: FeatherIcons.trash,
+                                  label: lang.delete,
+                                  color: theme.colorScheme.error,
+                                  padding: const EdgeInsets.only(
+                                    top: Const.space15,
+                                  ),
+                                ),
+                              ],
                             );
                           },
                         );

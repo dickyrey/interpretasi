@@ -7,12 +7,15 @@ import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/bloc/article/latest_article_watcher/latest_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
+import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
 
 class LatestPage extends StatelessWidget {
   const LatestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final lang = AppLocalizations.of(context)!;
+    
     return Scaffold(
       appBar: _appBar(context),
       body: BlocBuilder<LatestArticleWatcherBloc, LatestArticleWatcherState>(
@@ -49,6 +52,22 @@ class LatestPage extends StatelessWidget {
                         arguments: article,
                       );
                     },
+                    buttonDialogList: [
+                      TileButtonDialog(
+                        onTap: () {
+                          //TODO: Share Article
+                        },
+                        icon: FeatherIcons.share,
+                        label: lang.share,
+                      ),
+                      TileButtonDialog(
+                        onTap: () {
+                          //TODO: Report Article
+                        },
+                        icon: FeatherIcons.info,
+                        label: lang.report,
+                      ),
+                    ],
                   );
                 },
               );

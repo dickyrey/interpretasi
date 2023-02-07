@@ -20,15 +20,15 @@ class ArticleCardWidget extends StatelessWidget {
     required this.article,
     required this.index,
     required this.onTap,
-    this.isPublic = true,
     this.align = CardAlignment.vertical,
+    required this.buttonDialogList,
   });
 
   final Article article;
   final int index;
   final VoidCallback onTap;
   final CardAlignment align;
-  final bool isPublic;
+  final List<TileButtonDialog> buttonDialogList;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class ArticleCardWidget extends StatelessWidget {
         content = _VerticalCard(
           article: article,
           onTap: onTap,
-          isPublic: isPublic,
+          buttonDialogList: buttonDialogList,
         );
         break;
     }
@@ -233,12 +233,12 @@ class _VerticalCard extends StatelessWidget {
   const _VerticalCard({
     required this.article,
     required this.onTap,
-    this.isPublic = false,
+    required this.buttonDialogList,
   });
 
   final Article article;
   final VoidCallback onTap;
-  final bool isPublic;
+  final List<TileButtonDialog> buttonDialogList;
 
   @override
   Widget build(BuildContext context) {
@@ -331,68 +331,72 @@ class _VerticalCard extends StatelessWidget {
                         const Spacer(),
                         InkWell(
                           onTap: () {
-                            if (isPublic == true) {
-                              showMultiButtonDialog(
-                                context,
-                                items: [
-                                  TileButtonDialog(
-                                    onTap: () {
-                                      //TODO: Report Article
-                                    },
-                                    icon: FeatherIcons.info,
-                                    label: lang.report,
-                                  ),
-                                ],
-                              );
-                            } else {
-                              showMultiButtonDialog(
-                                context,
-                                items: [
-                                  TileButtonDialog(
-                                    onTap: () {
-                                      //TODO: Preview
-                                    },
-                                    icon: FeatherIcons.eye,
-                                    label: lang.preview,
-                                  ),
-                                  TileButtonDialog(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                      context
-                                          .read<ModeratedActorBloc>()
-                                          .add(ModeratedActorEvent.change(article.url));
-                                    },
-                                    icon: FeatherIcons.send,
-                                    label: lang.publish,
-                                  ),
-                                  TileButtonDialog(
-                                    onTap: () {
-                                      //TODO: Edit
-                                    },
-                                    icon: FeatherIcons.edit2,
-                                    label: lang.edit,
-                                  ),
-                                  TileButtonDialog(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                      context
-                                          .read<DeleteArticleActorBloc>()
-                                          .add(
-                                            DeleteArticleActorEvent.delete(
-                                              article.url,
-                                            ),
-                                          );
-                                    },
-                                    icon: FeatherIcons.trash,
-                                    label: lang.delete,
-                                    color: theme.colorScheme.error,
-                                    padding: const EdgeInsets.only(
-                                      top: Const.space15,
-                                    ),
-                                  ),
-                                ],
-                              );
-                            }
+                            showMultiButtonDialog(
+                              context,
+                              items: buttonDialogList,
+                            );
+                            // if (isPublic == true) {
+                            //   showMultiButtonDialog(
+                            //     context,
+                            //     items: [
+                            //       TileButtonDialog(
+                            //         onTap: () {
+                            //           //TODO: Report Article
+                            //         },
+                            //         icon: FeatherIcons.info,
+                            //         label: lang.report,
+                            //       ),
+                            //     ],
+                            //   );
+                            // } else {
+                            //   showMultiButtonDialog(
+                            //     context,
+                            //     items: [
+                            //       TileButtonDialog(
+                            //         onTap: () {
+                            //           //TODO: Preview
+                            //         },
+                            //         icon: FeatherIcons.eye,
+                            //         label: lang.preview,
+                            //       ),
+                            //       TileButtonDialog(
+                            //         onTap: () {
+                            //           Navigator.pop(context);
+                            //           context.read<ModeratedActorBloc>().add(
+                            //               ModeratedActorEvent.change(
+                            //                   article.url));
+                            //         },
+                            //         icon: FeatherIcons.send,
+                            //         label: lang.publish,
+                            //       ),
+                            //       TileButtonDialog(
+                            //         onTap: () {
+                            //           //TODO: Edit
+                            //         },
+                            //         icon: FeatherIcons.edit2,
+                            //         label: lang.edit,
+                            //       ),
+                            //       TileButtonDialog(
+                            //         onTap: () {
+                            //           Navigator.pop(context);
+                            //           context
+                            //               .read<DeleteArticleActorBloc>()
+                            //               .add(
+                            //                 DeleteArticleActorEvent.delete(
+                            //                   article.url,
+                            //                 ),
+                            //               );
+                            //         },
+                            //         icon: FeatherIcons.trash,
+                            //         label: lang.delete,
+                            //         color: theme.colorScheme.error,
+                            //         padding: const EdgeInsets.only(
+                            //           top: Const.space15,
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   );
+                            // }
                           },
                           child: const Icon(
                             FeatherIcons.moreHorizontal,
