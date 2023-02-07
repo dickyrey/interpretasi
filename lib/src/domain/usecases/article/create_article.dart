@@ -9,16 +9,20 @@ class CreateArticle {
   final ArticleRepository repository;
 
   Future<Either<Failure, void>> execute({
+    required int categoryId,
+    required File image,
     required String title,
     required String content,
-    required File image,
-    required List<String> categories,
+    required String deltaJson,
+    required List<String> tags,
   }) {
     return repository.createArticle(
+      categoryId: categoryId,
+      image: image,
       title: title,
       content: content,
-      image: image,
-      categories: categories,
+      deltaJson: deltaJson,
+      tags: tags,
     );
   }
 }

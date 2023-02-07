@@ -44,17 +44,21 @@ class ArticleRepositoryImpl extends ArticleRepository {
 
   @override
   Future<Either<Failure, bool>> createArticle({
+    required int categoryId,
+    required File image,
     required String title,
     required String content,
-    required File image,
-    required List<String> categories,
+    required String deltaJson,
+    required List<String> tags,
   }) async {
     try {
       final result = await dataSource.createArticle(
+        categoryId: categoryId,
+        image: image,
         title: title,
         content: content,
-        image: image,
-        categories: categories,
+        deltaJson: deltaJson,
+        tags: tags,
       );
       return Right(result);
     } on ServerException catch (e) {
@@ -91,7 +95,7 @@ class ArticleRepositoryImpl extends ArticleRepository {
       );
     }
   }
-  
+
   @override
   Future<Either<Failure, bool>> deleteArticle(String id) async {
     try {

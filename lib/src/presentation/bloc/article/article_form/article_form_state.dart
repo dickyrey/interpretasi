@@ -8,10 +8,12 @@ class ArticleFormState with _$ArticleFormState {
     required bool isSubmit,
     required String id,
     required String title,
-    required String content,
+    required Delta? delta,
     required String imageUrl,
     required File? imageFile,
-    required List<CheckBoxState> categoryCheckBoxList,
+    required Category? selectedCategory,
+    required List<Category> categoryList,
+    required List<String> tagList,
   }) = _ArticleFormState;
 
   factory ArticleFormState.initial() {
@@ -21,10 +23,12 @@ class ArticleFormState with _$ArticleFormState {
       isSubmit: false,
       id: '',
       title: '',
-      content: '',
+      delta: null,
       imageUrl: '',
       imageFile: null,
-      categoryCheckBoxList: [],
+      selectedCategory:null,
+      categoryList: [],
+      tagList: [],
     );
   }
 }

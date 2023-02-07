@@ -15,10 +15,12 @@ abstract class ArticleDataSource {
   Future<ArticleDetailModel> getArticleDetail(String id);
   Future<bool> deleteArticle(String id);
   Future<bool> createArticle({
+    required int categoryId,
+    required File image,
     required String title,
     required String content,
-    required File image,
-    required List<String> categories,
+    required String deltaJson,
+    required List<String> tags,
   });
   Future<bool> updateArticle({
     required String id,
@@ -82,10 +84,12 @@ class ArticleDataSourceImpl extends ArticleDataSource {
 
   @override
   Future<bool> createArticle({
+    required int categoryId,
+    required File image,
     required String title,
     required String content,
-    required File image,
-    required List<String> categories,
+    required String deltaJson,
+    required List<String> tags,
   }) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
@@ -104,14 +108,11 @@ class ArticleDataSourceImpl extends ArticleDataSource {
       'POST',
       url,
     );
+    request.fields['category_id'] = categoryId.toString();
     request.fields['title'] = title;
     request.fields['content'] = content;
-    request.fields['categories'] = categories
-        .map((e) {
-          return e;
-        })
-        .toList()
-        .toString();
+    request.fields['original_content'] = deltaJson;
+    request.fields['tags'] = tags.map((e) => e).toList().toString();
 
     final storeImage = await http.MultipartFile.fromPath(
       'image',
@@ -121,6 +122,8 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     request.headers.addAll(header);
     request.files.add(storeImage);
     final response = await request.send();
+    final reps = await response.stream.bytesToString();
+    print(reps);
     if (response.statusCode == 200) {
       return true;
     } else {

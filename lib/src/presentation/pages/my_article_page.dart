@@ -4,6 +4,8 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
+import 'package:interpretasi/src/common/routes.dart';
+import 'package:interpretasi/src/presentation/bloc/article/article_form/article_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_banned_watcher/user_article_banned_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_drafted_watcher/user_article_drafted_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_moderated_watcher/user_article_moderated_watcher_bloc.dart';
@@ -11,6 +13,7 @@ import 'package:interpretasi/src/presentation/bloc/user_article/user_article_pub
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_rejected_watcher/user_article_rejected_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/empty_data_widget.dart';
+import 'package:interpretasi/src/presentation/widgets/outlined_button_widget.dart';
 
 class MyArticlePage extends StatefulWidget {
   const MyArticlePage({super.key});
@@ -358,6 +361,20 @@ class _MyArticlePageState extends State<MyArticlePage> {
         lang.my_articles,
         style: theme.textTheme.headlineSmall,
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(FeatherIcons.plus),
+          onPressed: () {
+            context.read<ArticleFormBloc>().add(const ArticleFormEvent.init());
+            Navigator.pushNamed(
+              context,
+              ARTICLE_FORM,
+              arguments: false,
+            );
+          },
+          splashRadius: 25,
+        ),
+      ],
       bottom: TabBar(
         labelStyle: theme.textTheme.headlineSmall,
         labelColor: ColorLight.fontTitle,

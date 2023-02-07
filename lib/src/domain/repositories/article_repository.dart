@@ -10,10 +10,12 @@ abstract class ArticleRepository {
   Future<Either<Failure, ArticleDetail>> getArticleDetail(String id);
   Future<Either<Failure, bool>> deleteArticle(String id);
   Future<Either<Failure, bool>> createArticle({
+    required int categoryId,
+    required File image,
     required String title,
     required String content,
-    required File image,
-    required List<String> categories,
+    required String deltaJson,
+    required List<String> tags,
   });
   Future<Either<Failure, bool>> updateArticle({
     required String id,

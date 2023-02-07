@@ -1,16 +1,18 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/entities/article_detail.dart';
 import 'package:interpretasi/src/domain/entities/category.dart';
-import 'package:interpretasi/src/domain/entities/checkbox_state.dart';
 import 'package:interpretasi/src/domain/usecases/article/create_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/update_article.dart';
 import 'package:interpretasi/src/utilities/image_cropper_utils.dart';
+import 'package:vsc_quill_delta_to_html/vsc_quill_delta_to_html.dart';
 
 part 'article_form_event.dart';
 part 'article_form_state.dart';
@@ -31,7 +33,7 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
           //     .map((e) => CheckBoxState(category: e))
           //     .toList();
 
-          // toEntity.map((e) {
+          // toEntity.map((event) {
           //   state.categoryList
           //       .firstWhere((x) => x.category.id == e.category.id)
           //       .value = true;
@@ -47,68 +49,131 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
               isSubmit: false,
               id: id,
               title: event.article.title,
-              content: event.article.content,
               imageUrl: event.article.image,
             ),
           );
         },
-        title: (e) {
-          emit(state.copyWith(title: e.val));
+        title: (event) {
+          emit(
+            state.copyWith(
+              title: event.val,
+              message: '',
+            ),
+          );
         },
-        content: (e) {
-          emit(state.copyWith(content: e.val));
-        },
-        pickImage: (e) async {
+        pickImage: (event) async {
           final pickedImage = await ImagePicker().pickImage(
-            source: e.source,
+            source: event.source,
           );
           if (pickedImage != null) {
             final croppedImage = await ImageCropperUtils.cropImage(
               pickedImage.path,
             );
             if (croppedImage != null) {
-              emit(state.copyWith(imageFile: File(croppedImage.path)));
+              emit(
+                state.copyWith(
+                  imageFile: File(croppedImage.path),
+                  message: '',
+                ),
+              );
             }
           }
         },
-        fetchCategories: (e) {
-          final categoryMap = e.categories.map((e) => e).toList();
+        changeCategory: (event) {
           emit(
             state.copyWith(
               state: RequestState.empty,
-              categoryCheckBoxList: categoryMap
-                  .map(
-                    (e) => CheckBoxState(category: e),
-                  )
-                  .toList(),
+              selectedCategory: event.category,
+              message: '',
             ),
           );
         },
-        create: (e) async {
+        fetchCategories: (event) {
+          emit(
+            state.copyWith(
+              state: RequestState.empty,
+              categoryList: event.categories,
+            ),
+          );
+        },
+        addTags: (event) {
+          if (state.tagList.length < 15) {
+            final tagList = List<String>.from(state.tagList)..add(event.tag);
+            emit(
+              state.copyWith(
+                state: RequestState.empty,
+                tagList: tagList,
+                message: '',
+              ),
+            );
+          }
+        },
+        removeTags: (event) {
+          final tagList = List<String>.from(state.tagList)..remove(event.tag);
+          emit(
+            state.copyWith(
+              state: RequestState.empty,
+              tagList: tagList,
+              message: '',
+            ),
+          );
+        },
+        create: (event) async {
           emit(
             state.copyWith(
               state: RequestState.loading,
               isSubmit: true,
             ),
           );
-          final selected = state.categoryCheckBoxList
-              .where(
-                (e) => e.value == true,
-              )
-              .toList();
 
-          final selectedCategory = selected
-              .map(
-                (e) => '"${e.category.id}"',
-              )
-              .toList();
+          if (state.imageFile == null) {
+            emit(
+              state.copyWith(
+                state: RequestState.error,
+                isSubmit: false,
+                message: 'thumbnail-null',
+              ),
+            );
+          } else if (state.title == '') {
+            emit(
+              state.copyWith(
+                state: RequestState.error,
+                isSubmit: false,
+                message: 'title-null',
+              ),
+            );
+          } else if (state.selectedCategory?.id == null) {
+            emit(
+              state.copyWith(
+                state: RequestState.error,
+                isSubmit: false,
+                message: 'category-null',
+              ),
+            );
+          } else if (state.tagList.isEmpty) {
+            emit(
+              state.copyWith(
+                state: RequestState.error,
+                isSubmit: false,
+                message: 'tag-null',
+              ),
+            );
+          } 
+          
+          final decoded = List<Map<String, dynamic>>.from(event.delta.toJson());
+          final html = QuillDeltaToHtmlConverter(decoded);
 
-          if (state.imageFile != null) {
+          if (state.imageFile != null &&
+              state.title != '' &&
+              state.selectedCategory?.id != null &&
+              state.tagList.isNotEmpty) {
             final result = await create.execute(
-              title: state.title,
-              content: state.content,
+              categoryId: state.selectedCategory!.id,
               image: state.imageFile!,
-              categories: selectedCategory,
+              title: state.title,
+              content: html.convert(),
+              deltaJson: jsonEncode(event.delta.toJson()),
+              tags: state.tagList,
             );
 
             result.fold(
@@ -129,44 +194,44 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
           }
         },
         update: (e) async {
-          emit(
-            state.copyWith(
-              state: RequestState.loading,
-              isSubmit: true,
-            ),
-          );
-          final selected = state.categoryCheckBoxList
-              .where(
-                (e) => e.value == true,
-              )
-              .toList();
+          // emit(
+          //   state.copyWith(
+          //     state: RequestState.loading,
+          //     isSubmit: true,
+          //   ),
+          // );
+          // final selected = state.categoryCheckBoxList
+          //     .where(
+          //       (e) => e.value == true,
+          //     )
+          //     .toList();
 
-          final selectedCategory =
-              selected.map((e) => '"${e.category.id}"').toList();
+          // final selectedCategory =
+          //     selected.map((e) => '"${e.category.id}"').toList();
 
-          final result = await update.execute(
-            id: state.id,
-            title: state.title,
-            content: state.content,
-            imageFile: state.imageFile,
-            categories: selectedCategory,
-          );
+          // final result = await update.execute(
+          //   id: state.id,
+          //   title: state.title,
+          //   content: state.content,
+          //   imageFile: state.imageFile,
+          //   categories: selectedCategory,
+          // );
 
-          result.fold(
-            (f) => emit(
-              state.copyWith(
-                state: RequestState.error,
-                isSubmit: false,
-                message: f.message,
-              ),
-            ),
-            (_) => emit(
-              state.copyWith(
-                state: RequestState.loaded,
-                isSubmit: true,
-              ),
-            ),
-          );
+          // result.fold(
+          //   (f) => emit(
+          //     state.copyWith(
+          //       state: RequestState.error,
+          //       isSubmit: false,
+          //       message: f.message,
+          //     ),
+          //   ),
+          //   (_) => emit(
+          //     state.copyWith(
+          //       state: RequestState.loaded,
+          //       isSubmit: true,
+          //     ),
+          //   ),
+          // );
         },
       );
     });

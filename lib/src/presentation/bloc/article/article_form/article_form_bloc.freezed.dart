@@ -21,10 +21,12 @@ mixin _$ArticleFormEvent {
     required TResult Function() init,
     required TResult Function(ArticleDetail article) initialize,
     required TResult Function(String val) title,
-    required TResult Function(String val) content,
     required TResult Function(ImageSource source) pickImage,
+    required TResult Function(Category category) changeCategory,
     required TResult Function(List<Category> categories) fetchCategories,
-    required TResult Function() create,
+    required TResult Function(String tag) addTags,
+    required TResult Function(String tag) removeTags,
+    required TResult Function(Delta delta) create,
     required TResult Function() update,
   }) =>
       throw _privateConstructorUsedError;
@@ -33,10 +35,12 @@ mixin _$ArticleFormEvent {
     TResult? Function()? init,
     TResult? Function(ArticleDetail article)? initialize,
     TResult? Function(String val)? title,
-    TResult? Function(String val)? content,
     TResult? Function(ImageSource source)? pickImage,
+    TResult? Function(Category category)? changeCategory,
     TResult? Function(List<Category> categories)? fetchCategories,
-    TResult? Function()? create,
+    TResult? Function(String tag)? addTags,
+    TResult? Function(String tag)? removeTags,
+    TResult? Function(Delta delta)? create,
     TResult? Function()? update,
   }) =>
       throw _privateConstructorUsedError;
@@ -45,10 +49,12 @@ mixin _$ArticleFormEvent {
     TResult Function()? init,
     TResult Function(ArticleDetail article)? initialize,
     TResult Function(String val)? title,
-    TResult Function(String val)? content,
     TResult Function(ImageSource source)? pickImage,
+    TResult Function(Category category)? changeCategory,
     TResult Function(List<Category> categories)? fetchCategories,
-    TResult Function()? create,
+    TResult Function(String tag)? addTags,
+    TResult Function(String tag)? removeTags,
+    TResult Function(Delta delta)? create,
     TResult Function()? update,
     required TResult orElse(),
   }) =>
@@ -58,9 +64,11 @@ mixin _$ArticleFormEvent {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Title value) title,
-    required TResult Function(_Content value) content,
     required TResult Function(_PickImage value) pickImage,
+    required TResult Function(_ChangeCategory value) changeCategory,
     required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_AddTags value) addTags,
+    required TResult Function(_RemoveTags value) removeTags,
     required TResult Function(_Create value) create,
     required TResult Function(_Update value) update,
   }) =>
@@ -70,9 +78,11 @@ mixin _$ArticleFormEvent {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Title value)? title,
-    TResult? Function(_Content value)? content,
     TResult? Function(_PickImage value)? pickImage,
+    TResult? Function(_ChangeCategory value)? changeCategory,
     TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_AddTags value)? addTags,
+    TResult? Function(_RemoveTags value)? removeTags,
     TResult? Function(_Create value)? create,
     TResult? Function(_Update value)? update,
   }) =>
@@ -82,9 +92,11 @@ mixin _$ArticleFormEvent {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Title value)? title,
-    TResult Function(_Content value)? content,
     TResult Function(_PickImage value)? pickImage,
+    TResult Function(_ChangeCategory value)? changeCategory,
     TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_AddTags value)? addTags,
+    TResult Function(_RemoveTags value)? removeTags,
     TResult Function(_Create value)? create,
     TResult Function(_Update value)? update,
     required TResult orElse(),
@@ -149,10 +161,12 @@ class _$_Init implements _Init {
     required TResult Function() init,
     required TResult Function(ArticleDetail article) initialize,
     required TResult Function(String val) title,
-    required TResult Function(String val) content,
     required TResult Function(ImageSource source) pickImage,
+    required TResult Function(Category category) changeCategory,
     required TResult Function(List<Category> categories) fetchCategories,
-    required TResult Function() create,
+    required TResult Function(String tag) addTags,
+    required TResult Function(String tag) removeTags,
+    required TResult Function(Delta delta) create,
     required TResult Function() update,
   }) {
     return init();
@@ -164,10 +178,12 @@ class _$_Init implements _Init {
     TResult? Function()? init,
     TResult? Function(ArticleDetail article)? initialize,
     TResult? Function(String val)? title,
-    TResult? Function(String val)? content,
     TResult? Function(ImageSource source)? pickImage,
+    TResult? Function(Category category)? changeCategory,
     TResult? Function(List<Category> categories)? fetchCategories,
-    TResult? Function()? create,
+    TResult? Function(String tag)? addTags,
+    TResult? Function(String tag)? removeTags,
+    TResult? Function(Delta delta)? create,
     TResult? Function()? update,
   }) {
     return init?.call();
@@ -179,10 +195,12 @@ class _$_Init implements _Init {
     TResult Function()? init,
     TResult Function(ArticleDetail article)? initialize,
     TResult Function(String val)? title,
-    TResult Function(String val)? content,
     TResult Function(ImageSource source)? pickImage,
+    TResult Function(Category category)? changeCategory,
     TResult Function(List<Category> categories)? fetchCategories,
-    TResult Function()? create,
+    TResult Function(String tag)? addTags,
+    TResult Function(String tag)? removeTags,
+    TResult Function(Delta delta)? create,
     TResult Function()? update,
     required TResult orElse(),
   }) {
@@ -198,9 +216,11 @@ class _$_Init implements _Init {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Title value) title,
-    required TResult Function(_Content value) content,
     required TResult Function(_PickImage value) pickImage,
+    required TResult Function(_ChangeCategory value) changeCategory,
     required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_AddTags value) addTags,
+    required TResult Function(_RemoveTags value) removeTags,
     required TResult Function(_Create value) create,
     required TResult Function(_Update value) update,
   }) {
@@ -213,9 +233,11 @@ class _$_Init implements _Init {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Title value)? title,
-    TResult? Function(_Content value)? content,
     TResult? Function(_PickImage value)? pickImage,
+    TResult? Function(_ChangeCategory value)? changeCategory,
     TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_AddTags value)? addTags,
+    TResult? Function(_RemoveTags value)? removeTags,
     TResult? Function(_Create value)? create,
     TResult? Function(_Update value)? update,
   }) {
@@ -228,9 +250,11 @@ class _$_Init implements _Init {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Title value)? title,
-    TResult Function(_Content value)? content,
     TResult Function(_PickImage value)? pickImage,
+    TResult Function(_ChangeCategory value)? changeCategory,
     TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_AddTags value)? addTags,
+    TResult Function(_RemoveTags value)? removeTags,
     TResult Function(_Create value)? create,
     TResult Function(_Update value)? update,
     required TResult orElse(),
@@ -313,10 +337,12 @@ class _$_Initialize implements _Initialize {
     required TResult Function() init,
     required TResult Function(ArticleDetail article) initialize,
     required TResult Function(String val) title,
-    required TResult Function(String val) content,
     required TResult Function(ImageSource source) pickImage,
+    required TResult Function(Category category) changeCategory,
     required TResult Function(List<Category> categories) fetchCategories,
-    required TResult Function() create,
+    required TResult Function(String tag) addTags,
+    required TResult Function(String tag) removeTags,
+    required TResult Function(Delta delta) create,
     required TResult Function() update,
   }) {
     return initialize(article);
@@ -328,10 +354,12 @@ class _$_Initialize implements _Initialize {
     TResult? Function()? init,
     TResult? Function(ArticleDetail article)? initialize,
     TResult? Function(String val)? title,
-    TResult? Function(String val)? content,
     TResult? Function(ImageSource source)? pickImage,
+    TResult? Function(Category category)? changeCategory,
     TResult? Function(List<Category> categories)? fetchCategories,
-    TResult? Function()? create,
+    TResult? Function(String tag)? addTags,
+    TResult? Function(String tag)? removeTags,
+    TResult? Function(Delta delta)? create,
     TResult? Function()? update,
   }) {
     return initialize?.call(article);
@@ -343,10 +371,12 @@ class _$_Initialize implements _Initialize {
     TResult Function()? init,
     TResult Function(ArticleDetail article)? initialize,
     TResult Function(String val)? title,
-    TResult Function(String val)? content,
     TResult Function(ImageSource source)? pickImage,
+    TResult Function(Category category)? changeCategory,
     TResult Function(List<Category> categories)? fetchCategories,
-    TResult Function()? create,
+    TResult Function(String tag)? addTags,
+    TResult Function(String tag)? removeTags,
+    TResult Function(Delta delta)? create,
     TResult Function()? update,
     required TResult orElse(),
   }) {
@@ -362,9 +392,11 @@ class _$_Initialize implements _Initialize {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Title value) title,
-    required TResult Function(_Content value) content,
     required TResult Function(_PickImage value) pickImage,
+    required TResult Function(_ChangeCategory value) changeCategory,
     required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_AddTags value) addTags,
+    required TResult Function(_RemoveTags value) removeTags,
     required TResult Function(_Create value) create,
     required TResult Function(_Update value) update,
   }) {
@@ -377,9 +409,11 @@ class _$_Initialize implements _Initialize {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Title value)? title,
-    TResult? Function(_Content value)? content,
     TResult? Function(_PickImage value)? pickImage,
+    TResult? Function(_ChangeCategory value)? changeCategory,
     TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_AddTags value)? addTags,
+    TResult? Function(_RemoveTags value)? removeTags,
     TResult? Function(_Create value)? create,
     TResult? Function(_Update value)? update,
   }) {
@@ -392,9 +426,11 @@ class _$_Initialize implements _Initialize {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Title value)? title,
-    TResult Function(_Content value)? content,
     TResult Function(_PickImage value)? pickImage,
+    TResult Function(_ChangeCategory value)? changeCategory,
     TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_AddTags value)? addTags,
+    TResult Function(_RemoveTags value)? removeTags,
     TResult Function(_Create value)? create,
     TResult Function(_Update value)? update,
     required TResult orElse(),
@@ -480,10 +516,12 @@ class _$_Title implements _Title {
     required TResult Function() init,
     required TResult Function(ArticleDetail article) initialize,
     required TResult Function(String val) title,
-    required TResult Function(String val) content,
     required TResult Function(ImageSource source) pickImage,
+    required TResult Function(Category category) changeCategory,
     required TResult Function(List<Category> categories) fetchCategories,
-    required TResult Function() create,
+    required TResult Function(String tag) addTags,
+    required TResult Function(String tag) removeTags,
+    required TResult Function(Delta delta) create,
     required TResult Function() update,
   }) {
     return title(val);
@@ -495,10 +533,12 @@ class _$_Title implements _Title {
     TResult? Function()? init,
     TResult? Function(ArticleDetail article)? initialize,
     TResult? Function(String val)? title,
-    TResult? Function(String val)? content,
     TResult? Function(ImageSource source)? pickImage,
+    TResult? Function(Category category)? changeCategory,
     TResult? Function(List<Category> categories)? fetchCategories,
-    TResult? Function()? create,
+    TResult? Function(String tag)? addTags,
+    TResult? Function(String tag)? removeTags,
+    TResult? Function(Delta delta)? create,
     TResult? Function()? update,
   }) {
     return title?.call(val);
@@ -510,10 +550,12 @@ class _$_Title implements _Title {
     TResult Function()? init,
     TResult Function(ArticleDetail article)? initialize,
     TResult Function(String val)? title,
-    TResult Function(String val)? content,
     TResult Function(ImageSource source)? pickImage,
+    TResult Function(Category category)? changeCategory,
     TResult Function(List<Category> categories)? fetchCategories,
-    TResult Function()? create,
+    TResult Function(String tag)? addTags,
+    TResult Function(String tag)? removeTags,
+    TResult Function(Delta delta)? create,
     TResult Function()? update,
     required TResult orElse(),
   }) {
@@ -529,9 +571,11 @@ class _$_Title implements _Title {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Title value) title,
-    required TResult Function(_Content value) content,
     required TResult Function(_PickImage value) pickImage,
+    required TResult Function(_ChangeCategory value) changeCategory,
     required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_AddTags value) addTags,
+    required TResult Function(_RemoveTags value) removeTags,
     required TResult Function(_Create value) create,
     required TResult Function(_Update value) update,
   }) {
@@ -544,9 +588,11 @@ class _$_Title implements _Title {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Title value)? title,
-    TResult? Function(_Content value)? content,
     TResult? Function(_PickImage value)? pickImage,
+    TResult? Function(_ChangeCategory value)? changeCategory,
     TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_AddTags value)? addTags,
+    TResult? Function(_RemoveTags value)? removeTags,
     TResult? Function(_Create value)? create,
     TResult? Function(_Update value)? update,
   }) {
@@ -559,9 +605,11 @@ class _$_Title implements _Title {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Title value)? title,
-    TResult Function(_Content value)? content,
     TResult Function(_PickImage value)? pickImage,
+    TResult Function(_ChangeCategory value)? changeCategory,
     TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_AddTags value)? addTags,
+    TResult Function(_RemoveTags value)? removeTags,
     TResult Function(_Create value)? create,
     TResult Function(_Update value)? update,
     required TResult orElse(),
@@ -579,174 +627,6 @@ abstract class _Title implements ArticleFormEvent {
   String get val;
   @JsonKey(ignore: true)
   _$$_TitleCopyWith<_$_Title> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_ContentCopyWith<$Res> {
-  factory _$$_ContentCopyWith(
-          _$_Content value, $Res Function(_$_Content) then) =
-      __$$_ContentCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String val});
-}
-
-/// @nodoc
-class __$$_ContentCopyWithImpl<$Res>
-    extends _$ArticleFormEventCopyWithImpl<$Res, _$_Content>
-    implements _$$_ContentCopyWith<$Res> {
-  __$$_ContentCopyWithImpl(_$_Content _value, $Res Function(_$_Content) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? val = null,
-  }) {
-    return _then(_$_Content(
-      null == val
-          ? _value.val
-          : val // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_Content implements _Content {
-  const _$_Content(this.val);
-
-  @override
-  final String val;
-
-  @override
-  String toString() {
-    return 'ArticleFormEvent.content(val: $val)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Content &&
-            (identical(other.val, val) || other.val == val));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, val);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_ContentCopyWith<_$_Content> get copyWith =>
-      __$$_ContentCopyWithImpl<_$_Content>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(ArticleDetail article) initialize,
-    required TResult Function(String val) title,
-    required TResult Function(String val) content,
-    required TResult Function(ImageSource source) pickImage,
-    required TResult Function(List<Category> categories) fetchCategories,
-    required TResult Function() create,
-    required TResult Function() update,
-  }) {
-    return content(val);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(ArticleDetail article)? initialize,
-    TResult? Function(String val)? title,
-    TResult? Function(String val)? content,
-    TResult? Function(ImageSource source)? pickImage,
-    TResult? Function(List<Category> categories)? fetchCategories,
-    TResult? Function()? create,
-    TResult? Function()? update,
-  }) {
-    return content?.call(val);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(ArticleDetail article)? initialize,
-    TResult Function(String val)? title,
-    TResult Function(String val)? content,
-    TResult Function(ImageSource source)? pickImage,
-    TResult Function(List<Category> categories)? fetchCategories,
-    TResult Function()? create,
-    TResult Function()? update,
-    required TResult orElse(),
-  }) {
-    if (content != null) {
-      return content(val);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_Initialize value) initialize,
-    required TResult Function(_Title value) title,
-    required TResult Function(_Content value) content,
-    required TResult Function(_PickImage value) pickImage,
-    required TResult Function(_FetchCategories value) fetchCategories,
-    required TResult Function(_Create value) create,
-    required TResult Function(_Update value) update,
-  }) {
-    return content(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_Title value)? title,
-    TResult? Function(_Content value)? content,
-    TResult? Function(_PickImage value)? pickImage,
-    TResult? Function(_FetchCategories value)? fetchCategories,
-    TResult? Function(_Create value)? create,
-    TResult? Function(_Update value)? update,
-  }) {
-    return content?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_Initialize value)? initialize,
-    TResult Function(_Title value)? title,
-    TResult Function(_Content value)? content,
-    TResult Function(_PickImage value)? pickImage,
-    TResult Function(_FetchCategories value)? fetchCategories,
-    TResult Function(_Create value)? create,
-    TResult Function(_Update value)? update,
-    required TResult orElse(),
-  }) {
-    if (content != null) {
-      return content(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Content implements ArticleFormEvent {
-  const factory _Content(final String val) = _$_Content;
-
-  String get val;
-  @JsonKey(ignore: true)
-  _$$_ContentCopyWith<_$_Content> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -817,10 +697,12 @@ class _$_PickImage implements _PickImage {
     required TResult Function() init,
     required TResult Function(ArticleDetail article) initialize,
     required TResult Function(String val) title,
-    required TResult Function(String val) content,
     required TResult Function(ImageSource source) pickImage,
+    required TResult Function(Category category) changeCategory,
     required TResult Function(List<Category> categories) fetchCategories,
-    required TResult Function() create,
+    required TResult Function(String tag) addTags,
+    required TResult Function(String tag) removeTags,
+    required TResult Function(Delta delta) create,
     required TResult Function() update,
   }) {
     return pickImage(source);
@@ -832,10 +714,12 @@ class _$_PickImage implements _PickImage {
     TResult? Function()? init,
     TResult? Function(ArticleDetail article)? initialize,
     TResult? Function(String val)? title,
-    TResult? Function(String val)? content,
     TResult? Function(ImageSource source)? pickImage,
+    TResult? Function(Category category)? changeCategory,
     TResult? Function(List<Category> categories)? fetchCategories,
-    TResult? Function()? create,
+    TResult? Function(String tag)? addTags,
+    TResult? Function(String tag)? removeTags,
+    TResult? Function(Delta delta)? create,
     TResult? Function()? update,
   }) {
     return pickImage?.call(source);
@@ -847,10 +731,12 @@ class _$_PickImage implements _PickImage {
     TResult Function()? init,
     TResult Function(ArticleDetail article)? initialize,
     TResult Function(String val)? title,
-    TResult Function(String val)? content,
     TResult Function(ImageSource source)? pickImage,
+    TResult Function(Category category)? changeCategory,
     TResult Function(List<Category> categories)? fetchCategories,
-    TResult Function()? create,
+    TResult Function(String tag)? addTags,
+    TResult Function(String tag)? removeTags,
+    TResult Function(Delta delta)? create,
     TResult Function()? update,
     required TResult orElse(),
   }) {
@@ -866,9 +752,11 @@ class _$_PickImage implements _PickImage {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Title value) title,
-    required TResult Function(_Content value) content,
     required TResult Function(_PickImage value) pickImage,
+    required TResult Function(_ChangeCategory value) changeCategory,
     required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_AddTags value) addTags,
+    required TResult Function(_RemoveTags value) removeTags,
     required TResult Function(_Create value) create,
     required TResult Function(_Update value) update,
   }) {
@@ -881,9 +769,11 @@ class _$_PickImage implements _PickImage {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Title value)? title,
-    TResult? Function(_Content value)? content,
     TResult? Function(_PickImage value)? pickImage,
+    TResult? Function(_ChangeCategory value)? changeCategory,
     TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_AddTags value)? addTags,
+    TResult? Function(_RemoveTags value)? removeTags,
     TResult? Function(_Create value)? create,
     TResult? Function(_Update value)? update,
   }) {
@@ -896,9 +786,11 @@ class _$_PickImage implements _PickImage {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Title value)? title,
-    TResult Function(_Content value)? content,
     TResult Function(_PickImage value)? pickImage,
+    TResult Function(_ChangeCategory value)? changeCategory,
     TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_AddTags value)? addTags,
+    TResult Function(_RemoveTags value)? removeTags,
     TResult Function(_Create value)? create,
     TResult Function(_Update value)? update,
     required TResult orElse(),
@@ -916,6 +808,188 @@ abstract class _PickImage implements ArticleFormEvent {
   ImageSource get source;
   @JsonKey(ignore: true)
   _$$_PickImageCopyWith<_$_PickImage> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ChangeCategoryCopyWith<$Res> {
+  factory _$$_ChangeCategoryCopyWith(
+          _$_ChangeCategory value, $Res Function(_$_ChangeCategory) then) =
+      __$$_ChangeCategoryCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Category category});
+}
+
+/// @nodoc
+class __$$_ChangeCategoryCopyWithImpl<$Res>
+    extends _$ArticleFormEventCopyWithImpl<$Res, _$_ChangeCategory>
+    implements _$$_ChangeCategoryCopyWith<$Res> {
+  __$$_ChangeCategoryCopyWithImpl(
+      _$_ChangeCategory _value, $Res Function(_$_ChangeCategory) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+  }) {
+    return _then(_$_ChangeCategory(
+      null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ChangeCategory implements _ChangeCategory {
+  const _$_ChangeCategory(this.category);
+
+  @override
+  final Category category;
+
+  @override
+  String toString() {
+    return 'ArticleFormEvent.changeCategory(category: $category)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChangeCategory &&
+            (identical(other.category, category) ||
+                other.category == category));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, category);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChangeCategoryCopyWith<_$_ChangeCategory> get copyWith =>
+      __$$_ChangeCategoryCopyWithImpl<_$_ChangeCategory>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(ArticleDetail article) initialize,
+    required TResult Function(String val) title,
+    required TResult Function(ImageSource source) pickImage,
+    required TResult Function(Category category) changeCategory,
+    required TResult Function(List<Category> categories) fetchCategories,
+    required TResult Function(String tag) addTags,
+    required TResult Function(String tag) removeTags,
+    required TResult Function(Delta delta) create,
+    required TResult Function() update,
+  }) {
+    return changeCategory(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(ArticleDetail article)? initialize,
+    TResult? Function(String val)? title,
+    TResult? Function(ImageSource source)? pickImage,
+    TResult? Function(Category category)? changeCategory,
+    TResult? Function(List<Category> categories)? fetchCategories,
+    TResult? Function(String tag)? addTags,
+    TResult? Function(String tag)? removeTags,
+    TResult? Function(Delta delta)? create,
+    TResult? Function()? update,
+  }) {
+    return changeCategory?.call(category);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(ArticleDetail article)? initialize,
+    TResult Function(String val)? title,
+    TResult Function(ImageSource source)? pickImage,
+    TResult Function(Category category)? changeCategory,
+    TResult Function(List<Category> categories)? fetchCategories,
+    TResult Function(String tag)? addTags,
+    TResult Function(String tag)? removeTags,
+    TResult Function(Delta delta)? create,
+    TResult Function()? update,
+    required TResult orElse(),
+  }) {
+    if (changeCategory != null) {
+      return changeCategory(category);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Initialize value) initialize,
+    required TResult Function(_Title value) title,
+    required TResult Function(_PickImage value) pickImage,
+    required TResult Function(_ChangeCategory value) changeCategory,
+    required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_AddTags value) addTags,
+    required TResult Function(_RemoveTags value) removeTags,
+    required TResult Function(_Create value) create,
+    required TResult Function(_Update value) update,
+  }) {
+    return changeCategory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Initialize value)? initialize,
+    TResult? Function(_Title value)? title,
+    TResult? Function(_PickImage value)? pickImage,
+    TResult? Function(_ChangeCategory value)? changeCategory,
+    TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_AddTags value)? addTags,
+    TResult? Function(_RemoveTags value)? removeTags,
+    TResult? Function(_Create value)? create,
+    TResult? Function(_Update value)? update,
+  }) {
+    return changeCategory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Initialize value)? initialize,
+    TResult Function(_Title value)? title,
+    TResult Function(_PickImage value)? pickImage,
+    TResult Function(_ChangeCategory value)? changeCategory,
+    TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_AddTags value)? addTags,
+    TResult Function(_RemoveTags value)? removeTags,
+    TResult Function(_Create value)? create,
+    TResult Function(_Update value)? update,
+    required TResult orElse(),
+  }) {
+    if (changeCategory != null) {
+      return changeCategory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeCategory implements ArticleFormEvent {
+  const factory _ChangeCategory(final Category category) = _$_ChangeCategory;
+
+  Category get category;
+  @JsonKey(ignore: true)
+  _$$_ChangeCategoryCopyWith<_$_ChangeCategory> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -994,10 +1068,12 @@ class _$_FetchCategories implements _FetchCategories {
     required TResult Function() init,
     required TResult Function(ArticleDetail article) initialize,
     required TResult Function(String val) title,
-    required TResult Function(String val) content,
     required TResult Function(ImageSource source) pickImage,
+    required TResult Function(Category category) changeCategory,
     required TResult Function(List<Category> categories) fetchCategories,
-    required TResult Function() create,
+    required TResult Function(String tag) addTags,
+    required TResult Function(String tag) removeTags,
+    required TResult Function(Delta delta) create,
     required TResult Function() update,
   }) {
     return fetchCategories(categories);
@@ -1009,10 +1085,12 @@ class _$_FetchCategories implements _FetchCategories {
     TResult? Function()? init,
     TResult? Function(ArticleDetail article)? initialize,
     TResult? Function(String val)? title,
-    TResult? Function(String val)? content,
     TResult? Function(ImageSource source)? pickImage,
+    TResult? Function(Category category)? changeCategory,
     TResult? Function(List<Category> categories)? fetchCategories,
-    TResult? Function()? create,
+    TResult? Function(String tag)? addTags,
+    TResult? Function(String tag)? removeTags,
+    TResult? Function(Delta delta)? create,
     TResult? Function()? update,
   }) {
     return fetchCategories?.call(categories);
@@ -1024,10 +1102,12 @@ class _$_FetchCategories implements _FetchCategories {
     TResult Function()? init,
     TResult Function(ArticleDetail article)? initialize,
     TResult Function(String val)? title,
-    TResult Function(String val)? content,
     TResult Function(ImageSource source)? pickImage,
+    TResult Function(Category category)? changeCategory,
     TResult Function(List<Category> categories)? fetchCategories,
-    TResult Function()? create,
+    TResult Function(String tag)? addTags,
+    TResult Function(String tag)? removeTags,
+    TResult Function(Delta delta)? create,
     TResult Function()? update,
     required TResult orElse(),
   }) {
@@ -1043,9 +1123,11 @@ class _$_FetchCategories implements _FetchCategories {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Title value) title,
-    required TResult Function(_Content value) content,
     required TResult Function(_PickImage value) pickImage,
+    required TResult Function(_ChangeCategory value) changeCategory,
     required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_AddTags value) addTags,
+    required TResult Function(_RemoveTags value) removeTags,
     required TResult Function(_Create value) create,
     required TResult Function(_Update value) update,
   }) {
@@ -1058,9 +1140,11 @@ class _$_FetchCategories implements _FetchCategories {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Title value)? title,
-    TResult? Function(_Content value)? content,
     TResult? Function(_PickImage value)? pickImage,
+    TResult? Function(_ChangeCategory value)? changeCategory,
     TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_AddTags value)? addTags,
+    TResult? Function(_RemoveTags value)? removeTags,
     TResult? Function(_Create value)? create,
     TResult? Function(_Update value)? update,
   }) {
@@ -1073,9 +1157,11 @@ class _$_FetchCategories implements _FetchCategories {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Title value)? title,
-    TResult Function(_Content value)? content,
     TResult Function(_PickImage value)? pickImage,
+    TResult Function(_ChangeCategory value)? changeCategory,
     TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_AddTags value)? addTags,
+    TResult Function(_RemoveTags value)? removeTags,
     TResult Function(_Create value)? create,
     TResult Function(_Update value)? update,
     required TResult orElse(),
@@ -1098,37 +1184,64 @@ abstract class _FetchCategories implements ArticleFormEvent {
 }
 
 /// @nodoc
-abstract class _$$_CreateCopyWith<$Res> {
-  factory _$$_CreateCopyWith(_$_Create value, $Res Function(_$_Create) then) =
-      __$$_CreateCopyWithImpl<$Res>;
+abstract class _$$_AddTagsCopyWith<$Res> {
+  factory _$$_AddTagsCopyWith(
+          _$_AddTags value, $Res Function(_$_AddTags) then) =
+      __$$_AddTagsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String tag});
 }
 
 /// @nodoc
-class __$$_CreateCopyWithImpl<$Res>
-    extends _$ArticleFormEventCopyWithImpl<$Res, _$_Create>
-    implements _$$_CreateCopyWith<$Res> {
-  __$$_CreateCopyWithImpl(_$_Create _value, $Res Function(_$_Create) _then)
+class __$$_AddTagsCopyWithImpl<$Res>
+    extends _$ArticleFormEventCopyWithImpl<$Res, _$_AddTags>
+    implements _$$_AddTagsCopyWith<$Res> {
+  __$$_AddTagsCopyWithImpl(_$_AddTags _value, $Res Function(_$_AddTags) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tag = null,
+  }) {
+    return _then(_$_AddTags(
+      null == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Create implements _Create {
-  const _$_Create();
+class _$_AddTags implements _AddTags {
+  const _$_AddTags(this.tag);
+
+  @override
+  final String tag;
 
   @override
   String toString() {
-    return 'ArticleFormEvent.create()';
+    return 'ArticleFormEvent.addTags(tag: $tag)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Create);
+        (other.runtimeType == runtimeType &&
+            other is _$_AddTags &&
+            (identical(other.tag, tag) || other.tag == tag));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, tag);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_AddTagsCopyWith<_$_AddTags> get copyWith =>
+      __$$_AddTagsCopyWithImpl<_$_AddTags>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1136,13 +1249,15 @@ class _$_Create implements _Create {
     required TResult Function() init,
     required TResult Function(ArticleDetail article) initialize,
     required TResult Function(String val) title,
-    required TResult Function(String val) content,
     required TResult Function(ImageSource source) pickImage,
+    required TResult Function(Category category) changeCategory,
     required TResult Function(List<Category> categories) fetchCategories,
-    required TResult Function() create,
+    required TResult Function(String tag) addTags,
+    required TResult Function(String tag) removeTags,
+    required TResult Function(Delta delta) create,
     required TResult Function() update,
   }) {
-    return create();
+    return addTags(tag);
   }
 
   @override
@@ -1151,13 +1266,15 @@ class _$_Create implements _Create {
     TResult? Function()? init,
     TResult? Function(ArticleDetail article)? initialize,
     TResult? Function(String val)? title,
-    TResult? Function(String val)? content,
     TResult? Function(ImageSource source)? pickImage,
+    TResult? Function(Category category)? changeCategory,
     TResult? Function(List<Category> categories)? fetchCategories,
-    TResult? Function()? create,
+    TResult? Function(String tag)? addTags,
+    TResult? Function(String tag)? removeTags,
+    TResult? Function(Delta delta)? create,
     TResult? Function()? update,
   }) {
-    return create?.call();
+    return addTags?.call(tag);
   }
 
   @override
@@ -1166,15 +1283,17 @@ class _$_Create implements _Create {
     TResult Function()? init,
     TResult Function(ArticleDetail article)? initialize,
     TResult Function(String val)? title,
-    TResult Function(String val)? content,
     TResult Function(ImageSource source)? pickImage,
+    TResult Function(Category category)? changeCategory,
     TResult Function(List<Category> categories)? fetchCategories,
-    TResult Function()? create,
+    TResult Function(String tag)? addTags,
+    TResult Function(String tag)? removeTags,
+    TResult Function(Delta delta)? create,
     TResult Function()? update,
     required TResult orElse(),
   }) {
-    if (create != null) {
-      return create();
+    if (addTags != null) {
+      return addTags(tag);
     }
     return orElse();
   }
@@ -1185,9 +1304,371 @@ class _$_Create implements _Create {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Title value) title,
-    required TResult Function(_Content value) content,
     required TResult Function(_PickImage value) pickImage,
+    required TResult Function(_ChangeCategory value) changeCategory,
     required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_AddTags value) addTags,
+    required TResult Function(_RemoveTags value) removeTags,
+    required TResult Function(_Create value) create,
+    required TResult Function(_Update value) update,
+  }) {
+    return addTags(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Initialize value)? initialize,
+    TResult? Function(_Title value)? title,
+    TResult? Function(_PickImage value)? pickImage,
+    TResult? Function(_ChangeCategory value)? changeCategory,
+    TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_AddTags value)? addTags,
+    TResult? Function(_RemoveTags value)? removeTags,
+    TResult? Function(_Create value)? create,
+    TResult? Function(_Update value)? update,
+  }) {
+    return addTags?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Initialize value)? initialize,
+    TResult Function(_Title value)? title,
+    TResult Function(_PickImage value)? pickImage,
+    TResult Function(_ChangeCategory value)? changeCategory,
+    TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_AddTags value)? addTags,
+    TResult Function(_RemoveTags value)? removeTags,
+    TResult Function(_Create value)? create,
+    TResult Function(_Update value)? update,
+    required TResult orElse(),
+  }) {
+    if (addTags != null) {
+      return addTags(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddTags implements ArticleFormEvent {
+  const factory _AddTags(final String tag) = _$_AddTags;
+
+  String get tag;
+  @JsonKey(ignore: true)
+  _$$_AddTagsCopyWith<_$_AddTags> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_RemoveTagsCopyWith<$Res> {
+  factory _$$_RemoveTagsCopyWith(
+          _$_RemoveTags value, $Res Function(_$_RemoveTags) then) =
+      __$$_RemoveTagsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String tag});
+}
+
+/// @nodoc
+class __$$_RemoveTagsCopyWithImpl<$Res>
+    extends _$ArticleFormEventCopyWithImpl<$Res, _$_RemoveTags>
+    implements _$$_RemoveTagsCopyWith<$Res> {
+  __$$_RemoveTagsCopyWithImpl(
+      _$_RemoveTags _value, $Res Function(_$_RemoveTags) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tag = null,
+  }) {
+    return _then(_$_RemoveTags(
+      null == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RemoveTags implements _RemoveTags {
+  const _$_RemoveTags(this.tag);
+
+  @override
+  final String tag;
+
+  @override
+  String toString() {
+    return 'ArticleFormEvent.removeTags(tag: $tag)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RemoveTags &&
+            (identical(other.tag, tag) || other.tag == tag));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, tag);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RemoveTagsCopyWith<_$_RemoveTags> get copyWith =>
+      __$$_RemoveTagsCopyWithImpl<_$_RemoveTags>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(ArticleDetail article) initialize,
+    required TResult Function(String val) title,
+    required TResult Function(ImageSource source) pickImage,
+    required TResult Function(Category category) changeCategory,
+    required TResult Function(List<Category> categories) fetchCategories,
+    required TResult Function(String tag) addTags,
+    required TResult Function(String tag) removeTags,
+    required TResult Function(Delta delta) create,
+    required TResult Function() update,
+  }) {
+    return removeTags(tag);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(ArticleDetail article)? initialize,
+    TResult? Function(String val)? title,
+    TResult? Function(ImageSource source)? pickImage,
+    TResult? Function(Category category)? changeCategory,
+    TResult? Function(List<Category> categories)? fetchCategories,
+    TResult? Function(String tag)? addTags,
+    TResult? Function(String tag)? removeTags,
+    TResult? Function(Delta delta)? create,
+    TResult? Function()? update,
+  }) {
+    return removeTags?.call(tag);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(ArticleDetail article)? initialize,
+    TResult Function(String val)? title,
+    TResult Function(ImageSource source)? pickImage,
+    TResult Function(Category category)? changeCategory,
+    TResult Function(List<Category> categories)? fetchCategories,
+    TResult Function(String tag)? addTags,
+    TResult Function(String tag)? removeTags,
+    TResult Function(Delta delta)? create,
+    TResult Function()? update,
+    required TResult orElse(),
+  }) {
+    if (removeTags != null) {
+      return removeTags(tag);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Initialize value) initialize,
+    required TResult Function(_Title value) title,
+    required TResult Function(_PickImage value) pickImage,
+    required TResult Function(_ChangeCategory value) changeCategory,
+    required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_AddTags value) addTags,
+    required TResult Function(_RemoveTags value) removeTags,
+    required TResult Function(_Create value) create,
+    required TResult Function(_Update value) update,
+  }) {
+    return removeTags(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Initialize value)? initialize,
+    TResult? Function(_Title value)? title,
+    TResult? Function(_PickImage value)? pickImage,
+    TResult? Function(_ChangeCategory value)? changeCategory,
+    TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_AddTags value)? addTags,
+    TResult? Function(_RemoveTags value)? removeTags,
+    TResult? Function(_Create value)? create,
+    TResult? Function(_Update value)? update,
+  }) {
+    return removeTags?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Initialize value)? initialize,
+    TResult Function(_Title value)? title,
+    TResult Function(_PickImage value)? pickImage,
+    TResult Function(_ChangeCategory value)? changeCategory,
+    TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_AddTags value)? addTags,
+    TResult Function(_RemoveTags value)? removeTags,
+    TResult Function(_Create value)? create,
+    TResult Function(_Update value)? update,
+    required TResult orElse(),
+  }) {
+    if (removeTags != null) {
+      return removeTags(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveTags implements ArticleFormEvent {
+  const factory _RemoveTags(final String tag) = _$_RemoveTags;
+
+  String get tag;
+  @JsonKey(ignore: true)
+  _$$_RemoveTagsCopyWith<_$_RemoveTags> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CreateCopyWith<$Res> {
+  factory _$$_CreateCopyWith(_$_Create value, $Res Function(_$_Create) then) =
+      __$$_CreateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Delta delta});
+}
+
+/// @nodoc
+class __$$_CreateCopyWithImpl<$Res>
+    extends _$ArticleFormEventCopyWithImpl<$Res, _$_Create>
+    implements _$$_CreateCopyWith<$Res> {
+  __$$_CreateCopyWithImpl(_$_Create _value, $Res Function(_$_Create) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? delta = null,
+  }) {
+    return _then(_$_Create(
+      null == delta
+          ? _value.delta
+          : delta // ignore: cast_nullable_to_non_nullable
+              as Delta,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Create implements _Create {
+  const _$_Create(this.delta);
+
+  @override
+  final Delta delta;
+
+  @override
+  String toString() {
+    return 'ArticleFormEvent.create(delta: $delta)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Create &&
+            (identical(other.delta, delta) || other.delta == delta));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, delta);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CreateCopyWith<_$_Create> get copyWith =>
+      __$$_CreateCopyWithImpl<_$_Create>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(ArticleDetail article) initialize,
+    required TResult Function(String val) title,
+    required TResult Function(ImageSource source) pickImage,
+    required TResult Function(Category category) changeCategory,
+    required TResult Function(List<Category> categories) fetchCategories,
+    required TResult Function(String tag) addTags,
+    required TResult Function(String tag) removeTags,
+    required TResult Function(Delta delta) create,
+    required TResult Function() update,
+  }) {
+    return create(delta);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(ArticleDetail article)? initialize,
+    TResult? Function(String val)? title,
+    TResult? Function(ImageSource source)? pickImage,
+    TResult? Function(Category category)? changeCategory,
+    TResult? Function(List<Category> categories)? fetchCategories,
+    TResult? Function(String tag)? addTags,
+    TResult? Function(String tag)? removeTags,
+    TResult? Function(Delta delta)? create,
+    TResult? Function()? update,
+  }) {
+    return create?.call(delta);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(ArticleDetail article)? initialize,
+    TResult Function(String val)? title,
+    TResult Function(ImageSource source)? pickImage,
+    TResult Function(Category category)? changeCategory,
+    TResult Function(List<Category> categories)? fetchCategories,
+    TResult Function(String tag)? addTags,
+    TResult Function(String tag)? removeTags,
+    TResult Function(Delta delta)? create,
+    TResult Function()? update,
+    required TResult orElse(),
+  }) {
+    if (create != null) {
+      return create(delta);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Initialize value) initialize,
+    required TResult Function(_Title value) title,
+    required TResult Function(_PickImage value) pickImage,
+    required TResult Function(_ChangeCategory value) changeCategory,
+    required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_AddTags value) addTags,
+    required TResult Function(_RemoveTags value) removeTags,
     required TResult Function(_Create value) create,
     required TResult Function(_Update value) update,
   }) {
@@ -1200,9 +1681,11 @@ class _$_Create implements _Create {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Title value)? title,
-    TResult? Function(_Content value)? content,
     TResult? Function(_PickImage value)? pickImage,
+    TResult? Function(_ChangeCategory value)? changeCategory,
     TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_AddTags value)? addTags,
+    TResult? Function(_RemoveTags value)? removeTags,
     TResult? Function(_Create value)? create,
     TResult? Function(_Update value)? update,
   }) {
@@ -1215,9 +1698,11 @@ class _$_Create implements _Create {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Title value)? title,
-    TResult Function(_Content value)? content,
     TResult Function(_PickImage value)? pickImage,
+    TResult Function(_ChangeCategory value)? changeCategory,
     TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_AddTags value)? addTags,
+    TResult Function(_RemoveTags value)? removeTags,
     TResult Function(_Create value)? create,
     TResult Function(_Update value)? update,
     required TResult orElse(),
@@ -1230,7 +1715,12 @@ class _$_Create implements _Create {
 }
 
 abstract class _Create implements ArticleFormEvent {
-  const factory _Create() = _$_Create;
+  const factory _Create(final Delta delta) = _$_Create;
+
+  Delta get delta;
+  @JsonKey(ignore: true)
+  _$$_CreateCopyWith<_$_Create> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1272,10 +1762,12 @@ class _$_Update implements _Update {
     required TResult Function() init,
     required TResult Function(ArticleDetail article) initialize,
     required TResult Function(String val) title,
-    required TResult Function(String val) content,
     required TResult Function(ImageSource source) pickImage,
+    required TResult Function(Category category) changeCategory,
     required TResult Function(List<Category> categories) fetchCategories,
-    required TResult Function() create,
+    required TResult Function(String tag) addTags,
+    required TResult Function(String tag) removeTags,
+    required TResult Function(Delta delta) create,
     required TResult Function() update,
   }) {
     return update();
@@ -1287,10 +1779,12 @@ class _$_Update implements _Update {
     TResult? Function()? init,
     TResult? Function(ArticleDetail article)? initialize,
     TResult? Function(String val)? title,
-    TResult? Function(String val)? content,
     TResult? Function(ImageSource source)? pickImage,
+    TResult? Function(Category category)? changeCategory,
     TResult? Function(List<Category> categories)? fetchCategories,
-    TResult? Function()? create,
+    TResult? Function(String tag)? addTags,
+    TResult? Function(String tag)? removeTags,
+    TResult? Function(Delta delta)? create,
     TResult? Function()? update,
   }) {
     return update?.call();
@@ -1302,10 +1796,12 @@ class _$_Update implements _Update {
     TResult Function()? init,
     TResult Function(ArticleDetail article)? initialize,
     TResult Function(String val)? title,
-    TResult Function(String val)? content,
     TResult Function(ImageSource source)? pickImage,
+    TResult Function(Category category)? changeCategory,
     TResult Function(List<Category> categories)? fetchCategories,
-    TResult Function()? create,
+    TResult Function(String tag)? addTags,
+    TResult Function(String tag)? removeTags,
+    TResult Function(Delta delta)? create,
     TResult Function()? update,
     required TResult orElse(),
   }) {
@@ -1321,9 +1817,11 @@ class _$_Update implements _Update {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Title value) title,
-    required TResult Function(_Content value) content,
     required TResult Function(_PickImage value) pickImage,
+    required TResult Function(_ChangeCategory value) changeCategory,
     required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_AddTags value) addTags,
+    required TResult Function(_RemoveTags value) removeTags,
     required TResult Function(_Create value) create,
     required TResult Function(_Update value) update,
   }) {
@@ -1336,9 +1834,11 @@ class _$_Update implements _Update {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Title value)? title,
-    TResult? Function(_Content value)? content,
     TResult? Function(_PickImage value)? pickImage,
+    TResult? Function(_ChangeCategory value)? changeCategory,
     TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_AddTags value)? addTags,
+    TResult? Function(_RemoveTags value)? removeTags,
     TResult? Function(_Create value)? create,
     TResult? Function(_Update value)? update,
   }) {
@@ -1351,9 +1851,11 @@ class _$_Update implements _Update {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Title value)? title,
-    TResult Function(_Content value)? content,
     TResult Function(_PickImage value)? pickImage,
+    TResult Function(_ChangeCategory value)? changeCategory,
     TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_AddTags value)? addTags,
+    TResult Function(_RemoveTags value)? removeTags,
     TResult Function(_Create value)? create,
     TResult Function(_Update value)? update,
     required TResult orElse(),
@@ -1376,11 +1878,12 @@ mixin _$ArticleFormState {
   bool get isSubmit => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
+  Delta? get delta => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   File? get imageFile => throw _privateConstructorUsedError;
-  List<CheckBoxState> get categoryCheckBoxList =>
-      throw _privateConstructorUsedError;
+  Category? get selectedCategory => throw _privateConstructorUsedError;
+  List<Category> get categoryList => throw _privateConstructorUsedError;
+  List<String> get tagList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ArticleFormStateCopyWith<ArticleFormState> get copyWith =>
@@ -1399,10 +1902,12 @@ abstract class $ArticleFormStateCopyWith<$Res> {
       bool isSubmit,
       String id,
       String title,
-      String content,
+      Delta? delta,
       String imageUrl,
       File? imageFile,
-      List<CheckBoxState> categoryCheckBoxList});
+      Category? selectedCategory,
+      List<Category> categoryList,
+      List<String> tagList});
 }
 
 /// @nodoc
@@ -1423,10 +1928,12 @@ class _$ArticleFormStateCopyWithImpl<$Res, $Val extends ArticleFormState>
     Object? isSubmit = null,
     Object? id = null,
     Object? title = null,
-    Object? content = null,
+    Object? delta = freezed,
     Object? imageUrl = null,
     Object? imageFile = freezed,
-    Object? categoryCheckBoxList = null,
+    Object? selectedCategory = freezed,
+    Object? categoryList = null,
+    Object? tagList = null,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -1449,10 +1956,10 @@ class _$ArticleFormStateCopyWithImpl<$Res, $Val extends ArticleFormState>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
+      delta: freezed == delta
+          ? _value.delta
+          : delta // ignore: cast_nullable_to_non_nullable
+              as Delta?,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -1461,10 +1968,18 @@ class _$ArticleFormStateCopyWithImpl<$Res, $Val extends ArticleFormState>
           ? _value.imageFile
           : imageFile // ignore: cast_nullable_to_non_nullable
               as File?,
-      categoryCheckBoxList: null == categoryCheckBoxList
-          ? _value.categoryCheckBoxList
-          : categoryCheckBoxList // ignore: cast_nullable_to_non_nullable
-              as List<CheckBoxState>,
+      selectedCategory: freezed == selectedCategory
+          ? _value.selectedCategory
+          : selectedCategory // ignore: cast_nullable_to_non_nullable
+              as Category?,
+      categoryList: null == categoryList
+          ? _value.categoryList
+          : categoryList // ignore: cast_nullable_to_non_nullable
+              as List<Category>,
+      tagList: null == tagList
+          ? _value.tagList
+          : tagList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -1483,10 +1998,12 @@ abstract class _$$_ArticleFormStateCopyWith<$Res>
       bool isSubmit,
       String id,
       String title,
-      String content,
+      Delta? delta,
       String imageUrl,
       File? imageFile,
-      List<CheckBoxState> categoryCheckBoxList});
+      Category? selectedCategory,
+      List<Category> categoryList,
+      List<String> tagList});
 }
 
 /// @nodoc
@@ -1505,10 +2022,12 @@ class __$$_ArticleFormStateCopyWithImpl<$Res>
     Object? isSubmit = null,
     Object? id = null,
     Object? title = null,
-    Object? content = null,
+    Object? delta = freezed,
     Object? imageUrl = null,
     Object? imageFile = freezed,
-    Object? categoryCheckBoxList = null,
+    Object? selectedCategory = freezed,
+    Object? categoryList = null,
+    Object? tagList = null,
   }) {
     return _then(_$_ArticleFormState(
       state: null == state
@@ -1531,10 +2050,10 @@ class __$$_ArticleFormStateCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
+      delta: freezed == delta
+          ? _value.delta
+          : delta // ignore: cast_nullable_to_non_nullable
+              as Delta?,
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -1543,10 +2062,18 @@ class __$$_ArticleFormStateCopyWithImpl<$Res>
           ? _value.imageFile
           : imageFile // ignore: cast_nullable_to_non_nullable
               as File?,
-      categoryCheckBoxList: null == categoryCheckBoxList
-          ? _value._categoryCheckBoxList
-          : categoryCheckBoxList // ignore: cast_nullable_to_non_nullable
-              as List<CheckBoxState>,
+      selectedCategory: freezed == selectedCategory
+          ? _value.selectedCategory
+          : selectedCategory // ignore: cast_nullable_to_non_nullable
+              as Category?,
+      categoryList: null == categoryList
+          ? _value._categoryList
+          : categoryList // ignore: cast_nullable_to_non_nullable
+              as List<Category>,
+      tagList: null == tagList
+          ? _value._tagList
+          : tagList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -1560,11 +2087,14 @@ class _$_ArticleFormState implements _ArticleFormState {
       required this.isSubmit,
       required this.id,
       required this.title,
-      required this.content,
+      required this.delta,
       required this.imageUrl,
       required this.imageFile,
-      required final List<CheckBoxState> categoryCheckBoxList})
-      : _categoryCheckBoxList = categoryCheckBoxList;
+      required this.selectedCategory,
+      required final List<Category> categoryList,
+      required final List<String> tagList})
+      : _categoryList = categoryList,
+        _tagList = tagList;
 
   @override
   final RequestState state;
@@ -1577,23 +2107,32 @@ class _$_ArticleFormState implements _ArticleFormState {
   @override
   final String title;
   @override
-  final String content;
+  final Delta? delta;
   @override
   final String imageUrl;
   @override
   final File? imageFile;
-  final List<CheckBoxState> _categoryCheckBoxList;
   @override
-  List<CheckBoxState> get categoryCheckBoxList {
-    if (_categoryCheckBoxList is EqualUnmodifiableListView)
-      return _categoryCheckBoxList;
+  final Category? selectedCategory;
+  final List<Category> _categoryList;
+  @override
+  List<Category> get categoryList {
+    if (_categoryList is EqualUnmodifiableListView) return _categoryList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_categoryCheckBoxList);
+    return EqualUnmodifiableListView(_categoryList);
+  }
+
+  final List<String> _tagList;
+  @override
+  List<String> get tagList {
+    if (_tagList is EqualUnmodifiableListView) return _tagList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tagList);
   }
 
   @override
   String toString() {
-    return 'ArticleFormState(state: $state, message: $message, isSubmit: $isSubmit, id: $id, title: $title, content: $content, imageUrl: $imageUrl, imageFile: $imageFile, categoryCheckBoxList: $categoryCheckBoxList)';
+    return 'ArticleFormState(state: $state, message: $message, isSubmit: $isSubmit, id: $id, title: $title, delta: $delta, imageUrl: $imageUrl, imageFile: $imageFile, selectedCategory: $selectedCategory, categoryList: $categoryList, tagList: $tagList)';
   }
 
   @override
@@ -1607,13 +2146,16 @@ class _$_ArticleFormState implements _ArticleFormState {
                 other.isSubmit == isSubmit) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.content, content) || other.content == content) &&
+            (identical(other.delta, delta) || other.delta == delta) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.imageFile, imageFile) ||
                 other.imageFile == imageFile) &&
+            (identical(other.selectedCategory, selectedCategory) ||
+                other.selectedCategory == selectedCategory) &&
             const DeepCollectionEquality()
-                .equals(other._categoryCheckBoxList, _categoryCheckBoxList));
+                .equals(other._categoryList, _categoryList) &&
+            const DeepCollectionEquality().equals(other._tagList, _tagList));
   }
 
   @override
@@ -1624,10 +2166,12 @@ class _$_ArticleFormState implements _ArticleFormState {
       isSubmit,
       id,
       title,
-      content,
+      delta,
       imageUrl,
       imageFile,
-      const DeepCollectionEquality().hash(_categoryCheckBoxList));
+      selectedCategory,
+      const DeepCollectionEquality().hash(_categoryList),
+      const DeepCollectionEquality().hash(_tagList));
 
   @JsonKey(ignore: true)
   @override
@@ -1638,16 +2182,17 @@ class _$_ArticleFormState implements _ArticleFormState {
 
 abstract class _ArticleFormState implements ArticleFormState {
   const factory _ArticleFormState(
-          {required final RequestState state,
-          required final String message,
-          required final bool isSubmit,
-          required final String id,
-          required final String title,
-          required final String content,
-          required final String imageUrl,
-          required final File? imageFile,
-          required final List<CheckBoxState> categoryCheckBoxList}) =
-      _$_ArticleFormState;
+      {required final RequestState state,
+      required final String message,
+      required final bool isSubmit,
+      required final String id,
+      required final String title,
+      required final Delta? delta,
+      required final String imageUrl,
+      required final File? imageFile,
+      required final Category? selectedCategory,
+      required final List<Category> categoryList,
+      required final List<String> tagList}) = _$_ArticleFormState;
 
   @override
   RequestState get state;
@@ -1660,13 +2205,17 @@ abstract class _ArticleFormState implements ArticleFormState {
   @override
   String get title;
   @override
-  String get content;
+  Delta? get delta;
   @override
   String get imageUrl;
   @override
   File? get imageFile;
   @override
-  List<CheckBoxState> get categoryCheckBoxList;
+  Category? get selectedCategory;
+  @override
+  List<Category> get categoryList;
+  @override
+  List<String> get tagList;
   @override
   @JsonKey(ignore: true)
   _$$_ArticleFormStateCopyWith<_$_ArticleFormState> get copyWith =>

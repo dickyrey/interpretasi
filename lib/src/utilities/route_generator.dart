@@ -3,6 +3,7 @@ import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/entities/user.dart';
 import 'package:interpretasi/src/presentation/pages/article_detail_page.dart';
+import 'package:interpretasi/src/presentation/pages/article_form_page.dart';
 import 'package:interpretasi/src/presentation/pages/change_password_page.dart';
 import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
@@ -96,6 +97,13 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const MyArticlePage(),
         );
+      case ARTICLE_FORM:
+        if (args is bool) {
+          return MaterialPageRoute(
+            builder: (_) => ArticleFormPage(isEdit: args),
+          );
+        }
+        return _errorRoute();
 
       // case ADD_SECOND_EMAIL:
       //   return MaterialPageRoute(
