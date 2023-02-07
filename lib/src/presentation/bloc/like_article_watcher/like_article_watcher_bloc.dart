@@ -16,7 +16,7 @@ class LikeArticleWatcherBloc
   }) : super(const LikeArticleWatcherState.initial()) {
     on<LikeArticleWatcherEvent>((event, emit) async {
       await event.map(
-        fetchStatus: (event) async {
+        fetch: (event) async {
           emit(const LikeArticleWatcherState.unliked());
           final id = event.id.replaceFirst(Const.unusedPath, '');
 

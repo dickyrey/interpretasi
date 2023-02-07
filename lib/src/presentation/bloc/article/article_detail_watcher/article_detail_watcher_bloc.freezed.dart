@@ -19,33 +19,33 @@ mixin _$ArticleDetailWatcherEvent {
   String get url => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String url) fetchArticleDetail,
+    required TResult Function(String url) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String url)? fetchArticleDetail,
+    TResult? Function(String url)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String url)? fetchArticleDetail,
+    TResult Function(String url)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchArticleDetail value) fetchArticleDetail,
+    required TResult Function(_Fetch value) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchArticleDetail value)? fetchArticleDetail,
+    TResult? Function(_Fetch value)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchArticleDetail value)? fetchArticleDetail,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -90,22 +90,20 @@ class _$ArticleDetailWatcherEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_FetchArticleDetailCopyWith<$Res>
+abstract class _$$_FetchCopyWith<$Res>
     implements $ArticleDetailWatcherEventCopyWith<$Res> {
-  factory _$$_FetchArticleDetailCopyWith(_$_FetchArticleDetail value,
-          $Res Function(_$_FetchArticleDetail) then) =
-      __$$_FetchArticleDetailCopyWithImpl<$Res>;
+  factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
+      __$$_FetchCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String url});
 }
 
 /// @nodoc
-class __$$_FetchArticleDetailCopyWithImpl<$Res>
-    extends _$ArticleDetailWatcherEventCopyWithImpl<$Res, _$_FetchArticleDetail>
-    implements _$$_FetchArticleDetailCopyWith<$Res> {
-  __$$_FetchArticleDetailCopyWithImpl(
-      _$_FetchArticleDetail _value, $Res Function(_$_FetchArticleDetail) _then)
+class __$$_FetchCopyWithImpl<$Res>
+    extends _$ArticleDetailWatcherEventCopyWithImpl<$Res, _$_Fetch>
+    implements _$$_FetchCopyWith<$Res> {
+  __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -113,7 +111,7 @@ class __$$_FetchArticleDetailCopyWithImpl<$Res>
   $Res call({
     Object? url = null,
   }) {
-    return _then(_$_FetchArticleDetail(
+    return _then(_$_Fetch(
       null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -124,22 +122,22 @@ class __$$_FetchArticleDetailCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_FetchArticleDetail implements _FetchArticleDetail {
-  const _$_FetchArticleDetail(this.url);
+class _$_Fetch implements _Fetch {
+  const _$_Fetch(this.url);
 
   @override
   final String url;
 
   @override
   String toString() {
-    return 'ArticleDetailWatcherEvent.fetchArticleDetail(url: $url)';
+    return 'ArticleDetailWatcherEvent.fetch(url: $url)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_FetchArticleDetail &&
+            other is _$_Fetch &&
             (identical(other.url, url) || other.url == url));
   }
 
@@ -149,34 +147,33 @@ class _$_FetchArticleDetail implements _FetchArticleDetail {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FetchArticleDetailCopyWith<_$_FetchArticleDetail> get copyWith =>
-      __$$_FetchArticleDetailCopyWithImpl<_$_FetchArticleDetail>(
-          this, _$identity);
+  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
+      __$$_FetchCopyWithImpl<_$_Fetch>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String url) fetchArticleDetail,
+    required TResult Function(String url) fetch,
   }) {
-    return fetchArticleDetail(url);
+    return fetch(url);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String url)? fetchArticleDetail,
+    TResult? Function(String url)? fetch,
   }) {
-    return fetchArticleDetail?.call(url);
+    return fetch?.call(url);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String url)? fetchArticleDetail,
+    TResult Function(String url)? fetch,
     required TResult orElse(),
   }) {
-    if (fetchArticleDetail != null) {
-      return fetchArticleDetail(url);
+    if (fetch != null) {
+      return fetch(url);
     }
     return orElse();
   }
@@ -184,40 +181,40 @@ class _$_FetchArticleDetail implements _FetchArticleDetail {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchArticleDetail value) fetchArticleDetail,
+    required TResult Function(_Fetch value) fetch,
   }) {
-    return fetchArticleDetail(this);
+    return fetch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchArticleDetail value)? fetchArticleDetail,
+    TResult? Function(_Fetch value)? fetch,
   }) {
-    return fetchArticleDetail?.call(this);
+    return fetch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchArticleDetail value)? fetchArticleDetail,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) {
-    if (fetchArticleDetail != null) {
-      return fetchArticleDetail(this);
+    if (fetch != null) {
+      return fetch(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchArticleDetail implements ArticleDetailWatcherEvent {
-  const factory _FetchArticleDetail(final String url) = _$_FetchArticleDetail;
+abstract class _Fetch implements ArticleDetailWatcherEvent {
+  const factory _Fetch(final String url) = _$_Fetch;
 
   @override
   String get url;
   @override
   @JsonKey(ignore: true)
-  _$$_FetchArticleDetailCopyWith<_$_FetchArticleDetail> get copyWith =>
+  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

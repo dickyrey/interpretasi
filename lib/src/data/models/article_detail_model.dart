@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:interpretasi/src/data/models/author_model.dart';
 import 'package:interpretasi/src/domain/entities/article_detail.dart';
 
 class ArticleDetailModel extends Equatable {
@@ -14,6 +15,7 @@ class ArticleDetailModel extends Equatable {
     required this.url,
     required this.tags,
     required this.createdAt,
+    required this.author,
   });
 
   factory ArticleDetailModel.fromJson(Map<String, dynamic> json) {
@@ -31,6 +33,7 @@ class ArticleDetailModel extends Equatable {
         (json['tags'] as Iterable<dynamic>).map((x) => x),
       ),
       createdAt: DateTime.parse(json['created_at'] as String),
+      author: AuthorModel.fromJson(json['user'] as Map<String, dynamic>),
     );
   }
 
@@ -45,6 +48,7 @@ class ArticleDetailModel extends Equatable {
   final String url;
   final List<String> tags;
   final DateTime createdAt;
+  final AuthorModel author;
 
   ArticleDetail toEntity() {
     return ArticleDetail(
@@ -59,6 +63,7 @@ class ArticleDetailModel extends Equatable {
       tags: tags,
       originalContent: originalContent,
       createdAt: createdAt,
+      author:author.toEntity(),
     );
   }
 
@@ -75,5 +80,6 @@ class ArticleDetailModel extends Equatable {
         url,
         tags,
         createdAt,
+        author,
       ];
 }

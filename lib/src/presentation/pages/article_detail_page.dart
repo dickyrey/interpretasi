@@ -34,12 +34,12 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<ArticleDetailWatcherBloc>().add(
-            ArticleDetailWatcherEvent.fetchArticleDetail(widget.article.url),
-          );
+      context
+          .read<ArticleDetailWatcherBloc>()
+          .add(ArticleDetailWatcherEvent.fetch(widget.article.url));
       context
           .read<LikeArticleWatcherBloc>()
-          .add(LikeArticleWatcherEvent.fetchStatus(widget.article.url));
+          .add(LikeArticleWatcherEvent.fetch(widget.article.url));
     });
   }
 
@@ -82,25 +82,37 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                     ),
                   ),
                   const SizedBox(height: Const.space15),
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: Const.margin,
-                    ),
-                    leading: CircleAvatar(
-                      radius: 25,
-                      backgroundColor: theme.disabledColor,
-                      backgroundImage: const CachedNetworkImageProvider(
-                        'https://i.pinimg.com/564x/98/57/47/985747db6a1c15cc64fc1723e4da4d63.jpg',
-                      ),
-                    ),
-                    title: Text(
-                      'Byneet Dev',
-                      style: theme.textTheme.labelSmall,
-                    ),
-                    subtitle: Text(
-                      'Author, ${DateFormat('d MMM yy').format(widget.article.createdAt)}',
-                      style: theme.textTheme.titleSmall,
-                    ),
+                  BlocBuilder<ArticleDetailWatcherBloc,
+                      ArticleDetailWatcherState>(
+                    builder: (context, state) {
+                      return state.maybeMap(
+                        orElse: () {
+                          return const SizedBox();
+                        },
+                        loaded: (state) {
+                          return ListTile(
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: Const.margin,
+                            ),
+                            leading: CircleAvatar(
+                              radius: 25,
+                              backgroundColor: theme.disabledColor,
+                              backgroundImage: CachedNetworkImageProvider(
+                                state.articleDetail.author.photo,
+                              ),
+                            ),
+                            title: Text(
+                               state.articleDetail.author.name,
+                              style: theme.textTheme.labelSmall,
+                            ),
+                            subtitle: Text(
+                              '${lang.author}, ${DateFormat('d MMM yy').format(widget.article.createdAt)}',
+                              style: theme.textTheme.titleSmall,
+                            ),
+                          );
+                        },
+                      );
+                    },
                   ),
                   const SizedBox(height: Const.space15),
                   CachedNetworkImage(imageUrl: widget.article.image),
@@ -318,10 +330,6 @@ class _CommentDialogState extends State<CommentDialog> {
                 );
               },
               deleteInSuccess: (_) {
-                // showToast(
-                //   msg: 'lang.comment_deleted',
-                //   gravity: ToastGravity.BOTTOM,
-                // );
                 context
                     .read<DeleteCommentActorBloc>()
                     .add(const DeleteCommentActorEvent.init());

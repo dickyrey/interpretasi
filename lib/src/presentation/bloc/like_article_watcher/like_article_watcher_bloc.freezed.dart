@@ -19,38 +19,38 @@ mixin _$LikeArticleWatcherEvent {
   String get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String id) fetchStatus,
+    required TResult Function(String id) fetch,
     required TResult Function(String id) likePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String id)? fetchStatus,
+    TResult? Function(String id)? fetch,
     TResult? Function(String id)? likePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id)? fetchStatus,
+    TResult Function(String id)? fetch,
     TResult Function(String id)? likePressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchStatus value) fetchStatus,
+    required TResult Function(_Fetch value) fetch,
     required TResult Function(_LikePressed value) likePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchStatus value)? fetchStatus,
+    TResult? Function(_Fetch value)? fetch,
     TResult? Function(_LikePressed value)? likePressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchStatus value)? fetchStatus,
+    TResult Function(_Fetch value)? fetch,
     TResult Function(_LikePressed value)? likePressed,
     required TResult orElse(),
   }) =>
@@ -96,22 +96,20 @@ class _$LikeArticleWatcherEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_FetchStatusCopyWith<$Res>
+abstract class _$$_FetchCopyWith<$Res>
     implements $LikeArticleWatcherEventCopyWith<$Res> {
-  factory _$$_FetchStatusCopyWith(
-          _$_FetchStatus value, $Res Function(_$_FetchStatus) then) =
-      __$$_FetchStatusCopyWithImpl<$Res>;
+  factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
+      __$$_FetchCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id});
 }
 
 /// @nodoc
-class __$$_FetchStatusCopyWithImpl<$Res>
-    extends _$LikeArticleWatcherEventCopyWithImpl<$Res, _$_FetchStatus>
-    implements _$$_FetchStatusCopyWith<$Res> {
-  __$$_FetchStatusCopyWithImpl(
-      _$_FetchStatus _value, $Res Function(_$_FetchStatus) _then)
+class __$$_FetchCopyWithImpl<$Res>
+    extends _$LikeArticleWatcherEventCopyWithImpl<$Res, _$_Fetch>
+    implements _$$_FetchCopyWith<$Res> {
+  __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -119,7 +117,7 @@ class __$$_FetchStatusCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
   }) {
-    return _then(_$_FetchStatus(
+    return _then(_$_Fetch(
       null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -130,22 +128,22 @@ class __$$_FetchStatusCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_FetchStatus implements _FetchStatus {
-  const _$_FetchStatus(this.id);
+class _$_Fetch implements _Fetch {
+  const _$_Fetch(this.id);
 
   @override
   final String id;
 
   @override
   String toString() {
-    return 'LikeArticleWatcherEvent.fetchStatus(id: $id)';
+    return 'LikeArticleWatcherEvent.fetch(id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_FetchStatus &&
+            other is _$_Fetch &&
             (identical(other.id, id) || other.id == id));
   }
 
@@ -155,36 +153,36 @@ class _$_FetchStatus implements _FetchStatus {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FetchStatusCopyWith<_$_FetchStatus> get copyWith =>
-      __$$_FetchStatusCopyWithImpl<_$_FetchStatus>(this, _$identity);
+  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
+      __$$_FetchCopyWithImpl<_$_Fetch>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String id) fetchStatus,
+    required TResult Function(String id) fetch,
     required TResult Function(String id) likePressed,
   }) {
-    return fetchStatus(id);
+    return fetch(id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String id)? fetchStatus,
+    TResult? Function(String id)? fetch,
     TResult? Function(String id)? likePressed,
   }) {
-    return fetchStatus?.call(id);
+    return fetch?.call(id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id)? fetchStatus,
+    TResult Function(String id)? fetch,
     TResult Function(String id)? likePressed,
     required TResult orElse(),
   }) {
-    if (fetchStatus != null) {
-      return fetchStatus(id);
+    if (fetch != null) {
+      return fetch(id);
     }
     return orElse();
   }
@@ -192,43 +190,43 @@ class _$_FetchStatus implements _FetchStatus {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchStatus value) fetchStatus,
+    required TResult Function(_Fetch value) fetch,
     required TResult Function(_LikePressed value) likePressed,
   }) {
-    return fetchStatus(this);
+    return fetch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchStatus value)? fetchStatus,
+    TResult? Function(_Fetch value)? fetch,
     TResult? Function(_LikePressed value)? likePressed,
   }) {
-    return fetchStatus?.call(this);
+    return fetch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchStatus value)? fetchStatus,
+    TResult Function(_Fetch value)? fetch,
     TResult Function(_LikePressed value)? likePressed,
     required TResult orElse(),
   }) {
-    if (fetchStatus != null) {
-      return fetchStatus(this);
+    if (fetch != null) {
+      return fetch(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchStatus implements LikeArticleWatcherEvent {
-  const factory _FetchStatus(final String id) = _$_FetchStatus;
+abstract class _Fetch implements LikeArticleWatcherEvent {
+  const factory _Fetch(final String id) = _$_Fetch;
 
   @override
   String get id;
   @override
   @JsonKey(ignore: true)
-  _$$_FetchStatusCopyWith<_$_FetchStatus> get copyWith =>
+  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -298,7 +296,7 @@ class _$_LikePressed implements _LikePressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String id) fetchStatus,
+    required TResult Function(String id) fetch,
     required TResult Function(String id) likePressed,
   }) {
     return likePressed(id);
@@ -307,7 +305,7 @@ class _$_LikePressed implements _LikePressed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String id)? fetchStatus,
+    TResult? Function(String id)? fetch,
     TResult? Function(String id)? likePressed,
   }) {
     return likePressed?.call(id);
@@ -316,7 +314,7 @@ class _$_LikePressed implements _LikePressed {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String id)? fetchStatus,
+    TResult Function(String id)? fetch,
     TResult Function(String id)? likePressed,
     required TResult orElse(),
   }) {
@@ -329,7 +327,7 @@ class _$_LikePressed implements _LikePressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchStatus value) fetchStatus,
+    required TResult Function(_Fetch value) fetch,
     required TResult Function(_LikePressed value) likePressed,
   }) {
     return likePressed(this);
@@ -338,7 +336,7 @@ class _$_LikePressed implements _LikePressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchStatus value)? fetchStatus,
+    TResult? Function(_Fetch value)? fetch,
     TResult? Function(_LikePressed value)? likePressed,
   }) {
     return likePressed?.call(this);
@@ -347,7 +345,7 @@ class _$_LikePressed implements _LikePressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchStatus value)? fetchStatus,
+    TResult Function(_Fetch value)? fetch,
     TResult Function(_LikePressed value)? likePressed,
     required TResult orElse(),
   }) {

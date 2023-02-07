@@ -12,7 +12,7 @@ class ArticleDetailWatcherBloc extends Bloc<ArticleDetailWatcherEvent, ArticleDe
   ArticleDetailWatcherBloc(this._articleDetail) : super(const ArticleDetailWatcherState.initial()) {
     on<ArticleDetailWatcherEvent>((event, emit) async {
       await event.map(
-        fetchArticleDetail: (event) async {
+        fetch: (event) async {
           emit(const ArticleDetailWatcherState.loading());
           final id = event.url.replaceFirst(Const.unusedPath, '');
 

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:interpretasi/src/domain/entities/author.dart';
 
 class ArticleDetail extends Equatable {
   const ArticleDetail({
@@ -13,6 +14,7 @@ class ArticleDetail extends Equatable {
     required this.url,
     required this.tags,
     required this.createdAt,
+    required this.author,
   });
 
   final int categoryId;
@@ -26,6 +28,7 @@ class ArticleDetail extends Equatable {
   final String url;
   final List<String> tags;
   final DateTime createdAt;
+  final Author author;
 
   @override
   List<Object?> get props => [
@@ -40,5 +43,6 @@ class ArticleDetail extends Equatable {
         url,
         tags,
         createdAt,
+        author,
       ];
 }
