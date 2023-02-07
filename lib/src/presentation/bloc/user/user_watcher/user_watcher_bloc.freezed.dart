@@ -19,38 +19,38 @@ mixin _$UserWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() fetchUser,
+    required TResult Function() fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? fetchUser,
+    TResult? Function()? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? fetchUser,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
-    required TResult Function(_FetchUser value) fetchUser,
+    required TResult Function(_Fetch value) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
-    TResult? Function(_FetchUser value)? fetchUser,
+    TResult? Function(_Fetch value)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
-    TResult Function(_FetchUser value)? fetchUser,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -111,7 +111,7 @@ class _$_Init implements _Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() fetchUser,
+    required TResult Function() fetch,
   }) {
     return init();
   }
@@ -120,7 +120,7 @@ class _$_Init implements _Init {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? fetchUser,
+    TResult? Function()? fetch,
   }) {
     return init?.call();
   }
@@ -129,7 +129,7 @@ class _$_Init implements _Init {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? fetchUser,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -142,7 +142,7 @@ class _$_Init implements _Init {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
-    required TResult Function(_FetchUser value) fetchUser,
+    required TResult Function(_Fetch value) fetch,
   }) {
     return init(this);
   }
@@ -151,7 +151,7 @@ class _$_Init implements _Init {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
-    TResult? Function(_FetchUser value)? fetchUser,
+    TResult? Function(_Fetch value)? fetch,
   }) {
     return init?.call(this);
   }
@@ -160,7 +160,7 @@ class _$_Init implements _Init {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
-    TResult Function(_FetchUser value)? fetchUser,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -175,35 +175,33 @@ abstract class _Init implements UserWatcherEvent {
 }
 
 /// @nodoc
-abstract class _$$_FetchUserCopyWith<$Res> {
-  factory _$$_FetchUserCopyWith(
-          _$_FetchUser value, $Res Function(_$_FetchUser) then) =
-      __$$_FetchUserCopyWithImpl<$Res>;
+abstract class _$$_FetchCopyWith<$Res> {
+  factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
+      __$$_FetchCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_FetchUserCopyWithImpl<$Res>
-    extends _$UserWatcherEventCopyWithImpl<$Res, _$_FetchUser>
-    implements _$$_FetchUserCopyWith<$Res> {
-  __$$_FetchUserCopyWithImpl(
-      _$_FetchUser _value, $Res Function(_$_FetchUser) _then)
+class __$$_FetchCopyWithImpl<$Res>
+    extends _$UserWatcherEventCopyWithImpl<$Res, _$_Fetch>
+    implements _$$_FetchCopyWith<$Res> {
+  __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_FetchUser implements _FetchUser {
-  const _$_FetchUser();
+class _$_Fetch implements _Fetch {
+  const _$_Fetch();
 
   @override
   String toString() {
-    return 'UserWatcherEvent.fetchUser()';
+    return 'UserWatcherEvent.fetch()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_FetchUser);
+        (other.runtimeType == runtimeType && other is _$_Fetch);
   }
 
   @override
@@ -213,29 +211,29 @@ class _$_FetchUser implements _FetchUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() fetchUser,
+    required TResult Function() fetch,
   }) {
-    return fetchUser();
+    return fetch();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? fetchUser,
+    TResult? Function()? fetch,
   }) {
-    return fetchUser?.call();
+    return fetch?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? fetchUser,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) {
-    if (fetchUser != null) {
-      return fetchUser();
+    if (fetch != null) {
+      return fetch();
     }
     return orElse();
   }
@@ -244,36 +242,36 @@ class _$_FetchUser implements _FetchUser {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
-    required TResult Function(_FetchUser value) fetchUser,
+    required TResult Function(_Fetch value) fetch,
   }) {
-    return fetchUser(this);
+    return fetch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
-    TResult? Function(_FetchUser value)? fetchUser,
+    TResult? Function(_Fetch value)? fetch,
   }) {
-    return fetchUser?.call(this);
+    return fetch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
-    TResult Function(_FetchUser value)? fetchUser,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) {
-    if (fetchUser != null) {
-      return fetchUser(this);
+    if (fetch != null) {
+      return fetch(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchUser implements UserWatcherEvent {
-  const factory _FetchUser() = _$_FetchUser;
+abstract class _Fetch implements UserWatcherEvent {
+  const factory _Fetch() = _$_Fetch;
 }
 
 /// @nodoc

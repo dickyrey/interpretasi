@@ -23,7 +23,7 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
   }) : super(ArticleFormState.initial()) {
     on<ArticleFormEvent>((event, emit) async {
       await event.map(
-        initial: (_) {
+        init: (_) {
           emit(ArticleFormState.initial());
         },
         initialize: (event) async {
@@ -44,19 +44,19 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
               state: RequestState.empty,
               message: '',
               imageFile: null,
-              isSubmitting: false,
-              articleId: id,
+              isSubmit: false,
+              id: id,
               title: event.article.title,
               content: event.article.content,
               imageUrl: event.article.image,
             ),
           );
         },
-        titleOnChanged: (e) {
+        title: (e) {
           emit(state.copyWith(title: e.val));
         },
-        contentOnChanged: (e) {
-          emit(state.copyWith(content: e.html));
+        content: (e) {
+          emit(state.copyWith(content: e.val));
         },
         pickImage: (e) async {
           final pickedImage = await ImagePicker().pickImage(
@@ -71,28 +71,37 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
             }
           }
         },
-        fetchCategoryList: (e) {
+        fetchCategories: (e) {
           final categoryMap = e.categories.map((e) => e).toList();
           emit(
             state.copyWith(
               state: RequestState.empty,
-              categoryList:
-                  categoryMap.map((e) => CheckBoxState(category: e)).toList(),
+              categoryCheckBoxList: categoryMap
+                  .map(
+                    (e) => CheckBoxState(category: e),
+                  )
+                  .toList(),
             ),
           );
         },
-        createArticlePressed: (e) async {
+        create: (e) async {
           emit(
             state.copyWith(
               state: RequestState.loading,
-              isSubmitting: true,
+              isSubmit: true,
             ),
           );
-          final selected =
-              state.categoryList.where((e) => e.value == true).toList();
+          final selected = state.categoryCheckBoxList
+              .where(
+                (e) => e.value == true,
+              )
+              .toList();
 
-          final selectedCategory =
-              selected.map((e) => '"${e.category.id}"').toList();
+          final selectedCategory = selected
+              .map(
+                (e) => '"${e.category.id}"',
+              )
+              .toList();
 
           if (state.imageFile != null) {
             final result = await create.execute(
@@ -106,34 +115,37 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
               (f) => emit(
                 state.copyWith(
                   state: RequestState.error,
-                  isSubmitting: false,
+                  isSubmit: false,
                   message: f.message,
                 ),
               ),
               (_) => emit(
                 state.copyWith(
                   state: RequestState.loaded,
-                  isSubmitting: true,
+                  isSubmit: true,
                 ),
               ),
             );
           }
         },
-        updateArticlePressed: (e) async {
+        update: (e) async {
           emit(
             state.copyWith(
               state: RequestState.loading,
-              isSubmitting: true,
+              isSubmit: true,
             ),
           );
-          final selected =
-              state.categoryList.where((e) => e.value == true).toList();
+          final selected = state.categoryCheckBoxList
+              .where(
+                (e) => e.value == true,
+              )
+              .toList();
 
           final selectedCategory =
               selected.map((e) => '"${e.category.id}"').toList();
 
           final result = await update.execute(
-            id: state.articleId,
+            id: state.id,
             title: state.title,
             content: state.content,
             imageFile: state.imageFile,
@@ -144,14 +156,14 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
             (f) => emit(
               state.copyWith(
                 state: RequestState.error,
-                isSubmitting: false,
+                isSubmit: false,
                 message: f.message,
               ),
             ),
             (_) => emit(
               state.copyWith(
                 state: RequestState.loaded,
-                isSubmitting: true,
+                isSubmit: true,
               ),
             ),
           );

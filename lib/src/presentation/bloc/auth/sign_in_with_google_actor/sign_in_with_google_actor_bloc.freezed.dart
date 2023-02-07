@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SignInWithGoogleActorEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() googleSignIn,
+    required TResult Function() signIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? googleSignIn,
+    TResult? Function()? signIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? googleSignIn,
+    TResult Function()? signIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GoogleSignIn value) googleSignIn,
+    required TResult Function(_SignIn value) signIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GoogleSignIn value)? googleSignIn,
+    TResult? Function(_SignIn value)? signIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GoogleSignIn value)? googleSignIn,
+    TResult Function(_SignIn value)? signIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -71,35 +71,33 @@ class _$SignInWithGoogleActorEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_GoogleSignInCopyWith<$Res> {
-  factory _$$_GoogleSignInCopyWith(
-          _$_GoogleSignIn value, $Res Function(_$_GoogleSignIn) then) =
-      __$$_GoogleSignInCopyWithImpl<$Res>;
+abstract class _$$_SignInCopyWith<$Res> {
+  factory _$$_SignInCopyWith(_$_SignIn value, $Res Function(_$_SignIn) then) =
+      __$$_SignInCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_GoogleSignInCopyWithImpl<$Res>
-    extends _$SignInWithGoogleActorEventCopyWithImpl<$Res, _$_GoogleSignIn>
-    implements _$$_GoogleSignInCopyWith<$Res> {
-  __$$_GoogleSignInCopyWithImpl(
-      _$_GoogleSignIn _value, $Res Function(_$_GoogleSignIn) _then)
+class __$$_SignInCopyWithImpl<$Res>
+    extends _$SignInWithGoogleActorEventCopyWithImpl<$Res, _$_SignIn>
+    implements _$$_SignInCopyWith<$Res> {
+  __$$_SignInCopyWithImpl(_$_SignIn _value, $Res Function(_$_SignIn) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GoogleSignIn implements _GoogleSignIn {
-  const _$_GoogleSignIn();
+class _$_SignIn implements _SignIn {
+  const _$_SignIn();
 
   @override
   String toString() {
-    return 'SignInWithGoogleActorEvent.googleSignIn()';
+    return 'SignInWithGoogleActorEvent.signIn()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_GoogleSignIn);
+        (other.runtimeType == runtimeType && other is _$_SignIn);
   }
 
   @override
@@ -108,27 +106,27 @@ class _$_GoogleSignIn implements _GoogleSignIn {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() googleSignIn,
+    required TResult Function() signIn,
   }) {
-    return googleSignIn();
+    return signIn();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? googleSignIn,
+    TResult? Function()? signIn,
   }) {
-    return googleSignIn?.call();
+    return signIn?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? googleSignIn,
+    TResult Function()? signIn,
     required TResult orElse(),
   }) {
-    if (googleSignIn != null) {
-      return googleSignIn();
+    if (signIn != null) {
+      return signIn();
     }
     return orElse();
   }
@@ -136,34 +134,34 @@ class _$_GoogleSignIn implements _GoogleSignIn {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GoogleSignIn value) googleSignIn,
+    required TResult Function(_SignIn value) signIn,
   }) {
-    return googleSignIn(this);
+    return signIn(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GoogleSignIn value)? googleSignIn,
+    TResult? Function(_SignIn value)? signIn,
   }) {
-    return googleSignIn?.call(this);
+    return signIn?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GoogleSignIn value)? googleSignIn,
+    TResult Function(_SignIn value)? signIn,
     required TResult orElse(),
   }) {
-    if (googleSignIn != null) {
-      return googleSignIn(this);
+    if (signIn != null) {
+      return signIn(this);
     }
     return orElse();
   }
 }
 
-abstract class _GoogleSignIn implements SignInWithGoogleActorEvent {
-  const factory _GoogleSignIn() = _$_GoogleSignIn;
+abstract class _SignIn implements SignInWithGoogleActorEvent {
+  const factory _SignIn() = _$_SignIn;
 }
 
 /// @nodoc

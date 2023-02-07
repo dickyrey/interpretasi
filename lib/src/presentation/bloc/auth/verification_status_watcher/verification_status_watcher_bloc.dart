@@ -16,7 +16,7 @@ class VerificationStatusWatcherBloc extends Bloc<VerificationStatusWatcherEvent,
         init: (_) {
           emit(const VerificationStatusWatcherState.initial());
         },
-        fetchStatus: (_) async {
+        fetch: (_) async {
           emit(const VerificationStatusWatcherState.loading());
           final result = await _verification.execute();
           result.fold(

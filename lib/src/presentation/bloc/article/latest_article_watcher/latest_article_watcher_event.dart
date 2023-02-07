@@ -2,5 +2,5 @@ part of 'latest_article_watcher_bloc.dart';
 
 @freezed
 class LatestArticleWatcherEvent with _$LatestArticleWatcherEvent {
-  const factory LatestArticleWatcherEvent.fetchArticle() = _FetchArticle;
+  const factory LatestArticleWatcherEvent.fetch() = _Fetch;
 }

@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserArticleRejectedWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchArticle,
+    required TResult Function() fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchArticle,
+    TResult? Function()? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchArticle,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchArticle value) fetchArticle,
+    required TResult Function(_Fetch value) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchArticle value)? fetchArticle,
+    TResult? Function(_Fetch value)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchArticle value)? fetchArticle,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,35 +72,33 @@ class _$UserArticleRejectedWatcherEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_FetchArticleCopyWith<$Res> {
-  factory _$$_FetchArticleCopyWith(
-          _$_FetchArticle value, $Res Function(_$_FetchArticle) then) =
-      __$$_FetchArticleCopyWithImpl<$Res>;
+abstract class _$$_FetchCopyWith<$Res> {
+  factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
+      __$$_FetchCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_FetchArticleCopyWithImpl<$Res>
-    extends _$UserArticleRejectedWatcherEventCopyWithImpl<$Res, _$_FetchArticle>
-    implements _$$_FetchArticleCopyWith<$Res> {
-  __$$_FetchArticleCopyWithImpl(
-      _$_FetchArticle _value, $Res Function(_$_FetchArticle) _then)
+class __$$_FetchCopyWithImpl<$Res>
+    extends _$UserArticleRejectedWatcherEventCopyWithImpl<$Res, _$_Fetch>
+    implements _$$_FetchCopyWith<$Res> {
+  __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_FetchArticle implements _FetchArticle {
-  const _$_FetchArticle();
+class _$_Fetch implements _Fetch {
+  const _$_Fetch();
 
   @override
   String toString() {
-    return 'UserArticleRejectedWatcherEvent.fetchArticle()';
+    return 'UserArticleRejectedWatcherEvent.fetch()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_FetchArticle);
+        (other.runtimeType == runtimeType && other is _$_Fetch);
   }
 
   @override
@@ -109,27 +107,27 @@ class _$_FetchArticle implements _FetchArticle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchArticle,
+    required TResult Function() fetch,
   }) {
-    return fetchArticle();
+    return fetch();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchArticle,
+    TResult? Function()? fetch,
   }) {
-    return fetchArticle?.call();
+    return fetch?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchArticle,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) {
-    if (fetchArticle != null) {
-      return fetchArticle();
+    if (fetch != null) {
+      return fetch();
     }
     return orElse();
   }
@@ -137,34 +135,34 @@ class _$_FetchArticle implements _FetchArticle {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchArticle value) fetchArticle,
+    required TResult Function(_Fetch value) fetch,
   }) {
-    return fetchArticle(this);
+    return fetch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchArticle value)? fetchArticle,
+    TResult? Function(_Fetch value)? fetch,
   }) {
-    return fetchArticle?.call(this);
+    return fetch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchArticle value)? fetchArticle,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) {
-    if (fetchArticle != null) {
-      return fetchArticle(this);
+    if (fetch != null) {
+      return fetch(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchArticle implements UserArticleRejectedWatcherEvent {
-  const factory _FetchArticle() = _$_FetchArticle;
+abstract class _Fetch implements UserArticleRejectedWatcherEvent {
+  const factory _Fetch() = _$_Fetch;
 }
 
 /// @nodoc
@@ -174,7 +172,7 @@ mixin _$UserArticleRejectedWatcherState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Article> article) loaded,
+    required TResult Function(List<Article> articleList) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -182,7 +180,7 @@ mixin _$UserArticleRejectedWatcherState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Article> article)? loaded,
+    TResult? Function(List<Article> articleList)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -190,7 +188,7 @@ mixin _$UserArticleRejectedWatcherState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Article> article)? loaded,
+    TResult Function(List<Article> articleList)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -282,7 +280,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Article> article) loaded,
+    required TResult Function(List<Article> articleList) loaded,
   }) {
     return initial();
   }
@@ -293,7 +291,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Article> article)? loaded,
+    TResult? Function(List<Article> articleList)? loaded,
   }) {
     return initial?.call();
   }
@@ -304,7 +302,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Article> article)? loaded,
+    TResult Function(List<Article> articleList)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -395,7 +393,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Article> article) loaded,
+    required TResult Function(List<Article> articleList) loaded,
   }) {
     return loading();
   }
@@ -406,7 +404,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Article> article)? loaded,
+    TResult? Function(List<Article> articleList)? loaded,
   }) {
     return loading?.call();
   }
@@ -417,7 +415,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Article> article)? loaded,
+    TResult Function(List<Article> articleList)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -507,7 +505,7 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Article> article) loaded,
+    required TResult Function(List<Article> articleList) loaded,
   }) {
     return error();
   }
@@ -518,7 +516,7 @@ class _$_Error implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Article> article)? loaded,
+    TResult? Function(List<Article> articleList)? loaded,
   }) {
     return error?.call();
   }
@@ -529,7 +527,7 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Article> article)? loaded,
+    TResult Function(List<Article> articleList)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -585,7 +583,7 @@ abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Article> article});
+  $Res call({List<Article> articleList});
 }
 
 /// @nodoc
@@ -598,12 +596,12 @@ class __$$_LoadedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? article = null,
+    Object? articleList = null,
   }) {
     return _then(_$_Loaded(
-      null == article
-          ? _value._article
-          : article // ignore: cast_nullable_to_non_nullable
+      null == articleList
+          ? _value._articleList
+          : articleList // ignore: cast_nullable_to_non_nullable
               as List<Article>,
     ));
   }
@@ -612,19 +610,19 @@ class __$$_LoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(final List<Article> article) : _article = article;
+  const _$_Loaded(final List<Article> articleList) : _articleList = articleList;
 
-  final List<Article> _article;
+  final List<Article> _articleList;
   @override
-  List<Article> get article {
-    if (_article is EqualUnmodifiableListView) return _article;
+  List<Article> get articleList {
+    if (_articleList is EqualUnmodifiableListView) return _articleList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_article);
+    return EqualUnmodifiableListView(_articleList);
   }
 
   @override
   String toString() {
-    return 'UserArticleRejectedWatcherState.loaded(article: $article)';
+    return 'UserArticleRejectedWatcherState.loaded(articleList: $articleList)';
   }
 
   @override
@@ -632,12 +630,13 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
-            const DeepCollectionEquality().equals(other._article, _article));
+            const DeepCollectionEquality()
+                .equals(other._articleList, _articleList));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_article));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_articleList));
 
   @JsonKey(ignore: true)
   @override
@@ -651,9 +650,9 @@ class _$_Loaded implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Article> article) loaded,
+    required TResult Function(List<Article> articleList) loaded,
   }) {
-    return loaded(article);
+    return loaded(articleList);
   }
 
   @override
@@ -662,9 +661,9 @@ class _$_Loaded implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Article> article)? loaded,
+    TResult? Function(List<Article> articleList)? loaded,
   }) {
-    return loaded?.call(article);
+    return loaded?.call(articleList);
   }
 
   @override
@@ -673,11 +672,11 @@ class _$_Loaded implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Article> article)? loaded,
+    TResult Function(List<Article> articleList)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(article);
+      return loaded(articleList);
     }
     return orElse();
   }
@@ -721,9 +720,9 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements UserArticleRejectedWatcherState {
-  const factory _Loaded(final List<Article> article) = _$_Loaded;
+  const factory _Loaded(final List<Article> articleList) = _$_Loaded;
 
-  List<Article> get article;
+  List<Article> get articleList;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;

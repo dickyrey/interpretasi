@@ -5,5 +5,5 @@ class UserArticlePublishedWatcherState with _$UserArticlePublishedWatcherState {
   const factory UserArticlePublishedWatcherState.initial() = _Initial;
   const factory UserArticlePublishedWatcherState.loading() = _Loading;
   const factory UserArticlePublishedWatcherState.error() = _Error;
-  const factory UserArticlePublishedWatcherState.loaded(List<Article> article) = _Loaded;
+  const factory UserArticlePublishedWatcherState.loaded(List<Article> articleList) = _Loaded;
 }

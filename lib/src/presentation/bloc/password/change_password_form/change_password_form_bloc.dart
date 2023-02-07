@@ -16,14 +16,14 @@ class ChangePasswordFormBloc
         init: (_) {
           emit(ChangePasswordFormState.inital());
         },
-        obscureTextPressed: (event) {
-          if (state.obscureText == true) {
-            emit(state.copyWith(obscureText: false));
+        obscureText: (event) {
+          if (state.isObscure == true) {
+            emit(state.copyWith(isObscure: false));
           } else {
-            emit(state.copyWith(obscureText: true));
+            emit(state.copyWith(isObscure: true));
           }
         },
-        oldPasswordOnChanged: (event) {
+        oldPassword: (event) {
           emit(
             state.copyWith(
               oldPassword: event.password,
@@ -31,7 +31,7 @@ class ChangePasswordFormBloc
             ),
           );
         },
-        newPasswordOnChanged: (event) {
+        newPassword: (event) {
           emit(
             state.copyWith(
               newPassword: event.password,
@@ -39,7 +39,7 @@ class ChangePasswordFormBloc
             ),
           );
         },
-        confirmationOnChanged: (event) {
+        confirmPassword: (event) {
           emit(
             state.copyWith(
               confirmationPassword: event.password,
@@ -47,11 +47,11 @@ class ChangePasswordFormBloc
             ),
           );
         },
-        changePasswordPressed: (event) async {
+        change: (event) async {
           emit(
             state.copyWith(
               state: RequestState.loading,
-              isSubmitting: true,
+              isSubmit: true,
             ),
           );
           final result = await _change.execute(
@@ -62,13 +62,13 @@ class ChangePasswordFormBloc
             (f) => emit(
               state.copyWith(
                 state: RequestState.empty,
-                isSubmitting: false,
+                isSubmit: false,
                 message: f.message,
               ),
             ),
             (_) => emit(
               state.copyWith(
-                isSubmitting: false,
+                isSubmit: false,
                 state: RequestState.loaded,
               ),
             ),

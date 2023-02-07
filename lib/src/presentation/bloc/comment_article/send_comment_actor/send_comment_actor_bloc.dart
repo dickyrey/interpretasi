@@ -24,8 +24,8 @@ class SendCommentActorBloc
           );
 
           result.fold(
-            (f) => emit(SendCommentActorState.sendFailure(f.message)),
-            (_) => emit(const SendCommentActorState.sendSuccess()),
+            (f) => emit(SendCommentActorState.error(f.message)),
+            (_) => emit(const SendCommentActorState.success()),
           );
         },
       );

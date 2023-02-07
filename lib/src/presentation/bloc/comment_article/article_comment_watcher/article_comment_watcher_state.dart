@@ -5,5 +5,5 @@ class ArticleCommentWatcherState with _$ArticleCommentWatcherState {
   const factory ArticleCommentWatcherState.initial() = _Initial;
   const factory ArticleCommentWatcherState.loading() = _Loading;
   const factory ArticleCommentWatcherState.error(String message) = _Error;
-  const factory ArticleCommentWatcherState.loaded(List<Comment> comments) = _Loaded;
+  const factory ArticleCommentWatcherState.loaded(List<Comment> commentList) = _Loaded;
 }

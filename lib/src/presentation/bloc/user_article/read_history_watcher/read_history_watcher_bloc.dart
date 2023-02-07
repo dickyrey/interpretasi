@@ -12,7 +12,7 @@ class ReadHistoryWatcherBloc
   ReadHistoryWatcherBloc(this._history) : super(const _Initial()) {
     on<ReadHistoryWatcherEvent>((event, emit) async {
       await event.map(
-        fetchArticle: (_) async {
+        fetch: (_) async {
           emit(const ReadHistoryWatcherState.loading());
           final result = await _history.execute();
           result.fold(

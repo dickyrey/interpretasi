@@ -32,9 +32,9 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
     _controller = PageController(initialPage: widget.index);
     super.initState();
     Future.microtask(() {
-      context.read<UserWatcherBloc>().add(const UserWatcherEvent.fetchUser());
-      context.read<CategoryWatcherBloc>().add(const CategoryWatcherEvent.fetchCategories());
-      context.read<LatestArticleWatcherBloc>().add(const LatestArticleWatcherEvent.fetchArticle());
+      context.read<UserWatcherBloc>().add(const UserWatcherEvent.fetch());
+      context.read<CategoryWatcherBloc>().add(const CategoryWatcherEvent.fetch());
+      context.read<LatestArticleWatcherBloc>().add(const LatestArticleWatcherEvent.fetch());
     });
   }
 

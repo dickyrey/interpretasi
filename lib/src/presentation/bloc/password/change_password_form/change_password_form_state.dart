@@ -8,8 +8,8 @@ class ChangePasswordFormState with _$ChangePasswordFormState {
     required String oldPassword,
     required String newPassword,
     required String confirmationPassword,
-    required bool obscureText,
-    required bool isSubmitting,
+    required bool isObscure,
+    required bool isSubmit,
   }) = _ChangePasswordFormState;
 
   factory ChangePasswordFormState.inital() {
@@ -19,8 +19,8 @@ class ChangePasswordFormState with _$ChangePasswordFormState {
       oldPassword: '',
       newPassword: '',
       confirmationPassword: '',
-      obscureText: false,
-      isSubmitting: false,
+      isObscure: false,
+      isSubmit: false,
     );
   }
 }

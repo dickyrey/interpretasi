@@ -5,7 +5,6 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_share/flutter_share.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/screens.dart';
@@ -102,7 +101,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                               ),
                             ),
                             title: Text(
-                               state.articleDetail.author.name,
+                              state.articleDetail.author.name,
                               style: theme.textTheme.labelSmall,
                             ),
                             subtitle: Text(
@@ -152,7 +151,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                     child: GestureDetector(
                       onTap: () {
                         context.read<ArticleCommentWatcherBloc>().add(
-                              ArticleCommentWatcherEvent.fetchComments(
+                              ArticleCommentWatcherEvent.fetch(
                                 widget.article.url,
                               ),
                             );
@@ -172,7 +171,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                           return GestureDetector(
                             onTap: () {
                               context.read<LikeArticleWatcherBloc>().add(
-                                    LikeArticleWatcherEvent.likePressed(
+                                    LikeArticleWatcherEvent.like(
                                       widget.article.url,
                                     ),
                                   );
@@ -187,7 +186,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                           return GestureDetector(
                             onTap: () {
                               context.read<LikeArticleWatcherBloc>().add(
-                                    LikeArticleWatcherEvent.likePressed(
+                                    LikeArticleWatcherEvent.like(
                                       widget.article.url,
                                     ),
                                   );
@@ -205,7 +204,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                   GestureDetector(
                     onTap: () {
                       context.read<ArticleCommentWatcherBloc>().add(
-                            ArticleCommentWatcherEvent.fetchComments(
+                            ArticleCommentWatcherEvent.fetch(
                               widget.article.url,
                             ),
                           );
@@ -293,12 +292,12 @@ class _CommentDialogState extends State<CommentDialog> {
           listener: (context, state) {
             state.maybeMap(
               orElse: () {},
-              sendFailure: (_) {
+              error: (_) {
                 showToast(
                   msg: lang.failed_to_post_comment_try_again_later,
                 );
               },
-              sendSuccess: (_) {
+              success: (_) {
                 _commentController.clear();
                 _scrollController.animateTo(
                   _scrollController.position.maxScrollExtent,
@@ -309,7 +308,7 @@ class _CommentDialogState extends State<CommentDialog> {
                     .read<SendCommentActorBloc>()
                     .add(const SendCommentActorEvent.init());
                 context.read<ArticleCommentWatcherBloc>().add(
-                      ArticleCommentWatcherEvent.refreshComments(
+                      ArticleCommentWatcherEvent.refresh(
                         widget.article.url,
                       ),
                     );
@@ -321,7 +320,7 @@ class _CommentDialogState extends State<CommentDialog> {
           listener: (context, state) {
             state.maybeMap(
               orElse: () {},
-              deleteInFailure: (_) {
+              error: (_) {
                 context
                     .read<DeleteCommentActorBloc>()
                     .add(const DeleteCommentActorEvent.init());
@@ -329,12 +328,12 @@ class _CommentDialogState extends State<CommentDialog> {
                   msg: lang.failed_to_delete_comment_try_again_later,
                 );
               },
-              deleteInSuccess: (_) {
+              success: (_) {
                 context
                     .read<DeleteCommentActorBloc>()
                     .add(const DeleteCommentActorEvent.init());
                 context.read<ArticleCommentWatcherBloc>().add(
-                      ArticleCommentWatcherEvent.refreshComments(
+                      ArticleCommentWatcherEvent.refresh(
                         widget.article.url,
                       ),
                     );
@@ -381,7 +380,7 @@ class _CommentDialogState extends State<CommentDialog> {
                     loaded: (state) {
                       return ListView.builder(
                         controller: _scrollController,
-                        itemCount: state.comments.length,
+                        itemCount: state.commentList.length,
                         shrinkWrap: true,
                         padding: const EdgeInsets.fromLTRB(
                           Const.margin,
@@ -391,7 +390,7 @@ class _CommentDialogState extends State<CommentDialog> {
                         ),
                         physics: const ScrollPhysics(),
                         itemBuilder: (context, index) {
-                          final comment = state.comments[index];
+                          final comment = state.commentList[index];
                           return CommentCardWidget(
                             article: widget.article,
                             comment: comment,

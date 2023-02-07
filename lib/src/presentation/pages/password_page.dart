@@ -30,7 +30,7 @@ class _PasswordPageState extends State<PasswordPage> {
       onWillPop: () async {
         context
             .read<VerificationStatusWatcherBloc>()
-            .add(const VerificationStatusWatcherEvent.fetchStatus());
+            .add(const VerificationStatusWatcherEvent.fetch());
         return true;
       },
       child: BlocConsumer<AddPasswordFormBloc, AddPasswordFormState>(
@@ -103,9 +103,9 @@ class _PasswordPageState extends State<PasswordPage> {
                       hintText: lang.pasword_hint_,
                       suffixIcon: IconButton(
                         onPressed: () {
-                          context.read<AddPasswordFormBloc>().add(
-                                const AddPasswordFormEvent.obscureTextPressed(),
-                              );
+                          context
+                              .read<AddPasswordFormBloc>()
+                              .add(const AddPasswordFormEvent.obscureText());
                         },
                         icon: Icon(
                           (state.obscureText == true)
@@ -116,7 +116,7 @@ class _PasswordPageState extends State<PasswordPage> {
                       onChanged: (value) {
                         context
                             .read<AddPasswordFormBloc>()
-                            .add(AddPasswordFormEvent.passwordOnChanged(value));
+                            .add(AddPasswordFormEvent.password(value));
                       },
                     ),
                     const SizedBox(height: Const.space25),
@@ -131,9 +131,9 @@ class _PasswordPageState extends State<PasswordPage> {
                       hintText: lang.pasword_hint_,
                       suffixIcon: IconButton(
                         onPressed: () {
-                          context.read<AddPasswordFormBloc>().add(
-                                const AddPasswordFormEvent.obscureTextPressed(),
-                              );
+                          context
+                              .read<AddPasswordFormBloc>()
+                              .add(const AddPasswordFormEvent.obscureText());
                         },
                         icon: Icon(
                           (state.obscureText == true)
@@ -142,11 +142,9 @@ class _PasswordPageState extends State<PasswordPage> {
                         ),
                       ),
                       onChanged: (value) {
-                        context.read<AddPasswordFormBloc>().add(
-                              AddPasswordFormEvent.repeatPasswordOnChanged(
-                                value,
-                              ),
-                            );
+                        context
+                            .read<AddPasswordFormBloc>()
+                            .add(AddPasswordFormEvent.repeatPassword(value));
                       },
                     ),
                     const SizedBox(height: Const.space25),
@@ -163,14 +161,14 @@ class _PasswordPageState extends State<PasswordPage> {
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snack);
                         } else {
-                          context.read<AddPasswordFormBloc>().add(
-                                const AddPasswordFormEvent.addPasswordPressed(),
-                              );
+                          context
+                              .read<AddPasswordFormBloc>()
+                              .add(const AddPasswordFormEvent.addPassword());
                         }
                       },
                       label: lang.save,
                       labelLoading: lang.please_wait,
-                      isLoading: (state.isSubmitting == true) ? true : false,
+                      isLoading: (state.isSubmit == true) ? true : false,
                     ),
                   ],
                 ),

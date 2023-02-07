@@ -53,7 +53,7 @@ class RegisterPage extends StatelessWidget {
               signInSuccess: (_) {
                 context
                     .read<AuthWatcherBloc>()
-                    .add(const AuthWatcherEvent.authCheckRequested());
+                    .add(const AuthWatcherEvent.check());
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   HOME,
@@ -73,7 +73,7 @@ class RegisterPage extends StatelessWidget {
                   Navigator.pop(context);
                   context
                       .read<SignUpWithEmailFormBloc>()
-                      .add(const SignUpWithEmailFormEvent.initial());
+                      .add(const SignUpWithEmailFormEvent.init());
                 },
               );
             } else if (state.state == RequestState.loaded) {
@@ -141,18 +141,18 @@ class RegisterPage extends StatelessWidget {
                       onChanged: (v) {
                         context
                             .read<SignUpWithEmailFormBloc>()
-                            .add(SignUpWithEmailFormEvent.emailOnChanged(v));
+                            .add(SignUpWithEmailFormEvent.email(v));
                       },
                     ),
                     const SizedBox(height: Const.space25),
                     ElevatedButtonWidget(
                       label: lang.register,
                       labelLoading: lang.please_wait,
-                      isLoading: (state.isSubmitting == true) ? true : false,
+                      isLoading: (state.isSubmit == true) ? true : false,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
                           context.read<SignUpWithEmailFormBloc>().add(
-                                const SignUpWithEmailFormEvent.signUpPressed(),
+                                const SignUpWithEmailFormEvent.signUp(),
                               );
                         }
                       },
@@ -194,7 +194,7 @@ class RegisterPage extends StatelessWidget {
                       ),
                       onTap: () {
                         context.read<SignInWithGoogleActorBloc>().add(
-                              const SignInWithGoogleActorEvent.googleSignIn(),
+                              const SignInWithGoogleActorEvent.signIn(),
                             );
                       },
                     ),

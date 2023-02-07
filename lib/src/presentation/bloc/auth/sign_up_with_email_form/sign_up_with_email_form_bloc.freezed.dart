@@ -18,45 +18,45 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SignUpWithEmailFormEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String val) emailOnChanged,
-    required TResult Function() signUpPressed,
+    required TResult Function() init,
+    required TResult Function(String val) email,
+    required TResult Function() signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(String val)? emailOnChanged,
-    TResult? Function()? signUpPressed,
+    TResult? Function()? init,
+    TResult? Function(String val)? email,
+    TResult? Function()? signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String val)? emailOnChanged,
-    TResult Function()? signUpPressed,
+    TResult Function()? init,
+    TResult Function(String val)? email,
+    TResult Function()? signUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_EmailOnChanged value) emailOnChanged,
-    required TResult Function(_SignUpPressed value) signUpPressed,
+    required TResult Function(_Init value) init,
+    required TResult Function(_Email value) email,
+    required TResult Function(_SignUp value) signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_EmailOnChanged value)? emailOnChanged,
-    TResult? Function(_SignUpPressed value)? signUpPressed,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Email value)? email,
+    TResult? Function(_SignUp value)? signUp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_EmailOnChanged value)? emailOnChanged,
-    TResult Function(_SignUpPressed value)? signUpPressed,
+    TResult Function(_Init value)? init,
+    TResult Function(_Email value)? email,
+    TResult Function(_SignUp value)? signUp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -82,34 +82,33 @@ class _$SignUpWithEmailFormEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$_InitCopyWith<$Res> {
+  factory _$$_InitCopyWith(_$_Init value, $Res Function(_$_Init) then) =
+      __$$_InitCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$SignUpWithEmailFormEventCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$_InitCopyWithImpl<$Res>
+    extends _$SignUpWithEmailFormEventCopyWithImpl<$Res, _$_Init>
+    implements _$$_InitCopyWith<$Res> {
+  __$$_InitCopyWithImpl(_$_Init _value, $Res Function(_$_Init) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$_Init implements _Init {
+  const _$_Init();
 
   @override
   String toString() {
-    return 'SignUpWithEmailFormEvent.initial()';
+    return 'SignUpWithEmailFormEvent.init()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$_Init);
   }
 
   @override
@@ -118,33 +117,33 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String val) emailOnChanged,
-    required TResult Function() signUpPressed,
+    required TResult Function() init,
+    required TResult Function(String val) email,
+    required TResult Function() signUp,
   }) {
-    return initial();
+    return init();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(String val)? emailOnChanged,
-    TResult? Function()? signUpPressed,
+    TResult? Function()? init,
+    TResult? Function(String val)? email,
+    TResult? Function()? signUp,
   }) {
-    return initial?.call();
+    return init?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String val)? emailOnChanged,
-    TResult Function()? signUpPressed,
+    TResult Function()? init,
+    TResult Function(String val)? email,
+    TResult Function()? signUp,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial();
+    if (init != null) {
+      return init();
     }
     return orElse();
   }
@@ -152,57 +151,55 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_EmailOnChanged value) emailOnChanged,
-    required TResult Function(_SignUpPressed value) signUpPressed,
+    required TResult Function(_Init value) init,
+    required TResult Function(_Email value) email,
+    required TResult Function(_SignUp value) signUp,
   }) {
-    return initial(this);
+    return init(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_EmailOnChanged value)? emailOnChanged,
-    TResult? Function(_SignUpPressed value)? signUpPressed,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Email value)? email,
+    TResult? Function(_SignUp value)? signUp,
   }) {
-    return initial?.call(this);
+    return init?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_EmailOnChanged value)? emailOnChanged,
-    TResult Function(_SignUpPressed value)? signUpPressed,
+    TResult Function(_Init value)? init,
+    TResult Function(_Email value)? email,
+    TResult Function(_SignUp value)? signUp,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial(this);
+    if (init != null) {
+      return init(this);
     }
     return orElse();
   }
 }
 
-abstract class _Initial implements SignUpWithEmailFormEvent {
-  const factory _Initial() = _$_Initial;
+abstract class _Init implements SignUpWithEmailFormEvent {
+  const factory _Init() = _$_Init;
 }
 
 /// @nodoc
-abstract class _$$_EmailOnChangedCopyWith<$Res> {
-  factory _$$_EmailOnChangedCopyWith(
-          _$_EmailOnChanged value, $Res Function(_$_EmailOnChanged) then) =
-      __$$_EmailOnChangedCopyWithImpl<$Res>;
+abstract class _$$_EmailCopyWith<$Res> {
+  factory _$$_EmailCopyWith(_$_Email value, $Res Function(_$_Email) then) =
+      __$$_EmailCopyWithImpl<$Res>;
   @useResult
   $Res call({String val});
 }
 
 /// @nodoc
-class __$$_EmailOnChangedCopyWithImpl<$Res>
-    extends _$SignUpWithEmailFormEventCopyWithImpl<$Res, _$_EmailOnChanged>
-    implements _$$_EmailOnChangedCopyWith<$Res> {
-  __$$_EmailOnChangedCopyWithImpl(
-      _$_EmailOnChanged _value, $Res Function(_$_EmailOnChanged) _then)
+class __$$_EmailCopyWithImpl<$Res>
+    extends _$SignUpWithEmailFormEventCopyWithImpl<$Res, _$_Email>
+    implements _$$_EmailCopyWith<$Res> {
+  __$$_EmailCopyWithImpl(_$_Email _value, $Res Function(_$_Email) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -210,7 +207,7 @@ class __$$_EmailOnChangedCopyWithImpl<$Res>
   $Res call({
     Object? val = null,
   }) {
-    return _then(_$_EmailOnChanged(
+    return _then(_$_Email(
       null == val
           ? _value.val
           : val // ignore: cast_nullable_to_non_nullable
@@ -221,22 +218,22 @@ class __$$_EmailOnChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_EmailOnChanged implements _EmailOnChanged {
-  const _$_EmailOnChanged(this.val);
+class _$_Email implements _Email {
+  const _$_Email(this.val);
 
   @override
   final String val;
 
   @override
   String toString() {
-    return 'SignUpWithEmailFormEvent.emailOnChanged(val: $val)';
+    return 'SignUpWithEmailFormEvent.email(val: $val)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_EmailOnChanged &&
+            other is _$_Email &&
             (identical(other.val, val) || other.val == val));
   }
 
@@ -246,39 +243,39 @@ class _$_EmailOnChanged implements _EmailOnChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EmailOnChangedCopyWith<_$_EmailOnChanged> get copyWith =>
-      __$$_EmailOnChangedCopyWithImpl<_$_EmailOnChanged>(this, _$identity);
+  _$$_EmailCopyWith<_$_Email> get copyWith =>
+      __$$_EmailCopyWithImpl<_$_Email>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String val) emailOnChanged,
-    required TResult Function() signUpPressed,
+    required TResult Function() init,
+    required TResult Function(String val) email,
+    required TResult Function() signUp,
   }) {
-    return emailOnChanged(val);
+    return email(val);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(String val)? emailOnChanged,
-    TResult? Function()? signUpPressed,
+    TResult? Function()? init,
+    TResult? Function(String val)? email,
+    TResult? Function()? signUp,
   }) {
-    return emailOnChanged?.call(val);
+    return email?.call(val);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String val)? emailOnChanged,
-    TResult Function()? signUpPressed,
+    TResult Function()? init,
+    TResult Function(String val)? email,
+    TResult Function()? signUp,
     required TResult orElse(),
   }) {
-    if (emailOnChanged != null) {
-      return emailOnChanged(val);
+    if (email != null) {
+      return email(val);
     }
     return orElse();
   }
@@ -286,77 +283,75 @@ class _$_EmailOnChanged implements _EmailOnChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_EmailOnChanged value) emailOnChanged,
-    required TResult Function(_SignUpPressed value) signUpPressed,
+    required TResult Function(_Init value) init,
+    required TResult Function(_Email value) email,
+    required TResult Function(_SignUp value) signUp,
   }) {
-    return emailOnChanged(this);
+    return email(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_EmailOnChanged value)? emailOnChanged,
-    TResult? Function(_SignUpPressed value)? signUpPressed,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Email value)? email,
+    TResult? Function(_SignUp value)? signUp,
   }) {
-    return emailOnChanged?.call(this);
+    return email?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_EmailOnChanged value)? emailOnChanged,
-    TResult Function(_SignUpPressed value)? signUpPressed,
+    TResult Function(_Init value)? init,
+    TResult Function(_Email value)? email,
+    TResult Function(_SignUp value)? signUp,
     required TResult orElse(),
   }) {
-    if (emailOnChanged != null) {
-      return emailOnChanged(this);
+    if (email != null) {
+      return email(this);
     }
     return orElse();
   }
 }
 
-abstract class _EmailOnChanged implements SignUpWithEmailFormEvent {
-  const factory _EmailOnChanged(final String val) = _$_EmailOnChanged;
+abstract class _Email implements SignUpWithEmailFormEvent {
+  const factory _Email(final String val) = _$_Email;
 
   String get val;
   @JsonKey(ignore: true)
-  _$$_EmailOnChangedCopyWith<_$_EmailOnChanged> get copyWith =>
+  _$$_EmailCopyWith<_$_Email> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_SignUpPressedCopyWith<$Res> {
-  factory _$$_SignUpPressedCopyWith(
-          _$_SignUpPressed value, $Res Function(_$_SignUpPressed) then) =
-      __$$_SignUpPressedCopyWithImpl<$Res>;
+abstract class _$$_SignUpCopyWith<$Res> {
+  factory _$$_SignUpCopyWith(_$_SignUp value, $Res Function(_$_SignUp) then) =
+      __$$_SignUpCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SignUpPressedCopyWithImpl<$Res>
-    extends _$SignUpWithEmailFormEventCopyWithImpl<$Res, _$_SignUpPressed>
-    implements _$$_SignUpPressedCopyWith<$Res> {
-  __$$_SignUpPressedCopyWithImpl(
-      _$_SignUpPressed _value, $Res Function(_$_SignUpPressed) _then)
+class __$$_SignUpCopyWithImpl<$Res>
+    extends _$SignUpWithEmailFormEventCopyWithImpl<$Res, _$_SignUp>
+    implements _$$_SignUpCopyWith<$Res> {
+  __$$_SignUpCopyWithImpl(_$_SignUp _value, $Res Function(_$_SignUp) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SignUpPressed implements _SignUpPressed {
-  const _$_SignUpPressed();
+class _$_SignUp implements _SignUp {
+  const _$_SignUp();
 
   @override
   String toString() {
-    return 'SignUpWithEmailFormEvent.signUpPressed()';
+    return 'SignUpWithEmailFormEvent.signUp()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SignUpPressed);
+        (other.runtimeType == runtimeType && other is _$_SignUp);
   }
 
   @override
@@ -365,33 +360,33 @@ class _$_SignUpPressed implements _SignUpPressed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(String val) emailOnChanged,
-    required TResult Function() signUpPressed,
+    required TResult Function() init,
+    required TResult Function(String val) email,
+    required TResult Function() signUp,
   }) {
-    return signUpPressed();
+    return signUp();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(String val)? emailOnChanged,
-    TResult? Function()? signUpPressed,
+    TResult? Function()? init,
+    TResult? Function(String val)? email,
+    TResult? Function()? signUp,
   }) {
-    return signUpPressed?.call();
+    return signUp?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(String val)? emailOnChanged,
-    TResult Function()? signUpPressed,
+    TResult Function()? init,
+    TResult Function(String val)? email,
+    TResult Function()? signUp,
     required TResult orElse(),
   }) {
-    if (signUpPressed != null) {
-      return signUpPressed();
+    if (signUp != null) {
+      return signUp();
     }
     return orElse();
   }
@@ -399,47 +394,47 @@ class _$_SignUpPressed implements _SignUpPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_EmailOnChanged value) emailOnChanged,
-    required TResult Function(_SignUpPressed value) signUpPressed,
+    required TResult Function(_Init value) init,
+    required TResult Function(_Email value) email,
+    required TResult Function(_SignUp value) signUp,
   }) {
-    return signUpPressed(this);
+    return signUp(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_EmailOnChanged value)? emailOnChanged,
-    TResult? Function(_SignUpPressed value)? signUpPressed,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Email value)? email,
+    TResult? Function(_SignUp value)? signUp,
   }) {
-    return signUpPressed?.call(this);
+    return signUp?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_EmailOnChanged value)? emailOnChanged,
-    TResult Function(_SignUpPressed value)? signUpPressed,
+    TResult Function(_Init value)? init,
+    TResult Function(_Email value)? email,
+    TResult Function(_SignUp value)? signUp,
     required TResult orElse(),
   }) {
-    if (signUpPressed != null) {
-      return signUpPressed(this);
+    if (signUp != null) {
+      return signUp(this);
     }
     return orElse();
   }
 }
 
-abstract class _SignUpPressed implements SignUpWithEmailFormEvent {
-  const factory _SignUpPressed() = _$_SignUpPressed;
+abstract class _SignUp implements SignUpWithEmailFormEvent {
+  const factory _SignUp() = _$_SignUp;
 }
 
 /// @nodoc
 mixin _$SignUpWithEmailFormState {
   RequestState get state => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get isSubmit => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -453,8 +448,7 @@ abstract class $SignUpWithEmailFormStateCopyWith<$Res> {
           $Res Function(SignUpWithEmailFormState) then) =
       _$SignUpWithEmailFormStateCopyWithImpl<$Res, SignUpWithEmailFormState>;
   @useResult
-  $Res call(
-      {RequestState state, String message, bool isSubmitting, String email});
+  $Res call({RequestState state, String message, bool isSubmit, String email});
 }
 
 /// @nodoc
@@ -473,7 +467,7 @@ class _$SignUpWithEmailFormStateCopyWithImpl<$Res,
   $Res call({
     Object? state = null,
     Object? message = null,
-    Object? isSubmitting = null,
+    Object? isSubmit = null,
     Object? email = null,
   }) {
     return _then(_value.copyWith(
@@ -485,9 +479,9 @@ class _$SignUpWithEmailFormStateCopyWithImpl<$Res,
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      isSubmitting: null == isSubmitting
-          ? _value.isSubmitting
-          : isSubmitting // ignore: cast_nullable_to_non_nullable
+      isSubmit: null == isSubmit
+          ? _value.isSubmit
+          : isSubmit // ignore: cast_nullable_to_non_nullable
               as bool,
       email: null == email
           ? _value.email
@@ -506,8 +500,7 @@ abstract class _$$_SignUpWithEmailFormStateCopyWith<$Res>
       __$$_SignUpWithEmailFormStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {RequestState state, String message, bool isSubmitting, String email});
+  $Res call({RequestState state, String message, bool isSubmit, String email});
 }
 
 /// @nodoc
@@ -524,7 +517,7 @@ class __$$_SignUpWithEmailFormStateCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
     Object? message = null,
-    Object? isSubmitting = null,
+    Object? isSubmit = null,
     Object? email = null,
   }) {
     return _then(_$_SignUpWithEmailFormState(
@@ -536,9 +529,9 @@ class __$$_SignUpWithEmailFormStateCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      isSubmitting: null == isSubmitting
-          ? _value.isSubmitting
-          : isSubmitting // ignore: cast_nullable_to_non_nullable
+      isSubmit: null == isSubmit
+          ? _value.isSubmit
+          : isSubmit // ignore: cast_nullable_to_non_nullable
               as bool,
       email: null == email
           ? _value.email
@@ -554,7 +547,7 @@ class _$_SignUpWithEmailFormState implements _SignUpWithEmailFormState {
   const _$_SignUpWithEmailFormState(
       {required this.state,
       required this.message,
-      required this.isSubmitting,
+      required this.isSubmit,
       required this.email});
 
   @override
@@ -562,13 +555,13 @@ class _$_SignUpWithEmailFormState implements _SignUpWithEmailFormState {
   @override
   final String message;
   @override
-  final bool isSubmitting;
+  final bool isSubmit;
   @override
   final String email;
 
   @override
   String toString() {
-    return 'SignUpWithEmailFormState(state: $state, message: $message, isSubmitting: $isSubmitting, email: $email)';
+    return 'SignUpWithEmailFormState(state: $state, message: $message, isSubmit: $isSubmit, email: $email)';
   }
 
   @override
@@ -578,14 +571,13 @@ class _$_SignUpWithEmailFormState implements _SignUpWithEmailFormState {
             other is _$_SignUpWithEmailFormState &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.isSubmitting, isSubmitting) ||
-                other.isSubmitting == isSubmitting) &&
+            (identical(other.isSubmit, isSubmit) ||
+                other.isSubmit == isSubmit) &&
             (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, state, message, isSubmitting, email);
+  int get hashCode => Object.hash(runtimeType, state, message, isSubmit, email);
 
   @JsonKey(ignore: true)
   @override
@@ -599,7 +591,7 @@ abstract class _SignUpWithEmailFormState implements SignUpWithEmailFormState {
   const factory _SignUpWithEmailFormState(
       {required final RequestState state,
       required final String message,
-      required final bool isSubmitting,
+      required final bool isSubmit,
       required final String email}) = _$_SignUpWithEmailFormState;
 
   @override
@@ -607,7 +599,7 @@ abstract class _SignUpWithEmailFormState implements SignUpWithEmailFormState {
   @override
   String get message;
   @override
-  bool get isSubmitting;
+  bool get isSubmit;
   @override
   String get email;
   @override

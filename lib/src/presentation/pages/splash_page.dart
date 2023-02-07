@@ -21,7 +21,7 @@ class _SplashPageState extends State<SplashPage> {
     Future.microtask(
       () => context
           .read<AuthWatcherBloc>()
-          .add(const AuthWatcherEvent.authCheckRequested()),
+          .add(const AuthWatcherEvent.check()),
     );
   }
 

@@ -32,7 +32,7 @@ class LikeArticleWatcherBloc
             },
           );
         },
-        likePressed: (event) async {
+        like: (event) async {
           final id = event.id.replaceFirst(Const.unusedPath, '');
           if (state == const LikeArticleWatcherState.liked()) {
             emit(const LikeArticleWatcherState.unliked());

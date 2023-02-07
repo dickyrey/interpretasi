@@ -8,8 +8,7 @@ class AddPasswordFormState with _$AddPasswordFormState {
     required String password,
     required String repeatPassword,
     required bool obscureText,
-    required bool isSubmitting,
-    required bool isShowErrorMessages,
+    required bool isSubmit,
   }) = _AddPasswordFormState;
 
   factory AddPasswordFormState.initial() => const AddPasswordFormState(
@@ -18,7 +17,6 @@ class AddPasswordFormState with _$AddPasswordFormState {
         password: '',
         repeatPassword: '',
         obscureText: true,
-        isSubmitting: false,
-        isShowErrorMessages: false,
+        isSubmit: false,
       );
 }

@@ -19,57 +19,56 @@ mixin _$AddPasswordFormEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String password) passwordOnChanged,
-    required TResult Function(String repeatPassword) repeatPasswordOnChanged,
-    required TResult Function() addPasswordPressed,
-    required TResult Function() obscureTextPressed,
+    required TResult Function(String password) password,
+    required TResult Function(String repeatPassword) repeatPassword,
+    required TResult Function() addPassword,
+    required TResult Function() obscureText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String password)? passwordOnChanged,
-    TResult? Function(String repeatPassword)? repeatPasswordOnChanged,
-    TResult? Function()? addPasswordPressed,
-    TResult? Function()? obscureTextPressed,
+    TResult? Function(String password)? password,
+    TResult? Function(String repeatPassword)? repeatPassword,
+    TResult? Function()? addPassword,
+    TResult? Function()? obscureText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String password)? passwordOnChanged,
-    TResult Function(String repeatPassword)? repeatPasswordOnChanged,
-    TResult Function()? addPasswordPressed,
-    TResult Function()? obscureTextPressed,
+    TResult Function(String password)? password,
+    TResult Function(String repeatPassword)? repeatPassword,
+    TResult Function()? addPassword,
+    TResult Function()? obscureText,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_PasswordOnChanged value) passwordOnChanged,
-    required TResult Function(_RepeatPasswordOnChanged value)
-        repeatPasswordOnChanged,
-    required TResult Function(_AddPasswordPressed value) addPasswordPressed,
-    required TResult Function(_ObscureTextPressed value) obscureTextPressed,
+    required TResult Function(_Password value) password,
+    required TResult Function(_RepeatPassword value) repeatPassword,
+    required TResult Function(_AddPassword value) addPassword,
+    required TResult Function(_ObscureText value) obscureText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_PasswordOnChanged value)? passwordOnChanged,
-    TResult? Function(_RepeatPasswordOnChanged value)? repeatPasswordOnChanged,
-    TResult? Function(_AddPasswordPressed value)? addPasswordPressed,
-    TResult? Function(_ObscureTextPressed value)? obscureTextPressed,
+    TResult? Function(_Password value)? password,
+    TResult? Function(_RepeatPassword value)? repeatPassword,
+    TResult? Function(_AddPassword value)? addPassword,
+    TResult? Function(_ObscureText value)? obscureText,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_PasswordOnChanged value)? passwordOnChanged,
-    TResult Function(_RepeatPasswordOnChanged value)? repeatPasswordOnChanged,
-    TResult Function(_AddPasswordPressed value)? addPasswordPressed,
-    TResult Function(_ObscureTextPressed value)? obscureTextPressed,
+    TResult Function(_Password value)? password,
+    TResult Function(_RepeatPassword value)? repeatPassword,
+    TResult Function(_AddPassword value)? addPassword,
+    TResult Function(_ObscureText value)? obscureText,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -132,10 +131,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String password) passwordOnChanged,
-    required TResult Function(String repeatPassword) repeatPasswordOnChanged,
-    required TResult Function() addPasswordPressed,
-    required TResult Function() obscureTextPressed,
+    required TResult Function(String password) password,
+    required TResult Function(String repeatPassword) repeatPassword,
+    required TResult Function() addPassword,
+    required TResult Function() obscureText,
   }) {
     return initial();
   }
@@ -144,10 +143,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String password)? passwordOnChanged,
-    TResult? Function(String repeatPassword)? repeatPasswordOnChanged,
-    TResult? Function()? addPasswordPressed,
-    TResult? Function()? obscureTextPressed,
+    TResult? Function(String password)? password,
+    TResult? Function(String repeatPassword)? repeatPassword,
+    TResult? Function()? addPassword,
+    TResult? Function()? obscureText,
   }) {
     return initial?.call();
   }
@@ -156,10 +155,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String password)? passwordOnChanged,
-    TResult Function(String repeatPassword)? repeatPasswordOnChanged,
-    TResult Function()? addPasswordPressed,
-    TResult Function()? obscureTextPressed,
+    TResult Function(String password)? password,
+    TResult Function(String repeatPassword)? repeatPassword,
+    TResult Function()? addPassword,
+    TResult Function()? obscureText,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -172,11 +171,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_PasswordOnChanged value) passwordOnChanged,
-    required TResult Function(_RepeatPasswordOnChanged value)
-        repeatPasswordOnChanged,
-    required TResult Function(_AddPasswordPressed value) addPasswordPressed,
-    required TResult Function(_ObscureTextPressed value) obscureTextPressed,
+    required TResult Function(_Password value) password,
+    required TResult Function(_RepeatPassword value) repeatPassword,
+    required TResult Function(_AddPassword value) addPassword,
+    required TResult Function(_ObscureText value) obscureText,
   }) {
     return initial(this);
   }
@@ -185,10 +183,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_PasswordOnChanged value)? passwordOnChanged,
-    TResult? Function(_RepeatPasswordOnChanged value)? repeatPasswordOnChanged,
-    TResult? Function(_AddPasswordPressed value)? addPasswordPressed,
-    TResult? Function(_ObscureTextPressed value)? obscureTextPressed,
+    TResult? Function(_Password value)? password,
+    TResult? Function(_RepeatPassword value)? repeatPassword,
+    TResult? Function(_AddPassword value)? addPassword,
+    TResult? Function(_ObscureText value)? obscureText,
   }) {
     return initial?.call(this);
   }
@@ -197,10 +195,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_PasswordOnChanged value)? passwordOnChanged,
-    TResult Function(_RepeatPasswordOnChanged value)? repeatPasswordOnChanged,
-    TResult Function(_AddPasswordPressed value)? addPasswordPressed,
-    TResult Function(_ObscureTextPressed value)? obscureTextPressed,
+    TResult Function(_Password value)? password,
+    TResult Function(_RepeatPassword value)? repeatPassword,
+    TResult Function(_AddPassword value)? addPassword,
+    TResult Function(_ObscureText value)? obscureText,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -215,20 +213,20 @@ abstract class _Initial implements AddPasswordFormEvent {
 }
 
 /// @nodoc
-abstract class _$$_PasswordOnChangedCopyWith<$Res> {
-  factory _$$_PasswordOnChangedCopyWith(_$_PasswordOnChanged value,
-          $Res Function(_$_PasswordOnChanged) then) =
-      __$$_PasswordOnChangedCopyWithImpl<$Res>;
+abstract class _$$_PasswordCopyWith<$Res> {
+  factory _$$_PasswordCopyWith(
+          _$_Password value, $Res Function(_$_Password) then) =
+      __$$_PasswordCopyWithImpl<$Res>;
   @useResult
   $Res call({String password});
 }
 
 /// @nodoc
-class __$$_PasswordOnChangedCopyWithImpl<$Res>
-    extends _$AddPasswordFormEventCopyWithImpl<$Res, _$_PasswordOnChanged>
-    implements _$$_PasswordOnChangedCopyWith<$Res> {
-  __$$_PasswordOnChangedCopyWithImpl(
-      _$_PasswordOnChanged _value, $Res Function(_$_PasswordOnChanged) _then)
+class __$$_PasswordCopyWithImpl<$Res>
+    extends _$AddPasswordFormEventCopyWithImpl<$Res, _$_Password>
+    implements _$$_PasswordCopyWith<$Res> {
+  __$$_PasswordCopyWithImpl(
+      _$_Password _value, $Res Function(_$_Password) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -236,7 +234,7 @@ class __$$_PasswordOnChangedCopyWithImpl<$Res>
   $Res call({
     Object? password = null,
   }) {
-    return _then(_$_PasswordOnChanged(
+    return _then(_$_Password(
       null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
@@ -247,22 +245,22 @@ class __$$_PasswordOnChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PasswordOnChanged implements _PasswordOnChanged {
-  const _$_PasswordOnChanged(this.password);
+class _$_Password implements _Password {
+  const _$_Password(this.password);
 
   @override
   final String password;
 
   @override
   String toString() {
-    return 'AddPasswordFormEvent.passwordOnChanged(password: $password)';
+    return 'AddPasswordFormEvent.password(password: $password)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PasswordOnChanged &&
+            other is _$_Password &&
             (identical(other.password, password) ||
                 other.password == password));
   }
@@ -273,46 +271,45 @@ class _$_PasswordOnChanged implements _PasswordOnChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PasswordOnChangedCopyWith<_$_PasswordOnChanged> get copyWith =>
-      __$$_PasswordOnChangedCopyWithImpl<_$_PasswordOnChanged>(
-          this, _$identity);
+  _$$_PasswordCopyWith<_$_Password> get copyWith =>
+      __$$_PasswordCopyWithImpl<_$_Password>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String password) passwordOnChanged,
-    required TResult Function(String repeatPassword) repeatPasswordOnChanged,
-    required TResult Function() addPasswordPressed,
-    required TResult Function() obscureTextPressed,
+    required TResult Function(String password) password,
+    required TResult Function(String repeatPassword) repeatPassword,
+    required TResult Function() addPassword,
+    required TResult Function() obscureText,
   }) {
-    return passwordOnChanged(password);
+    return password(this.password);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String password)? passwordOnChanged,
-    TResult? Function(String repeatPassword)? repeatPasswordOnChanged,
-    TResult? Function()? addPasswordPressed,
-    TResult? Function()? obscureTextPressed,
+    TResult? Function(String password)? password,
+    TResult? Function(String repeatPassword)? repeatPassword,
+    TResult? Function()? addPassword,
+    TResult? Function()? obscureText,
   }) {
-    return passwordOnChanged?.call(password);
+    return password?.call(this.password);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String password)? passwordOnChanged,
-    TResult Function(String repeatPassword)? repeatPasswordOnChanged,
-    TResult Function()? addPasswordPressed,
-    TResult Function()? obscureTextPressed,
+    TResult Function(String password)? password,
+    TResult Function(String repeatPassword)? repeatPassword,
+    TResult Function()? addPassword,
+    TResult Function()? obscureText,
     required TResult orElse(),
   }) {
-    if (passwordOnChanged != null) {
-      return passwordOnChanged(password);
+    if (password != null) {
+      return password(this.password);
     }
     return orElse();
   }
@@ -321,69 +318,67 @@ class _$_PasswordOnChanged implements _PasswordOnChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_PasswordOnChanged value) passwordOnChanged,
-    required TResult Function(_RepeatPasswordOnChanged value)
-        repeatPasswordOnChanged,
-    required TResult Function(_AddPasswordPressed value) addPasswordPressed,
-    required TResult Function(_ObscureTextPressed value) obscureTextPressed,
+    required TResult Function(_Password value) password,
+    required TResult Function(_RepeatPassword value) repeatPassword,
+    required TResult Function(_AddPassword value) addPassword,
+    required TResult Function(_ObscureText value) obscureText,
   }) {
-    return passwordOnChanged(this);
+    return password(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_PasswordOnChanged value)? passwordOnChanged,
-    TResult? Function(_RepeatPasswordOnChanged value)? repeatPasswordOnChanged,
-    TResult? Function(_AddPasswordPressed value)? addPasswordPressed,
-    TResult? Function(_ObscureTextPressed value)? obscureTextPressed,
+    TResult? Function(_Password value)? password,
+    TResult? Function(_RepeatPassword value)? repeatPassword,
+    TResult? Function(_AddPassword value)? addPassword,
+    TResult? Function(_ObscureText value)? obscureText,
   }) {
-    return passwordOnChanged?.call(this);
+    return password?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_PasswordOnChanged value)? passwordOnChanged,
-    TResult Function(_RepeatPasswordOnChanged value)? repeatPasswordOnChanged,
-    TResult Function(_AddPasswordPressed value)? addPasswordPressed,
-    TResult Function(_ObscureTextPressed value)? obscureTextPressed,
+    TResult Function(_Password value)? password,
+    TResult Function(_RepeatPassword value)? repeatPassword,
+    TResult Function(_AddPassword value)? addPassword,
+    TResult Function(_ObscureText value)? obscureText,
     required TResult orElse(),
   }) {
-    if (passwordOnChanged != null) {
-      return passwordOnChanged(this);
+    if (password != null) {
+      return password(this);
     }
     return orElse();
   }
 }
 
-abstract class _PasswordOnChanged implements AddPasswordFormEvent {
-  const factory _PasswordOnChanged(final String password) =
-      _$_PasswordOnChanged;
+abstract class _Password implements AddPasswordFormEvent {
+  const factory _Password(final String password) = _$_Password;
 
   String get password;
   @JsonKey(ignore: true)
-  _$$_PasswordOnChangedCopyWith<_$_PasswordOnChanged> get copyWith =>
+  _$$_PasswordCopyWith<_$_Password> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_RepeatPasswordOnChangedCopyWith<$Res> {
-  factory _$$_RepeatPasswordOnChangedCopyWith(_$_RepeatPasswordOnChanged value,
-          $Res Function(_$_RepeatPasswordOnChanged) then) =
-      __$$_RepeatPasswordOnChangedCopyWithImpl<$Res>;
+abstract class _$$_RepeatPasswordCopyWith<$Res> {
+  factory _$$_RepeatPasswordCopyWith(
+          _$_RepeatPassword value, $Res Function(_$_RepeatPassword) then) =
+      __$$_RepeatPasswordCopyWithImpl<$Res>;
   @useResult
   $Res call({String repeatPassword});
 }
 
 /// @nodoc
-class __$$_RepeatPasswordOnChangedCopyWithImpl<$Res>
-    extends _$AddPasswordFormEventCopyWithImpl<$Res, _$_RepeatPasswordOnChanged>
-    implements _$$_RepeatPasswordOnChangedCopyWith<$Res> {
-  __$$_RepeatPasswordOnChangedCopyWithImpl(_$_RepeatPasswordOnChanged _value,
-      $Res Function(_$_RepeatPasswordOnChanged) _then)
+class __$$_RepeatPasswordCopyWithImpl<$Res>
+    extends _$AddPasswordFormEventCopyWithImpl<$Res, _$_RepeatPassword>
+    implements _$$_RepeatPasswordCopyWith<$Res> {
+  __$$_RepeatPasswordCopyWithImpl(
+      _$_RepeatPassword _value, $Res Function(_$_RepeatPassword) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -391,7 +386,7 @@ class __$$_RepeatPasswordOnChangedCopyWithImpl<$Res>
   $Res call({
     Object? repeatPassword = null,
   }) {
-    return _then(_$_RepeatPasswordOnChanged(
+    return _then(_$_RepeatPassword(
       null == repeatPassword
           ? _value.repeatPassword
           : repeatPassword // ignore: cast_nullable_to_non_nullable
@@ -402,22 +397,22 @@ class __$$_RepeatPasswordOnChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RepeatPasswordOnChanged implements _RepeatPasswordOnChanged {
-  const _$_RepeatPasswordOnChanged(this.repeatPassword);
+class _$_RepeatPassword implements _RepeatPassword {
+  const _$_RepeatPassword(this.repeatPassword);
 
   @override
   final String repeatPassword;
 
   @override
   String toString() {
-    return 'AddPasswordFormEvent.repeatPasswordOnChanged(repeatPassword: $repeatPassword)';
+    return 'AddPasswordFormEvent.repeatPassword(repeatPassword: $repeatPassword)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RepeatPasswordOnChanged &&
+            other is _$_RepeatPassword &&
             (identical(other.repeatPassword, repeatPassword) ||
                 other.repeatPassword == repeatPassword));
   }
@@ -428,47 +423,45 @@ class _$_RepeatPasswordOnChanged implements _RepeatPasswordOnChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RepeatPasswordOnChangedCopyWith<_$_RepeatPasswordOnChanged>
-      get copyWith =>
-          __$$_RepeatPasswordOnChangedCopyWithImpl<_$_RepeatPasswordOnChanged>(
-              this, _$identity);
+  _$$_RepeatPasswordCopyWith<_$_RepeatPassword> get copyWith =>
+      __$$_RepeatPasswordCopyWithImpl<_$_RepeatPassword>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String password) passwordOnChanged,
-    required TResult Function(String repeatPassword) repeatPasswordOnChanged,
-    required TResult Function() addPasswordPressed,
-    required TResult Function() obscureTextPressed,
+    required TResult Function(String password) password,
+    required TResult Function(String repeatPassword) repeatPassword,
+    required TResult Function() addPassword,
+    required TResult Function() obscureText,
   }) {
-    return repeatPasswordOnChanged(repeatPassword);
+    return repeatPassword(this.repeatPassword);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String password)? passwordOnChanged,
-    TResult? Function(String repeatPassword)? repeatPasswordOnChanged,
-    TResult? Function()? addPasswordPressed,
-    TResult? Function()? obscureTextPressed,
+    TResult? Function(String password)? password,
+    TResult? Function(String repeatPassword)? repeatPassword,
+    TResult? Function()? addPassword,
+    TResult? Function()? obscureText,
   }) {
-    return repeatPasswordOnChanged?.call(repeatPassword);
+    return repeatPassword?.call(this.repeatPassword);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String password)? passwordOnChanged,
-    TResult Function(String repeatPassword)? repeatPasswordOnChanged,
-    TResult Function()? addPasswordPressed,
-    TResult Function()? obscureTextPressed,
+    TResult Function(String password)? password,
+    TResult Function(String repeatPassword)? repeatPassword,
+    TResult Function()? addPassword,
+    TResult Function()? obscureText,
     required TResult orElse(),
   }) {
-    if (repeatPasswordOnChanged != null) {
-      return repeatPasswordOnChanged(repeatPassword);
+    if (repeatPassword != null) {
+      return repeatPassword(this.repeatPassword);
     }
     return orElse();
   }
@@ -477,84 +470,83 @@ class _$_RepeatPasswordOnChanged implements _RepeatPasswordOnChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_PasswordOnChanged value) passwordOnChanged,
-    required TResult Function(_RepeatPasswordOnChanged value)
-        repeatPasswordOnChanged,
-    required TResult Function(_AddPasswordPressed value) addPasswordPressed,
-    required TResult Function(_ObscureTextPressed value) obscureTextPressed,
+    required TResult Function(_Password value) password,
+    required TResult Function(_RepeatPassword value) repeatPassword,
+    required TResult Function(_AddPassword value) addPassword,
+    required TResult Function(_ObscureText value) obscureText,
   }) {
-    return repeatPasswordOnChanged(this);
+    return repeatPassword(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_PasswordOnChanged value)? passwordOnChanged,
-    TResult? Function(_RepeatPasswordOnChanged value)? repeatPasswordOnChanged,
-    TResult? Function(_AddPasswordPressed value)? addPasswordPressed,
-    TResult? Function(_ObscureTextPressed value)? obscureTextPressed,
+    TResult? Function(_Password value)? password,
+    TResult? Function(_RepeatPassword value)? repeatPassword,
+    TResult? Function(_AddPassword value)? addPassword,
+    TResult? Function(_ObscureText value)? obscureText,
   }) {
-    return repeatPasswordOnChanged?.call(this);
+    return repeatPassword?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_PasswordOnChanged value)? passwordOnChanged,
-    TResult Function(_RepeatPasswordOnChanged value)? repeatPasswordOnChanged,
-    TResult Function(_AddPasswordPressed value)? addPasswordPressed,
-    TResult Function(_ObscureTextPressed value)? obscureTextPressed,
+    TResult Function(_Password value)? password,
+    TResult Function(_RepeatPassword value)? repeatPassword,
+    TResult Function(_AddPassword value)? addPassword,
+    TResult Function(_ObscureText value)? obscureText,
     required TResult orElse(),
   }) {
-    if (repeatPasswordOnChanged != null) {
-      return repeatPasswordOnChanged(this);
+    if (repeatPassword != null) {
+      return repeatPassword(this);
     }
     return orElse();
   }
 }
 
-abstract class _RepeatPasswordOnChanged implements AddPasswordFormEvent {
-  const factory _RepeatPasswordOnChanged(final String repeatPassword) =
-      _$_RepeatPasswordOnChanged;
+abstract class _RepeatPassword implements AddPasswordFormEvent {
+  const factory _RepeatPassword(final String repeatPassword) =
+      _$_RepeatPassword;
 
   String get repeatPassword;
   @JsonKey(ignore: true)
-  _$$_RepeatPasswordOnChangedCopyWith<_$_RepeatPasswordOnChanged>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_RepeatPasswordCopyWith<_$_RepeatPassword> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_AddPasswordPressedCopyWith<$Res> {
-  factory _$$_AddPasswordPressedCopyWith(_$_AddPasswordPressed value,
-          $Res Function(_$_AddPasswordPressed) then) =
-      __$$_AddPasswordPressedCopyWithImpl<$Res>;
+abstract class _$$_AddPasswordCopyWith<$Res> {
+  factory _$$_AddPasswordCopyWith(
+          _$_AddPassword value, $Res Function(_$_AddPassword) then) =
+      __$$_AddPasswordCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AddPasswordPressedCopyWithImpl<$Res>
-    extends _$AddPasswordFormEventCopyWithImpl<$Res, _$_AddPasswordPressed>
-    implements _$$_AddPasswordPressedCopyWith<$Res> {
-  __$$_AddPasswordPressedCopyWithImpl(
-      _$_AddPasswordPressed _value, $Res Function(_$_AddPasswordPressed) _then)
+class __$$_AddPasswordCopyWithImpl<$Res>
+    extends _$AddPasswordFormEventCopyWithImpl<$Res, _$_AddPassword>
+    implements _$$_AddPasswordCopyWith<$Res> {
+  __$$_AddPasswordCopyWithImpl(
+      _$_AddPassword _value, $Res Function(_$_AddPassword) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_AddPasswordPressed implements _AddPasswordPressed {
-  const _$_AddPasswordPressed();
+class _$_AddPassword implements _AddPassword {
+  const _$_AddPassword();
 
   @override
   String toString() {
-    return 'AddPasswordFormEvent.addPasswordPressed()';
+    return 'AddPasswordFormEvent.addPassword()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AddPasswordPressed);
+        (other.runtimeType == runtimeType && other is _$_AddPassword);
   }
 
   @override
@@ -564,38 +556,38 @@ class _$_AddPasswordPressed implements _AddPasswordPressed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String password) passwordOnChanged,
-    required TResult Function(String repeatPassword) repeatPasswordOnChanged,
-    required TResult Function() addPasswordPressed,
-    required TResult Function() obscureTextPressed,
+    required TResult Function(String password) password,
+    required TResult Function(String repeatPassword) repeatPassword,
+    required TResult Function() addPassword,
+    required TResult Function() obscureText,
   }) {
-    return addPasswordPressed();
+    return addPassword();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String password)? passwordOnChanged,
-    TResult? Function(String repeatPassword)? repeatPasswordOnChanged,
-    TResult? Function()? addPasswordPressed,
-    TResult? Function()? obscureTextPressed,
+    TResult? Function(String password)? password,
+    TResult? Function(String repeatPassword)? repeatPassword,
+    TResult? Function()? addPassword,
+    TResult? Function()? obscureText,
   }) {
-    return addPasswordPressed?.call();
+    return addPassword?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String password)? passwordOnChanged,
-    TResult Function(String repeatPassword)? repeatPasswordOnChanged,
-    TResult Function()? addPasswordPressed,
-    TResult Function()? obscureTextPressed,
+    TResult Function(String password)? password,
+    TResult Function(String repeatPassword)? repeatPassword,
+    TResult Function()? addPassword,
+    TResult Function()? obscureText,
     required TResult orElse(),
   }) {
-    if (addPasswordPressed != null) {
-      return addPasswordPressed();
+    if (addPassword != null) {
+      return addPassword();
     }
     return orElse();
   }
@@ -604,78 +596,77 @@ class _$_AddPasswordPressed implements _AddPasswordPressed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_PasswordOnChanged value) passwordOnChanged,
-    required TResult Function(_RepeatPasswordOnChanged value)
-        repeatPasswordOnChanged,
-    required TResult Function(_AddPasswordPressed value) addPasswordPressed,
-    required TResult Function(_ObscureTextPressed value) obscureTextPressed,
+    required TResult Function(_Password value) password,
+    required TResult Function(_RepeatPassword value) repeatPassword,
+    required TResult Function(_AddPassword value) addPassword,
+    required TResult Function(_ObscureText value) obscureText,
   }) {
-    return addPasswordPressed(this);
+    return addPassword(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_PasswordOnChanged value)? passwordOnChanged,
-    TResult? Function(_RepeatPasswordOnChanged value)? repeatPasswordOnChanged,
-    TResult? Function(_AddPasswordPressed value)? addPasswordPressed,
-    TResult? Function(_ObscureTextPressed value)? obscureTextPressed,
+    TResult? Function(_Password value)? password,
+    TResult? Function(_RepeatPassword value)? repeatPassword,
+    TResult? Function(_AddPassword value)? addPassword,
+    TResult? Function(_ObscureText value)? obscureText,
   }) {
-    return addPasswordPressed?.call(this);
+    return addPassword?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_PasswordOnChanged value)? passwordOnChanged,
-    TResult Function(_RepeatPasswordOnChanged value)? repeatPasswordOnChanged,
-    TResult Function(_AddPasswordPressed value)? addPasswordPressed,
-    TResult Function(_ObscureTextPressed value)? obscureTextPressed,
+    TResult Function(_Password value)? password,
+    TResult Function(_RepeatPassword value)? repeatPassword,
+    TResult Function(_AddPassword value)? addPassword,
+    TResult Function(_ObscureText value)? obscureText,
     required TResult orElse(),
   }) {
-    if (addPasswordPressed != null) {
-      return addPasswordPressed(this);
+    if (addPassword != null) {
+      return addPassword(this);
     }
     return orElse();
   }
 }
 
-abstract class _AddPasswordPressed implements AddPasswordFormEvent {
-  const factory _AddPasswordPressed() = _$_AddPasswordPressed;
+abstract class _AddPassword implements AddPasswordFormEvent {
+  const factory _AddPassword() = _$_AddPassword;
 }
 
 /// @nodoc
-abstract class _$$_ObscureTextPressedCopyWith<$Res> {
-  factory _$$_ObscureTextPressedCopyWith(_$_ObscureTextPressed value,
-          $Res Function(_$_ObscureTextPressed) then) =
-      __$$_ObscureTextPressedCopyWithImpl<$Res>;
+abstract class _$$_ObscureTextCopyWith<$Res> {
+  factory _$$_ObscureTextCopyWith(
+          _$_ObscureText value, $Res Function(_$_ObscureText) then) =
+      __$$_ObscureTextCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ObscureTextPressedCopyWithImpl<$Res>
-    extends _$AddPasswordFormEventCopyWithImpl<$Res, _$_ObscureTextPressed>
-    implements _$$_ObscureTextPressedCopyWith<$Res> {
-  __$$_ObscureTextPressedCopyWithImpl(
-      _$_ObscureTextPressed _value, $Res Function(_$_ObscureTextPressed) _then)
+class __$$_ObscureTextCopyWithImpl<$Res>
+    extends _$AddPasswordFormEventCopyWithImpl<$Res, _$_ObscureText>
+    implements _$$_ObscureTextCopyWith<$Res> {
+  __$$_ObscureTextCopyWithImpl(
+      _$_ObscureText _value, $Res Function(_$_ObscureText) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ObscureTextPressed implements _ObscureTextPressed {
-  const _$_ObscureTextPressed();
+class _$_ObscureText implements _ObscureText {
+  const _$_ObscureText();
 
   @override
   String toString() {
-    return 'AddPasswordFormEvent.obscureTextPressed()';
+    return 'AddPasswordFormEvent.obscureText()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ObscureTextPressed);
+        (other.runtimeType == runtimeType && other is _$_ObscureText);
   }
 
   @override
@@ -685,38 +676,38 @@ class _$_ObscureTextPressed implements _ObscureTextPressed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String password) passwordOnChanged,
-    required TResult Function(String repeatPassword) repeatPasswordOnChanged,
-    required TResult Function() addPasswordPressed,
-    required TResult Function() obscureTextPressed,
+    required TResult Function(String password) password,
+    required TResult Function(String repeatPassword) repeatPassword,
+    required TResult Function() addPassword,
+    required TResult Function() obscureText,
   }) {
-    return obscureTextPressed();
+    return obscureText();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String password)? passwordOnChanged,
-    TResult? Function(String repeatPassword)? repeatPasswordOnChanged,
-    TResult? Function()? addPasswordPressed,
-    TResult? Function()? obscureTextPressed,
+    TResult? Function(String password)? password,
+    TResult? Function(String repeatPassword)? repeatPassword,
+    TResult? Function()? addPassword,
+    TResult? Function()? obscureText,
   }) {
-    return obscureTextPressed?.call();
+    return obscureText?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String password)? passwordOnChanged,
-    TResult Function(String repeatPassword)? repeatPasswordOnChanged,
-    TResult Function()? addPasswordPressed,
-    TResult Function()? obscureTextPressed,
+    TResult Function(String password)? password,
+    TResult Function(String repeatPassword)? repeatPassword,
+    TResult Function()? addPassword,
+    TResult Function()? obscureText,
     required TResult orElse(),
   }) {
-    if (obscureTextPressed != null) {
-      return obscureTextPressed();
+    if (obscureText != null) {
+      return obscureText();
     }
     return orElse();
   }
@@ -725,46 +716,45 @@ class _$_ObscureTextPressed implements _ObscureTextPressed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_PasswordOnChanged value) passwordOnChanged,
-    required TResult Function(_RepeatPasswordOnChanged value)
-        repeatPasswordOnChanged,
-    required TResult Function(_AddPasswordPressed value) addPasswordPressed,
-    required TResult Function(_ObscureTextPressed value) obscureTextPressed,
+    required TResult Function(_Password value) password,
+    required TResult Function(_RepeatPassword value) repeatPassword,
+    required TResult Function(_AddPassword value) addPassword,
+    required TResult Function(_ObscureText value) obscureText,
   }) {
-    return obscureTextPressed(this);
+    return obscureText(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_PasswordOnChanged value)? passwordOnChanged,
-    TResult? Function(_RepeatPasswordOnChanged value)? repeatPasswordOnChanged,
-    TResult? Function(_AddPasswordPressed value)? addPasswordPressed,
-    TResult? Function(_ObscureTextPressed value)? obscureTextPressed,
+    TResult? Function(_Password value)? password,
+    TResult? Function(_RepeatPassword value)? repeatPassword,
+    TResult? Function(_AddPassword value)? addPassword,
+    TResult? Function(_ObscureText value)? obscureText,
   }) {
-    return obscureTextPressed?.call(this);
+    return obscureText?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_PasswordOnChanged value)? passwordOnChanged,
-    TResult Function(_RepeatPasswordOnChanged value)? repeatPasswordOnChanged,
-    TResult Function(_AddPasswordPressed value)? addPasswordPressed,
-    TResult Function(_ObscureTextPressed value)? obscureTextPressed,
+    TResult Function(_Password value)? password,
+    TResult Function(_RepeatPassword value)? repeatPassword,
+    TResult Function(_AddPassword value)? addPassword,
+    TResult Function(_ObscureText value)? obscureText,
     required TResult orElse(),
   }) {
-    if (obscureTextPressed != null) {
-      return obscureTextPressed(this);
+    if (obscureText != null) {
+      return obscureText(this);
     }
     return orElse();
   }
 }
 
-abstract class _ObscureTextPressed implements AddPasswordFormEvent {
-  const factory _ObscureTextPressed() = _$_ObscureTextPressed;
+abstract class _ObscureText implements AddPasswordFormEvent {
+  const factory _ObscureText() = _$_ObscureText;
 }
 
 /// @nodoc
@@ -774,8 +764,7 @@ mixin _$AddPasswordFormState {
   String get password => throw _privateConstructorUsedError;
   String get repeatPassword => throw _privateConstructorUsedError;
   bool get obscureText => throw _privateConstructorUsedError;
-  bool get isSubmitting => throw _privateConstructorUsedError;
-  bool get isShowErrorMessages => throw _privateConstructorUsedError;
+  bool get isSubmit => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AddPasswordFormStateCopyWith<AddPasswordFormState> get copyWith =>
@@ -794,8 +783,7 @@ abstract class $AddPasswordFormStateCopyWith<$Res> {
       String password,
       String repeatPassword,
       bool obscureText,
-      bool isSubmitting,
-      bool isShowErrorMessages});
+      bool isSubmit});
 }
 
 /// @nodoc
@@ -817,8 +805,7 @@ class _$AddPasswordFormStateCopyWithImpl<$Res,
     Object? password = null,
     Object? repeatPassword = null,
     Object? obscureText = null,
-    Object? isSubmitting = null,
-    Object? isShowErrorMessages = null,
+    Object? isSubmit = null,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -841,13 +828,9 @@ class _$AddPasswordFormStateCopyWithImpl<$Res,
           ? _value.obscureText
           : obscureText // ignore: cast_nullable_to_non_nullable
               as bool,
-      isSubmitting: null == isSubmitting
-          ? _value.isSubmitting
-          : isSubmitting // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isShowErrorMessages: null == isShowErrorMessages
-          ? _value.isShowErrorMessages
-          : isShowErrorMessages // ignore: cast_nullable_to_non_nullable
+      isSubmit: null == isSubmit
+          ? _value.isSubmit
+          : isSubmit // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -867,8 +850,7 @@ abstract class _$$_AddPasswordFormStateCopyWith<$Res>
       String password,
       String repeatPassword,
       bool obscureText,
-      bool isSubmitting,
-      bool isShowErrorMessages});
+      bool isSubmit});
 }
 
 /// @nodoc
@@ -887,8 +869,7 @@ class __$$_AddPasswordFormStateCopyWithImpl<$Res>
     Object? password = null,
     Object? repeatPassword = null,
     Object? obscureText = null,
-    Object? isSubmitting = null,
-    Object? isShowErrorMessages = null,
+    Object? isSubmit = null,
   }) {
     return _then(_$_AddPasswordFormState(
       state: null == state
@@ -911,13 +892,9 @@ class __$$_AddPasswordFormStateCopyWithImpl<$Res>
           ? _value.obscureText
           : obscureText // ignore: cast_nullable_to_non_nullable
               as bool,
-      isSubmitting: null == isSubmitting
-          ? _value.isSubmitting
-          : isSubmitting // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isShowErrorMessages: null == isShowErrorMessages
-          ? _value.isShowErrorMessages
-          : isShowErrorMessages // ignore: cast_nullable_to_non_nullable
+      isSubmit: null == isSubmit
+          ? _value.isSubmit
+          : isSubmit // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -932,8 +909,7 @@ class _$_AddPasswordFormState implements _AddPasswordFormState {
       required this.password,
       required this.repeatPassword,
       required this.obscureText,
-      required this.isSubmitting,
-      required this.isShowErrorMessages});
+      required this.isSubmit});
 
   @override
   final RequestState state;
@@ -946,13 +922,11 @@ class _$_AddPasswordFormState implements _AddPasswordFormState {
   @override
   final bool obscureText;
   @override
-  final bool isSubmitting;
-  @override
-  final bool isShowErrorMessages;
+  final bool isSubmit;
 
   @override
   String toString() {
-    return 'AddPasswordFormState(state: $state, message: $message, password: $password, repeatPassword: $repeatPassword, obscureText: $obscureText, isSubmitting: $isSubmitting, isShowErrorMessages: $isShowErrorMessages)';
+    return 'AddPasswordFormState(state: $state, message: $message, password: $password, repeatPassword: $repeatPassword, obscureText: $obscureText, isSubmit: $isSubmit)';
   }
 
   @override
@@ -968,15 +942,13 @@ class _$_AddPasswordFormState implements _AddPasswordFormState {
                 other.repeatPassword == repeatPassword) &&
             (identical(other.obscureText, obscureText) ||
                 other.obscureText == obscureText) &&
-            (identical(other.isSubmitting, isSubmitting) ||
-                other.isSubmitting == isSubmitting) &&
-            (identical(other.isShowErrorMessages, isShowErrorMessages) ||
-                other.isShowErrorMessages == isShowErrorMessages));
+            (identical(other.isSubmit, isSubmit) ||
+                other.isSubmit == isSubmit));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, state, message, password,
-      repeatPassword, obscureText, isSubmitting, isShowErrorMessages);
+      repeatPassword, obscureText, isSubmit);
 
   @JsonKey(ignore: true)
   @override
@@ -993,8 +965,7 @@ abstract class _AddPasswordFormState implements AddPasswordFormState {
       required final String password,
       required final String repeatPassword,
       required final bool obscureText,
-      required final bool isSubmitting,
-      required final bool isShowErrorMessages}) = _$_AddPasswordFormState;
+      required final bool isSubmit}) = _$_AddPasswordFormState;
 
   @override
   RequestState get state;
@@ -1007,9 +978,7 @@ abstract class _AddPasswordFormState implements AddPasswordFormState {
   @override
   bool get obscureText;
   @override
-  bool get isSubmitting;
-  @override
-  bool get isShowErrorMessages;
+  bool get isSubmit;
   @override
   @JsonKey(ignore: true)
   _$$_AddPasswordFormStateCopyWith<_$_AddPasswordFormState> get copyWith =>

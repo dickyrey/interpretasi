@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ReadHistoryWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchArticle,
+    required TResult Function() fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchArticle,
+    TResult? Function()? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchArticle,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchArticle value) fetchArticle,
+    required TResult Function(_Fetch value) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchArticle value)? fetchArticle,
+    TResult? Function(_Fetch value)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchArticle value)? fetchArticle,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,35 +70,33 @@ class _$ReadHistoryWatcherEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_FetchArticleCopyWith<$Res> {
-  factory _$$_FetchArticleCopyWith(
-          _$_FetchArticle value, $Res Function(_$_FetchArticle) then) =
-      __$$_FetchArticleCopyWithImpl<$Res>;
+abstract class _$$_FetchCopyWith<$Res> {
+  factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
+      __$$_FetchCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_FetchArticleCopyWithImpl<$Res>
-    extends _$ReadHistoryWatcherEventCopyWithImpl<$Res, _$_FetchArticle>
-    implements _$$_FetchArticleCopyWith<$Res> {
-  __$$_FetchArticleCopyWithImpl(
-      _$_FetchArticle _value, $Res Function(_$_FetchArticle) _then)
+class __$$_FetchCopyWithImpl<$Res>
+    extends _$ReadHistoryWatcherEventCopyWithImpl<$Res, _$_Fetch>
+    implements _$$_FetchCopyWith<$Res> {
+  __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_FetchArticle implements _FetchArticle {
-  const _$_FetchArticle();
+class _$_Fetch implements _Fetch {
+  const _$_Fetch();
 
   @override
   String toString() {
-    return 'ReadHistoryWatcherEvent.fetchArticle()';
+    return 'ReadHistoryWatcherEvent.fetch()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_FetchArticle);
+        (other.runtimeType == runtimeType && other is _$_Fetch);
   }
 
   @override
@@ -107,27 +105,27 @@ class _$_FetchArticle implements _FetchArticle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchArticle,
+    required TResult Function() fetch,
   }) {
-    return fetchArticle();
+    return fetch();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchArticle,
+    TResult? Function()? fetch,
   }) {
-    return fetchArticle?.call();
+    return fetch?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchArticle,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) {
-    if (fetchArticle != null) {
-      return fetchArticle();
+    if (fetch != null) {
+      return fetch();
     }
     return orElse();
   }
@@ -135,34 +133,34 @@ class _$_FetchArticle implements _FetchArticle {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchArticle value) fetchArticle,
+    required TResult Function(_Fetch value) fetch,
   }) {
-    return fetchArticle(this);
+    return fetch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchArticle value)? fetchArticle,
+    TResult? Function(_Fetch value)? fetch,
   }) {
-    return fetchArticle?.call(this);
+    return fetch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchArticle value)? fetchArticle,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) {
-    if (fetchArticle != null) {
-      return fetchArticle(this);
+    if (fetch != null) {
+      return fetch(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchArticle implements ReadHistoryWatcherEvent {
-  const factory _FetchArticle() = _$_FetchArticle;
+abstract class _Fetch implements ReadHistoryWatcherEvent {
+  const factory _Fetch() = _$_Fetch;
 }
 
 /// @nodoc

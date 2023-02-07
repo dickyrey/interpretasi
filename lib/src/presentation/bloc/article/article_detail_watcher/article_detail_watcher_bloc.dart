@@ -9,14 +9,14 @@ part 'article_detail_watcher_state.dart';
 part 'article_detail_watcher_bloc.freezed.dart';
 
 class ArticleDetailWatcherBloc extends Bloc<ArticleDetailWatcherEvent, ArticleDetailWatcherState> {
-  ArticleDetailWatcherBloc(this._articleDetail) : super(const ArticleDetailWatcherState.initial()) {
+  ArticleDetailWatcherBloc(this._article) : super(const ArticleDetailWatcherState.initial()) {
     on<ArticleDetailWatcherEvent>((event, emit) async {
       await event.map(
         fetch: (event) async {
           emit(const ArticleDetailWatcherState.loading());
           final id = event.url.replaceFirst(Const.unusedPath, '');
 
-          final result = await _articleDetail.execute(id);
+          final result = await _article.execute(id);
 
           result.fold(
             (f) => emit(ArticleDetailWatcherState.error(f.message)),
@@ -26,5 +26,5 @@ class ArticleDetailWatcherBloc extends Bloc<ArticleDetailWatcherEvent, ArticleDe
       );
     });
   }
-  final GetArticleDetail _articleDetail;
+  final GetArticleDetail _article;
 }

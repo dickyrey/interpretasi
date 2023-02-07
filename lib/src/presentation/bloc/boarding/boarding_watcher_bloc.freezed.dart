@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BoardingWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchBoardingList,
+    required TResult Function() fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchBoardingList,
+    TResult? Function()? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchBoardingList,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchBoardingList value) fetchBoardingList,
+    required TResult Function(_Fetch value) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchBoardingList value)? fetchBoardingList,
+    TResult? Function(_Fetch value)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchBoardingList value)? fetchBoardingList,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,35 +70,33 @@ class _$BoardingWatcherEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_FetchBoardingListCopyWith<$Res> {
-  factory _$$_FetchBoardingListCopyWith(_$_FetchBoardingList value,
-          $Res Function(_$_FetchBoardingList) then) =
-      __$$_FetchBoardingListCopyWithImpl<$Res>;
+abstract class _$$_FetchCopyWith<$Res> {
+  factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
+      __$$_FetchCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_FetchBoardingListCopyWithImpl<$Res>
-    extends _$BoardingWatcherEventCopyWithImpl<$Res, _$_FetchBoardingList>
-    implements _$$_FetchBoardingListCopyWith<$Res> {
-  __$$_FetchBoardingListCopyWithImpl(
-      _$_FetchBoardingList _value, $Res Function(_$_FetchBoardingList) _then)
+class __$$_FetchCopyWithImpl<$Res>
+    extends _$BoardingWatcherEventCopyWithImpl<$Res, _$_Fetch>
+    implements _$$_FetchCopyWith<$Res> {
+  __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_FetchBoardingList implements _FetchBoardingList {
-  const _$_FetchBoardingList();
+class _$_Fetch implements _Fetch {
+  const _$_Fetch();
 
   @override
   String toString() {
-    return 'BoardingWatcherEvent.fetchBoardingList()';
+    return 'BoardingWatcherEvent.fetch()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_FetchBoardingList);
+        (other.runtimeType == runtimeType && other is _$_Fetch);
   }
 
   @override
@@ -107,27 +105,27 @@ class _$_FetchBoardingList implements _FetchBoardingList {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchBoardingList,
+    required TResult Function() fetch,
   }) {
-    return fetchBoardingList();
+    return fetch();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchBoardingList,
+    TResult? Function()? fetch,
   }) {
-    return fetchBoardingList?.call();
+    return fetch?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchBoardingList,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) {
-    if (fetchBoardingList != null) {
-      return fetchBoardingList();
+    if (fetch != null) {
+      return fetch();
     }
     return orElse();
   }
@@ -135,34 +133,34 @@ class _$_FetchBoardingList implements _FetchBoardingList {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchBoardingList value) fetchBoardingList,
+    required TResult Function(_Fetch value) fetch,
   }) {
-    return fetchBoardingList(this);
+    return fetch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchBoardingList value)? fetchBoardingList,
+    TResult? Function(_Fetch value)? fetch,
   }) {
-    return fetchBoardingList?.call(this);
+    return fetch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchBoardingList value)? fetchBoardingList,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) {
-    if (fetchBoardingList != null) {
-      return fetchBoardingList(this);
+    if (fetch != null) {
+      return fetch(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchBoardingList implements BoardingWatcherEvent {
-  const factory _FetchBoardingList() = _$_FetchBoardingList;
+abstract class _Fetch implements BoardingWatcherEvent {
+  const factory _Fetch() = _$_Fetch;
 }
 
 /// @nodoc
@@ -172,7 +170,7 @@ mixin _$BoardingWatcherState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<Boarding> boarding) loaded,
+    required TResult Function(List<Boarding> boardingList) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -180,7 +178,7 @@ mixin _$BoardingWatcherState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<Boarding> boarding)? loaded,
+    TResult? Function(List<Boarding> boardingList)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -188,7 +186,7 @@ mixin _$BoardingWatcherState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<Boarding> boarding)? loaded,
+    TResult Function(List<Boarding> boardingList)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -278,7 +276,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<Boarding> boarding) loaded,
+    required TResult Function(List<Boarding> boardingList) loaded,
   }) {
     return initial();
   }
@@ -289,7 +287,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<Boarding> boarding)? loaded,
+    TResult? Function(List<Boarding> boardingList)? loaded,
   }) {
     return initial?.call();
   }
@@ -300,7 +298,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<Boarding> boarding)? loaded,
+    TResult Function(List<Boarding> boardingList)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -391,7 +389,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<Boarding> boarding) loaded,
+    required TResult Function(List<Boarding> boardingList) loaded,
   }) {
     return loading();
   }
@@ -402,7 +400,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<Boarding> boarding)? loaded,
+    TResult? Function(List<Boarding> boardingList)? loaded,
   }) {
     return loading?.call();
   }
@@ -413,7 +411,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<Boarding> boarding)? loaded,
+    TResult Function(List<Boarding> boardingList)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -529,7 +527,7 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<Boarding> boarding) loaded,
+    required TResult Function(List<Boarding> boardingList) loaded,
   }) {
     return error(message);
   }
@@ -540,7 +538,7 @@ class _$_Error implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<Boarding> boarding)? loaded,
+    TResult? Function(List<Boarding> boardingList)? loaded,
   }) {
     return error?.call(message);
   }
@@ -551,7 +549,7 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<Boarding> boarding)? loaded,
+    TResult Function(List<Boarding> boardingList)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -612,7 +610,7 @@ abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Boarding> boarding});
+  $Res call({List<Boarding> boardingList});
 }
 
 /// @nodoc
@@ -625,12 +623,12 @@ class __$$_LoadedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? boarding = null,
+    Object? boardingList = null,
   }) {
     return _then(_$_Loaded(
-      null == boarding
-          ? _value._boarding
-          : boarding // ignore: cast_nullable_to_non_nullable
+      null == boardingList
+          ? _value._boardingList
+          : boardingList // ignore: cast_nullable_to_non_nullable
               as List<Boarding>,
     ));
   }
@@ -639,19 +637,20 @@ class __$$_LoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(final List<Boarding> boarding) : _boarding = boarding;
+  const _$_Loaded(final List<Boarding> boardingList)
+      : _boardingList = boardingList;
 
-  final List<Boarding> _boarding;
+  final List<Boarding> _boardingList;
   @override
-  List<Boarding> get boarding {
-    if (_boarding is EqualUnmodifiableListView) return _boarding;
+  List<Boarding> get boardingList {
+    if (_boardingList is EqualUnmodifiableListView) return _boardingList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_boarding);
+    return EqualUnmodifiableListView(_boardingList);
   }
 
   @override
   String toString() {
-    return 'BoardingWatcherState.loaded(boarding: $boarding)';
+    return 'BoardingWatcherState.loaded(boardingList: $boardingList)';
   }
 
   @override
@@ -659,12 +658,13 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
-            const DeepCollectionEquality().equals(other._boarding, _boarding));
+            const DeepCollectionEquality()
+                .equals(other._boardingList, _boardingList));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_boarding));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_boardingList));
 
   @JsonKey(ignore: true)
   @override
@@ -678,9 +678,9 @@ class _$_Loaded implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<Boarding> boarding) loaded,
+    required TResult Function(List<Boarding> boardingList) loaded,
   }) {
-    return loaded(boarding);
+    return loaded(boardingList);
   }
 
   @override
@@ -689,9 +689,9 @@ class _$_Loaded implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<Boarding> boarding)? loaded,
+    TResult? Function(List<Boarding> boardingList)? loaded,
   }) {
-    return loaded?.call(boarding);
+    return loaded?.call(boardingList);
   }
 
   @override
@@ -700,11 +700,11 @@ class _$_Loaded implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<Boarding> boarding)? loaded,
+    TResult Function(List<Boarding> boardingList)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(boarding);
+      return loaded(boardingList);
     }
     return orElse();
   }
@@ -748,9 +748,9 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements BoardingWatcherState {
-  const factory _Loaded(final List<Boarding> boarding) = _$_Loaded;
+  const factory _Loaded(final List<Boarding> boardingList) = _$_Loaded;
 
-  List<Boarding> get boarding;
+  List<Boarding> get boardingList;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;

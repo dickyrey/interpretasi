@@ -14,7 +14,7 @@ class CategoryWatcherBloc
       : super(CategoryWatcherState.initial()) {
     on<CategoryWatcherEvent>((event, emit) async {
       await event.map(
-        fetchCategories: (_) async {
+        fetch: (_) async {
           emit(state.copyWith(state: RequestState.loading));
 
           final result = await _getCategories.execute();
@@ -29,7 +29,7 @@ class CategoryWatcherBloc
             (data) => emit(
               state.copyWith(
                 state: RequestState.loaded,
-                categories: data,
+                categoryList: data,
               ),
             ),
           );

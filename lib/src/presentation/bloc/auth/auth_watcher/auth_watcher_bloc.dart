@@ -16,7 +16,7 @@ class AuthWatcherBloc extends Bloc<AuthWatcherEvent, AuthWatcherState> {
   }) : super(const AuthWatcherState.initial()) {
     on<AuthWatcherEvent>((event, emit) async {
       await event.map(
-        authCheckRequested: (event) async {
+        check: (event) async {
           emit(const AuthWatcherState.authInProgress());
           final result = await checkGoogleAuth.execute();
           result.fold(

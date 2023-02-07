@@ -7,42 +7,33 @@ part 'add_password_form_event.dart';
 part 'add_password_form_state.dart';
 part 'add_password_form_bloc.freezed.dart';
 
-class AddPasswordFormBloc extends Bloc<AddPasswordFormEvent, AddPasswordFormState> {
-  AddPasswordFormBloc(this._addPassword) : super(AddPasswordFormState.initial()) {
+class AddPasswordFormBloc
+    extends Bloc<AddPasswordFormEvent, AddPasswordFormState> {
+  AddPasswordFormBloc(this._addPassword)
+      : super(AddPasswordFormState.initial()) {
     on<AddPasswordFormEvent>((event, emit) async {
       await event.map(
         initial: (_) {
           emit(AddPasswordFormState.initial());
         },
-        obscureTextPressed: (_) {
+        obscureText: (_) {
           if (state.obscureText == true) {
             emit(state.copyWith(obscureText: false));
           } else {
             emit(state.copyWith(obscureText: true));
           }
         },
-        passwordOnChanged: (e) {
-          emit(
-            state.copyWith(
-              password: e.password,
-              isShowErrorMessages: false,
-            ),
-          );
+        password: (e) {
+          emit(state.copyWith(password: e.password));
         },
-        repeatPasswordOnChanged: (e) {
-          emit(
-            state.copyWith(
-              repeatPassword: e.repeatPassword,
-              isShowErrorMessages: false,
-            ),
-          );
+        repeatPassword: (e) {
+          emit(state.copyWith(repeatPassword: e.repeatPassword));
         },
-        addPasswordPressed: (_) async {
+        addPassword: (_) async {
           emit(
             state.copyWith(
               state: RequestState.loading,
-              isSubmitting: true,
-              isShowErrorMessages: false,
+              isSubmit: true,
             ),
           );
           final result = await _addPassword.execute(state.password);
@@ -50,7 +41,7 @@ class AddPasswordFormBloc extends Bloc<AddPasswordFormEvent, AddPasswordFormStat
             (f) => emit(
               state.copyWith(
                 state: RequestState.empty,
-                isSubmitting: false,
+                isSubmit: false,
                 message: f.message,
               ),
             ),
@@ -58,7 +49,7 @@ class AddPasswordFormBloc extends Bloc<AddPasswordFormEvent, AddPasswordFormStat
               state.copyWith(
                 password: '',
                 repeatPassword: '',
-                isSubmitting: false,
+                isSubmit: false,
                 state: RequestState.loaded,
               ),
             ),

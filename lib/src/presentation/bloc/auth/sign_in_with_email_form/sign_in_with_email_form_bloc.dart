@@ -13,17 +13,17 @@ class SignInWithEmailFormBloc
       : super(SignInWithEmailFormState.initial()) {
     on<SignInWithEmailFormEvent>((event, emit) async {
       await event.map(
-        initial: (_) {
+        init: (_) {
           emit(SignInWithEmailFormState.initial());
         },
-        obscureTextPressed: (_) {
+        obscureText: (_) {
           if (state.obscureText == true) {
             emit(state.copyWith(obscureText: false));
           } else {
             emit(state.copyWith(obscureText: true));
           }
         },
-        emailOnChanged: (event) {
+        email: (event) {
           emit(
             state.copyWith(
               email: event.email,
@@ -32,7 +32,7 @@ class SignInWithEmailFormBloc
             ),
           );
         },
-        passwordOnChanged: (event) {
+        password: (event) {
           emit(
             state.copyWith(
               password: event.password,
@@ -41,7 +41,7 @@ class SignInWithEmailFormBloc
             ),
           );
         },
-        signInPressed: (_) async {
+        signIn: (_) async {
           emit(
             state.copyWith(
               state: RequestState.loading,

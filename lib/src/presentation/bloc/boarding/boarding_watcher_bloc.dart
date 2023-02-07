@@ -12,7 +12,7 @@ class BoardingWatcherBloc extends Bloc<BoardingWatcherEvent, BoardingWatcherStat
     on<BoardingWatcherEvent>(
       (event, emit) async {
         await event.map(
-          fetchBoardingList: (_) async {
+          fetch: (_) async {
             emit(const BoardingWatcherState.loading());
 
             final result = await _getBoardingList.execute();

@@ -27,7 +27,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     Future.microtask(
       () => context
           .read<BoardingWatcherBloc>()
-          .add(const BoardingWatcherEvent.fetchBoardingList()),
+          .add(const BoardingWatcherEvent.fetch()),
     );
   }
 
@@ -53,8 +53,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               return const SizedBox();
             },
             loaded: (state) {
-              final boarding = state.boarding;
-              return _mainPage(boarding, theme, lang);
+              return _mainPage(state.boardingList);
             },
           );
         },
@@ -64,11 +63,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   // Main Page if Boarding data successfull fetch from database
 
-  Column _mainPage(
-    List<Boarding> boarding,
-    ThemeData theme,
-    AppLocalizations lang,
-  ) {
+  Column _mainPage(List<Boarding> boardingList) {
+    final theme = Theme.of(context);
+    final lang = AppLocalizations.of(context)!;
+
     return Column(
       children: [
         const SizedBox(height: 50),
@@ -79,14 +77,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           flex: 9,
           child: PageView.builder(
             controller: _controller,
-            itemCount: boarding.length,
+            itemCount: boardingList.length,
             onPageChanged: (v) {
               setState(() {
                 _selectedIndex = v;
               });
             },
             itemBuilder: (context, index) {
-              final data = boarding[index];
+              final data = boardingList[index];
               return Container(
                 margin: const EdgeInsets.symmetric(
                   horizontal: Const.margin,
@@ -130,7 +128,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             child: Column(
               children: [
                 DotsIndicator(
-                  dotsCount: boarding.length,
+                  dotsCount: boardingList.length,
                   position: _selectedIndex.toDouble(),
                   decorator: DotsDecorator(
                     activeColor: theme.primaryColor,

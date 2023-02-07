@@ -55,7 +55,7 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
           } else if (state.state == RequestState.loaded) {
             context
                 .read<UserWatcherBloc>()
-                .add(const UserWatcherEvent.fetchUser());
+                .add(const UserWatcherEvent.fetch());
             showToast(msg: lang.profile_updated);
             Navigator.pop(context);
           }
@@ -135,10 +135,10 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                           color: theme.primaryColor,
                           size: 20,
                         ),
-                        onChanged: (value) {
+                        onChanged: (v) {
                           context
                               .read<UserFormBloc>()
-                              .add(UserFormEvent.nameOnChanged(value));
+                              .add(UserFormEvent.name(v));
                         },
                       ),
                       const SizedBox(height: Const.space25),
@@ -166,11 +166,11 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                         onTap: () {
                           context
                               .read<UserFormBloc>()
-                              .add(const UserFormEvent.saveChanges());
+                              .add(const UserFormEvent.save());
                         },
                         label: lang.save_changes,
                         labelLoading: lang.saving,
-                        isLoading: (state.isSubmitting) ? true : false,
+                        isLoading: (state.isSubmit) ? true : false,
                       ),
                       const SizedBox(height: Const.space25),
                     ],

@@ -25,7 +25,7 @@ class EmailVerificationFormBloc
           emit(
             state.copyWith(
               state: RequestState.loading,
-              isSubmitting: true,
+              isSubmit: true,
             ),
           );
           final result = await _resend.execute();
@@ -34,13 +34,13 @@ class EmailVerificationFormBloc
               state.copyWith(
                 state: RequestState.error,
                 message: f.message,
-                isSubmitting: false,
+                isSubmit: false,
               ),
             ),
             (_) => emit(
               state.copyWith(
                 state: RequestState.loaded,
-                isSubmitting: false,
+                isSubmit: false,
                 isTimeoutDone: false,
               ),
             ),

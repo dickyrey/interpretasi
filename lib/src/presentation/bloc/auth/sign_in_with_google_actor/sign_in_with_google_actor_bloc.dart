@@ -12,7 +12,7 @@ class SignInWithGoogleActorBloc
       : super(const SignInWithGoogleActorState.initial()) {
     on<SignInWithGoogleActorEvent>((event, emit) async {
       await event.map(
-        googleSignIn: (event) async {
+        signIn: (event) async {
           emit(const SignInWithGoogleActorState.signInProgress());
           final result = await _googleSignIn.execute();
           await result.fold(

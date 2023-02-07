@@ -5,7 +5,7 @@ class SignUpWithEmailFormState with _$SignUpWithEmailFormState {
   const factory SignUpWithEmailFormState({
     required RequestState state,
     required String message,
-    required bool isSubmitting,
+    required bool isSubmit,
     required String email,
   }) = _SignUpWithEmailFormState;
 
@@ -13,7 +13,7 @@ class SignUpWithEmailFormState with _$SignUpWithEmailFormState {
     return const SignUpWithEmailFormState(
       state: RequestState.empty,
       message: '',
-      isSubmitting: false,
+      isSubmit: false,
       email: '',
     );
   }

@@ -5,26 +5,26 @@ class ArticleFormState with _$ArticleFormState {
   const factory ArticleFormState({
     required RequestState state,
     required String message,
-    required bool isSubmitting,
-    required String articleId,
+    required bool isSubmit,
+    required String id,
     required String title,
     required String content,
     required String imageUrl,
     required File? imageFile,
-    required List<CheckBoxState> categoryList,
+    required List<CheckBoxState> categoryCheckBoxList,
   }) = _ArticleFormState;
 
   factory ArticleFormState.initial() {
     return const ArticleFormState(
       state: RequestState.empty,
       message: '',
-      isSubmitting: false,
-      articleId: '',
+      isSubmit: false,
+      id: '',
       title: '',
       content: '',
       imageUrl: '',
       imageFile: null,
-      categoryList: [],
+      categoryCheckBoxList: [],
     );
   }
 }

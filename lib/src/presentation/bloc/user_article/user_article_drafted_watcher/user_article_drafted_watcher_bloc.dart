@@ -13,7 +13,7 @@ class UserArticleDraftedWatcherBloc extends Bloc<UserArticleDraftedWatcherEvent,
       : super(const UserArticleDraftedWatcherState.initial()) {
     on<UserArticleDraftedWatcherEvent>((event, emit) async {
       await event.map(
-        fetchArticle: (_) async {
+        fetch: (_) async {
           emit(const UserArticleDraftedWatcherState.loading());
           final result = await _article.execute();
           result.fold(

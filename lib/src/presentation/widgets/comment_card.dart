@@ -91,8 +91,7 @@ class CommentCardWidget extends StatelessWidget {
                                       context
                                           .read<DeleteCommentActorBloc>()
                                           .add(
-                                            DeleteCommentActorEvent
-                                                .deletePressed(
+                                            DeleteCommentActorEvent.delete(
                                               id: article.url,
                                               userId: comment.id,
                                             ),

@@ -89,25 +89,24 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   ),
                   const SizedBox(height: Const.space8),
                   TextFormFieldWidget(
-                    obscureText: state.obscureText,
+                    obscureText: state.isObscure,
                     hintText: lang.pasword_hint_,
                     suffixIcon: IconButton(
                       onPressed: () {
-                        context.read<ChangePasswordFormBloc>().add(
-                              const ChangePasswordFormEvent
-                                  .obscureTextPressed(),
-                            );
+                        context
+                            .read<ChangePasswordFormBloc>()
+                            .add(const ChangePasswordFormEvent.obscureText());
                       },
                       icon: Icon(
-                        (state.obscureText == true)
+                        (state.isObscure == true)
                             ? FeatherIcons.eye
                             : FeatherIcons.eyeOff,
                       ),
                     ),
-                    onChanged: (value) {
-                      context.read<ChangePasswordFormBloc>().add(
-                            ChangePasswordFormEvent.oldPasswordOnChanged(value),
-                          );
+                    onChanged: (v) {
+                      context
+                          .read<ChangePasswordFormBloc>()
+                          .add(ChangePasswordFormEvent.oldPassword(v));
                     },
                   ),
                   const SizedBox(height: Const.space25),
@@ -118,27 +117,24 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   ),
                   const SizedBox(height: Const.space8),
                   TextFormFieldWidget(
-                    obscureText: state.obscureText,
+                    obscureText: state.isObscure,
                     hintText: lang.pasword_hint_,
                     suffixIcon: IconButton(
                       onPressed: () {
-                        context.read<ChangePasswordFormBloc>().add(
-                              const ChangePasswordFormEvent
-                                  .obscureTextPressed(),
-                            );
+                        context
+                            .read<ChangePasswordFormBloc>()
+                            .add(const ChangePasswordFormEvent.obscureText());
                       },
                       icon: Icon(
-                        (state.obscureText == true)
+                        (state.isObscure == true)
                             ? FeatherIcons.eye
                             : FeatherIcons.eyeOff,
                       ),
                     ),
-                    onChanged: (value) {
-                      context.read<ChangePasswordFormBloc>().add(
-                            ChangePasswordFormEvent.newPasswordOnChanged(
-                              value,
-                            ),
-                          );
+                    onChanged: (v) {
+                      context
+                          .read<ChangePasswordFormBloc>()
+                          .add(ChangePasswordFormEvent.newPassword(v));
                     },
                   ),
                   const SizedBox(height: Const.space25),
@@ -149,27 +145,24 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   ),
                   const SizedBox(height: Const.space8),
                   TextFormFieldWidget(
-                    obscureText: state.obscureText,
+                    obscureText: state.isObscure,
                     hintText: lang.pasword_hint_,
                     suffixIcon: IconButton(
                       onPressed: () {
                         context.read<ChangePasswordFormBloc>().add(
-                              const ChangePasswordFormEvent
-                                  .obscureTextPressed(),
+                              const ChangePasswordFormEvent.obscureText(),
                             );
                       },
                       icon: Icon(
-                        (state.obscureText == true)
+                        (state.isObscure == true)
                             ? FeatherIcons.eye
                             : FeatherIcons.eyeOff,
                       ),
                     ),
-                    onChanged: (value) {
-                      context.read<ChangePasswordFormBloc>().add(
-                            ChangePasswordFormEvent.confirmationOnChanged(
-                              value,
-                            ),
-                          );
+                    onChanged: (v) {
+                      context
+                          .read<ChangePasswordFormBloc>()
+                          .add(ChangePasswordFormEvent.confirmPassword(v));
                     },
                   ),
                   const SizedBox(height: Const.space25),
@@ -187,15 +180,14 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snack);
                       } else {
-                        context.read<ChangePasswordFormBloc>().add(
-                              const ChangePasswordFormEvent
-                                  .changePasswordPressed(),
-                            );
+                        context
+                            .read<ChangePasswordFormBloc>()
+                            .add(const ChangePasswordFormEvent.change());
                       }
                     },
                     label: lang.save,
                     labelLoading: lang.please_wait,
-                    isLoading: (state.isSubmitting == true) ? true : false,
+                    isLoading: (state.isSubmit == true) ? true : false,
                   ),
                 ],
               ),

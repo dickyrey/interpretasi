@@ -14,7 +14,7 @@ class DeleteCommentActorBloc extends Bloc<DeleteCommentActorEvent, DeleteComment
         init: (_) {
           emit(const DeleteCommentActorState.initial());
         },
-        deletePressed: (e) async {
+        delete: (e) async {
           final id = e.id.replaceFirst(Const.unusedPath, '');
           final result = await _deleteComment.execute(
             id: id,
@@ -22,8 +22,8 @@ class DeleteCommentActorBloc extends Bloc<DeleteCommentActorEvent, DeleteComment
           );
 
           result.fold(
-            (f) => emit(DeleteCommentActorState.deleteInFailure(f.message)),
-            (_) => emit(const DeleteCommentActorState.deleteInSuccess()),
+            (f) => emit(DeleteCommentActorState.error(f.message)),
+            (_) => emit(const DeleteCommentActorState.success()),
           );
         },
       );

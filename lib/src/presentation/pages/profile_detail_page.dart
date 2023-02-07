@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/routes.dart';
@@ -13,7 +12,6 @@ import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc
 import 'package:interpretasi/src/presentation/bloc/user_article/read_history_watcher/read_history_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_published_watcher/user_article_published_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
-import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/empty_data_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/outlined_button_widget.dart';
 
@@ -33,10 +31,10 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
     Future.microtask(() {
       context
           .read<ReadHistoryWatcherBloc>()
-          .add(const ReadHistoryWatcherEvent.fetchArticle());
+          .add(const ReadHistoryWatcherEvent.fetch());
       context
           .read<UserArticlePublishedWatcherBloc>()
-          .add(const UserArticlePublishedWatcherEvent.fetchArticle());
+          .add(const UserArticlePublishedWatcherEvent.fetch());
     });
   }
 
@@ -242,13 +240,13 @@ class _MyArticlesWidget extends StatelessWidget {
             );
           },
           loaded: (state) {
-            if (state.article.isNotEmpty) {
+            if (state.articleList.isNotEmpty) {
               return ListView.builder(
-                itemCount: state.article.length,
+                itemCount: state.articleList.length,
                 physics: const ScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  final article = state.article[index];
+                  final article = state.articleList[index];
 
                   return ArticleCardWidget(
                     article: article,

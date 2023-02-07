@@ -14,7 +14,7 @@ class ArticleCommentWatcherBloc
       : super(const ArticleCommentWatcherState.initial()) {
     on<ArticleCommentWatcherEvent>((event, emit) async {
       await event.map(
-        fetchComments: (e) async {
+        fetch: (e) async {
           emit(const ArticleCommentWatcherState.loading());
           final id = e.id.replaceFirst(Const.unusedPath, '');
 
@@ -24,7 +24,7 @@ class ArticleCommentWatcherBloc
             (data) => emit(ArticleCommentWatcherState.loaded(data)),
           );
         },
-        refreshComments: (e) async {
+        refresh: (e) async {
           final id = e.id.replaceFirst(Const.unusedPath, '');
           final result = await _commentList.execute(id);
           result.fold(

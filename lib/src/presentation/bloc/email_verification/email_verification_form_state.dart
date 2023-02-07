@@ -5,7 +5,7 @@ class EmailVerificationFormState with _$EmailVerificationFormState {
   const factory EmailVerificationFormState({
     required RequestState state,
     required String message,
-    required bool isSubmitting,
+    required bool isSubmit,
     required bool isTimeoutDone,
   }) = _EmailVerificationFormState;
 
@@ -13,7 +13,7 @@ class EmailVerificationFormState with _$EmailVerificationFormState {
     return const EmailVerificationFormState(
       state: RequestState.empty,
       message: '',
-      isSubmitting: false,
+      isSubmit: false,
       isTimeoutDone: false,
     );
   }

@@ -18,57 +18,57 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserFormEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() init,
     required TResult Function(User user) initialize,
-    required TResult Function(String name) nameOnChanged,
+    required TResult Function(String name) name,
     required TResult Function(ImageSource source) pickImage,
-    required TResult Function() saveChanges,
+    required TResult Function() save,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function()? init,
     TResult? Function(User user)? initialize,
-    TResult? Function(String name)? nameOnChanged,
+    TResult? Function(String name)? name,
     TResult? Function(ImageSource source)? pickImage,
-    TResult? Function()? saveChanges,
+    TResult? Function()? save,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? init,
     TResult Function(User user)? initialize,
-    TResult Function(String name)? nameOnChanged,
+    TResult Function(String name)? name,
     TResult Function(ImageSource source)? pickImage,
-    TResult Function()? saveChanges,
+    TResult Function()? save,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
-    required TResult Function(_NameOnChanged value) nameOnChanged,
+    required TResult Function(_Name value) name,
     required TResult Function(_PickImage value) pickImage,
-    required TResult Function(_SaveChanges value) saveChanges,
+    required TResult Function(_Save value) save,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_NameOnChanged value)? nameOnChanged,
+    TResult? Function(_Name value)? name,
     TResult? Function(_PickImage value)? pickImage,
-    TResult? Function(_SaveChanges value)? saveChanges,
+    TResult? Function(_Save value)? save,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
-    TResult Function(_NameOnChanged value)? nameOnChanged,
+    TResult Function(_Name value)? name,
     TResult Function(_PickImage value)? pickImage,
-    TResult Function(_SaveChanges value)? saveChanges,
+    TResult Function(_Save value)? save,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -93,34 +93,33 @@ class _$UserFormEventCopyWithImpl<$Res, $Val extends UserFormEvent>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$_InitCopyWith<$Res> {
+  factory _$$_InitCopyWith(_$_Init value, $Res Function(_$_Init) then) =
+      __$$_InitCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$UserFormEventCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$_InitCopyWithImpl<$Res>
+    extends _$UserFormEventCopyWithImpl<$Res, _$_Init>
+    implements _$$_InitCopyWith<$Res> {
+  __$$_InitCopyWithImpl(_$_Init _value, $Res Function(_$_Init) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$_Init implements _Init {
+  const _$_Init();
 
   @override
   String toString() {
-    return 'UserFormEvent.initial()';
+    return 'UserFormEvent.init()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$_Init);
   }
 
   @override
@@ -129,39 +128,39 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() init,
     required TResult Function(User user) initialize,
-    required TResult Function(String name) nameOnChanged,
+    required TResult Function(String name) name,
     required TResult Function(ImageSource source) pickImage,
-    required TResult Function() saveChanges,
+    required TResult Function() save,
   }) {
-    return initial();
+    return init();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function()? init,
     TResult? Function(User user)? initialize,
-    TResult? Function(String name)? nameOnChanged,
+    TResult? Function(String name)? name,
     TResult? Function(ImageSource source)? pickImage,
-    TResult? Function()? saveChanges,
+    TResult? Function()? save,
   }) {
-    return initial?.call();
+    return init?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? init,
     TResult Function(User user)? initialize,
-    TResult Function(String name)? nameOnChanged,
+    TResult Function(String name)? name,
     TResult Function(ImageSource source)? pickImage,
-    TResult Function()? saveChanges,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial();
+    if (init != null) {
+      return init();
     }
     return orElse();
   }
@@ -169,46 +168,46 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
-    required TResult Function(_NameOnChanged value) nameOnChanged,
+    required TResult Function(_Name value) name,
     required TResult Function(_PickImage value) pickImage,
-    required TResult Function(_SaveChanges value) saveChanges,
+    required TResult Function(_Save value) save,
   }) {
-    return initial(this);
+    return init(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_NameOnChanged value)? nameOnChanged,
+    TResult? Function(_Name value)? name,
     TResult? Function(_PickImage value)? pickImage,
-    TResult? Function(_SaveChanges value)? saveChanges,
+    TResult? Function(_Save value)? save,
   }) {
-    return initial?.call(this);
+    return init?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
-    TResult Function(_NameOnChanged value)? nameOnChanged,
+    TResult Function(_Name value)? name,
     TResult Function(_PickImage value)? pickImage,
-    TResult Function(_SaveChanges value)? saveChanges,
+    TResult Function(_Save value)? save,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial(this);
+    if (init != null) {
+      return init(this);
     }
     return orElse();
   }
 }
 
-abstract class _Initial implements UserFormEvent {
-  const factory _Initial() = _$_Initial;
+abstract class _Init implements UserFormEvent {
+  const factory _Init() = _$_Init;
 }
 
 /// @nodoc
@@ -275,11 +274,11 @@ class _$_Initialize implements _Initialize {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() init,
     required TResult Function(User user) initialize,
-    required TResult Function(String name) nameOnChanged,
+    required TResult Function(String name) name,
     required TResult Function(ImageSource source) pickImage,
-    required TResult Function() saveChanges,
+    required TResult Function() save,
   }) {
     return initialize(user);
   }
@@ -287,11 +286,11 @@ class _$_Initialize implements _Initialize {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function()? init,
     TResult? Function(User user)? initialize,
-    TResult? Function(String name)? nameOnChanged,
+    TResult? Function(String name)? name,
     TResult? Function(ImageSource source)? pickImage,
-    TResult? Function()? saveChanges,
+    TResult? Function()? save,
   }) {
     return initialize?.call(user);
   }
@@ -299,11 +298,11 @@ class _$_Initialize implements _Initialize {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? init,
     TResult Function(User user)? initialize,
-    TResult Function(String name)? nameOnChanged,
+    TResult Function(String name)? name,
     TResult Function(ImageSource source)? pickImage,
-    TResult Function()? saveChanges,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -315,11 +314,11 @@ class _$_Initialize implements _Initialize {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
-    required TResult Function(_NameOnChanged value) nameOnChanged,
+    required TResult Function(_Name value) name,
     required TResult Function(_PickImage value) pickImage,
-    required TResult Function(_SaveChanges value) saveChanges,
+    required TResult Function(_Save value) save,
   }) {
     return initialize(this);
   }
@@ -327,11 +326,11 @@ class _$_Initialize implements _Initialize {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_NameOnChanged value)? nameOnChanged,
+    TResult? Function(_Name value)? name,
     TResult? Function(_PickImage value)? pickImage,
-    TResult? Function(_SaveChanges value)? saveChanges,
+    TResult? Function(_Save value)? save,
   }) {
     return initialize?.call(this);
   }
@@ -339,11 +338,11 @@ class _$_Initialize implements _Initialize {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
-    TResult Function(_NameOnChanged value)? nameOnChanged,
+    TResult Function(_Name value)? name,
     TResult Function(_PickImage value)? pickImage,
-    TResult Function(_SaveChanges value)? saveChanges,
+    TResult Function(_Save value)? save,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -363,20 +362,18 @@ abstract class _Initialize implements UserFormEvent {
 }
 
 /// @nodoc
-abstract class _$$_NameOnChangedCopyWith<$Res> {
-  factory _$$_NameOnChangedCopyWith(
-          _$_NameOnChanged value, $Res Function(_$_NameOnChanged) then) =
-      __$$_NameOnChangedCopyWithImpl<$Res>;
+abstract class _$$_NameCopyWith<$Res> {
+  factory _$$_NameCopyWith(_$_Name value, $Res Function(_$_Name) then) =
+      __$$_NameCopyWithImpl<$Res>;
   @useResult
   $Res call({String name});
 }
 
 /// @nodoc
-class __$$_NameOnChangedCopyWithImpl<$Res>
-    extends _$UserFormEventCopyWithImpl<$Res, _$_NameOnChanged>
-    implements _$$_NameOnChangedCopyWith<$Res> {
-  __$$_NameOnChangedCopyWithImpl(
-      _$_NameOnChanged _value, $Res Function(_$_NameOnChanged) _then)
+class __$$_NameCopyWithImpl<$Res>
+    extends _$UserFormEventCopyWithImpl<$Res, _$_Name>
+    implements _$$_NameCopyWith<$Res> {
+  __$$_NameCopyWithImpl(_$_Name _value, $Res Function(_$_Name) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -384,7 +381,7 @@ class __$$_NameOnChangedCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
   }) {
-    return _then(_$_NameOnChanged(
+    return _then(_$_Name(
       null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -395,22 +392,22 @@ class __$$_NameOnChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_NameOnChanged implements _NameOnChanged {
-  const _$_NameOnChanged(this.name);
+class _$_Name implements _Name {
+  const _$_Name(this.name);
 
   @override
   final String name;
 
   @override
   String toString() {
-    return 'UserFormEvent.nameOnChanged(name: $name)';
+    return 'UserFormEvent.name(name: $name)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NameOnChanged &&
+            other is _$_Name &&
             (identical(other.name, name) || other.name == name));
   }
 
@@ -420,45 +417,45 @@ class _$_NameOnChanged implements _NameOnChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NameOnChangedCopyWith<_$_NameOnChanged> get copyWith =>
-      __$$_NameOnChangedCopyWithImpl<_$_NameOnChanged>(this, _$identity);
+  _$$_NameCopyWith<_$_Name> get copyWith =>
+      __$$_NameCopyWithImpl<_$_Name>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() init,
     required TResult Function(User user) initialize,
-    required TResult Function(String name) nameOnChanged,
+    required TResult Function(String name) name,
     required TResult Function(ImageSource source) pickImage,
-    required TResult Function() saveChanges,
+    required TResult Function() save,
   }) {
-    return nameOnChanged(name);
+    return name(this.name);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function()? init,
     TResult? Function(User user)? initialize,
-    TResult? Function(String name)? nameOnChanged,
+    TResult? Function(String name)? name,
     TResult? Function(ImageSource source)? pickImage,
-    TResult? Function()? saveChanges,
+    TResult? Function()? save,
   }) {
-    return nameOnChanged?.call(name);
+    return name?.call(this.name);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? init,
     TResult Function(User user)? initialize,
-    TResult Function(String name)? nameOnChanged,
+    TResult Function(String name)? name,
     TResult Function(ImageSource source)? pickImage,
-    TResult Function()? saveChanges,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
-    if (nameOnChanged != null) {
-      return nameOnChanged(name);
+    if (name != null) {
+      return name(this.name);
     }
     return orElse();
   }
@@ -466,51 +463,50 @@ class _$_NameOnChanged implements _NameOnChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
-    required TResult Function(_NameOnChanged value) nameOnChanged,
+    required TResult Function(_Name value) name,
     required TResult Function(_PickImage value) pickImage,
-    required TResult Function(_SaveChanges value) saveChanges,
+    required TResult Function(_Save value) save,
   }) {
-    return nameOnChanged(this);
+    return name(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_NameOnChanged value)? nameOnChanged,
+    TResult? Function(_Name value)? name,
     TResult? Function(_PickImage value)? pickImage,
-    TResult? Function(_SaveChanges value)? saveChanges,
+    TResult? Function(_Save value)? save,
   }) {
-    return nameOnChanged?.call(this);
+    return name?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
-    TResult Function(_NameOnChanged value)? nameOnChanged,
+    TResult Function(_Name value)? name,
     TResult Function(_PickImage value)? pickImage,
-    TResult Function(_SaveChanges value)? saveChanges,
+    TResult Function(_Save value)? save,
     required TResult orElse(),
   }) {
-    if (nameOnChanged != null) {
-      return nameOnChanged(this);
+    if (name != null) {
+      return name(this);
     }
     return orElse();
   }
 }
 
-abstract class _NameOnChanged implements UserFormEvent {
-  const factory _NameOnChanged(final String name) = _$_NameOnChanged;
+abstract class _Name implements UserFormEvent {
+  const factory _Name(final String name) = _$_Name;
 
   String get name;
   @JsonKey(ignore: true)
-  _$$_NameOnChangedCopyWith<_$_NameOnChanged> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_NameCopyWith<_$_Name> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -577,11 +573,11 @@ class _$_PickImage implements _PickImage {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() init,
     required TResult Function(User user) initialize,
-    required TResult Function(String name) nameOnChanged,
+    required TResult Function(String name) name,
     required TResult Function(ImageSource source) pickImage,
-    required TResult Function() saveChanges,
+    required TResult Function() save,
   }) {
     return pickImage(source);
   }
@@ -589,11 +585,11 @@ class _$_PickImage implements _PickImage {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function()? init,
     TResult? Function(User user)? initialize,
-    TResult? Function(String name)? nameOnChanged,
+    TResult? Function(String name)? name,
     TResult? Function(ImageSource source)? pickImage,
-    TResult? Function()? saveChanges,
+    TResult? Function()? save,
   }) {
     return pickImage?.call(source);
   }
@@ -601,11 +597,11 @@ class _$_PickImage implements _PickImage {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? init,
     TResult Function(User user)? initialize,
-    TResult Function(String name)? nameOnChanged,
+    TResult Function(String name)? name,
     TResult Function(ImageSource source)? pickImage,
-    TResult Function()? saveChanges,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
     if (pickImage != null) {
@@ -617,11 +613,11 @@ class _$_PickImage implements _PickImage {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
-    required TResult Function(_NameOnChanged value) nameOnChanged,
+    required TResult Function(_Name value) name,
     required TResult Function(_PickImage value) pickImage,
-    required TResult Function(_SaveChanges value) saveChanges,
+    required TResult Function(_Save value) save,
   }) {
     return pickImage(this);
   }
@@ -629,11 +625,11 @@ class _$_PickImage implements _PickImage {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_NameOnChanged value)? nameOnChanged,
+    TResult? Function(_Name value)? name,
     TResult? Function(_PickImage value)? pickImage,
-    TResult? Function(_SaveChanges value)? saveChanges,
+    TResult? Function(_Save value)? save,
   }) {
     return pickImage?.call(this);
   }
@@ -641,11 +637,11 @@ class _$_PickImage implements _PickImage {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
-    TResult Function(_NameOnChanged value)? nameOnChanged,
+    TResult Function(_Name value)? name,
     TResult Function(_PickImage value)? pickImage,
-    TResult Function(_SaveChanges value)? saveChanges,
+    TResult Function(_Save value)? save,
     required TResult orElse(),
   }) {
     if (pickImage != null) {
@@ -665,35 +661,33 @@ abstract class _PickImage implements UserFormEvent {
 }
 
 /// @nodoc
-abstract class _$$_SaveChangesCopyWith<$Res> {
-  factory _$$_SaveChangesCopyWith(
-          _$_SaveChanges value, $Res Function(_$_SaveChanges) then) =
-      __$$_SaveChangesCopyWithImpl<$Res>;
+abstract class _$$_SaveCopyWith<$Res> {
+  factory _$$_SaveCopyWith(_$_Save value, $Res Function(_$_Save) then) =
+      __$$_SaveCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SaveChangesCopyWithImpl<$Res>
-    extends _$UserFormEventCopyWithImpl<$Res, _$_SaveChanges>
-    implements _$$_SaveChangesCopyWith<$Res> {
-  __$$_SaveChangesCopyWithImpl(
-      _$_SaveChanges _value, $Res Function(_$_SaveChanges) _then)
+class __$$_SaveCopyWithImpl<$Res>
+    extends _$UserFormEventCopyWithImpl<$Res, _$_Save>
+    implements _$$_SaveCopyWith<$Res> {
+  __$$_SaveCopyWithImpl(_$_Save _value, $Res Function(_$_Save) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SaveChanges implements _SaveChanges {
-  const _$_SaveChanges();
+class _$_Save implements _Save {
+  const _$_Save();
 
   @override
   String toString() {
-    return 'UserFormEvent.saveChanges()';
+    return 'UserFormEvent.save()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SaveChanges);
+        (other.runtimeType == runtimeType && other is _$_Save);
   }
 
   @override
@@ -702,39 +696,39 @@ class _$_SaveChanges implements _SaveChanges {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() init,
     required TResult Function(User user) initialize,
-    required TResult Function(String name) nameOnChanged,
+    required TResult Function(String name) name,
     required TResult Function(ImageSource source) pickImage,
-    required TResult Function() saveChanges,
+    required TResult Function() save,
   }) {
-    return saveChanges();
+    return save();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
+    TResult? Function()? init,
     TResult? Function(User user)? initialize,
-    TResult? Function(String name)? nameOnChanged,
+    TResult? Function(String name)? name,
     TResult? Function(ImageSource source)? pickImage,
-    TResult? Function()? saveChanges,
+    TResult? Function()? save,
   }) {
-    return saveChanges?.call();
+    return save?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? init,
     TResult Function(User user)? initialize,
-    TResult Function(String name)? nameOnChanged,
+    TResult Function(String name)? name,
     TResult Function(ImageSource source)? pickImage,
-    TResult Function()? saveChanges,
+    TResult Function()? save,
     required TResult orElse(),
   }) {
-    if (saveChanges != null) {
-      return saveChanges();
+    if (save != null) {
+      return save();
     }
     return orElse();
   }
@@ -742,46 +736,46 @@ class _$_SaveChanges implements _SaveChanges {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
-    required TResult Function(_NameOnChanged value) nameOnChanged,
+    required TResult Function(_Name value) name,
     required TResult Function(_PickImage value) pickImage,
-    required TResult Function(_SaveChanges value) saveChanges,
+    required TResult Function(_Save value) save,
   }) {
-    return saveChanges(this);
+    return save(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
-    TResult? Function(_NameOnChanged value)? nameOnChanged,
+    TResult? Function(_Name value)? name,
     TResult? Function(_PickImage value)? pickImage,
-    TResult? Function(_SaveChanges value)? saveChanges,
+    TResult? Function(_Save value)? save,
   }) {
-    return saveChanges?.call(this);
+    return save?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
-    TResult Function(_NameOnChanged value)? nameOnChanged,
+    TResult Function(_Name value)? name,
     TResult Function(_PickImage value)? pickImage,
-    TResult Function(_SaveChanges value)? saveChanges,
+    TResult Function(_Save value)? save,
     required TResult orElse(),
   }) {
-    if (saveChanges != null) {
-      return saveChanges(this);
+    if (save != null) {
+      return save(this);
     }
     return orElse();
   }
 }
 
-abstract class _SaveChanges implements UserFormEvent {
-  const factory _SaveChanges() = _$_SaveChanges;
+abstract class _Save implements UserFormEvent {
+  const factory _Save() = _$_Save;
 }
 
 /// @nodoc
@@ -792,8 +786,7 @@ mixin _$UserFormState {
   String get email => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   File? get imageFile => throw _privateConstructorUsedError;
-  bool get isSubmitting => throw _privateConstructorUsedError;
-  bool get isShowErrorMessages => throw _privateConstructorUsedError;
+  bool get isSubmit => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserFormStateCopyWith<UserFormState> get copyWith =>
@@ -813,8 +806,7 @@ abstract class $UserFormStateCopyWith<$Res> {
       String email,
       String imageUrl,
       File? imageFile,
-      bool isSubmitting,
-      bool isShowErrorMessages});
+      bool isSubmit});
 }
 
 /// @nodoc
@@ -836,8 +828,7 @@ class _$UserFormStateCopyWithImpl<$Res, $Val extends UserFormState>
     Object? email = null,
     Object? imageUrl = null,
     Object? imageFile = freezed,
-    Object? isSubmitting = null,
-    Object? isShowErrorMessages = null,
+    Object? isSubmit = null,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -864,13 +855,9 @@ class _$UserFormStateCopyWithImpl<$Res, $Val extends UserFormState>
           ? _value.imageFile
           : imageFile // ignore: cast_nullable_to_non_nullable
               as File?,
-      isSubmitting: null == isSubmitting
-          ? _value.isSubmitting
-          : isSubmitting // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isShowErrorMessages: null == isShowErrorMessages
-          ? _value.isShowErrorMessages
-          : isShowErrorMessages // ignore: cast_nullable_to_non_nullable
+      isSubmit: null == isSubmit
+          ? _value.isSubmit
+          : isSubmit // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -891,8 +878,7 @@ abstract class _$$_UserFormStateCopyWith<$Res>
       String email,
       String imageUrl,
       File? imageFile,
-      bool isSubmitting,
-      bool isShowErrorMessages});
+      bool isSubmit});
 }
 
 /// @nodoc
@@ -912,8 +898,7 @@ class __$$_UserFormStateCopyWithImpl<$Res>
     Object? email = null,
     Object? imageUrl = null,
     Object? imageFile = freezed,
-    Object? isSubmitting = null,
-    Object? isShowErrorMessages = null,
+    Object? isSubmit = null,
   }) {
     return _then(_$_UserFormState(
       state: null == state
@@ -940,13 +925,9 @@ class __$$_UserFormStateCopyWithImpl<$Res>
           ? _value.imageFile
           : imageFile // ignore: cast_nullable_to_non_nullable
               as File?,
-      isSubmitting: null == isSubmitting
-          ? _value.isSubmitting
-          : isSubmitting // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isShowErrorMessages: null == isShowErrorMessages
-          ? _value.isShowErrorMessages
-          : isShowErrorMessages // ignore: cast_nullable_to_non_nullable
+      isSubmit: null == isSubmit
+          ? _value.isSubmit
+          : isSubmit // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -962,8 +943,7 @@ class _$_UserFormState implements _UserFormState {
       required this.email,
       required this.imageUrl,
       required this.imageFile,
-      required this.isSubmitting,
-      required this.isShowErrorMessages});
+      required this.isSubmit});
 
   @override
   final RequestState state;
@@ -978,13 +958,11 @@ class _$_UserFormState implements _UserFormState {
   @override
   final File? imageFile;
   @override
-  final bool isSubmitting;
-  @override
-  final bool isShowErrorMessages;
+  final bool isSubmit;
 
   @override
   String toString() {
-    return 'UserFormState(state: $state, message: $message, name: $name, email: $email, imageUrl: $imageUrl, imageFile: $imageFile, isSubmitting: $isSubmitting, isShowErrorMessages: $isShowErrorMessages)';
+    return 'UserFormState(state: $state, message: $message, name: $name, email: $email, imageUrl: $imageUrl, imageFile: $imageFile, isSubmit: $isSubmit)';
   }
 
   @override
@@ -1000,15 +978,13 @@ class _$_UserFormState implements _UserFormState {
                 other.imageUrl == imageUrl) &&
             (identical(other.imageFile, imageFile) ||
                 other.imageFile == imageFile) &&
-            (identical(other.isSubmitting, isSubmitting) ||
-                other.isSubmitting == isSubmitting) &&
-            (identical(other.isShowErrorMessages, isShowErrorMessages) ||
-                other.isShowErrorMessages == isShowErrorMessages));
+            (identical(other.isSubmit, isSubmit) ||
+                other.isSubmit == isSubmit));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, state, message, name, email,
-      imageUrl, imageFile, isSubmitting, isShowErrorMessages);
+  int get hashCode => Object.hash(
+      runtimeType, state, message, name, email, imageUrl, imageFile, isSubmit);
 
   @JsonKey(ignore: true)
   @override
@@ -1025,8 +1001,7 @@ abstract class _UserFormState implements UserFormState {
       required final String email,
       required final String imageUrl,
       required final File? imageFile,
-      required final bool isSubmitting,
-      required final bool isShowErrorMessages}) = _$_UserFormState;
+      required final bool isSubmit}) = _$_UserFormState;
 
   @override
   RequestState get state;
@@ -1041,9 +1016,7 @@ abstract class _UserFormState implements UserFormState {
   @override
   File? get imageFile;
   @override
-  bool get isSubmitting;
-  @override
-  bool get isShowErrorMessages;
+  bool get isSubmit;
   @override
   @JsonKey(ignore: true)
   _$$_UserFormStateCopyWith<_$_UserFormState> get copyWith =>

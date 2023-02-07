@@ -17,7 +17,7 @@ class UserFormBloc extends Bloc<UserFormEvent, UserFormState> {
   UserFormBloc(this._update) : super(UserFormState.initial()) {
     on<UserFormEvent>((event, emit) async {
       await event.map(
-        initial: (_) {
+        init: (_) {
           emit(UserFormState.initial());
         },
         initialize: (event) {
@@ -25,8 +25,7 @@ class UserFormBloc extends Bloc<UserFormEvent, UserFormState> {
             state.copyWith(
               state: RequestState.empty,
               message: '',
-              isSubmitting: false,
-              isShowErrorMessages: false,
+              isSubmit: false,
               name: event.user.name,
               email: event.user.email,
               imageUrl: event.user.photo,
@@ -34,11 +33,11 @@ class UserFormBloc extends Bloc<UserFormEvent, UserFormState> {
             ),
           );
         },
-        nameOnChanged: (e) {
+        name: (e) {
           emit(
             state.copyWith(
               name: e.name,
-              isSubmitting: false,
+              isSubmit: false,
             ),
           );
         },
@@ -55,11 +54,11 @@ class UserFormBloc extends Bloc<UserFormEvent, UserFormState> {
             }
           }
         },
-        saveChanges: (_) async {
+        save: (_) async {
           emit(
             state.copyWith(
               state: RequestState.loading,
-              isSubmitting: true,
+              isSubmit: true,
             ),
           );
           final result = await _update.execute(
@@ -71,14 +70,13 @@ class UserFormBloc extends Bloc<UserFormEvent, UserFormState> {
               state.copyWith(
                 state: RequestState.error,
                 message: f.message,
-                isSubmitting: false,
-                isShowErrorMessages: true,
+                isSubmit: false,
               ),
             ),
             (_) => emit(
               state.copyWith(
                 state: RequestState.loaded,
-                isSubmitting: false,
+                isSubmit: false,
               ),
             ),
           );

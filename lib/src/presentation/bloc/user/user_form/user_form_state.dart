@@ -9,8 +9,7 @@ class UserFormState with _$UserFormState {
     required String email,
     required String imageUrl,
     required File? imageFile,
-    required bool isSubmitting,
-    required bool isShowErrorMessages,
+    required bool isSubmit,
   }) = _UserFormState;
 
   factory UserFormState.initial() => const UserFormState(
@@ -20,7 +19,6 @@ class UserFormState with _$UserFormState {
         email: '',
         imageUrl: Const.photo,
         imageFile: null,
-        isSubmitting: false,
-        isShowErrorMessages: false,
+        isSubmit: false,
       );
 }

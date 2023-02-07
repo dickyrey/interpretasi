@@ -30,7 +30,6 @@ class UserDataSourceImpl extends UserDataSource {
       'Authorization': 'Bearer $token',
       'Accept': 'application/json',
     };
-    print(token);
     final url = Uri(
       scheme: Const.scheme,
       host: Const.host,

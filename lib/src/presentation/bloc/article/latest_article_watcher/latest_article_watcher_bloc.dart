@@ -11,7 +11,7 @@ class LatestArticleWatcherBloc extends Bloc<LatestArticleWatcherEvent, LatestArt
   LatestArticleWatcherBloc(this._getLatestArticle) : super(const LatestArticleWatcherState.initial()) {
     on<LatestArticleWatcherEvent>((event, emit) async {
       await event.map(
-        fetchArticle: (_) async {
+        fetch: (_) async {
           emit(const LatestArticleWatcherState.loading());
 
           final result = await _getLatestArticle.execute();

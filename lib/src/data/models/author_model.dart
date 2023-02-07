@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:interpretasi/src/domain/entities/author.dart';
-import 'package:interpretasi/src/domain/entities/boarding.dart';
 
 class AuthorModel extends Equatable {
   const AuthorModel({

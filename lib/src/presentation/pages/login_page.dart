@@ -54,7 +54,7 @@ class LoginPage extends StatelessWidget {
               signInSuccess: (_) {
                 context
                     .read<AuthWatcherBloc>()
-                    .add(const AuthWatcherEvent.authCheckRequested());
+                    .add(const AuthWatcherEvent.check());
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   HOME,
@@ -69,7 +69,7 @@ class LoginPage extends StatelessWidget {
             if (state.state == RequestState.loaded) {
               context
                   .read<SignInWithEmailFormBloc>()
-                  .add(const SignInWithEmailFormEvent.initial());
+                  .add(const SignInWithEmailFormEvent.init());
               Navigator.pushNamedAndRemoveUntil(
                 context,
                 SPLASH,
@@ -146,7 +146,7 @@ class LoginPage extends StatelessWidget {
                       onChanged: (v) {
                         context
                             .read<SignInWithEmailFormBloc>()
-                            .add(SignInWithEmailFormEvent.emailOnChanged(v));
+                            .add(SignInWithEmailFormEvent.email(v));
                       },
                     ),
                     const SizedBox(height: Const.space25),
@@ -163,7 +163,7 @@ class LoginPage extends StatelessWidget {
                         onPressed: () {
                           context.read<SignInWithEmailFormBloc>().add(
                                 const SignInWithEmailFormEvent
-                                    .obscureTextPressed(),
+                                    .obscureText(),
                               );
                         },
                         icon: Icon(
@@ -175,7 +175,7 @@ class LoginPage extends StatelessWidget {
                       onChanged: (v) {
                         context
                             .read<SignInWithEmailFormBloc>()
-                            .add(SignInWithEmailFormEvent.passwordOnChanged(v));
+                            .add(SignInWithEmailFormEvent.password(v));
                       },
                     ),
                     const SizedBox(height: Const.space25),
@@ -186,7 +186,7 @@ class LoginPage extends StatelessWidget {
                       onTap: () {
                         if (formKey.currentState!.validate()) {
                           context.read<SignInWithEmailFormBloc>().add(
-                                const SignInWithEmailFormEvent.signInPressed(),
+                                const SignInWithEmailFormEvent.signIn(),
                               );
                         }
                       },
@@ -246,7 +246,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       onTap: () {
                         context.read<SignInWithGoogleActorBloc>().add(
-                              const SignInWithGoogleActorEvent.googleSignIn(),
+                              const SignInWithGoogleActorEvent.signIn(),
                             );
                       },
                     ),

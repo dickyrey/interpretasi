@@ -13,17 +13,17 @@ class SignUpWithEmailFormBloc
       : super(SignUpWithEmailFormState.initial()) {
     on<SignUpWithEmailFormEvent>((event, emit) async {
       await event.map(
-        initial: (_) {
+        init: (_) {
           emit(SignUpWithEmailFormState.initial());
         },
-        emailOnChanged: (event) {
+        email: (event) {
           emit(state.copyWith(email: event.val));
         },
-        signUpPressed: (_) async {
+        signUp: (_) async {
           emit(
             state.copyWith(
               state: RequestState.loading,
-              isSubmitting: true,
+              isSubmit: true,
             ),
           );
           final result = await _signUp.execute(state.email);
@@ -32,13 +32,13 @@ class SignUpWithEmailFormBloc
               state.copyWith(
                 state: RequestState.error,
                 message: f.message,
-                isSubmitting: false,
+                isSubmit: false,
               ),
             ),
             (r) => emit(
               state.copyWith(
                 state: RequestState.loaded,
-                isSubmitting: false,
+                isSubmit: false,
               ),
             ),
           );

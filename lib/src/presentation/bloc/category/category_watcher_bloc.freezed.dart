@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CategoryWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchCategories,
+    required TResult Function() fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchCategories,
+    TResult? Function()? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchCategories,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_Fetch value) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_Fetch value)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,35 +70,33 @@ class _$CategoryWatcherEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_FetchCategoriesCopyWith<$Res> {
-  factory _$$_FetchCategoriesCopyWith(
-          _$_FetchCategories value, $Res Function(_$_FetchCategories) then) =
-      __$$_FetchCategoriesCopyWithImpl<$Res>;
+abstract class _$$_FetchCopyWith<$Res> {
+  factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
+      __$$_FetchCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_FetchCategoriesCopyWithImpl<$Res>
-    extends _$CategoryWatcherEventCopyWithImpl<$Res, _$_FetchCategories>
-    implements _$$_FetchCategoriesCopyWith<$Res> {
-  __$$_FetchCategoriesCopyWithImpl(
-      _$_FetchCategories _value, $Res Function(_$_FetchCategories) _then)
+class __$$_FetchCopyWithImpl<$Res>
+    extends _$CategoryWatcherEventCopyWithImpl<$Res, _$_Fetch>
+    implements _$$_FetchCopyWith<$Res> {
+  __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_FetchCategories implements _FetchCategories {
-  const _$_FetchCategories();
+class _$_Fetch implements _Fetch {
+  const _$_Fetch();
 
   @override
   String toString() {
-    return 'CategoryWatcherEvent.fetchCategories()';
+    return 'CategoryWatcherEvent.fetch()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_FetchCategories);
+        (other.runtimeType == runtimeType && other is _$_Fetch);
   }
 
   @override
@@ -107,27 +105,27 @@ class _$_FetchCategories implements _FetchCategories {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchCategories,
+    required TResult Function() fetch,
   }) {
-    return fetchCategories();
+    return fetch();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchCategories,
+    TResult? Function()? fetch,
   }) {
-    return fetchCategories?.call();
+    return fetch?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchCategories,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) {
-    if (fetchCategories != null) {
-      return fetchCategories();
+    if (fetch != null) {
+      return fetch();
     }
     return orElse();
   }
@@ -135,41 +133,41 @@ class _$_FetchCategories implements _FetchCategories {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchCategories value) fetchCategories,
+    required TResult Function(_Fetch value) fetch,
   }) {
-    return fetchCategories(this);
+    return fetch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchCategories value)? fetchCategories,
+    TResult? Function(_Fetch value)? fetch,
   }) {
-    return fetchCategories?.call(this);
+    return fetch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchCategories value)? fetchCategories,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) {
-    if (fetchCategories != null) {
-      return fetchCategories(this);
+    if (fetch != null) {
+      return fetch(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchCategories implements CategoryWatcherEvent {
-  const factory _FetchCategories() = _$_FetchCategories;
+abstract class _Fetch implements CategoryWatcherEvent {
+  const factory _Fetch() = _$_Fetch;
 }
 
 /// @nodoc
 mixin _$CategoryWatcherState {
   RequestState get state => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  List<Category> get categories => throw _privateConstructorUsedError;
+  List<Category> get categoryList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CategoryWatcherStateCopyWith<CategoryWatcherState> get copyWith =>
@@ -182,7 +180,7 @@ abstract class $CategoryWatcherStateCopyWith<$Res> {
           $Res Function(CategoryWatcherState) then) =
       _$CategoryWatcherStateCopyWithImpl<$Res, CategoryWatcherState>;
   @useResult
-  $Res call({RequestState state, String message, List<Category> categories});
+  $Res call({RequestState state, String message, List<Category> categoryList});
 }
 
 /// @nodoc
@@ -201,7 +199,7 @@ class _$CategoryWatcherStateCopyWithImpl<$Res,
   $Res call({
     Object? state = null,
     Object? message = null,
-    Object? categories = null,
+    Object? categoryList = null,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -212,9 +210,9 @@ class _$CategoryWatcherStateCopyWithImpl<$Res,
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      categories: null == categories
-          ? _value.categories
-          : categories // ignore: cast_nullable_to_non_nullable
+      categoryList: null == categoryList
+          ? _value.categoryList
+          : categoryList // ignore: cast_nullable_to_non_nullable
               as List<Category>,
     ) as $Val);
   }
@@ -228,7 +226,7 @@ abstract class _$$_InitialCopyWith<$Res>
       __$$_InitialCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RequestState state, String message, List<Category> categories});
+  $Res call({RequestState state, String message, List<Category> categoryList});
 }
 
 /// @nodoc
@@ -243,7 +241,7 @@ class __$$_InitialCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
     Object? message = null,
-    Object? categories = null,
+    Object? categoryList = null,
   }) {
     return _then(_$_Initial(
       state: null == state
@@ -254,9 +252,9 @@ class __$$_InitialCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      categories: null == categories
-          ? _value._categories
-          : categories // ignore: cast_nullable_to_non_nullable
+      categoryList: null == categoryList
+          ? _value._categoryList
+          : categoryList // ignore: cast_nullable_to_non_nullable
               as List<Category>,
     ));
   }
@@ -268,24 +266,24 @@ class _$_Initial implements _Initial {
   const _$_Initial(
       {required this.state,
       required this.message,
-      required final List<Category> categories})
-      : _categories = categories;
+      required final List<Category> categoryList})
+      : _categoryList = categoryList;
 
   @override
   final RequestState state;
   @override
   final String message;
-  final List<Category> _categories;
+  final List<Category> _categoryList;
   @override
-  List<Category> get categories {
-    if (_categories is EqualUnmodifiableListView) return _categories;
+  List<Category> get categoryList {
+    if (_categoryList is EqualUnmodifiableListView) return _categoryList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_categories);
+    return EqualUnmodifiableListView(_categoryList);
   }
 
   @override
   String toString() {
-    return 'CategoryWatcherState(state: $state, message: $message, categories: $categories)';
+    return 'CategoryWatcherState(state: $state, message: $message, categoryList: $categoryList)';
   }
 
   @override
@@ -296,12 +294,12 @@ class _$_Initial implements _Initial {
             (identical(other.state, state) || other.state == state) &&
             (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality()
-                .equals(other._categories, _categories));
+                .equals(other._categoryList, _categoryList));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, state, message,
-      const DeepCollectionEquality().hash(_categories));
+      const DeepCollectionEquality().hash(_categoryList));
 
   @JsonKey(ignore: true)
   @override
@@ -314,14 +312,14 @@ abstract class _Initial implements CategoryWatcherState {
   const factory _Initial(
       {required final RequestState state,
       required final String message,
-      required final List<Category> categories}) = _$_Initial;
+      required final List<Category> categoryList}) = _$_Initial;
 
   @override
   RequestState get state;
   @override
   String get message;
   @override
-  List<Category> get categories;
+  List<Category> get categoryList;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>

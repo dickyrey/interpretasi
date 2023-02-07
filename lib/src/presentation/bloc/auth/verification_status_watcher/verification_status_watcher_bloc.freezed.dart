@@ -19,38 +19,38 @@ mixin _$VerificationStatusWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() fetchStatus,
+    required TResult Function() fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? fetchStatus,
+    TResult? Function()? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? fetchStatus,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
-    required TResult Function(_FetchStatus value) fetchStatus,
+    required TResult Function(_Fetch value) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
-    TResult? Function(_FetchStatus value)? fetchStatus,
+    TResult? Function(_Fetch value)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
-    TResult Function(_FetchStatus value)? fetchStatus,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,7 +114,7 @@ class _$_Init implements _Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() fetchStatus,
+    required TResult Function() fetch,
   }) {
     return init();
   }
@@ -123,7 +123,7 @@ class _$_Init implements _Init {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? fetchStatus,
+    TResult? Function()? fetch,
   }) {
     return init?.call();
   }
@@ -132,7 +132,7 @@ class _$_Init implements _Init {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? fetchStatus,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -145,7 +145,7 @@ class _$_Init implements _Init {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
-    required TResult Function(_FetchStatus value) fetchStatus,
+    required TResult Function(_Fetch value) fetch,
   }) {
     return init(this);
   }
@@ -154,7 +154,7 @@ class _$_Init implements _Init {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
-    TResult? Function(_FetchStatus value)? fetchStatus,
+    TResult? Function(_Fetch value)? fetch,
   }) {
     return init?.call(this);
   }
@@ -163,7 +163,7 @@ class _$_Init implements _Init {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
-    TResult Function(_FetchStatus value)? fetchStatus,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -178,35 +178,33 @@ abstract class _Init implements VerificationStatusWatcherEvent {
 }
 
 /// @nodoc
-abstract class _$$_FetchStatusCopyWith<$Res> {
-  factory _$$_FetchStatusCopyWith(
-          _$_FetchStatus value, $Res Function(_$_FetchStatus) then) =
-      __$$_FetchStatusCopyWithImpl<$Res>;
+abstract class _$$_FetchCopyWith<$Res> {
+  factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
+      __$$_FetchCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_FetchStatusCopyWithImpl<$Res>
-    extends _$VerificationStatusWatcherEventCopyWithImpl<$Res, _$_FetchStatus>
-    implements _$$_FetchStatusCopyWith<$Res> {
-  __$$_FetchStatusCopyWithImpl(
-      _$_FetchStatus _value, $Res Function(_$_FetchStatus) _then)
+class __$$_FetchCopyWithImpl<$Res>
+    extends _$VerificationStatusWatcherEventCopyWithImpl<$Res, _$_Fetch>
+    implements _$$_FetchCopyWith<$Res> {
+  __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_FetchStatus implements _FetchStatus {
-  const _$_FetchStatus();
+class _$_Fetch implements _Fetch {
+  const _$_Fetch();
 
   @override
   String toString() {
-    return 'VerificationStatusWatcherEvent.fetchStatus()';
+    return 'VerificationStatusWatcherEvent.fetch()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_FetchStatus);
+        (other.runtimeType == runtimeType && other is _$_Fetch);
   }
 
   @override
@@ -216,29 +214,29 @@ class _$_FetchStatus implements _FetchStatus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() fetchStatus,
+    required TResult Function() fetch,
   }) {
-    return fetchStatus();
+    return fetch();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? fetchStatus,
+    TResult? Function()? fetch,
   }) {
-    return fetchStatus?.call();
+    return fetch?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? fetchStatus,
+    TResult Function()? fetch,
     required TResult orElse(),
   }) {
-    if (fetchStatus != null) {
-      return fetchStatus();
+    if (fetch != null) {
+      return fetch();
     }
     return orElse();
   }
@@ -247,36 +245,36 @@ class _$_FetchStatus implements _FetchStatus {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Init value) init,
-    required TResult Function(_FetchStatus value) fetchStatus,
+    required TResult Function(_Fetch value) fetch,
   }) {
-    return fetchStatus(this);
+    return fetch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Init value)? init,
-    TResult? Function(_FetchStatus value)? fetchStatus,
+    TResult? Function(_Fetch value)? fetch,
   }) {
-    return fetchStatus?.call(this);
+    return fetch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Init value)? init,
-    TResult Function(_FetchStatus value)? fetchStatus,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) {
-    if (fetchStatus != null) {
-      return fetchStatus(this);
+    if (fetch != null) {
+      return fetch(this);
     }
     return orElse();
   }
 }
 
-abstract class _FetchStatus implements VerificationStatusWatcherEvent {
-  const factory _FetchStatus() = _$_FetchStatus;
+abstract class _Fetch implements VerificationStatusWatcherEvent {
+  const factory _Fetch() = _$_Fetch;
 }
 
 /// @nodoc

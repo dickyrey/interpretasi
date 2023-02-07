@@ -14,7 +14,7 @@ class UserWatcherBloc extends Bloc<UserWatcherEvent, UserWatcherState> {
         init:(_){
           emit(const UserWatcherState.initial());
         },
-        fetchUser: (_) async {
+        fetch: (_) async {
           emit(const UserWatcherState.loading());
 
           final result = await _getProfile.execute();

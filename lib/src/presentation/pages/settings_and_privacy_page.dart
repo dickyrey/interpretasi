@@ -23,7 +23,7 @@ class _SettingsAndPrivacyPageState extends State<SettingsAndPrivacyPage> {
     Future.microtask(
       () => context
           .read<VerificationStatusWatcherBloc>()
-          .add(const VerificationStatusWatcherEvent.fetchStatus()),
+          .add(const VerificationStatusWatcherEvent.fetch()),
     );
   }
 

@@ -18,38 +18,38 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() authCheckRequested,
+    required TResult Function() check,
     required TResult Function() signOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? authCheckRequested,
+    TResult? Function()? check,
     TResult? Function()? signOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? authCheckRequested,
+    TResult Function()? check,
     TResult Function()? signOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_Check value) check,
     required TResult Function(_SignOut value) signOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult? Function(_Check value)? check,
     TResult? Function(_SignOut value)? signOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_Check value)? check,
     TResult Function(_SignOut value)? signOut,
     required TResult orElse(),
   }) =>
@@ -75,35 +75,33 @@ class _$AuthWatcherEventCopyWithImpl<$Res, $Val extends AuthWatcherEvent>
 }
 
 /// @nodoc
-abstract class _$$_AuthCheckRequestedCopyWith<$Res> {
-  factory _$$_AuthCheckRequestedCopyWith(_$_AuthCheckRequested value,
-          $Res Function(_$_AuthCheckRequested) then) =
-      __$$_AuthCheckRequestedCopyWithImpl<$Res>;
+abstract class _$$_CheckCopyWith<$Res> {
+  factory _$$_CheckCopyWith(_$_Check value, $Res Function(_$_Check) then) =
+      __$$_CheckCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AuthCheckRequestedCopyWithImpl<$Res>
-    extends _$AuthWatcherEventCopyWithImpl<$Res, _$_AuthCheckRequested>
-    implements _$$_AuthCheckRequestedCopyWith<$Res> {
-  __$$_AuthCheckRequestedCopyWithImpl(
-      _$_AuthCheckRequested _value, $Res Function(_$_AuthCheckRequested) _then)
+class __$$_CheckCopyWithImpl<$Res>
+    extends _$AuthWatcherEventCopyWithImpl<$Res, _$_Check>
+    implements _$$_CheckCopyWith<$Res> {
+  __$$_CheckCopyWithImpl(_$_Check _value, $Res Function(_$_Check) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_AuthCheckRequested implements _AuthCheckRequested {
-  const _$_AuthCheckRequested();
+class _$_Check implements _Check {
+  const _$_Check();
 
   @override
   String toString() {
-    return 'AuthWatcherEvent.authCheckRequested()';
+    return 'AuthWatcherEvent.check()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AuthCheckRequested);
+        (other.runtimeType == runtimeType && other is _$_Check);
   }
 
   @override
@@ -112,30 +110,30 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() authCheckRequested,
+    required TResult Function() check,
     required TResult Function() signOut,
   }) {
-    return authCheckRequested();
+    return check();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? authCheckRequested,
+    TResult? Function()? check,
     TResult? Function()? signOut,
   }) {
-    return authCheckRequested?.call();
+    return check?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? authCheckRequested,
+    TResult Function()? check,
     TResult Function()? signOut,
     required TResult orElse(),
   }) {
-    if (authCheckRequested != null) {
-      return authCheckRequested();
+    if (check != null) {
+      return check();
     }
     return orElse();
   }
@@ -143,37 +141,37 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_Check value) check,
     required TResult Function(_SignOut value) signOut,
   }) {
-    return authCheckRequested(this);
+    return check(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult? Function(_Check value)? check,
     TResult? Function(_SignOut value)? signOut,
   }) {
-    return authCheckRequested?.call(this);
+    return check?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_Check value)? check,
     TResult Function(_SignOut value)? signOut,
     required TResult orElse(),
   }) {
-    if (authCheckRequested != null) {
-      return authCheckRequested(this);
+    if (check != null) {
+      return check(this);
     }
     return orElse();
   }
 }
 
-abstract class _AuthCheckRequested implements AuthWatcherEvent {
-  const factory _AuthCheckRequested() = _$_AuthCheckRequested;
+abstract class _Check implements AuthWatcherEvent {
+  const factory _Check() = _$_Check;
 }
 
 /// @nodoc
@@ -213,7 +211,7 @@ class _$_SignOut implements _SignOut {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() authCheckRequested,
+    required TResult Function() check,
     required TResult Function() signOut,
   }) {
     return signOut();
@@ -222,7 +220,7 @@ class _$_SignOut implements _SignOut {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? authCheckRequested,
+    TResult? Function()? check,
     TResult? Function()? signOut,
   }) {
     return signOut?.call();
@@ -231,7 +229,7 @@ class _$_SignOut implements _SignOut {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? authCheckRequested,
+    TResult Function()? check,
     TResult Function()? signOut,
     required TResult orElse(),
   }) {
@@ -244,7 +242,7 @@ class _$_SignOut implements _SignOut {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_Check value) check,
     required TResult Function(_SignOut value) signOut,
   }) {
     return signOut(this);
@@ -253,7 +251,7 @@ class _$_SignOut implements _SignOut {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult? Function(_Check value)? check,
     TResult? Function(_SignOut value)? signOut,
   }) {
     return signOut?.call(this);
@@ -262,7 +260,7 @@ class _$_SignOut implements _SignOut {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_Check value)? check,
     TResult Function(_SignOut value)? signOut,
     required TResult orElse(),
   }) {

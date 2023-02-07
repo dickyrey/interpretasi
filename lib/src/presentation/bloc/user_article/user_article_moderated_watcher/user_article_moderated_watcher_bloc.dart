@@ -13,7 +13,7 @@ class UserArticleModeratedWatcherBloc extends Bloc<
       : super(const UserArticleModeratedWatcherState.initial()) {
     on<UserArticleModeratedWatcherEvent>((event, emit) async {
       await event.map(
-        fetchArticle: (_) async {
+        fetch: (_) async {
           emit(const UserArticleModeratedWatcherState.loading());
           final result = await _article.execute();
           result.fold(

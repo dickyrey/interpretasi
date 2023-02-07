@@ -13,7 +13,7 @@ class UserArticleRejectedWatcherBloc extends Bloc<
       : super(const UserArticleRejectedWatcherState.initial()) {
     on<UserArticleRejectedWatcherEvent>((event, emit) async {
       await event.map(
-        fetchArticle: (_) async {
+        fetch: (_) async {
           emit(const UserArticleRejectedWatcherState.loading());
           final result = await _article.execute();
           result.fold(

@@ -44,7 +44,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
     if (state == AppLifecycleState.resumed) {
       context
           .read<VerificationStatusWatcherBloc>()
-          .add(const VerificationStatusWatcherEvent.fetchStatus());
+          .add(const VerificationStatusWatcherEvent.fetch());
     }
   }
 
@@ -117,8 +117,8 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
                         color: (state.isTimeoutDone == false)
                             ? theme.primaryColor.withOpacity(.5)
                             : theme.primaryColor,
-                            labelLoading: lang.please_wait,
-                        isLoading: (state.isSubmitting == true) ? true : false,
+                        labelLoading: lang.please_wait,
+                        isLoading: (state.isSubmit == true) ? true : false,
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
