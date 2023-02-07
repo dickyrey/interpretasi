@@ -15,7 +15,7 @@ class LatestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lang = AppLocalizations.of(context)!;
-    
+
     return Scaffold(
       appBar: _appBar(context),
       body: BlocBuilder<LatestArticleWatcherBloc, LatestArticleWatcherState>(
@@ -45,6 +45,8 @@ class LatestPage extends StatelessWidget {
                   return ArticleCardWidget(
                     article: article,
                     index: index,
+                    showShareButton: true,
+                    showReportButton: true,
                     onTap: () {
                       Navigator.pushNamed(
                         context,
@@ -52,22 +54,6 @@ class LatestPage extends StatelessWidget {
                         arguments: article,
                       );
                     },
-                    buttonDialogList: [
-                      TileButtonDialog(
-                        onTap: () {
-                          //TODO: Share Article
-                        },
-                        icon: FeatherIcons.share,
-                        label: lang.share,
-                      ),
-                      TileButtonDialog(
-                        onTap: () {
-                          //TODO: Report Article
-                        },
-                        icon: FeatherIcons.info,
-                        label: lang.report,
-                      ),
-                    ],
                   );
                 },
               );

@@ -21,14 +21,24 @@ class ArticleCardWidget extends StatelessWidget {
     required this.index,
     required this.onTap,
     this.align = CardAlignment.vertical,
-    required this.buttonDialogList,
+    this.showPreviewButton = false,
+    this.showPublishButton = false,
+    this.showEditButton = false,
+    this.showDeleteButton = false,
+    this.showReportButton = false,
+    this.showShareButton = false,
   });
 
   final Article article;
   final int index;
   final VoidCallback onTap;
   final CardAlignment align;
-  final List<TileButtonDialog> buttonDialogList;
+  final bool showPreviewButton;
+  final bool showPublishButton;
+  final bool showEditButton;
+  final bool showDeleteButton;
+  final bool showReportButton;
+  final bool showShareButton;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +55,12 @@ class ArticleCardWidget extends StatelessWidget {
         content = _VerticalCard(
           article: article,
           onTap: onTap,
-          buttonDialogList: buttonDialogList,
+          showPreviewButton: showPreviewButton,
+          showPublishButton: showPublishButton,
+          showEditButton: showEditButton,
+          showDeleteButton: showDeleteButton,
+          showReportButton: showReportButton,
+          showShareButton: showShareButton,
         );
         break;
     }
@@ -233,12 +248,22 @@ class _VerticalCard extends StatelessWidget {
   const _VerticalCard({
     required this.article,
     required this.onTap,
-    required this.buttonDialogList,
+    this.showPreviewButton = false,
+    this.showPublishButton = false,
+    this.showEditButton = false,
+    this.showDeleteButton = false,
+    this.showReportButton = false,
+    this.showShareButton = false,
   });
 
   final Article article;
   final VoidCallback onTap;
-  final List<TileButtonDialog> buttonDialogList;
+  final bool showPreviewButton;
+  final bool showPublishButton;
+  final bool showEditButton;
+  final bool showDeleteButton;
+  final bool showReportButton;
+  final bool showShareButton;
 
   @override
   Widget build(BuildContext context) {
@@ -333,67 +358,83 @@ class _VerticalCard extends StatelessWidget {
                           onTap: () {
                             showMultiButtonDialog(
                               context,
-                              items: buttonDialogList,
+                              items: [
+                                TileButtonDialog(
+                                  onTap: () {
+                                    //TODO: Share Article
+                                  },
+                                  isVisible: showShareButton,
+                                  icon: FeatherIcons.share,
+                                  label: lang.share,
+                                ),
+                                TileButtonDialog(
+                                  onTap: () {
+                                    //TODO: Preview
+                                  },
+                                  icon: FeatherIcons.eye,
+                                  label: lang.preview,
+                                  isVisible: showPreviewButton,
+                                ),
+                                TileButtonDialog(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    context.read<ModeratedActorBloc>().add(
+                                          ModeratedActorEvent.change(
+                                            article.url,
+                                          ),
+                                        );
+                                  },
+                                  isVisible: showPublishButton,
+                                  icon: FeatherIcons.send,
+                                  label: lang.publish,
+                                ),
+                                TileButtonDialog(
+                                  onTap: () {
+                                    //TODO: Edit
+                                  },
+                                  isVisible: showEditButton,
+                                  icon: FeatherIcons.edit3,
+                                  label: lang.edit,
+                                ),
+                                TileButtonDialog(
+                                  onTap: () {
+                                    //TODO: Report Article
+                                  },
+                                  isVisible: showReportButton,
+                                  icon: FeatherIcons.info,
+                                  label: lang.report,
+                                ),
+                                TileButtonDialog(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    context.read<DeleteArticleActorBloc>().add(
+                                          DeleteArticleActorEvent.delete(
+                                            article.url,
+                                          ),
+                                        );
+                                  },
+                                  isVisible: showDeleteButton,
+                                  icon: FeatherIcons.trash,
+                                  label: lang.delete,
+                                  color: theme.colorScheme.error,
+                                  padding: const EdgeInsets.only(
+                                    top: Const.space15,
+                                  ),
+                                ),
+                              ],
                             );
                             // if (isPublic == true) {
                             //   showMultiButtonDialog(
                             //     context,
                             //     items: [
-                            //       TileButtonDialog(
-                            //         onTap: () {
-                            //           //TODO: Report Article
-                            //         },
-                            //         icon: FeatherIcons.info,
-                            //         label: lang.report,
-                            //       ),
+
                             //     ],
                             //   );
                             // } else {
                             //   showMultiButtonDialog(
                             //     context,
                             //     items: [
-                            //       TileButtonDialog(
-                            //         onTap: () {
-                            //           //TODO: Preview
-                            //         },
-                            //         icon: FeatherIcons.eye,
-                            //         label: lang.preview,
-                            //       ),
-                            //       TileButtonDialog(
-                            //         onTap: () {
-                            //           Navigator.pop(context);
-                            //           context.read<ModeratedActorBloc>().add(
-                            //               ModeratedActorEvent.change(
-                            //                   article.url));
-                            //         },
-                            //         icon: FeatherIcons.send,
-                            //         label: lang.publish,
-                            //       ),
-                            //       TileButtonDialog(
-                            //         onTap: () {
-                            //           //TODO: Edit
-                            //         },
-                            //         icon: FeatherIcons.edit2,
-                            //         label: lang.edit,
-                            //       ),
-                            //       TileButtonDialog(
-                            //         onTap: () {
-                            //           Navigator.pop(context);
-                            //           context
-                            //               .read<DeleteArticleActorBloc>()
-                            //               .add(
-                            //                 DeleteArticleActorEvent.delete(
-                            //                   article.url,
-                            //                 ),
-                            //               );
-                            //         },
-                            //         icon: FeatherIcons.trash,
-                            //         label: lang.delete,
-                            //         color: theme.colorScheme.error,
-                            //         padding: const EdgeInsets.only(
-                            //           top: Const.space15,
-                            //         ),
-                            //       ),
+
                             //     ],
                             //   );
                             // }

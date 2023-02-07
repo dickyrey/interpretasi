@@ -194,6 +194,8 @@ class _ReadHistoryWidget extends StatelessWidget {
                   return ArticleCardWidget(
                     article: article,
                     index: index,
+                    showShareButton: true,
+                    showReportButton: true,
                     onTap: () {
                       Navigator.pushNamed(
                         context,
@@ -201,22 +203,6 @@ class _ReadHistoryWidget extends StatelessWidget {
                         arguments: article,
                       );
                     },
-                    buttonDialogList: [
-                      TileButtonDialog(
-                        onTap: () {
-                          //TODO: Edit
-                        },
-                        icon: FeatherIcons.share,
-                        label: lang.share,
-                      ),
-                      TileButtonDialog(
-                        onTap: () {
-                          //TODO: Edit
-                        },
-                        icon: FeatherIcons.info,
-                        label: lang.report,
-                      ),
-                    ],
                   );
                 },
               );
@@ -271,6 +257,8 @@ class _MyArticlesWidget extends StatelessWidget {
                   return ArticleCardWidget(
                     article: article,
                     index: index,
+                    showEditButton: true,
+                    showDeleteButton: true,
                     onTap: () {
                       Navigator.pushNamed(
                         context,
@@ -278,31 +266,6 @@ class _MyArticlesWidget extends StatelessWidget {
                         arguments: article,
                       );
                     },
-                    buttonDialogList: [
-                      TileButtonDialog(
-                        onTap: () {
-                          //TODO: Edit
-                        },
-                        icon: FeatherIcons.edit2,
-                        label: lang.edit,
-                      ),
-                      TileButtonDialog(
-                        onTap: () {
-                          Navigator.pop(context);
-                          context.read<DeleteArticleActorBloc>().add(
-                                DeleteArticleActorEvent.delete(
-                                  article.url,
-                                ),
-                              );
-                        },
-                        icon: FeatherIcons.trash,
-                        label: lang.delete,
-                        color: theme.colorScheme.error,
-                        padding: const EdgeInsets.only(
-                          top: Const.space15,
-                        ),
-                      ),
-                    ],
                   );
                 },
               );

@@ -136,53 +136,13 @@ class _MyArticlePageState extends State<MyArticlePage> {
                             return ArticleCardWidget(
                               index: index,
                               article: article,
+                              showPreviewButton: true,
+                              showEditButton: true,
+                              showPublishButton: true,
+                              showDeleteButton: true,
                               onTap: () {
                                 // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
                               },
-                              buttonDialogList: [
-                                TileButtonDialog(
-                                  onTap: () {
-                                    //TODO: Preview
-                                  },
-                                  icon: FeatherIcons.eye,
-                                  label: lang.preview,
-                                ),
-                                TileButtonDialog(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    context.read<ModeratedActorBloc>().add(
-                                          ModeratedActorEvent.change(
-                                            article.url,
-                                          ),
-                                        );
-                                  },
-                                  icon: FeatherIcons.send,
-                                  label: lang.publish,
-                                ),
-                                TileButtonDialog(
-                                  onTap: () {
-                                    //TODO: Edit
-                                  },
-                                  icon: FeatherIcons.edit2,
-                                  label: lang.edit,
-                                ),
-                                TileButtonDialog(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    context.read<DeleteArticleActorBloc>().add(
-                                          DeleteArticleActorEvent.delete(
-                                            article.url,
-                                          ),
-                                        );
-                                  },
-                                  icon: FeatherIcons.trash,
-                                  label: lang.delete,
-                                  color: theme.colorScheme.error,
-                                  padding: const EdgeInsets.only(
-                                    top: Const.space15,
-                                  ),
-                                ),
-                              ],
                             );
                           },
                         );
@@ -238,34 +198,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
                             return ArticleCardWidget(
                               index: index,
                               article: article,
+                              showPreviewButton: true,
+                              showDeleteButton: true,
                               onTap: () {
                                 // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
                               },
-                              buttonDialogList: [
-                                TileButtonDialog(
-                                  onTap: () {
-                                    //TODO: Preview
-                                  },
-                                  icon: FeatherIcons.eye,
-                                  label: lang.preview,
-                                ),
-                                TileButtonDialog(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    context.read<DeleteArticleActorBloc>().add(
-                                          DeleteArticleActorEvent.delete(
-                                            article.url,
-                                          ),
-                                        );
-                                  },
-                                  icon: FeatherIcons.trash,
-                                  label: lang.delete,
-                                  color: theme.colorScheme.error,
-                                  padding: const EdgeInsets.only(
-                                    top: Const.space15,
-                                  ),
-                                ),
-                              ],
                             );
                           },
                         );
@@ -321,34 +258,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
                             return ArticleCardWidget(
                               index: index,
                               article: article,
+                              showEditButton: true,
+                              showDeleteButton: true,
                               onTap: () {
                                 // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
                               },
-                              buttonDialogList: [
-                                TileButtonDialog(
-                                  onTap: () {
-                                    //TODO: Edit
-                                  },
-                                  icon: FeatherIcons.edit2,
-                                  label: lang.edit,
-                                ),
-                                TileButtonDialog(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    context.read<DeleteArticleActorBloc>().add(
-                                          DeleteArticleActorEvent.delete(
-                                            article.url,
-                                          ),
-                                        );
-                                  },
-                                  icon: FeatherIcons.trash,
-                                  label: lang.delete,
-                                  color: theme.colorScheme.error,
-                                  padding: const EdgeInsets.only(
-                                    top: Const.space15,
-                                  ),
-                                ),
-                              ],
                             );
                           },
                         );
@@ -404,34 +318,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
                             return ArticleCardWidget(
                               index: index,
                               article: article,
+                              showEditButton: true,
+                              showDeleteButton: true,
                               onTap: () {
                                 // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
                               },
-                              buttonDialogList: [
-                                TileButtonDialog(
-                                  onTap: () {
-                                    //TODO: Edit
-                                  },
-                                  icon: FeatherIcons.edit2,
-                                  label: lang.edit,
-                                ),
-                                TileButtonDialog(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    context.read<DeleteArticleActorBloc>().add(
-                                          DeleteArticleActorEvent.delete(
-                                            article.url,
-                                          ),
-                                        );
-                                  },
-                                  icon: FeatherIcons.trash,
-                                  label: lang.delete,
-                                  color: theme.colorScheme.error,
-                                  padding: const EdgeInsets.only(
-                                    top: Const.space15,
-                                  ),
-                                ),
-                              ],
                             );
                           },
                         );
@@ -487,27 +378,10 @@ class _MyArticlePageState extends State<MyArticlePage> {
                             return ArticleCardWidget(
                               index: index,
                               article: article,
+                              showDeleteButton: true,
                               onTap: () {
                                 // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
                               },
-                              buttonDialogList: [
-                                TileButtonDialog(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    context.read<DeleteArticleActorBloc>().add(
-                                          DeleteArticleActorEvent.delete(
-                                            article.url,
-                                          ),
-                                        );
-                                  },
-                                  icon: FeatherIcons.trash,
-                                  label: lang.delete,
-                                  color: theme.colorScheme.error,
-                                  padding: const EdgeInsets.only(
-                                    top: Const.space15,
-                                  ),
-                                ),
-                              ],
                             );
                           },
                         );

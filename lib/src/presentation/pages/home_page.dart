@@ -73,6 +73,8 @@ class HomePage extends StatelessWidget {
                             article: article,
                             index: index,
                             align: CardAlignment.horizontal,
+                            showShareButton: true,
+                            showReportButton: true,
                             onTap: () {
                               Navigator.pushNamed(
                                 context,
@@ -80,22 +82,6 @@ class HomePage extends StatelessWidget {
                                 arguments: article,
                               );
                             },
-                            buttonDialogList: [
-                              TileButtonDialog(
-                                onTap: () {
-                                  //TODO: Share Article
-                                },
-                                icon: FeatherIcons.share,
-                                label: lang.share,
-                              ),
-                              TileButtonDialog(
-                                onTap: () {
-                                  //TODO: Report Article
-                                },
-                                icon: FeatherIcons.info,
-                                label: lang.report,
-                              ),
-                            ],
                           );
                         },
                       ),
@@ -139,6 +125,8 @@ class HomePage extends StatelessWidget {
                         return ArticleCardWidget(
                           article: article,
                           index: index,
+                          showShareButton: true,
+                          showReportButton: true,
                           onTap: () {
                             Navigator.pushNamed(
                               context,
@@ -146,22 +134,6 @@ class HomePage extends StatelessWidget {
                               arguments: article,
                             );
                           },
-                          buttonDialogList: [
-                            TileButtonDialog(
-                              onTap: () {
-                                //TODO: Share Article
-                              },
-                              icon: FeatherIcons.share,
-                              label: lang.share,
-                            ),
-                            TileButtonDialog(
-                              onTap: () {
-                                //TODO: Report Article
-                              },
-                              icon: FeatherIcons.info,
-                              label: lang.report,
-                            ),
-                          ],
                         );
                       },
                     );

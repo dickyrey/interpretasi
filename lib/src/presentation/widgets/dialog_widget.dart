@@ -12,6 +12,7 @@ class TileButtonDialog extends StatelessWidget {
     required this.label,
     required this.icon,
     required this.onTap,
+    this.isVisible = true,
     this.color,
     this.padding,
   });
@@ -19,34 +20,38 @@ class TileButtonDialog extends StatelessWidget {
   final String label;
   final IconData icon;
   final VoidCallback onTap;
+  final bool isVisible;
   final Color? color;
   final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Padding(
-      padding: padding ?? EdgeInsets.zero,
-      child: SizedBox(
-        height: 40,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(Const.radius),
-          child: Row(
-            children: [
-              Icon(
-                icon,
-                size: 18,
-                color: color ?? ColorLight.fontTitle,
-              ),
-              const SizedBox(width: Const.space12),
-              Text(
-                label,
-                style: theme.textTheme.bodyMedium?.copyWith(
+    return Visibility(
+      visible: isVisible,
+      child: Padding(
+        padding: padding ?? EdgeInsets.zero,
+        child: SizedBox(
+          height: 40,
+          child: InkWell(
+            onTap: onTap,
+            borderRadius: BorderRadius.circular(Const.radius),
+            child: Row(
+              children: [
+                Icon(
+                  icon,
+                  size: 18,
                   color: color ?? ColorLight.fontTitle,
                 ),
-              ),
-            ],
+                const SizedBox(width: Const.space12),
+                Text(
+                  label,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: color ?? ColorLight.fontTitle,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

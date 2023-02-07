@@ -61,6 +61,8 @@ class _ReadHistoryPageState extends State<ReadHistoryPage> {
                     return ArticleCardWidget(
                       article: article,
                       index: index,
+                      showShareButton: true,
+                      showReportButton: true,
                       onTap: () {
                         Navigator.pushNamed(
                           context,
@@ -68,22 +70,6 @@ class _ReadHistoryPageState extends State<ReadHistoryPage> {
                           arguments: article,
                         );
                       },
-                      buttonDialogList: [
-                        TileButtonDialog(
-                          onTap: () {
-                            //TODO: Edit
-                          },
-                          icon: FeatherIcons.share,
-                          label: lang.share,
-                        ),
-                        TileButtonDialog(
-                          onTap: () {
-                            //TODO: Edit
-                          },
-                          icon: FeatherIcons.info,
-                          label: lang.report,
-                        ),
-                      ],
                     );
                   },
                 );
