@@ -7,6 +7,7 @@ class ArticleModel extends Equatable {
     required this.comments,
     required this.likes,
     required this.viewers,
+    required this.categoryId,
     required this.image,
     required this.title,
     required this.url,
@@ -18,6 +19,7 @@ class ArticleModel extends Equatable {
       comments: json['comments'] as int,
       likes: json['likes'] as int,
       viewers: json['viewers'] as int,
+      categoryId: json['category_id'] as int,
       image: json['image'] as String,
       title: json['title'] as String,
       url: json['url'] as String,
@@ -28,6 +30,7 @@ class ArticleModel extends Equatable {
   final int comments;
   final int likes;
   final int viewers;
+  final int categoryId;
   final String image;
   final String title;
   final String url;
@@ -38,6 +41,7 @@ class ArticleModel extends Equatable {
       comments: comments,
       likes: likes,
       viewers: viewers,
+      categoryId: categoryId,
       image: image,
       title: title,
       url: url,
@@ -50,6 +54,7 @@ class ArticleModel extends Equatable {
         comments,
         likes,
         viewers,
+        categoryId,
         image,
         title,
         url,

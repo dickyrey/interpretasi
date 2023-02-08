@@ -23,11 +23,13 @@ abstract class ArticleDataSource {
     required List<String> tags,
   });
   Future<bool> updateArticle({
+    required int categoryId,
+    required File? image,
     required String id,
     required String title,
     required String content,
-    required File? imageFile,
-    required List<String> categories,
+    required String deltaJson,
+    required List<String> tags,
   });
 }
 
@@ -130,11 +132,13 @@ class ArticleDataSourceImpl extends ArticleDataSource {
 
   @override
   Future<bool> updateArticle({
+    required int categoryId,
+    required File? image,
     required String id,
     required String title,
     required String content,
-    required File? imageFile,
-    required List<String> categories,
+    required String deltaJson,
+    required List<String> tags,
   }) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
@@ -155,19 +159,16 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     );
 
     request.fields['_method'] = 'PUT';
+    request.fields['category_id'] = categoryId.toString();
     request.fields['title'] = title;
     request.fields['content'] = content;
-    request.fields['categories'] = categories
-        .map((e) {
-          return e;
-        })
-        .toList()
-        .toString();
+    request.fields['original_content'] = deltaJson;
+    request.fields['tags'] = tags.map((e) => '"$e"').toList().toString();
 
-    if (imageFile != null) {
+    if (image != null) {
       final storeImage = await http.MultipartFile.fromPath(
         'image',
-        imageFile.path,
+        image.path,
       );
       request.files.add(storeImage);
     }

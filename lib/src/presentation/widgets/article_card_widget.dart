@@ -7,9 +7,12 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
+import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/common/screens.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
+import 'package:interpretasi/src/presentation/bloc/article/article_form/article_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/delete_article_actor/delete_article_actor_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/category/category_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/moderated_actor/moderated_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
@@ -396,7 +399,22 @@ class _VerticalCard extends StatelessWidget {
                                 ),
                                 TileButtonDialog(
                                   onTap: () {
-                                    //TODO: Edit
+                                    Navigator.pop(context);
+                                    final category = context
+                                        .read<CategoryWatcherBloc>()
+                                        .state
+                                        .categoryList;
+                                    context.read<ArticleFormBloc>().add(
+                                          ArticleFormEvent.initialize(
+                                            article: article,
+                                            categoryList: category,
+                                          ),
+                                        );
+                                    Navigator.pushNamed(
+                                      context,
+                                      ARTICLE_FORM,
+                                      arguments: true,
+                                    );
                                   },
                                   isVisible: showEditButton,
                                   icon: FeatherIcons.edit3,

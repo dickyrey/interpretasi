@@ -5,6 +5,7 @@ class Article extends Equatable {
     required this.comments,
     required this.likes,
     required this.viewers,
+    required this.categoryId,
     required this.image,
     required this.title,
     required this.url,
@@ -14,6 +15,7 @@ class Article extends Equatable {
   final int comments;
   final int likes;
   final int viewers;
+  final int categoryId;
   final String image;
   final String title;
   final String url;
@@ -24,6 +26,7 @@ class Article extends Equatable {
         comments,
         likes,
         viewers,
+        categoryId,
         image,
         title,
         url,

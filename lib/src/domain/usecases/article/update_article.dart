@@ -9,18 +9,22 @@ class UpdateArticle {
   final ArticleRepository repository;
 
   Future<Either<Failure, void>> execute({
+    required int categoryId,
+    required File? image,
     required String id,
     required String title,
     required String content,
-    required File? imageFile,
-    required List<String> categories,
+    required String deltaJson,
+    required List<String> tags,
   }) {
     return repository.updateArticle(
+      categoryId: categoryId,
+      image: image,
       id: id,
       title: title,
       content: content,
-      imageFile: imageFile,
-      categories: categories,
+      deltaJson: deltaJson,
+      tags: tags,
     );
   }
 }

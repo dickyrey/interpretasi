@@ -7,9 +7,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
+import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/entities/article_detail.dart';
 import 'package:interpretasi/src/domain/entities/category.dart';
 import 'package:interpretasi/src/domain/usecases/article/create_article.dart';
+import 'package:interpretasi/src/domain/usecases/article/get_article_detail.dart';
 import 'package:interpretasi/src/domain/usecases/article/update_article.dart';
 import 'package:interpretasi/src/utilities/image_cropper_utils.dart';
 import 'package:vsc_quill_delta_to_html/vsc_quill_delta_to_html.dart';
@@ -22,6 +24,7 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
   ArticleFormBloc({
     required this.create,
     required this.update,
+    required this.articleDetail,
   }) : super(ArticleFormState.initial()) {
     on<ArticleFormEvent>((event, emit) async {
       await event.map(
@@ -29,28 +32,41 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
           emit(ArticleFormState.initial());
         },
         initialize: (event) async {
-          // final toEntity = event.article.categories
-          //     .map((e) => CheckBoxState(category: e))
-          //     .toList();
-
-          // toEntity.map((event) {
-          //   state.categoryList
-          //       .firstWhere((x) => x.category.id == e.category.id)
-          //       .value = true;
-          // }).toList();
-
           final id = event.article.url.replaceFirst(Const.unusedPath, '');
-
+          final category = event.categoryList
+              .firstWhere((e) => e.id == event.article.categoryId);
           emit(
             state.copyWith(
-              state: RequestState.empty,
-              message: '',
-              imageFile: null,
-              isSubmit: false,
+              state: RequestState.loading,
               id: id,
               title: event.article.title,
               imageUrl: event.article.image,
+              selectedCategory: category,
+              categoryList: event.categoryList,
             ),
+          );
+          final detail = await articleDetail.execute(id);
+          detail.fold(
+            (f) {
+              emit(
+                state.copyWith(
+                  message: 'error-fetch-article-detail',
+                  state: RequestState.error,
+                ),
+              );
+            },
+            (data) {
+              final decoded = jsonDecode(data.originalContent) as List<dynamic>;
+              // print(decoded);
+              final doc = Document.fromJson(decoded);
+              emit(
+                state.copyWith(
+                  state: RequestState.empty,
+                  tagList: data.tags,
+                  document: doc,
+                ),
+              );
+            },
           );
         },
         title: (event) {
@@ -192,49 +208,73 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
             );
           }
         },
-        update: (e) async {
-          // emit(
-          //   state.copyWith(
-          //     state: RequestState.loading,
-          //     isSubmit: true,
-          //   ),
-          // );
-          // final selected = state.categoryCheckBoxList
-          //     .where(
-          //       (e) => e.value == true,
-          //     )
-          //     .toList();
-
-          // final selectedCategory =
-          //     selected.map((e) => '"${e.category.id}"').toList();
-
-          // final result = await update.execute(
-          //   id: state.id,
-          //   title: state.title,
-          //   content: state.content,
-          //   imageFile: state.imageFile,
-          //   categories: selectedCategory,
-          // );
-
-          // result.fold(
-          //   (f) => emit(
-          //     state.copyWith(
-          //       state: RequestState.error,
-          //       isSubmit: false,
-          //       message: f.message,
-          //     ),
-          //   ),
-          //   (_) => emit(
-          //     state.copyWith(
-          //       state: RequestState.loaded,
-          //       isSubmit: true,
-          //     ),
-          //   ),
-          // );
+        update: (event) async {
+          if (state.title == '') {
+            emit(
+              state.copyWith(
+                state: RequestState.error,
+                isSubmit: false,
+                message: ExceptionMessage.titleNull,
+              ),
+            );
+          } else if (state.selectedCategory?.id == null) {
+            emit(
+              state.copyWith(
+                state: RequestState.error,
+                isSubmit: false,
+                message: ExceptionMessage.categoryNull,
+              ),
+            );
+          } else if (state.tagList.isEmpty) {
+            emit(
+              state.copyWith(
+                state: RequestState.error,
+                isSubmit: false,
+                message: ExceptionMessage.tagNull,
+              ),
+            );
+          }
+          emit(
+            state.copyWith(
+              state: RequestState.loading,
+              isSubmit: true,
+            ),
+          );
+          final decoded = List<Map<String, dynamic>>.from(event.delta.toJson());
+          final html = QuillDeltaToHtmlConverter(decoded);
+          if (state.title != '' &&
+              state.selectedCategory?.id != null &&
+              state.tagList.isNotEmpty) {
+            final result = await update.execute(
+              id: state.id,
+              categoryId: state.selectedCategory!.id,
+              image: state.imageFile,
+              title: state.title,
+              content: html.convert(),
+              deltaJson: jsonEncode(event.delta.toJson()),
+              tags: state.tagList,
+            );
+            result.fold(
+              (f) => emit(
+                state.copyWith(
+                  state: RequestState.error,
+                  isSubmit: false,
+                  message: f.message,
+                ),
+              ),
+              (_) => emit(
+                state.copyWith(
+                  state: RequestState.loaded,
+                  isSubmit: false,
+                ),
+              ),
+            );
+          }
         },
       );
     });
   }
   final CreateArticle create;
   final UpdateArticle update;
+  final GetArticleDetail articleDetail;
 }

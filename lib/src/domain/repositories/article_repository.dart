@@ -18,10 +18,12 @@ abstract class ArticleRepository {
     required List<String> tags,
   });
   Future<Either<Failure, bool>> updateArticle({
+    required int categoryId,
+    required File? image,
     required String id,
     required String title,
     required String content,
-    required File? imageFile,
-    required List<String> categories,
+    required String deltaJson,
+    required List<String> tags,
   });
 }

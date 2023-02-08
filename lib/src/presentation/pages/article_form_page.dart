@@ -27,33 +27,41 @@ class ArticleFormPage extends StatefulWidget {
 }
 
 class _ArticleFormPageState extends State<ArticleFormPage> {
-  final _quillCtrl = QuillController.basic();
   final FocusNode _focusNode = FocusNode();
   final ScrollController _scrollCtrl = ScrollController();
   final _formKey = GlobalKey<FormState>();
-  late TextEditingController _titleCtrl;
+  late TextEditingController _titleCtrl = TextEditingController();
   late TextEditingController _tagCtrl;
   PageController _pageCtrl = PageController();
+  QuillController _quillCtrl = QuillController.basic();
   int _selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    final state = context.read<CategoryWatcherBloc>().state.categoryList;
-    context
-        .read<ArticleFormBloc>()
-        .add(ArticleFormEvent.fetchCategories(state));
-
+    final category = context.read<CategoryWatcherBloc>().state.categoryList;
+    final article = context.read<ArticleFormBloc>().state;
+    _titleCtrl = TextEditingController(text: article.title);
+    Future.microtask(() {
+      context
+          .read<ArticleFormBloc>()
+          .add(ArticleFormEvent.fetchCategories(category));
+    });
     _pageCtrl = PageController(initialPage: _selectedIndex);
-    _titleCtrl = TextEditingController();
     _tagCtrl = TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
     final lang = AppLocalizations.of(context)!;
+    final article = context.read<ArticleFormBloc>().state;
+    _quillCtrl = QuillController(
+      document: article.document ?? Document()
+        ..insert(0, ''),
+      selection: const TextSelection.collapsed(offset: 0),
+    );
 
-    return BlocListener<ArticleFormBloc, ArticleFormState>(
+    return BlocConsumer<ArticleFormBloc, ArticleFormState>(
       listener: (context, state) {
         if (state.message == ExceptionMessage.thumbnailNull) {
           final snack = showSnackbar(
@@ -106,32 +114,34 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
           Navigator.pop(context);
         }
       },
-      child: Scaffold(
-        appBar: _appBar(context),
-        body: Form(
-          key: _formKey,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          child: PageView(
-            controller: _pageCtrl,
-            onPageChanged: (v) {
-              setState(() {
-                _selectedIndex = v;
-              });
-            },
-            children: [
-              DetailsWidget(
-                titleCtrl: _titleCtrl,
-                tagCtrl: _tagCtrl,
-              ),
-              _EditorWidget(
-                controller: _quillCtrl,
-                focusNode: _focusNode,
-                scrollController: _scrollCtrl,
-              ),
-            ],
+      builder: (context, state) {
+        return Scaffold(
+          appBar: _appBar(context),
+          body: Form(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            child: PageView(
+              controller: _pageCtrl,
+              onPageChanged: (v) {
+                setState(() {
+                  _selectedIndex = v;
+                });
+              },
+              children: [
+                _DetailsWidget(
+                  titleCtrl: _titleCtrl,
+                  tagCtrl: _tagCtrl,
+                ),
+                _EditorWidget(
+                  controller: _quillCtrl,
+                  focusNode: _focusNode,
+                  scrollController: _scrollCtrl,
+                ),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -196,10 +206,18 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
                       curve: Curves.easeIn,
                     );
                   } else {
-                    final delta = _quillCtrl.document.toDelta();
-                    context
-                        .read<ArticleFormBloc>()
-                        .add(ArticleFormEvent.create(delta));
+                    if (widget.isEdit == true) {
+                      final delta = _quillCtrl.document.toDelta();
+                      print(delta);
+                      context
+                          .read<ArticleFormBloc>()
+                          .add(ArticleFormEvent.update(delta));
+                    } else {
+                      final delta = _quillCtrl.document.toDelta();
+                      context
+                          .read<ArticleFormBloc>()
+                          .add(ArticleFormEvent.create(delta));
+                    }
                   }
                 },
               );
@@ -212,9 +230,8 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
   }
 }
 
-class DetailsWidget extends StatelessWidget {
-  const DetailsWidget({
-    super.key,
+class _DetailsWidget extends StatelessWidget {
+  const _DetailsWidget({
     required this.titleCtrl,
     required this.tagCtrl,
   });

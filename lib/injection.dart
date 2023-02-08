@@ -385,6 +385,7 @@ void init() {
   final articleFormBloc = ArticleFormBloc(
     create: locator(),
     update: locator(),
+    articleDetail: locator(),
   );
   locator.registerLazySingleton(
     () => articleFormBloc,

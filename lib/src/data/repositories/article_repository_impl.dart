@@ -72,19 +72,23 @@ class ArticleRepositoryImpl extends ArticleRepository {
 
   @override
   Future<Either<Failure, bool>> updateArticle({
+    required int categoryId,
+    required File? image,
     required String id,
     required String title,
     required String content,
-    required File? imageFile,
-    required List<String> categories,
+    required String deltaJson,
+    required List<String> tags,
   }) async {
     try {
       final result = await dataSource.updateArticle(
+        categoryId: categoryId,
+        image: image,
         id: id,
         title: title,
         content: content,
-        imageFile: imageFile,
-        categories: categories,
+        deltaJson: deltaJson,
+        tags: tags,
       );
       return Right(result);
     } on ServerException catch (e) {
