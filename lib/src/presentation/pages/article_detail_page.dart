@@ -5,6 +5,8 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_share/flutter_share.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:html/dom.dart' as dom;
 import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
@@ -22,6 +24,7 @@ import 'package:interpretasi/src/presentation/widgets/text_field_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_form_field_widget.dart';
 import 'package:interpretasi/src/utilities/toast.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ArticleDetailPage extends StatefulWidget {
   const ArticleDetailPage({super.key, required this.article});
@@ -207,8 +210,58 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                           );
                         },
                         loaded: (state) {
-                          return Html(
-                            data: state.articleDetail.content,
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: Const.margin,
+                            ),
+                            child: Html(
+                              data: state.articleDetail.content,
+                              onLinkTap: (
+                                String? url,
+                                RenderContext context,
+                                Map<String, String> attributes,
+                                dom.Element? element,
+                              ) {
+                                launchUrl(
+                                  Uri.parse(url ?? 'https://interpretasi.id'),
+                                  mode: LaunchMode.externalApplication,
+                                );
+                              },
+                              style: {
+                                'h1': Style(
+                                  fontSize: const FontSize(20),
+                                  color: ColorLight.fontTitle,
+                                ),
+                                'h2': Style(
+                                  fontSize: const FontSize(18),
+                                  color: ColorLight.fontTitle,
+                                ),
+                                'h3': Style(
+                                  fontSize: const FontSize(16),
+                                  color: ColorLight.fontTitle,
+                                ),
+                                'p': Style(
+                                  fontSize: FontSize.large,
+                                  color: ColorLight.fontTitle,
+                                ),
+                                'li': Style(
+                                  fontSize: FontSize.medium,
+                                  color: ColorLight.fontTitle,
+                                ),
+                                'strong': Style(
+                                  fontSize: FontSize.medium,
+                                  color: ColorLight.fontTitle,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                'blockquote': Style(
+                                  fontSize: FontSize.large,
+                                  color: ColorLight.fontSubtitle,
+                                  fontFamily:
+                                      GoogleFonts.catamaran().fontFamily,
+                                  before: '"',
+                                ),
+                              },
+                            ),
                           );
                         },
                       );
