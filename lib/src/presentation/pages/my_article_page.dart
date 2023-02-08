@@ -15,7 +15,6 @@ import 'package:interpretasi/src/presentation/bloc/user_article/user_article_mod
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_published_watcher/user_article_published_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_rejected_watcher/user_article_rejected_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
-import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/empty_data_widget.dart';
 import 'package:interpretasi/src/utilities/snackbar.dart';
 import 'package:interpretasi/src/utilities/toast.dart';
@@ -40,7 +39,6 @@ class _MyArticlePageState extends State<MyArticlePage> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final lang = AppLocalizations.of(context)!;
 
     return MultiBlocListener(

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/entities/comment.dart';
@@ -110,36 +109,6 @@ class CommentCardWidget extends StatelessWidget {
             },
           )
         ],
-      ),
-    );
-  }
-
-  SizedBox _listTileWidget(
-    BuildContext context, {
-    VoidCallback? onTap,
-    required IconData icon,
-    required String label,
-  }) {
-    final theme = Theme.of(context);
-    return SizedBox(
-      height: 40,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(Const.radius),
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              size: 18,
-              color: ColorLight.fontTitle,
-            ),
-            const SizedBox(width: Const.space12),
-            Text(
-              label,
-              style: theme.textTheme.bodyMedium,
-            ),
-          ],
-        ),
       ),
     );
   }

@@ -208,7 +208,6 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
                   } else {
                     if (widget.isEdit == true) {
                       final delta = _quillCtrl.document.toDelta();
-                      print(delta);
                       context
                           .read<ArticleFormBloc>()
                           .add(ArticleFormEvent.update(delta));
