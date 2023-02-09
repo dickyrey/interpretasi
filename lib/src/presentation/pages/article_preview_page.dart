@@ -340,7 +340,10 @@ class _ArticlePreviewPageState extends State<ArticlePreviewPage> {
           itemBuilder: (context) => [
             PopupMenuItem(
               value: _ArticleValues.edit,
-              child: Text(lang.edit, style: theme.textTheme.titleMedium),
+              child: Text(
+                lang.edit,
+                style: theme.textTheme.titleMedium,
+              ),
             ),
             PopupMenuItem(
               value: _ArticleValues.delete,
