@@ -32,7 +32,6 @@ import 'package:interpretasi/src/domain/usecases/article/create_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/delete_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/get_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/get_article_detail.dart';
-import 'package:interpretasi/src/domain/usecases/article/get_search_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/update_article.dart';
 import 'package:interpretasi/src/domain/usecases/auth/check_google_auth.dart';
 import 'package:interpretasi/src/domain/usecases/auth/resend_email_verification.dart';
@@ -59,6 +58,7 @@ import 'package:interpretasi/src/domain/usecases/user_article/get_moderated_arti
 import 'package:interpretasi/src/domain/usecases/user_article/get_published_article.dart';
 import 'package:interpretasi/src/domain/usecases/user_article/get_rejected_article.dart';
 import 'package:interpretasi/src/domain/usecases/user_article/history_article.dart';
+import 'package:interpretasi/src/presentation/bloc/article/article_by_category_watcher/article_by_category_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_detail_watcher/article_detail_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_form/article_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/delete_article_actor/delete_article_actor_bloc.dart';
@@ -229,11 +229,6 @@ void init() {
     () => getArticleUseCase,
   );
 
-  final getSearchArticleUseCase = GetSearchArticle(locator());
-  locator.registerLazySingleton(
-    () => getSearchArticleUseCase,
-  );
-
   final updateArtcleUseCase = UpdateArticle(locator());
   locator.registerLazySingleton(
     () => updateArtcleUseCase,
@@ -383,6 +378,11 @@ void init() {
 
   //* Article BLoC folder
   //*
+
+  final articleByCategoryWatcherBloc = ArticleByCategoryWatcherBloc(locator());
+  locator.registerLazySingleton(
+    () => articleByCategoryWatcherBloc,
+  );
 
   final articleDetailWatcherBloc = ArticleDetailWatcherBloc(locator());
   locator.registerLazySingleton(

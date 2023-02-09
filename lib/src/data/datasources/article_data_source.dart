@@ -62,9 +62,10 @@ class ArticleDataSourceImpl extends ArticleDataSource {
       queryParameters: {
         'page': page,
         'find': query,
-        'category': category,
+        'category': (category == '0') ? '' : category,
       },
     );
+    print(url);
 
     final response = await client.get(url, headers: header);
     if (response.statusCode == 200) {

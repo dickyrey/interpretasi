@@ -1,12 +1,8 @@
-// ignore_for_file: implementation_imports
-
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/usecases/article/get_article.dart';
-import 'package:interpretasi/src/domain/usecases/article/get_search_article.dart';
-import 'package:rxdart/src/transformers/backpressure/debounce.dart';
-import 'package:rxdart/src/transformers/flat_map.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'search_article_watcher_bloc.freezed.dart';
 part 'search_article_watcher_event.dart';

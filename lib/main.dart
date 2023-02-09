@@ -6,6 +6,7 @@ import 'package:interpretasi/injection.dart' as di;
 import 'package:interpretasi/l10n/l10n.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/common/themes.dart';
+import 'package:interpretasi/src/presentation/bloc/article/article_by_category_watcher/article_by_category_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_detail_watcher/article_detail_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_form/article_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/delete_article_actor/delete_article_actor_bloc.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         //* Article BLoC folder
+        BlocProvider(create: (context) => di.locator<ArticleByCategoryWatcherBloc>()),
         BlocProvider(create: (context) => di.locator<ArticleDetailWatcherBloc>()),
         BlocProvider(create: (context) => di.locator<ArticleFormBloc>()),
         BlocProvider(create: (context) => di.locator<DeleteArticleActorBloc>()),
