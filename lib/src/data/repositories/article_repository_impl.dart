@@ -15,9 +15,17 @@ class ArticleRepositoryImpl extends ArticleRepository {
   final ArticleDataSource dataSource;
 
   @override
-  Future<Either<Failure, List<Article>>> getLatestArticle() async {
+  Future<Either<Failure, List<Article>>> getArticle({
+    required String page,
+    required String query,
+    required String category,
+  }) async {
     try {
-      final result = await dataSource.getLatestArticle();
+      final result = await dataSource.getArticle(
+        page: page,
+        query: query,
+        category: category,
+      );
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));

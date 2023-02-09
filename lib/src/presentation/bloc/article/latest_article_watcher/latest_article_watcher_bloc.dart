@@ -1,20 +1,26 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
-import 'package:interpretasi/src/domain/usecases/article/get_latest_article.dart';
+import 'package:interpretasi/src/domain/usecases/article/get_article.dart';
 
 part 'latest_article_watcher_event.dart';
 part 'latest_article_watcher_state.dart';
 part 'latest_article_watcher_bloc.freezed.dart';
 
-class LatestArticleWatcherBloc extends Bloc<LatestArticleWatcherEvent, LatestArticleWatcherState> {
-  LatestArticleWatcherBloc(this._getLatestArticle) : super(const LatestArticleWatcherState.initial()) {
+class LatestArticleWatcherBloc
+    extends Bloc<LatestArticleWatcherEvent, LatestArticleWatcherState> {
+  LatestArticleWatcherBloc(this._getArticle)
+      : super(const LatestArticleWatcherState.initial()) {
     on<LatestArticleWatcherEvent>((event, emit) async {
       await event.map(
         fetch: (_) async {
           emit(const LatestArticleWatcherState.loading());
 
-          final result = await _getLatestArticle.execute();
+          final result = await _getArticle.execute(
+            category: '',
+            page: '',
+            query: '',
+          );
 
           result.fold(
             (f) => emit(LatestArticleWatcherState.error(f.message)),
@@ -25,6 +31,5 @@ class LatestArticleWatcherBloc extends Bloc<LatestArticleWatcherEvent, LatestArt
     });
   }
 
-  final GetLatestArticle _getLatestArticle;
-  
+  final GetArticle _getArticle;
 }

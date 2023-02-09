@@ -30,8 +30,8 @@ import 'package:interpretasi/src/domain/repositories/user_article_repository.dar
 import 'package:interpretasi/src/domain/repositories/user_repository.dart';
 import 'package:interpretasi/src/domain/usecases/article/create_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/delete_article.dart';
+import 'package:interpretasi/src/domain/usecases/article/get_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/get_article_detail.dart';
-import 'package:interpretasi/src/domain/usecases/article/get_latest_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/get_search_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/update_article.dart';
 import 'package:interpretasi/src/domain/usecases/auth/check_google_auth.dart';
@@ -224,9 +224,9 @@ void init() {
     () => getArticleDetailUseCase,
   );
 
-  final getLatestArticleUseCase = GetLatestArticle(locator());
+  final getArticleUseCase = GetArticle(locator());
   locator.registerLazySingleton(
-    () => getLatestArticleUseCase,
+    () => getArticleUseCase,
   );
 
   final getSearchArticleUseCase = GetSearchArticle(locator());

@@ -3,6 +3,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
+import 'package:interpretasi/src/domain/usecases/article/get_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/get_search_article.dart';
 import 'package:rxdart/src/transformers/backpressure/debounce.dart';
 import 'package:rxdart/src/transformers/flat_map.dart';
@@ -13,14 +14,18 @@ part 'search_article_watcher_state.dart';
 
 class SearchArticleWatcherBloc
     extends Bloc<SearchArticleWatcherEvent, SearchArticleWatcherState> {
-  SearchArticleWatcherBloc(this._search) : super(const _Initial()) {
+  SearchArticleWatcherBloc(this._getArticle) : super(const _Initial()) {
     on<SearchArticleWatcherEvent>(
       (event, emit) async {
         await event.map(
           search: (event) async {
             emit(const SearchArticleWatcherState.loading());
 
-            final result = await _search.execute(event.query);
+            final result = await _getArticle.execute(
+              category: '',
+              page: '1',
+              query: event.query,
+            );
 
             result.fold(
               (f) => emit(SearchArticleWatcherState.error(f.message)),
@@ -32,7 +37,7 @@ class SearchArticleWatcherBloc
       transformer: debounce(const Duration(milliseconds: 500)),
     );
   }
-  final GetSearchArticle _search;
+  final GetArticle _getArticle;
 }
 
 EventTransformer<MyEvent> debounce<MyEvent>(Duration duration) {

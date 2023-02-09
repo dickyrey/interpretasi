@@ -11,7 +11,11 @@ import 'package:interpretasi/src/data/models/article_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class ArticleDataSource {
-  Future<List<ArticleModel>> getLatestArticle();
+  Future<List<ArticleModel>> getArticle({
+    required String page,
+    required String query,
+    required String category,
+  });
   Future<ArticleDetailModel> getArticleDetail(String id);
   Future<List<ArticleModel>> searchArticle(String query);
   Future<bool> deleteArticle(String id);
@@ -39,7 +43,11 @@ class ArticleDataSourceImpl extends ArticleDataSource {
   final http.Client client;
 
   @override
-  Future<List<ArticleModel>> getLatestArticle() async {
+  Future<List<ArticleModel>> getArticle({
+    required String page,
+    required String query,
+    required String category,
+  }) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
     final header = {
@@ -51,6 +59,11 @@ class ArticleDataSourceImpl extends ArticleDataSource {
       scheme: Const.scheme,
       host: Const.host,
       path: '/v1/article/',
+      queryParameters: {
+        'page': page,
+        'find': query,
+        'category': category,
+      },
     );
 
     final response = await client.get(url, headers: header);

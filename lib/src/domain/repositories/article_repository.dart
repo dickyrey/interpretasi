@@ -6,7 +6,11 @@ import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/entities/article_detail.dart';
 
 abstract class ArticleRepository {
-  Future<Either<Failure, List<Article>>> getLatestArticle();
+  Future<Either<Failure, List<Article>>> getArticle({
+    required String page,
+    required String query,
+    required String category,
+  });
   Future<Either<Failure, ArticleDetail>> getArticleDetail(String id);
   Future<Either<Failure, List<Article>>> searchArticle(String query);
   Future<Either<Failure, bool>> deleteArticle(String id);
