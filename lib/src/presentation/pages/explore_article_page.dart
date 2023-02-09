@@ -167,6 +167,16 @@ class _ExploreArticlePageState extends State<ExploreArticlePage> {
           },
         ),
       ),
+      actions: [
+        IconButton(
+          onPressed: () {
+            Navigator.pushNamed(context, ARTICLE_SEARCH);
+          },
+          icon: const Icon(FeatherIcons.search),
+          color: ColorLight.fontTitle,
+        ),
+        const SizedBox(width: Const.space12),
+      ],
     );
   }
 }
