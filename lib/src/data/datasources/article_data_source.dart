@@ -69,7 +69,6 @@ class ArticleDataSourceImpl extends ArticleDataSource {
         'category': (category == '0') ? '' : category,
       },
     );
-    print(url);
 
     final response = await client.get(url, headers: header);
     if (response.statusCode == 200) {
@@ -273,7 +272,7 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     );
 
     final response = await client.post(url, headers: header, body: body);
-    print(response.body);
+    
     if (response.statusCode == 200) {
       return true;
     } else {

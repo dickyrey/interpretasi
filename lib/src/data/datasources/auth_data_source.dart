@@ -37,6 +37,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     final isSignedIn = await googleSignIn.isSignedIn();
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
+    
     final header = {
       'Authorization': 'Bearer $token',
       'Accept': 'application/json',
