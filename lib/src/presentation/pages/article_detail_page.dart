@@ -10,7 +10,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
-import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/screens.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_detail_watcher/article_detail_watcher_bloc.dart';
@@ -26,6 +25,8 @@ import 'package:interpretasi/src/presentation/widgets/text_form_field_widget.dar
 import 'package:interpretasi/src/utilities/toast.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+enum _ArticleValues { share, report }
 
 class ArticleDetailPage extends StatefulWidget {
   const ArticleDetailPage({super.key, required this.article});
@@ -232,18 +233,27 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                                 'h1': Style(
                                   fontSize: const FontSize(20),
                                   color: ColorLight.fontTitle,
+                                  fontFamily: GoogleFonts.roboto().fontFamily,
+                                  letterSpacing: 1.5,
                                 ),
                                 'h2': Style(
                                   fontSize: const FontSize(18),
                                   color: ColorLight.fontTitle,
+                                  fontFamily: GoogleFonts.roboto().fontFamily,
+                                  letterSpacing: 1.5,
                                 ),
                                 'h3': Style(
                                   fontSize: const FontSize(16),
                                   color: ColorLight.fontTitle,
+                                  fontFamily: GoogleFonts.roboto().fontFamily,
+                                  letterSpacing: 1.5,
                                 ),
                                 'p': Style(
-                                  fontSize: FontSize.large,
+                                  fontSize: FontSize.medium,
                                   color: ColorLight.fontTitle,
+                                  lineHeight: LineHeight.number(1.2),
+                                  fontFamily:
+                                      GoogleFonts.merriweather().fontFamily,
                                 ),
                                 'li': Style(
                                   fontSize: FontSize.medium,
@@ -395,7 +405,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
         ),
       ),
       actions: [
-        PopupMenuButton<ArticleValues>(
+        PopupMenuButton<_ArticleValues>(
           icon: const Icon(
             FeatherIcons.moreVertical,
             size: 20,
@@ -403,21 +413,21 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           ),
           onSelected: (value) async {
             switch (value) {
-              case ArticleValues.share:
+              case _ArticleValues.share:
                 await FlutterShare.share(
                   title: widget.article.url,
                   linkUrl: widget.article.url,
                   chooserTitle: lang.share_with,
                 );
                 break;
-              case ArticleValues.report:
+              case _ArticleValues.report:
                 await showToast(msg: 'Report');
                 break;
             }
           },
           itemBuilder: (context) => [
             PopupMenuItem(
-              value: ArticleValues.share,
+              value: _ArticleValues.share,
               child: Row(
                 children: [
                   const Icon(
@@ -431,7 +441,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
               ),
             ),
             PopupMenuItem(
-              value: ArticleValues.report,
+              value: _ArticleValues.report,
               child: Row(
                 children: [
                   const Icon(

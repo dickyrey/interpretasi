@@ -378,7 +378,12 @@ class _VerticalCard extends StatelessWidget {
                                 ),
                                 TileButtonDialog(
                                   onTap: () {
-                                    //TODO: Preview
+                                    Navigator.pop(context);
+                                    Navigator.pushNamed(
+                                      context,
+                                      ARTICLE_PREVIEW,
+                                      arguments: article,
+                                    );
                                   },
                                   icon: FeatherIcons.eye,
                                   label: lang.preview,
@@ -447,21 +452,6 @@ class _VerticalCard extends StatelessWidget {
                                 ),
                               ],
                             );
-                            // if (isPublic == true) {
-                            //   showMultiButtonDialog(
-                            //     context,
-                            //     items: [
-
-                            //     ],
-                            //   );
-                            // } else {
-                            //   showMultiButtonDialog(
-                            //     context,
-                            //     items: [
-
-                            //     ],
-                            //   );
-                            // }
                           },
                           child: const Icon(
                             FeatherIcons.moreHorizontal,

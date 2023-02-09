@@ -139,7 +139,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
                               showPublishButton: true,
                               showDeleteButton: true,
                               onTap: () {
-                                // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
+                                Navigator.pushNamed(
+                                  context,
+                                  ARTICLE_PREVIEW,
+                                  arguments: article,
+                                );
                               },
                             );
                           },
@@ -199,7 +203,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
                               showPreviewButton: true,
                               showDeleteButton: true,
                               onTap: () {
-                                // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
+                                Navigator.pushNamed(
+                                  context,
+                                  ARTICLE_PREVIEW,
+                                  arguments: article,
+                                );
                               },
                             );
                           },
@@ -259,7 +267,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
                               showEditButton: true,
                               showDeleteButton: true,
                               onTap: () {
-                                // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
+                                Navigator.pushNamed(
+                                  context,
+                                  ARTICLE_PREVIEW,
+                                  arguments: article,
+                                );
                               },
                             );
                           },
@@ -319,7 +331,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
                               showEditButton: true,
                               showDeleteButton: true,
                               onTap: () {
-                                // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
+                                Navigator.pushNamed(
+                                  context,
+                                  ARTICLE_PREVIEW,
+                                  arguments: article,
+                                );
                               },
                             );
                           },
@@ -378,7 +394,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
                               article: article,
                               showDeleteButton: true,
                               onTap: () {
-                                // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/14
+                                Navigator.pushNamed(
+                                  context,
+                                  ARTICLE_PREVIEW,
+                                  arguments: article,
+                                );
                               },
                             );
                           },

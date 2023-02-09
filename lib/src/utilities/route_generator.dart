@@ -4,6 +4,7 @@ import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/entities/user.dart';
 import 'package:interpretasi/src/presentation/pages/article_detail_page.dart';
 import 'package:interpretasi/src/presentation/pages/article_form_page.dart';
+import 'package:interpretasi/src/presentation/pages/article_preview_page.dart';
 import 'package:interpretasi/src/presentation/pages/change_password_page.dart';
 import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
@@ -105,56 +106,14 @@ class RouteGenerator {
         }
         return _errorRoute();
 
-      // case ADD_SECOND_EMAIL:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const AddSecondEmailPage(),
-      //   );
-      // case ADD_PHONE_NUMBER:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const AddPhoneNumberPage(),
-      //   );
+      case ARTICLE_PREVIEW:
+        if (args is Article) {
+          return MaterialPageRoute(
+            builder: (_) => ArticlePreviewPage(article: args),
+          );
+        }
+        return _errorRoute();
 
-      // case DELETE_ACCOUNT:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const DeleteAccountPage(),
-      //   );
-
-      // case TRENDING_ARTICLE:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const TrendingArticlePage(),
-      //   );
-      // case LOCAL_NEWS:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const LocalNewsPage(),
-      //   );
-      // case PROVINCE_NEWS:
-      //   if (args is String) {
-      //     return MaterialPageRoute(
-      //       builder: (_) => ProvinceNewsPage(province: args),
-      //     );
-      //   }
-      //   return _errorRoute();
-      // case READ_ARTICLE:
-      //   if (args is Article) {
-      //     return MaterialPageRoute(
-      //       builder: (_) => ReadArticlePage(article: args),
-      //     );
-      //   }
-      //   return _errorRoute();
-      // case ARTICLE_FORM:
-      //   if (args is bool) {
-      //     return MaterialPageRoute(
-      //       builder: (_) => ArticleFormPage(isEdit: args),
-      //     );
-      //   }
-      //   return _errorRoute();
-      // case PREVIEW_ARTICLE:
-      //   if (args is Article) {
-      //     return MaterialPageRoute(
-      //       builder: (_) => PreviewArticlePage(article: args),
-      //     );
-      //   }
-      //   return _errorRoute();
       default:
         return _errorRoute();
     }
