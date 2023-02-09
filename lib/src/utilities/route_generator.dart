@@ -6,6 +6,7 @@ import 'package:interpretasi/src/presentation/pages/article_browse_page.dart';
 import 'package:interpretasi/src/presentation/pages/article_detail_page.dart';
 import 'package:interpretasi/src/presentation/pages/article_form_page.dart';
 import 'package:interpretasi/src/presentation/pages/article_preview_page.dart';
+import 'package:interpretasi/src/presentation/pages/article_search_page.dart';
 import 'package:interpretasi/src/presentation/pages/change_password_page.dart';
 import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
@@ -117,6 +118,10 @@ class RouteGenerator {
       case ARTICLE_TRENDING:
         return MaterialPageRoute(
           builder: (_) => const ArticleTrendingPage(),
+        );
+      case ARTICLE_SEARCH:
+        return MaterialPageRoute(
+          builder: (_) => const ArticleSearchPage(),
         );
 
       default:

@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 abstract class ArticleDataSource {
   Future<List<ArticleModel>> getLatestArticle();
   Future<ArticleDetailModel> getArticleDetail(String id);
+  Future<List<ArticleModel>> searchArticle(String query);
   Future<bool> deleteArticle(String id);
   Future<bool> createArticle({
     required int categoryId,
@@ -79,6 +80,34 @@ class ArticleDataSourceImpl extends ArticleDataSource {
       return ArticleDetailResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
       ).article;
+    } else {
+      throw ServerException(ExceptionMessage.internetNotConnected);
+    }
+  }
+
+  @override
+  Future<List<ArticleModel>> searchArticle(String query) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(Const.token);
+    final header = {
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+    };
+    final url = Uri(
+      scheme: Const.scheme,
+      host: Const.host,
+      path: '/v1/article',
+      queryParameters: {
+        // 'page': 1,
+        'find': query,
+      },
+    );
+    print(url);
+    final response = await client.get(url, headers: header);
+    if (response.statusCode == 200) {
+      return ArticleResponse.fromJson(
+        json.decode(response.body) as Map<String, dynamic>,
+      ).articleList;
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }

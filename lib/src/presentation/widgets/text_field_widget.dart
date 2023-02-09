@@ -7,13 +7,17 @@ class TextFieldWidget extends StatelessWidget {
     this.controller,
     this.hintText,
     this.onSubmitted,
+    this.onChanged,
     this.showBorder = false,
+    this.textInputAction,
   });
 
   final TextEditingController? controller;
   final String? hintText;
   final ValueChanged<String>? onSubmitted;
+  final ValueChanged<String>? onChanged;
   final bool showBorder;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,9 @@ class TextFieldWidget extends StatelessWidget {
     return TextField(
       controller: controller,
       onSubmitted: onSubmitted,
+      onChanged: onChanged,
       style: theme.textTheme.titleMedium,
+      textInputAction: textInputAction,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: theme.textTheme.bodyMedium,

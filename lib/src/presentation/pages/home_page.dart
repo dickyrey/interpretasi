@@ -163,7 +163,7 @@ class HomePage extends StatelessWidget {
       actions: [
         IconButton(
           onPressed: () {
-            // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/10
+            Navigator.pushNamed(context, ARTICLE_SEARCH);
           },
           icon: const Icon(FeatherIcons.search),
           color: ColorLight.fontTitle,

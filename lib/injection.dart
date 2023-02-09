@@ -32,6 +32,7 @@ import 'package:interpretasi/src/domain/usecases/article/create_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/delete_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/get_article_detail.dart';
 import 'package:interpretasi/src/domain/usecases/article/get_latest_article.dart';
+import 'package:interpretasi/src/domain/usecases/article/get_search_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/update_article.dart';
 import 'package:interpretasi/src/domain/usecases/auth/check_google_auth.dart';
 import 'package:interpretasi/src/domain/usecases/auth/resend_email_verification.dart';
@@ -62,6 +63,7 @@ import 'package:interpretasi/src/presentation/bloc/article/article_detail_watche
 import 'package:interpretasi/src/presentation/bloc/article/article_form/article_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/delete_article_actor/delete_article_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/latest_article_watcher/latest_article_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/article/search_article_watcher/search_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/sign_in_with_email_form/sign_in_with_email_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/sign_in_with_google_actor/sign_in_with_google_actor_bloc.dart';
@@ -225,6 +227,11 @@ void init() {
   final getLatestArticleUseCase = GetLatestArticle(locator());
   locator.registerLazySingleton(
     () => getLatestArticleUseCase,
+  );
+
+  final getSearchArticleUseCase = GetSearchArticle(locator());
+  locator.registerLazySingleton(
+    () => getSearchArticleUseCase,
   );
 
   final updateArtcleUseCase = UpdateArticle(locator());
@@ -399,6 +406,11 @@ void init() {
   final latestArticleWatcherBloc = LatestArticleWatcherBloc(locator());
   locator.registerLazySingleton(
     () => latestArticleWatcherBloc,
+  );
+
+  final searchArticleWatcherBloc = SearchArticleWatcherBloc(locator());
+  locator.registerLazySingleton(
+    () => searchArticleWatcherBloc,
   );
 
   //* Auth BLoC folder

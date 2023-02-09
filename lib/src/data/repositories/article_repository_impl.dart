@@ -43,6 +43,20 @@ class ArticleRepositoryImpl extends ArticleRepository {
   }
 
   @override
+  Future<Either<Failure, List<Article>>> searchArticle(String query) async {
+    try {
+      final result = await dataSource.searchArticle(query);
+      return Right(result.map((e) => e.toEntity()).toList());
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    } on SocketException {
+      return const Left(
+        ConnectionFailure(ExceptionMessage.internetNotConnected),
+      );
+    }
+  }
+
+  @override
   Future<Either<Failure, bool>> createArticle({
     required int categoryId,
     required File image,

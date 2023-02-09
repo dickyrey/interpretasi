@@ -8,6 +8,7 @@ import 'package:interpretasi/src/domain/entities/article_detail.dart';
 abstract class ArticleRepository {
   Future<Either<Failure, List<Article>>> getLatestArticle();
   Future<Either<Failure, ArticleDetail>> getArticleDetail(String id);
+  Future<Either<Failure, List<Article>>> searchArticle(String query);
   Future<Either<Failure, bool>> deleteArticle(String id);
   Future<Either<Failure, bool>> createArticle({
     required int categoryId,
