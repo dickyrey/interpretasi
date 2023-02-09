@@ -102,7 +102,7 @@ class ArticleDataSourceImpl extends ArticleDataSource {
         'find': query,
       },
     );
-    print(url);
+
     final response = await client.get(url, headers: header);
     if (response.statusCode == 200) {
       return ArticleResponse.fromJson(

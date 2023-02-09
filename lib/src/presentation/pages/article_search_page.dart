@@ -14,7 +14,6 @@ class ArticleSearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final lang = AppLocalizations.of(context)!;
 
     return Scaffold(

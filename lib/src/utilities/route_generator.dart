@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/entities/user.dart';
-import 'package:interpretasi/src/presentation/pages/article_browse_page.dart';
+import 'package:interpretasi/src/presentation/pages/article_trending_page.dart';
 import 'package:interpretasi/src/presentation/pages/article_detail_page.dart';
 import 'package:interpretasi/src/presentation/pages/article_form_page.dart';
 import 'package:interpretasi/src/presentation/pages/article_preview_page.dart';
@@ -10,6 +10,7 @@ import 'package:interpretasi/src/presentation/pages/article_search_page.dart';
 import 'package:interpretasi/src/presentation/pages/change_password_page.dart';
 import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
+import 'package:interpretasi/src/presentation/pages/explore_article_page.dart';
 import 'package:interpretasi/src/presentation/pages/login_page.dart';
 import 'package:interpretasi/src/presentation/pages/my_article_page.dart';
 import 'package:interpretasi/src/presentation/pages/on_boarding_page.dart';
@@ -122,6 +123,10 @@ class RouteGenerator {
       case ARTICLE_SEARCH:
         return MaterialPageRoute(
           builder: (_) => const ArticleSearchPage(),
+        );
+      case EXPLORE_ARTICLE:
+        return MaterialPageRoute(
+          builder: (_) => const ExploreArticlePage(),
         );
 
       default:

@@ -1,3 +1,5 @@
+// ignore_for_file: implementation_imports
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';

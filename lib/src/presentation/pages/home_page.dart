@@ -96,7 +96,7 @@ class HomePage extends StatelessWidget {
             _HeadingTile(
               label: lang.explore,
               onTap: () {
-                // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/7
+                Navigator.pushNamed(context, EXPLORE_ARTICLE);
               },
             ),
             const SizedBox(height: Const.space8),
