@@ -29,7 +29,10 @@ class HomePage extends StatelessWidget {
             _HeadingTile(
               label: lang.trending_news,
               onTap: () {
-                // TODO(dickyrey): Hottest https://github.com/dickyrey/interpretasi/issues/6
+                Navigator.pushNamed(
+                  context,
+                  ARTICLE_TRENDING,
+                );
               },
             ),
             const SizedBox(height: Const.space8),

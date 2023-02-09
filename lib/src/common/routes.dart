@@ -17,3 +17,4 @@ const String READ_HISTORY = '/read_history';
 const String MY_ARTICLE = '/my_article';
 const String ARTICLE_FORM = '/article_form';
 const String ARTICLE_PREVIEW = '/article_preview';
+const String ARTICLE_TRENDING = '/article_trending';

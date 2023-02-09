@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/entities/user.dart';
+import 'package:interpretasi/src/presentation/pages/article_browse_page.dart';
 import 'package:interpretasi/src/presentation/pages/article_detail_page.dart';
 import 'package:interpretasi/src/presentation/pages/article_form_page.dart';
 import 'package:interpretasi/src/presentation/pages/article_preview_page.dart';
@@ -113,6 +114,10 @@ class RouteGenerator {
           );
         }
         return _errorRoute();
+      case ARTICLE_TRENDING:
+        return MaterialPageRoute(
+          builder: (_) => const ArticleTrendingPage(),
+        );
 
       default:
         return _errorRoute();
