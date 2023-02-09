@@ -427,7 +427,12 @@ class _VerticalCard extends StatelessWidget {
                                 ),
                                 TileButtonDialog(
                                   onTap: () {
-                                    //TODO: Report Article
+                                    Navigator.pop(context);
+                                    Navigator.pushNamed(
+                                      context,
+                                      REPORT_ARTICLE,
+                                      arguments: article,
+                                    );
                                   },
                                   isVisible: showReportButton,
                                   icon: FeatherIcons.info,

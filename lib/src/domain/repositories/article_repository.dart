@@ -31,4 +31,8 @@ abstract class ArticleRepository {
     required String deltaJson,
     required List<String> tags,
   });
+  Future<Either<Failure, bool>> reportArticle({
+    required String id,
+    required String reason,
+  });
 }

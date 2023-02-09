@@ -36,6 +36,10 @@ abstract class ArticleDataSource {
     required String deltaJson,
     required List<String> tags,
   });
+  Future<bool> reportArticle({
+    required String id,
+    required String reason,
+  });
 }
 
 class ArticleDataSourceImpl extends ArticleDataSource {
@@ -240,6 +244,36 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     );
 
     final response = await client.delete(url, headers: header);
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      throw ServerException(ExceptionMessage.internetNotConnected);
+    }
+  }
+
+  @override
+  Future<bool> reportArticle({
+    required String id,
+    required String reason,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(Const.token);
+    final header = {
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+    };
+    final body = {
+      'reason': reason,
+    };
+
+    final url = Uri(
+      scheme: Const.scheme,
+      host: Const.host,
+      path: '/v1/article/$id/report',
+    );
+
+    final response = await client.post(url, headers: header, body: body);
+    print(response.body);
     if (response.statusCode == 200) {
       return true;
     } else {

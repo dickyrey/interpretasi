@@ -135,4 +135,21 @@ class ArticleRepositoryImpl extends ArticleRepository {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> reportArticle({
+    required String id,
+    required String reason,
+  }) async {
+    try {
+      final result = await dataSource.reportArticle(id: id, reason: reason);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    } on SocketException {
+      return const Left(
+        ConnectionFailure(ExceptionMessage.internetNotConnected),
+      );
+    }
+  }
 }
