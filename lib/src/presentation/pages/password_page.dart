@@ -21,6 +21,16 @@ class PasswordPage extends StatefulWidget {
 
 class _PasswordPageState extends State<PasswordPage> {
   @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+      () => context
+          .read<AddPasswordFormBloc>()
+          .add(const AddPasswordFormEvent.initial()),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
     final theme = Theme.of(context);
@@ -46,6 +56,9 @@ class _PasswordPageState extends State<PasswordPage> {
             ScaffoldMessenger.of(context).showSnackBar(snack);
           } else if (state.state == RequestState.loaded) {
             if (widget.isFromSetting == true) {
+              context
+                  .read<VerificationStatusWatcherBloc>()
+                  .add(const VerificationStatusWatcherEvent.fetch());
               final snack = showSnackbar(
                 context,
                 type: SnackbarType.success,

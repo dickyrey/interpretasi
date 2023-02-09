@@ -151,6 +151,7 @@ Future<dynamic> showConfirmationDialog(
                         onTap: onPrimaryButtonTap,
                         label: primaryButtonLabel,
                         color: theme.primaryColor,
+                        labelSize: 13,
                       ),
                     ),
                   ],

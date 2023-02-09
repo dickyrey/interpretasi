@@ -82,7 +82,11 @@ class _SettingsAndPrivacyPageState extends State<SettingsAndPrivacyPage> {
               builder: (context, state) {
                 return state.maybeMap(
                   orElse: () {
-                    return const SizedBox();
+                    return ListTileWidget(
+                      title: lang.password,
+                      icon: FeatherIcons.lock,
+                      onTap: () {},
+                    );
                   },
                   loaded: (state) {
                     return ListTileWidget(
