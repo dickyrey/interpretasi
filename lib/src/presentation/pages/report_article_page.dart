@@ -86,6 +86,7 @@ class _ReportArticlePageState extends State<ReportArticlePage> {
                   children: [
                     const SizedBox(height: Const.margin),
                     ArticleCardWidget(
+                      showIconButton: false,
                       article: widget.article,
                       index: 0,
                       onTap: () {},

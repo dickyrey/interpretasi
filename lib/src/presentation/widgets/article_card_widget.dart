@@ -31,6 +31,7 @@ class ArticleCardWidget extends StatelessWidget {
     this.showDeleteButton = false,
     this.showReportButton = false,
     this.showShareButton = false,
+    this.showIconButton = true,
   });
 
   final Article article;
@@ -43,6 +44,7 @@ class ArticleCardWidget extends StatelessWidget {
   final bool showDeleteButton;
   final bool showReportButton;
   final bool showShareButton;
+  final bool showIconButton;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +55,13 @@ class ArticleCardWidget extends StatelessWidget {
           article: article,
           index: index,
           onTap: onTap,
+          showPreviewButton: showPreviewButton,
+          showPublishButton: showPublishButton,
+          showEditButton: showEditButton,
+          showDeleteButton: showDeleteButton,
+          showReportButton: showReportButton,
+          showShareButton: showShareButton,
+          showIconButton: showIconButton,
         );
         break;
       case CardAlignment.vertical:
@@ -65,6 +74,7 @@ class ArticleCardWidget extends StatelessWidget {
           showDeleteButton: showDeleteButton,
           showReportButton: showReportButton,
           showShareButton: showShareButton,
+          showIconButton: showIconButton,
         );
         break;
     }
@@ -102,11 +112,25 @@ class _HorizontalCard extends StatelessWidget {
     required this.article,
     required this.index,
     required this.onTap,
+    this.showPreviewButton = false,
+    this.showPublishButton = false,
+    this.showEditButton = false,
+    this.showDeleteButton = false,
+    this.showReportButton = false,
+    this.showShareButton = false,
+    this.showIconButton = true,
   });
 
   final Article article;
   final int index;
   final VoidCallback onTap;
+  final bool showPreviewButton;
+  final bool showPublishButton;
+  final bool showEditButton;
+  final bool showDeleteButton;
+  final bool showReportButton;
+  final bool showShareButton;
+  final bool showIconButton;
 
   @override
   Widget build(BuildContext context) {
@@ -230,7 +254,105 @@ class _HorizontalCard extends StatelessWidget {
                       ),
                       const Spacer(),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          showMultiButtonDialog(
+                            context,
+                            items: [
+                              TileButtonDialog(
+                                onTap: () async {
+                                  Navigator.pop(context);
+                                  await FlutterShare.share(
+                                    title: article.url,
+                                    linkUrl: article.url,
+                                    chooserTitle: lang.share_with,
+                                  );
+                                },
+                                isVisible: showShareButton,
+                                icon: FeatherIcons.share2,
+                                label: lang.share,
+                              ),
+                              TileButtonDialog(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  Navigator.pushNamed(
+                                    context,
+                                    ARTICLE_PREVIEW,
+                                    arguments: article,
+                                  );
+                                },
+                                icon: FeatherIcons.eye,
+                                label: lang.preview,
+                                isVisible: showPreviewButton,
+                              ),
+                              TileButtonDialog(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  context.read<ModeratedActorBloc>().add(
+                                        ModeratedActorEvent.change(
+                                          article.url,
+                                        ),
+                                      );
+                                },
+                                isVisible: showPublishButton,
+                                icon: FeatherIcons.send,
+                                label: lang.publish,
+                              ),
+                              TileButtonDialog(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  final category = context
+                                      .read<CategoryWatcherBloc>()
+                                      .state
+                                      .categoryList;
+                                  context.read<ArticleFormBloc>().add(
+                                        ArticleFormEvent.initialize(
+                                          article: article,
+                                          categoryList: category,
+                                        ),
+                                      );
+                                  Navigator.pushNamed(
+                                    context,
+                                    ARTICLE_FORM,
+                                    arguments: true,
+                                  );
+                                },
+                                isVisible: showEditButton,
+                                icon: FeatherIcons.edit3,
+                                label: lang.edit,
+                              ),
+                              TileButtonDialog(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  Navigator.pushNamed(
+                                    context,
+                                    REPORT_ARTICLE,
+                                    arguments: article,
+                                  );
+                                },
+                                isVisible: showReportButton,
+                                icon: FeatherIcons.info,
+                                label: lang.report,
+                              ),
+                              TileButtonDialog(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  context.read<DeleteArticleActorBloc>().add(
+                                        DeleteArticleActorEvent.delete(
+                                          article.url,
+                                        ),
+                                      );
+                                },
+                                isVisible: showDeleteButton,
+                                icon: FeatherIcons.trash,
+                                label: lang.delete,
+                                color: theme.colorScheme.error,
+                                padding: const EdgeInsets.only(
+                                  top: Const.space15,
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                         child: const Icon(
                           FeatherIcons.moreHorizontal,
                           size: 20,
@@ -258,6 +380,7 @@ class _VerticalCard extends StatelessWidget {
     this.showDeleteButton = false,
     this.showReportButton = false,
     this.showShareButton = false,
+    this.showIconButton = true,
   });
 
   final Article article;
@@ -268,6 +391,7 @@ class _VerticalCard extends StatelessWidget {
   final bool showDeleteButton;
   final bool showReportButton;
   final bool showShareButton;
+  final bool showIconButton;
 
   @override
   Widget build(BuildContext context) {
@@ -358,109 +482,114 @@ class _VerticalCard extends StatelessWidget {
                           maxLines: 3,
                         ),
                         const Spacer(),
-                        InkWell(
-                          onTap: () {
-                            showMultiButtonDialog(
-                              context,
-                              items: [
-                                TileButtonDialog(
-                                  onTap: () async {
-                                    Navigator.pop(context);
-                                    await FlutterShare.share(
-                                      title: article.url,
-                                      linkUrl: article.url,
-                                      chooserTitle: lang.share_with,
-                                    );
-                                  },
-                                  isVisible: showShareButton,
-                                  icon: FeatherIcons.share2,
-                                  label: lang.share,
-                                ),
-                                TileButtonDialog(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    Navigator.pushNamed(
-                                      context,
-                                      ARTICLE_PREVIEW,
-                                      arguments: article,
-                                    );
-                                  },
-                                  icon: FeatherIcons.eye,
-                                  label: lang.preview,
-                                  isVisible: showPreviewButton,
-                                ),
-                                TileButtonDialog(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    context.read<ModeratedActorBloc>().add(
-                                          ModeratedActorEvent.change(
-                                            article.url,
-                                          ),
-                                        );
-                                  },
-                                  isVisible: showPublishButton,
-                                  icon: FeatherIcons.send,
-                                  label: lang.publish,
-                                ),
-                                TileButtonDialog(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    final category = context
-                                        .read<CategoryWatcherBloc>()
-                                        .state
-                                        .categoryList;
-                                    context.read<ArticleFormBloc>().add(
-                                          ArticleFormEvent.initialize(
-                                            article: article,
-                                            categoryList: category,
-                                          ),
-                                        );
-                                    Navigator.pushNamed(
-                                      context,
-                                      ARTICLE_FORM,
-                                      arguments: true,
-                                    );
-                                  },
-                                  isVisible: showEditButton,
-                                  icon: FeatherIcons.edit3,
-                                  label: lang.edit,
-                                ),
-                                TileButtonDialog(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    Navigator.pushNamed(
-                                      context,
-                                      REPORT_ARTICLE,
-                                      arguments: article,
-                                    );
-                                  },
-                                  isVisible: showReportButton,
-                                  icon: FeatherIcons.info,
-                                  label: lang.report,
-                                ),
-                                TileButtonDialog(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    context.read<DeleteArticleActorBloc>().add(
-                                          DeleteArticleActorEvent.delete(
-                                            article.url,
-                                          ),
-                                        );
-                                  },
-                                  isVisible: showDeleteButton,
-                                  icon: FeatherIcons.trash,
-                                  label: lang.delete,
-                                  color: theme.colorScheme.error,
-                                  padding: const EdgeInsets.only(
-                                    top: Const.space15,
+                        Visibility(
+                          visible: showIconButton,
+                          child: InkWell(
+                            onTap: () {
+                              showMultiButtonDialog(
+                                context,
+                                items: [
+                                  TileButtonDialog(
+                                    onTap: () async {
+                                      Navigator.pop(context);
+                                      await FlutterShare.share(
+                                        title: article.url,
+                                        linkUrl: article.url,
+                                        chooserTitle: lang.share_with,
+                                      );
+                                    },
+                                    isVisible: showShareButton,
+                                    icon: FeatherIcons.share2,
+                                    label: lang.share,
                                   ),
-                                ),
-                              ],
-                            );
-                          },
-                          child: const Icon(
-                            FeatherIcons.moreHorizontal,
-                            size: 20,
+                                  TileButtonDialog(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      Navigator.pushNamed(
+                                        context,
+                                        ARTICLE_PREVIEW,
+                                        arguments: article,
+                                      );
+                                    },
+                                    icon: FeatherIcons.eye,
+                                    label: lang.preview,
+                                    isVisible: showPreviewButton,
+                                  ),
+                                  TileButtonDialog(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      context.read<ModeratedActorBloc>().add(
+                                            ModeratedActorEvent.change(
+                                              article.url,
+                                            ),
+                                          );
+                                    },
+                                    isVisible: showPublishButton,
+                                    icon: FeatherIcons.send,
+                                    label: lang.publish,
+                                  ),
+                                  TileButtonDialog(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      final category = context
+                                          .read<CategoryWatcherBloc>()
+                                          .state
+                                          .categoryList;
+                                      context.read<ArticleFormBloc>().add(
+                                            ArticleFormEvent.initialize(
+                                              article: article,
+                                              categoryList: category,
+                                            ),
+                                          );
+                                      Navigator.pushNamed(
+                                        context,
+                                        ARTICLE_FORM,
+                                        arguments: true,
+                                      );
+                                    },
+                                    isVisible: showEditButton,
+                                    icon: FeatherIcons.edit3,
+                                    label: lang.edit,
+                                  ),
+                                  TileButtonDialog(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      Navigator.pushNamed(
+                                        context,
+                                        REPORT_ARTICLE,
+                                        arguments: article,
+                                      );
+                                    },
+                                    isVisible: showReportButton,
+                                    icon: FeatherIcons.info,
+                                    label: lang.report,
+                                  ),
+                                  TileButtonDialog(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      context
+                                          .read<DeleteArticleActorBloc>()
+                                          .add(
+                                            DeleteArticleActorEvent.delete(
+                                              article.url,
+                                            ),
+                                          );
+                                    },
+                                    isVisible: showDeleteButton,
+                                    icon: FeatherIcons.trash,
+                                    label: lang.delete,
+                                    color: theme.colorScheme.error,
+                                    padding: const EdgeInsets.only(
+                                      top: Const.space15,
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                            child: const Icon(
+                              FeatherIcons.moreHorizontal,
+                              size: 20,
+                            ),
                           ),
                         )
                       ],
