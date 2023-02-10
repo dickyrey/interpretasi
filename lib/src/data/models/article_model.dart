@@ -16,16 +16,22 @@ class ArticleModel extends Equatable {
 
   factory ArticleModel.fromJson(Map<String, dynamic> json) {
     return ArticleModel(
-      comments: json['comments'] as int,
-      likes: json['likes'] as int,
+      comments: json['comments_count'] as int,
+      likes: json['likes_count'] as int,
       viewers: json['viewers'] as int,
-      categoryId: json['category_id'] as int,
+      categoryId: json['category_id'] == null ? 1 : json['category_id'] as int,
       image: json['image'] as String,
       title: json['title'] as String,
       url: json['url'] as String,
-      createdAt: DateTime.parse(json['created_at'] as String),
+      createdAt: DateTime.parse(
+        json['created_at'] == null
+            ? '2023-02-09 15:03:33'
+            : json['created_at'] as String,
+      ),
     );
   }
+
+  // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/15
 
   final int comments;
   final int likes;

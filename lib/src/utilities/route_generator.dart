@@ -7,6 +7,7 @@ import 'package:interpretasi/src/presentation/pages/article_detail_page.dart';
 import 'package:interpretasi/src/presentation/pages/article_form_page.dart';
 import 'package:interpretasi/src/presentation/pages/article_preview_page.dart';
 import 'package:interpretasi/src/presentation/pages/article_search_page.dart';
+import 'package:interpretasi/src/presentation/pages/author_page.dart';
 import 'package:interpretasi/src/presentation/pages/change_password_page.dart';
 import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
@@ -130,9 +131,16 @@ class RouteGenerator {
           builder: (_) => const ExploreArticlePage(),
         );
       case REPORT_ARTICLE:
-        if (args is Article) {
+        if (args is ReportArgument) {
           return MaterialPageRoute(
-            builder: (_) =>  ReportArticlePage(article: args),
+            builder: (_) => ReportArticlePage(args: args),
+          );
+        }
+        return _errorRoute();
+      case AUTHOR:
+        if (args is int) {
+          return MaterialPageRoute(
+            builder: (_) => AuthorPage(id: args),
           );
         }
         return _errorRoute();

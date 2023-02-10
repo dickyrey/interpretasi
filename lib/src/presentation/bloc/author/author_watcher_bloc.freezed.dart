@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'report_article_actor_bloc.dart';
+part of 'author_watcher_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,260 +15,164 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ReportArticleActorEvent {
+mixin _$AuthorWatcherEvent {
+  int get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String id, String reason) report,
+    required TResult Function(int id) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String id, String reason)? report,
+    TResult? Function(int id)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String id, String reason)? report,
+    TResult Function(int id)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_Report value) report,
+    required TResult Function(_Fetch value) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_Report value)? report,
+    TResult? Function(_Fetch value)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_Report value)? report,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AuthorWatcherEventCopyWith<AuthorWatcherEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ReportArticleActorEventCopyWith<$Res> {
-  factory $ReportArticleActorEventCopyWith(ReportArticleActorEvent value,
-          $Res Function(ReportArticleActorEvent) then) =
-      _$ReportArticleActorEventCopyWithImpl<$Res, ReportArticleActorEvent>;
+abstract class $AuthorWatcherEventCopyWith<$Res> {
+  factory $AuthorWatcherEventCopyWith(
+          AuthorWatcherEvent value, $Res Function(AuthorWatcherEvent) then) =
+      _$AuthorWatcherEventCopyWithImpl<$Res, AuthorWatcherEvent>;
+  @useResult
+  $Res call({int id});
 }
 
 /// @nodoc
-class _$ReportArticleActorEventCopyWithImpl<$Res,
-        $Val extends ReportArticleActorEvent>
-    implements $ReportArticleActorEventCopyWith<$Res> {
-  _$ReportArticleActorEventCopyWithImpl(this._value, this._then);
+class _$AuthorWatcherEventCopyWithImpl<$Res, $Val extends AuthorWatcherEvent>
+    implements $AuthorWatcherEventCopyWith<$Res> {
+  _$AuthorWatcherEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_InitCopyWith<$Res> {
-  factory _$$_InitCopyWith(_$_Init value, $Res Function(_$_Init) then) =
-      __$$_InitCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_InitCopyWithImpl<$Res>
-    extends _$ReportArticleActorEventCopyWithImpl<$Res, _$_Init>
-    implements _$$_InitCopyWith<$Res> {
-  __$$_InitCopyWithImpl(_$_Init _value, $Res Function(_$_Init) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Init implements _Init {
-  const _$_Init();
-
+abstract class _$$_FetchCopyWith<$Res>
+    implements $AuthorWatcherEventCopyWith<$Res> {
+  factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
+      __$$_FetchCopyWithImpl<$Res>;
   @override
-  String toString() {
-    return 'ReportArticleActorEvent.init()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Init);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String id, String reason) report,
-  }) {
-    return init();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String id, String reason)? report,
-  }) {
-    return init?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String id, String reason)? report,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_Report value) report,
-  }) {
-    return init(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_Report value)? report,
-  }) {
-    return init?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_Report value)? report,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Init implements ReportArticleActorEvent {
-  const factory _Init() = _$_Init;
-}
-
-/// @nodoc
-abstract class _$$_ReportCopyWith<$Res> {
-  factory _$$_ReportCopyWith(_$_Report value, $Res Function(_$_Report) then) =
-      __$$_ReportCopyWithImpl<$Res>;
   @useResult
-  $Res call({String id, String reason});
+  $Res call({int id});
 }
 
 /// @nodoc
-class __$$_ReportCopyWithImpl<$Res>
-    extends _$ReportArticleActorEventCopyWithImpl<$Res, _$_Report>
-    implements _$$_ReportCopyWith<$Res> {
-  __$$_ReportCopyWithImpl(_$_Report _value, $Res Function(_$_Report) _then)
+class __$$_FetchCopyWithImpl<$Res>
+    extends _$AuthorWatcherEventCopyWithImpl<$Res, _$_Fetch>
+    implements _$$_FetchCopyWith<$Res> {
+  __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
-    Object? reason = null,
   }) {
-    return _then(_$_Report(
-      id: null == id
+    return _then(_$_Fetch(
+      null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      reason: null == reason
-          ? _value.reason
-          : reason // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Report implements _Report {
-  const _$_Report({required this.id, required this.reason});
+class _$_Fetch implements _Fetch {
+  const _$_Fetch(this.id);
 
   @override
-  final String id;
-  @override
-  final String reason;
+  final int id;
 
   @override
   String toString() {
-    return 'ReportArticleActorEvent.report(id: $id, reason: $reason)';
+    return 'AuthorWatcherEvent.fetch(id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Report &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.reason, reason) || other.reason == reason));
+            other is _$_Fetch &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, reason);
+  int get hashCode => Object.hash(runtimeType, id);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ReportCopyWith<_$_Report> get copyWith =>
-      __$$_ReportCopyWithImpl<_$_Report>(this, _$identity);
+  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
+      __$$_FetchCopyWithImpl<_$_Fetch>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String id, String reason) report,
+    required TResult Function(int id) fetch,
   }) {
-    return report(id, reason);
+    return fetch(id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String id, String reason)? report,
+    TResult? Function(int id)? fetch,
   }) {
-    return report?.call(id, reason);
+    return fetch?.call(id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String id, String reason)? report,
+    TResult Function(int id)? fetch,
     required TResult orElse(),
   }) {
-    if (report != null) {
-      return report(id, reason);
+    if (fetch != null) {
+      return fetch(id);
     }
     return orElse();
   }
@@ -276,54 +180,51 @@ class _$_Report implements _Report {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Init value) init,
-    required TResult Function(_Report value) report,
+    required TResult Function(_Fetch value) fetch,
   }) {
-    return report(this);
+    return fetch(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Init value)? init,
-    TResult? Function(_Report value)? report,
+    TResult? Function(_Fetch value)? fetch,
   }) {
-    return report?.call(this);
+    return fetch?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Init value)? init,
-    TResult Function(_Report value)? report,
+    TResult Function(_Fetch value)? fetch,
     required TResult orElse(),
   }) {
-    if (report != null) {
-      return report(this);
+    if (fetch != null) {
+      return fetch(this);
     }
     return orElse();
   }
 }
 
-abstract class _Report implements ReportArticleActorEvent {
-  const factory _Report(
-      {required final String id, required final String reason}) = _$_Report;
+abstract class _Fetch implements AuthorWatcherEvent {
+  const factory _Fetch(final int id) = _$_Fetch;
 
-  String get id;
-  String get reason;
+  @override
+  int get id;
+  @override
   @JsonKey(ignore: true)
-  _$$_ReportCopyWith<_$_Report> get copyWith =>
+  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$ReportArticleActorState {
+mixin _$AuthorWatcherState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function() success,
+    required TResult Function(Author author) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -331,7 +232,7 @@ mixin _$ReportArticleActorState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function()? success,
+    TResult? Function(Author author)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -339,7 +240,7 @@ mixin _$ReportArticleActorState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function()? success,
+    TResult Function(Author author)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -348,7 +249,7 @@ mixin _$ReportArticleActorState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Loaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -356,7 +257,7 @@ mixin _$ReportArticleActorState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Loaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -364,24 +265,23 @@ mixin _$ReportArticleActorState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
+    TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ReportArticleActorStateCopyWith<$Res> {
-  factory $ReportArticleActorStateCopyWith(ReportArticleActorState value,
-          $Res Function(ReportArticleActorState) then) =
-      _$ReportArticleActorStateCopyWithImpl<$Res, ReportArticleActorState>;
+abstract class $AuthorWatcherStateCopyWith<$Res> {
+  factory $AuthorWatcherStateCopyWith(
+          AuthorWatcherState value, $Res Function(AuthorWatcherState) then) =
+      _$AuthorWatcherStateCopyWithImpl<$Res, AuthorWatcherState>;
 }
 
 /// @nodoc
-class _$ReportArticleActorStateCopyWithImpl<$Res,
-        $Val extends ReportArticleActorState>
-    implements $ReportArticleActorStateCopyWith<$Res> {
-  _$ReportArticleActorStateCopyWithImpl(this._value, this._then);
+class _$AuthorWatcherStateCopyWithImpl<$Res, $Val extends AuthorWatcherState>
+    implements $AuthorWatcherStateCopyWith<$Res> {
+  _$AuthorWatcherStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -398,7 +298,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$ReportArticleActorStateCopyWithImpl<$Res, _$_Initial>
+    extends _$AuthorWatcherStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -411,7 +311,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'ReportArticleActorState.initial()';
+    return 'AuthorWatcherState.initial()';
   }
 
   @override
@@ -429,7 +329,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function() success,
+    required TResult Function(Author author) loaded,
   }) {
     return initial();
   }
@@ -440,7 +340,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function()? success,
+    TResult? Function(Author author)? loaded,
   }) {
     return initial?.call();
   }
@@ -451,7 +351,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function()? success,
+    TResult Function(Author author)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -466,7 +366,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Loaded value) loaded,
   }) {
     return initial(this);
   }
@@ -477,7 +377,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Loaded value)? loaded,
   }) {
     return initial?.call(this);
   }
@@ -488,7 +388,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
+    TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -498,7 +398,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements ReportArticleActorState {
+abstract class _Initial implements AuthorWatcherState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -511,7 +411,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$ReportArticleActorStateCopyWithImpl<$Res, _$_Loading>
+    extends _$AuthorWatcherStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -524,7 +424,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'ReportArticleActorState.loading()';
+    return 'AuthorWatcherState.loading()';
   }
 
   @override
@@ -542,7 +442,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function() success,
+    required TResult Function(Author author) loaded,
   }) {
     return loading();
   }
@@ -553,7 +453,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function()? success,
+    TResult? Function(Author author)? loaded,
   }) {
     return loading?.call();
   }
@@ -564,7 +464,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function()? success,
+    TResult Function(Author author)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -579,7 +479,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Loaded value) loaded,
   }) {
     return loading(this);
   }
@@ -590,7 +490,7 @@ class _$_Loading implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Loaded value)? loaded,
   }) {
     return loading?.call(this);
   }
@@ -601,7 +501,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
+    TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -611,7 +511,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements ReportArticleActorState {
+abstract class _Loading implements AuthorWatcherState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -625,7 +525,7 @@ abstract class _$$_ErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ErrorCopyWithImpl<$Res>
-    extends _$ReportArticleActorStateCopyWithImpl<$Res, _$_Error>
+    extends _$AuthorWatcherStateCopyWithImpl<$Res, _$_Error>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
       : super(_value, _then);
@@ -654,7 +554,7 @@ class _$_Error implements _Error {
 
   @override
   String toString() {
-    return 'ReportArticleActorState.error(message: $message)';
+    return 'AuthorWatcherState.error(message: $message)';
   }
 
   @override
@@ -680,7 +580,7 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function() success,
+    required TResult Function(Author author) loaded,
   }) {
     return error(message);
   }
@@ -691,7 +591,7 @@ class _$_Error implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function()? success,
+    TResult? Function(Author author)? loaded,
   }) {
     return error?.call(message);
   }
@@ -702,7 +602,7 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function()? success,
+    TResult Function(Author author)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -717,7 +617,7 @@ class _$_Error implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Loaded value) loaded,
   }) {
     return error(this);
   }
@@ -728,7 +628,7 @@ class _$_Error implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Loaded value)? loaded,
   }) {
     return error?.call(this);
   }
@@ -739,7 +639,7 @@ class _$_Error implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
+    TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -749,7 +649,7 @@ class _$_Error implements _Error {
   }
 }
 
-abstract class _Error implements ReportArticleActorState {
+abstract class _Error implements AuthorWatcherState {
   const factory _Error(final String message) = _$_Error;
 
   String get message;
@@ -759,38 +659,63 @@ abstract class _Error implements ReportArticleActorState {
 }
 
 /// @nodoc
-abstract class _$$_SuccessCopyWith<$Res> {
-  factory _$$_SuccessCopyWith(
-          _$_Success value, $Res Function(_$_Success) then) =
-      __$$_SuccessCopyWithImpl<$Res>;
+abstract class _$$_LoadedCopyWith<$Res> {
+  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
+      __$$_LoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Author author});
 }
 
 /// @nodoc
-class __$$_SuccessCopyWithImpl<$Res>
-    extends _$ReportArticleActorStateCopyWithImpl<$Res, _$_Success>
-    implements _$$_SuccessCopyWith<$Res> {
-  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
+class __$$_LoadedCopyWithImpl<$Res>
+    extends _$AuthorWatcherStateCopyWithImpl<$Res, _$_Loaded>
+    implements _$$_LoadedCopyWith<$Res> {
+  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? author = null,
+  }) {
+    return _then(_$_Loaded(
+      null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as Author,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_Success implements _Success {
-  const _$_Success();
+class _$_Loaded implements _Loaded {
+  const _$_Loaded(this.author);
+
+  @override
+  final Author author;
 
   @override
   String toString() {
-    return 'ReportArticleActorState.success()';
+    return 'AuthorWatcherState.loaded(author: $author)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Success);
+        (other.runtimeType == runtimeType &&
+            other is _$_Loaded &&
+            (identical(other.author, author) || other.author == author));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, author);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -798,9 +723,9 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function() success,
+    required TResult Function(Author author) loaded,
   }) {
-    return success();
+    return loaded(author);
   }
 
   @override
@@ -809,9 +734,9 @@ class _$_Success implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function()? success,
+    TResult? Function(Author author)? loaded,
   }) {
-    return success?.call();
+    return loaded?.call(author);
   }
 
   @override
@@ -820,11 +745,11 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function()? success,
+    TResult Function(Author author)? loaded,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success();
+    if (loaded != null) {
+      return loaded(author);
     }
     return orElse();
   }
@@ -835,9 +760,9 @@ class _$_Success implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_Success value) success,
+    required TResult Function(_Loaded value) loaded,
   }) {
-    return success(this);
+    return loaded(this);
   }
 
   @override
@@ -846,9 +771,9 @@ class _$_Success implements _Success {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_Loaded value)? loaded,
   }) {
-    return success?.call(this);
+    return loaded?.call(this);
   }
 
   @override
@@ -857,16 +782,21 @@ class _$_Success implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_Success value)? success,
+    TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (loaded != null) {
+      return loaded(this);
     }
     return orElse();
   }
 }
 
-abstract class _Success implements ReportArticleActorState {
-  const factory _Success() = _$_Success;
+abstract class _Loaded implements AuthorWatcherState {
+  const factory _Loaded(final Author author) = _$_Loaded;
+
+  Author get author;
+  @JsonKey(ignore: true)
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

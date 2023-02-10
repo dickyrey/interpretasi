@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -5,16 +6,25 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
-import 'package:interpretasi/src/presentation/bloc/article/report_article_actor/report_article_actor_bloc.dart';
+import 'package:interpretasi/src/domain/entities/author.dart';
+import 'package:interpretasi/src/presentation/bloc/report/report_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/outlined_button_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_form_field_widget.dart';
 import 'package:interpretasi/src/utilities/snackbar.dart';
 
+class ReportArgument {
+  ReportArgument({this.article, this.author, required this.type});
+
+  final Article? article;
+  final Author? author;
+  final ReportType type;
+}
+
 class ReportArticlePage extends StatefulWidget {
-  const ReportArticlePage({super.key, required this.article});
-  final Article article;
+  const ReportArticlePage({super.key, required this.args});
+  final ReportArgument args;
 
   @override
   State<ReportArticlePage> createState() => _ReportArticlePageState();
@@ -35,9 +45,7 @@ class _ReportArticlePageState extends State<ReportArticlePage> {
     super.initState();
     _controller = TextEditingController();
     Future.microtask(
-      () => context
-          .read<ReportArticleActorBloc>()
-          .add(const ReportArticleActorEvent.init()),
+      () => context.read<ReportActorBloc>().add(const ReportActorEvent.init()),
     );
   }
 
@@ -46,7 +54,27 @@ class _ReportArticlePageState extends State<ReportArticlePage> {
     final theme = Theme.of(context);
     final lang = AppLocalizations.of(context)!;
 
-    return BlocListener<ReportArticleActorBloc, ReportArticleActorState>(
+    String title(ReportType type) {
+      switch (type) {
+        case ReportType.article:
+          return lang.why_are_you_reporting_this_post;
+        case ReportType.author:
+          return lang.why_are_you_reporting_this_author;
+      }
+    }
+
+    String subtitle(ReportType type) {
+      switch (type) {
+        case ReportType.article:
+          return lang
+              .your_report_is_anonymouse_interpretasi_team_will_use_your_report_to_check_out_this_article;
+        case ReportType.author:
+          return lang
+              .your_report_is_anonymouse_interpretasi_team_will_use_your_report_to_check_out_this_author;
+      }
+    }
+
+    return BlocListener<ReportActorBloc, ReportActorState>(
       listener: (context, state) {
         state.maybeMap(
           orElse: () {},
@@ -85,12 +113,15 @@ class _ReportArticlePageState extends State<ReportArticlePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: Const.margin),
-                    ArticleCardWidget(
-                      showIconButton: false,
-                      article: widget.article,
-                      index: 0,
-                      onTap: () {},
-                    ),
+                    if (widget.args.author != null)
+                      _AuthorCardWidget(author: widget.args.author!)
+                    else
+                      ArticleCardWidget(
+                        showIconButton: false,
+                        article: widget.args.article!,
+                        index: 0,
+                        onTap: () {},
+                      ),
                     const Divider(thickness: 1.2),
                     Padding(
                       padding: const EdgeInsets.all(Const.margin),
@@ -98,12 +129,12 @@ class _ReportArticlePageState extends State<ReportArticlePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            lang.why_are_you_reporting_this_post,
+                            title(widget.args.type),
                             style: theme.textTheme.labelMedium,
                           ),
                           const SizedBox(height: Const.space12),
                           Text(
-                            lang.your_report_is_anonymouse_interpretasi_team_will_use_your_report_to_check_out_this_article,
+                            subtitle(widget.args.type),
                             style: theme.textTheme.bodyMedium,
                           ),
                         ],
@@ -151,7 +182,8 @@ class _ReportArticlePageState extends State<ReportArticlePage> {
                     if (_selectedRadio == 6)
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: Const.margin),
+                          horizontal: Const.margin,
+                        ),
                         child: TextFormFieldWidget(
                           controller: _controller,
                           hintText: lang.write_your_reason,
@@ -180,8 +212,7 @@ class _ReportArticlePageState extends State<ReportArticlePage> {
                   ),
                   const SizedBox(width: Const.space25),
                   Expanded(
-                    child: BlocBuilder<ReportArticleActorBloc,
-                        ReportArticleActorState>(
+                    child: BlocBuilder<ReportActorBloc, ReportActorState>(
                       builder: (context, state) {
                         return state.maybeMap(
                           orElse: () {
@@ -209,12 +240,26 @@ class _ReportArticlePageState extends State<ReportArticlePage> {
                                   }
                                 }
 
-                                context.read<ReportArticleActorBloc>().add(
-                                      ReportArticleActorEvent.report(
-                                        id: widget.article.url,
-                                        reason: recommendReport(_selectedRadio),
-                                      ),
-                                    );
+                                if (widget.args.type == ReportType.article) {
+                                  context.read<ReportActorBloc>().add(
+                                        ReportActorEvent.reportArticle(
+                                          id: widget.args.article!.url,
+                                          reason: recommendReport(
+                                            _selectedRadio,
+                                          ),
+                                        ),
+                                      );
+                                } else if (widget.args.type ==
+                                    ReportType.author) {
+                                  context.read<ReportActorBloc>().add(
+                                        ReportActorEvent.reportAuthor(
+                                          id: widget.args.author!.id,
+                                          reason: recommendReport(
+                                            _selectedRadio,
+                                          ),
+                                        ),
+                                      );
+                                }
                               },
                               label: lang.report,
                             );
@@ -289,8 +334,56 @@ class _ReportArticlePageState extends State<ReportArticlePage> {
         ),
       ),
       title: Text(
-        lang.report_article,
+        lang.report,
         style: theme.textTheme.headlineSmall,
+      ),
+    );
+  }
+}
+
+class _AuthorCardWidget extends StatelessWidget {
+  const _AuthorCardWidget({required this.author});
+
+  final Author author;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Container(
+      height: 60,
+      padding: const EdgeInsets.symmetric(
+        horizontal: Const.margin,
+      ),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundColor: theme.disabledColor,
+            backgroundImage: CachedNetworkImageProvider(
+              author.photo,
+            ),
+          ),
+          const SizedBox(width: Const.space8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  author.name,
+                  maxLines: 1,
+                  style: theme.textTheme.headlineSmall,
+                ),
+                Text(
+                  author.email,
+                  maxLines: 1,
+                  style: theme.textTheme.bodyMedium,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

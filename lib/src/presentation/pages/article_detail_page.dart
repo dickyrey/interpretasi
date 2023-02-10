@@ -10,6 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
+import 'package:interpretasi/src/common/enums.dart';
+import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/common/screens.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_detail_watcher/article_detail_watcher_bloc.dart';
@@ -18,6 +20,7 @@ import 'package:interpretasi/src/presentation/bloc/comment_article/article_comme
 import 'package:interpretasi/src/presentation/bloc/comment_article/delete_comment_actor/delete_comment_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/comment_article/send_comment_actor/send_comment_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_article_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/pages/report_article_page.dart';
 import 'package:interpretasi/src/presentation/widgets/comment_card.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_field_widget.dart';
@@ -127,6 +130,13 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                         },
                         loaded: (state) {
                           return ListTile(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                AUTHOR,
+                                arguments: state.articleDetail.author.id,
+                              );
+                            },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: Const.margin,
                             ),
@@ -421,7 +431,14 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                 );
                 break;
               case _ArticleValues.report:
-                await showToast(msg: 'Report');
+                await Navigator.pushNamed(
+                  context,
+                  REPORT_ARTICLE,
+                  arguments: ReportArgument(
+                    type: ReportType.article,
+                    article: widget.article,
+                  ),
+                );
                 break;
             }
           },

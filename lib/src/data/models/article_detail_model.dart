@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:interpretasi/src/data/models/author_model.dart';
 import 'package:interpretasi/src/domain/entities/article_detail.dart';
 
 class ArticleDetailModel extends Equatable {
@@ -33,7 +32,7 @@ class ArticleDetailModel extends Equatable {
         (json['tags'] as Iterable<dynamic>).map((x) => x),
       ),
       createdAt: DateTime.parse(json['created_at'] as String),
-      author: AuthorModel.fromJson(json['user'] as Map<String, dynamic>),
+      author: AuthorArticleModel.fromJson(json['user'] as Map<String, dynamic>),
     );
   }
 
@@ -48,7 +47,7 @@ class ArticleDetailModel extends Equatable {
   final String url;
   final List<String> tags;
   final DateTime createdAt;
-  final AuthorModel author;
+  final AuthorArticleModel author;
 
   ArticleDetail toEntity() {
     return ArticleDetail(
@@ -63,7 +62,7 @@ class ArticleDetailModel extends Equatable {
       tags: tags,
       originalContent: originalContent,
       createdAt: createdAt,
-      author:author.toEntity(),
+      author: author.toEntity(),
     );
   }
 
@@ -82,4 +81,30 @@ class ArticleDetailModel extends Equatable {
         createdAt,
         author,
       ];
+}
+
+class AuthorArticleModel extends Equatable {
+  const AuthorArticleModel({
+    required this.id,
+    required this.name,
+    required this.photo,
+  });
+
+  factory AuthorArticleModel.fromJson(Map<String, dynamic> json) {
+    return AuthorArticleModel(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      photo: json['photo'] as String,
+    );
+  }
+  AuthorArticle toEntity() {
+    return AuthorArticle(id: id, name: name, photo: photo);
+  }
+
+  final int id;
+  final String name;
+  final String photo;
+
+  @override
+  List<Object?> get props => [id, name, photo];
 }

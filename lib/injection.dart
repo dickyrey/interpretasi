@@ -1,8 +1,11 @@
+// ignore_for_file: unused_import
+
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:interpretasi/src/data/datasources/article_data_source.dart';
 import 'package:interpretasi/src/data/datasources/auth_data_source.dart';
+import 'package:interpretasi/src/data/datasources/author_data_source.dart';
 import 'package:interpretasi/src/data/datasources/boarding_remote_data_source.dart';
 import 'package:interpretasi/src/data/datasources/category_remote_data_source.dart';
 import 'package:interpretasi/src/data/datasources/comment_article_data_source.dart';
@@ -12,6 +15,7 @@ import 'package:interpretasi/src/data/datasources/user_article_data_source.dart'
 import 'package:interpretasi/src/data/datasources/user_data_source.dart';
 import 'package:interpretasi/src/data/repositories/article_repository_impl.dart';
 import 'package:interpretasi/src/data/repositories/auth_repository_impl.dart';
+import 'package:interpretasi/src/data/repositories/author_data_source_impl.dart';
 import 'package:interpretasi/src/data/repositories/boarding_repository_impl.dart';
 import 'package:interpretasi/src/data/repositories/category_repository_impl.dart';
 import 'package:interpretasi/src/data/repositories/comment_article_repository_impl.dart';
@@ -21,6 +25,7 @@ import 'package:interpretasi/src/data/repositories/user_article_repository_impl.
 import 'package:interpretasi/src/data/repositories/user_repository_impl.dart';
 import 'package:interpretasi/src/domain/repositories/article_repository.dart';
 import 'package:interpretasi/src/domain/repositories/auth_repository.dart';
+import 'package:interpretasi/src/domain/repositories/author_data_source.dart';
 import 'package:interpretasi/src/domain/repositories/boarding_repository.dart';
 import 'package:interpretasi/src/domain/repositories/category_repository.dart';
 import 'package:interpretasi/src/domain/repositories/comment_article_repository.dart';
@@ -40,6 +45,8 @@ import 'package:interpretasi/src/domain/usecases/auth/sign_in_with_email.dart';
 import 'package:interpretasi/src/domain/usecases/auth/sign_in_with_google.dart';
 import 'package:interpretasi/src/domain/usecases/auth/sign_out_with_google.dart';
 import 'package:interpretasi/src/domain/usecases/auth/sign_up_with_email.dart';
+import 'package:interpretasi/src/domain/usecases/author/get_author.dart';
+import 'package:interpretasi/src/domain/usecases/author/report_author.dart';
 import 'package:interpretasi/src/domain/usecases/category/get_categories.dart';
 import 'package:interpretasi/src/domain/usecases/comment_article/delete_comment.dart';
 import 'package:interpretasi/src/domain/usecases/comment_article/get_comment_list.dart';
@@ -64,13 +71,13 @@ import 'package:interpretasi/src/presentation/bloc/article/article_detail_watche
 import 'package:interpretasi/src/presentation/bloc/article/article_form/article_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/delete_article_actor/delete_article_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/latest_article_watcher/latest_article_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/article/report_article_actor/report_article_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/search_article_watcher/search_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/sign_in_with_email_form/sign_in_with_email_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/sign_in_with_google_actor/sign_in_with_google_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/sign_up_with_email_form/sign_up_with_email_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/verification_status_watcher/verification_status_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/author/author_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/boarding/boarding_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/category/category_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/comment_article/article_comment_watcher/article_comment_watcher_bloc.dart';
@@ -80,6 +87,7 @@ import 'package:interpretasi/src/presentation/bloc/email_verification/email_veri
 import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/password/add_password_form/add_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/password/change_password_form/change_password_form_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/report/report_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/moderated_actor/moderated_actor_bloc.dart';
@@ -120,6 +128,11 @@ void init() {
   );
   locator.registerLazySingleton<AuthDataSource>(
     () => authDataSource,
+  );
+
+  final authorDataSource = AuthorDataSourceImpl(locator());
+  locator.registerLazySingleton<AuthorDataSource>(
+    () => authorDataSource,
   );
 
   final boardingRemoteDataSource = BoardingRemoteDataSourceImpl();
@@ -168,6 +181,11 @@ void init() {
   final authRepository = AuthRepositoryImpl(locator());
   locator.registerLazySingleton<AuthRepository>(
     () => authRepository,
+  );
+
+  final authorRepository = AuthorRepositoryImpl(locator());
+  locator.registerLazySingleton<AuthorRepository>(
+    () => authorRepository,
   );
 
   final boardingRepository = BoardingRepositoryImpl(dataSource: locator());
@@ -263,19 +281,31 @@ void init() {
     () => signInWithGoogleUseCase,
   );
 
-  final signOutWithGoogle = SignOut(locator());
+  final signOutWithGoogleUseCase = SignOut(locator());
   locator.registerLazySingleton(
-    () => signOutWithGoogle,
+    () => signOutWithGoogleUseCase,
   );
 
-  final signInWithEmail = SignInWithEmail(locator());
+  final signInWithEmailUseCase = SignInWithEmail(locator());
   locator.registerLazySingleton(
-    () => signInWithEmail,
+    () => signInWithEmailUseCase,
   );
 
-  final signUpWithEmail = SignUpWithEmail(locator());
+  final signUpWithEmailUseCase = SignUpWithEmail(locator());
   locator.registerLazySingleton(
-    () => signUpWithEmail,
+    () => signUpWithEmailUseCase,
+  );
+
+  //* Filter by [Category] folder
+  //*
+  final getAuthorUseCase = GetAuthor(locator());
+  locator.registerLazySingleton(
+    () => getAuthorUseCase,
+  );
+
+  final reportAuthorUseCase = ReportAuthor(locator());
+  locator.registerLazySingleton(
+    () => reportAuthorUseCase,
   );
 
   //* Filter by [Category] folder
@@ -415,11 +445,6 @@ void init() {
     () => latestArticleWatcherBloc,
   );
 
-  final reportArticleActorBloc = ReportArticleActorBloc(locator());
-  locator.registerLazySingleton(
-    () => reportArticleActorBloc,
-  );
-
   final searchArticleWatcherBloc = SearchArticleWatcherBloc(locator());
   locator.registerLazySingleton(
     () => searchArticleWatcherBloc,
@@ -456,6 +481,13 @@ void init() {
   );
   locator.registerLazySingleton(
     () => verificationStatusWatcherBloc,
+  );
+
+  //* Author BLoC folder
+  //*
+  final authorWatcherBloc = AuthorWatcherBloc(locator());
+  locator.registerLazySingleton(
+    () => authorWatcherBloc,
   );
 
   //* OnBoarding BLoC folder
@@ -519,8 +551,15 @@ void init() {
     () => changePasswordFormBloc,
   );
 
-  //* TimeZone BLoC folder
+  //* Report BLoC folder
   //*
+  final reportActorBloc = ReportActorBloc(
+    article: locator(),
+    author: locator(),
+  );
+  locator.registerLazySingleton(
+    () => reportActorBloc,
+  );
 
   //* User BLoC folder
   //*

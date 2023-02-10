@@ -14,6 +14,7 @@ import 'package:interpretasi/src/presentation/bloc/article/article_form/article_
 import 'package:interpretasi/src/presentation/bloc/article/delete_article_actor/delete_article_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/category/category_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/moderated_actor/moderated_actor_bloc.dart';
+import 'package:interpretasi/src/presentation/pages/report_article_page.dart';
 import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -326,7 +327,10 @@ class _HorizontalCard extends StatelessWidget {
                                   Navigator.pushNamed(
                                     context,
                                     REPORT_ARTICLE,
-                                    arguments: article,
+                                    arguments: ReportArgument(
+                                      type: ReportType.article,
+                                      article: article,
+                                    ),
                                   );
                                 },
                                 isVisible: showReportButton,

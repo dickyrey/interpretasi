@@ -21,3 +21,4 @@ const String ARTICLE_TRENDING = '/article_trending';
 const String ARTICLE_SEARCH = '/article_search';
 const String EXPLORE_ARTICLE = '/explore_article';
 const String REPORT_ARTICLE = '/report_article';
+const String AUTHOR = '/author';
