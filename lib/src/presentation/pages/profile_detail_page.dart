@@ -181,27 +181,34 @@ class _ReadHistoryWidget extends StatelessWidget {
           },
           loaded: (state) {
             if (state.articleList.isNotEmpty) {
-              return ListView.builder(
-                itemCount: state.articleList.take(5).length,
-                physics: const ScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  final article = state.articleList[index];
-
-                  return ArticleCardWidget(
-                    article: article,
-                    index: index,
-                    showShareButton: true,
-                    showReportButton: true,
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        ARTICLE_DETAIL,
-                        arguments: article,
-                      );
-                    },
-                  );
+              return RefreshIndicator(
+                onRefresh: () async {
+                  context
+                      .read<ReadHistoryWatcherBloc>()
+                      .add(const ReadHistoryWatcherEvent.fetch());
                 },
+                child: ListView.builder(
+                  itemCount: state.articleList.take(5).length,
+                  physics: const ScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    final article = state.articleList[index];
+
+                    return ArticleCardWidget(
+                      article: article,
+                      index: index,
+                      showShareButton: true,
+                      showReportButton: true,
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          ARTICLE_DETAIL,
+                          arguments: article,
+                        );
+                      },
+                    );
+                  },
+                ),
               );
             }
             return EmptyDataWidget(
@@ -243,27 +250,34 @@ class _MyArticlesWidget extends StatelessWidget {
           },
           loaded: (state) {
             if (state.articleList.isNotEmpty) {
-              return ListView.builder(
-                itemCount: state.articleList.length,
-                physics: const ScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  final article = state.articleList[index];
+              return RefreshIndicator(
+                  onRefresh: () async {
+                    context
+                        .read<UserArticlePublishedWatcherBloc>()
+                        .add(const UserArticlePublishedWatcherEvent.fetch());
+                  },
+                child: ListView.builder(
+                  itemCount: state.articleList.length,
+                  physics: const ScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    final article = state.articleList[index];
 
-                  return ArticleCardWidget(
-                    article: article,
-                    index: index,
-                    showEditButton: true,
-                    showDeleteButton: true,
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        ARTICLE_DETAIL,
-                        arguments: article,
-                      );
-                    },
-                  );
-                },
+                    return ArticleCardWidget(
+                      article: article,
+                      index: index,
+                      showEditButton: true,
+                      showDeleteButton: true,
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          ARTICLE_DETAIL,
+                          arguments: article,
+                        );
+                      },
+                    );
+                  },
+                ),
               );
             }
             return EmptyDataWidget(
@@ -272,7 +286,11 @@ class _MyArticlesWidget extends StatelessWidget {
               subtitle: lang
                   .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
               onTap: () {
-                // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
+                Navigator.pushNamed(
+                  context,
+                  ARTICLE_FORM,
+                  arguments: false,
+                );
               },
             );
           },

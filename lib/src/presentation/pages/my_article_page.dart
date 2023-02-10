@@ -119,34 +119,41 @@ class _MyArticlePageState extends State<MyArticlePage> {
                     },
                     loaded: (state) {
                       if (state.articleList.isNotEmpty) {
-                        return ListView.separated(
-                          itemCount: state.articleList.length,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: Const.margin,
-                          ),
-                          physics: const ScrollPhysics(),
-                          shrinkWrap: true,
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(height: Const.space15);
-                          },
-                          itemBuilder: (context, index) {
-                            final article = state.articleList[index];
-                            return ArticleCardWidget(
-                              index: index,
-                              article: article,
-                              showPreviewButton: true,
-                              showEditButton: true,
-                              showPublishButton: true,
-                              showDeleteButton: true,
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  ARTICLE_PREVIEW,
-                                  arguments: article,
+                        return RefreshIndicator(
+                          onRefresh: () async {
+                            context.read<UserArticleDraftedWatcherBloc>().add(
+                                  const UserArticleDraftedWatcherEvent.fetch(),
                                 );
-                              },
-                            );
                           },
+                          child: ListView.separated(
+                            itemCount: state.articleList.length,
+                            padding: const EdgeInsets.symmetric(
+                              vertical: Const.margin,
+                            ),
+                            physics: const ScrollPhysics(),
+                            shrinkWrap: true,
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(height: Const.space15);
+                            },
+                            itemBuilder: (context, index) {
+                              final article = state.articleList[index];
+                              return ArticleCardWidget(
+                                index: index,
+                                article: article,
+                                showPreviewButton: true,
+                                showEditButton: true,
+                                showPublishButton: true,
+                                showDeleteButton: true,
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    ARTICLE_PREVIEW,
+                                    arguments: article,
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         );
                       }
                       return EmptyDataWidget(
@@ -155,7 +162,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
                         subtitle: lang
                             .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
                         onTap: () {
-                          // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
+                          Navigator.pushNamed(
+                            context,
+                            ARTICLE_SEARCH,
+                            arguments: false,
+                          );
                         },
                       );
                     },
@@ -185,32 +196,40 @@ class _MyArticlePageState extends State<MyArticlePage> {
                     },
                     loaded: (state) {
                       if (state.articleList.isNotEmpty) {
-                        return ListView.separated(
-                          itemCount: state.articleList.length,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: Const.margin,
-                          ),
-                          physics: const ScrollPhysics(),
-                          shrinkWrap: true,
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(height: Const.space15);
-                          },
-                          itemBuilder: (context, index) {
-                            final article = state.articleList[index];
-                            return ArticleCardWidget(
-                              index: index,
-                              article: article,
-                              showPreviewButton: true,
-                              showDeleteButton: true,
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  ARTICLE_PREVIEW,
-                                  arguments: article,
+                        return RefreshIndicator(
+                          onRefresh: () async {
+                            context.read<UserArticleModeratedWatcherBloc>().add(
+                                  const UserArticleModeratedWatcherEvent
+                                      .fetch(),
                                 );
-                              },
-                            );
                           },
+                          child: ListView.separated(
+                            itemCount: state.articleList.length,
+                            padding: const EdgeInsets.symmetric(
+                              vertical: Const.margin,
+                            ),
+                            physics: const ScrollPhysics(),
+                            shrinkWrap: true,
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(height: Const.space15);
+                            },
+                            itemBuilder: (context, index) {
+                              final article = state.articleList[index];
+                              return ArticleCardWidget(
+                                index: index,
+                                article: article,
+                                showPreviewButton: true,
+                                showDeleteButton: true,
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    ARTICLE_PREVIEW,
+                                    arguments: article,
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         );
                       }
                       return EmptyDataWidget(
@@ -219,7 +238,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
                         subtitle: lang
                             .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
                         onTap: () {
-                          // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
+                          Navigator.pushNamed(
+                            context,
+                            ARTICLE_SEARCH,
+                            arguments: false,
+                          );
                         },
                       );
                     },
@@ -249,32 +272,39 @@ class _MyArticlePageState extends State<MyArticlePage> {
                     },
                     loaded: (state) {
                       if (state.articleList.isNotEmpty) {
-                        return ListView.separated(
-                          itemCount: state.articleList.length,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: Const.margin,
-                          ),
-                          physics: const ScrollPhysics(),
-                          shrinkWrap: true,
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(height: Const.space15);
-                          },
-                          itemBuilder: (context, index) {
-                            final article = state.articleList[index];
-                            return ArticleCardWidget(
-                              index: index,
-                              article: article,
-                              showEditButton: true,
-                              showDeleteButton: true,
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  ARTICLE_PREVIEW,
-                                  arguments: article,
+                        return RefreshIndicator(
+                          onRefresh: () async {
+                            context.read<UserArticleRejectedWatcherBloc>().add(
+                                  const UserArticleRejectedWatcherEvent.fetch(),
                                 );
-                              },
-                            );
                           },
+                          child: ListView.separated(
+                            itemCount: state.articleList.length,
+                            padding: const EdgeInsets.symmetric(
+                              vertical: Const.margin,
+                            ),
+                            physics: const ScrollPhysics(),
+                            shrinkWrap: true,
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(height: Const.space15);
+                            },
+                            itemBuilder: (context, index) {
+                              final article = state.articleList[index];
+                              return ArticleCardWidget(
+                                index: index,
+                                article: article,
+                                showEditButton: true,
+                                showDeleteButton: true,
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    ARTICLE_PREVIEW,
+                                    arguments: article,
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         );
                       }
                       return EmptyDataWidget(
@@ -283,7 +313,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
                         subtitle: lang
                             .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
                         onTap: () {
-                          // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
+                          Navigator.pushNamed(
+                            context,
+                            ARTICLE_SEARCH,
+                            arguments: false,
+                          );
                         },
                       );
                     },
@@ -313,32 +347,40 @@ class _MyArticlePageState extends State<MyArticlePage> {
                     },
                     loaded: (state) {
                       if (state.articleList.isNotEmpty) {
-                        return ListView.separated(
-                          itemCount: state.articleList.length,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: Const.margin,
-                          ),
-                          physics: const ScrollPhysics(),
-                          shrinkWrap: true,
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(height: Const.space15);
-                          },
-                          itemBuilder: (context, index) {
-                            final article = state.articleList[index];
-                            return ArticleCardWidget(
-                              index: index,
-                              article: article,
-                              showEditButton: true,
-                              showDeleteButton: true,
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  ARTICLE_PREVIEW,
-                                  arguments: article,
+                        return RefreshIndicator(
+                          onRefresh: () async {
+                            context.read<UserArticlePublishedWatcherBloc>().add(
+                                  const UserArticlePublishedWatcherEvent
+                                      .fetch(),
                                 );
-                              },
-                            );
                           },
+                          child: ListView.separated(
+                            itemCount: state.articleList.length,
+                            padding: const EdgeInsets.symmetric(
+                              vertical: Const.margin,
+                            ),
+                            physics: const ScrollPhysics(),
+                            shrinkWrap: true,
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(height: Const.space15);
+                            },
+                            itemBuilder: (context, index) {
+                              final article = state.articleList[index];
+                              return ArticleCardWidget(
+                                index: index,
+                                article: article,
+                                showEditButton: true,
+                                showDeleteButton: true,
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    ARTICLE_PREVIEW,
+                                    arguments: article,
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         );
                       }
                       return EmptyDataWidget(
@@ -347,7 +389,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
                         subtitle: lang
                             .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
                         onTap: () {
-                          // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
+                          Navigator.pushNamed(
+                            context,
+                            ARTICLE_SEARCH,
+                            arguments: false,
+                          );
                         },
                       );
                     },
@@ -377,31 +423,38 @@ class _MyArticlePageState extends State<MyArticlePage> {
                     },
                     loaded: (state) {
                       if (state.articleList.isNotEmpty) {
-                        return ListView.separated(
-                          itemCount: state.articleList.length,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: Const.margin,
-                          ),
-                          physics: const ScrollPhysics(),
-                          shrinkWrap: true,
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(height: Const.space15);
-                          },
-                          itemBuilder: (context, index) {
-                            final article = state.articleList[index];
-                            return ArticleCardWidget(
-                              index: index,
-                              article: article,
-                              showDeleteButton: true,
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  ARTICLE_PREVIEW,
-                                  arguments: article,
+                        return RefreshIndicator(
+                          onRefresh: () async {
+                            context.read<UserArticleBannedWatcherBloc>().add(
+                                  const UserArticleBannedWatcherEvent.fetch(),
                                 );
-                              },
-                            );
                           },
+                          child: ListView.separated(
+                            itemCount: state.articleList.length,
+                            padding: const EdgeInsets.symmetric(
+                              vertical: Const.margin,
+                            ),
+                            physics: const ScrollPhysics(),
+                            shrinkWrap: true,
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(height: Const.space15);
+                            },
+                            itemBuilder: (context, index) {
+                              final article = state.articleList[index];
+                              return ArticleCardWidget(
+                                index: index,
+                                article: article,
+                                showDeleteButton: true,
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    ARTICLE_PREVIEW,
+                                    arguments: article,
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         );
                       }
                       return EmptyDataWidget(
@@ -410,7 +463,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
                         subtitle: lang
                             .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
                         onTap: () {
-                          // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/12
+                          Navigator.pushNamed(
+                            context,
+                            ARTICLE_SEARCH,
+                            arguments: false,
+                          );
                         },
                       );
                     },

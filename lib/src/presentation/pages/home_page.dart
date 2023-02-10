@@ -21,61 +21,123 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final lang = AppLocalizations.of(context)!;
 
-    return Scaffold(
-      appBar: _appBar(context),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: Const.space15),
-            _HeadingTile(
-              label: lang.trending_news,
-              onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  ARTICLE_TRENDING,
-                );
-              },
-            ),
-            const SizedBox(height: Const.space8),
-            BlocBuilder<TrendingArticleWatcherBloc, TrendingArticleWatcherState>(
-              builder: (context, state) {
-                return state.maybeMap(
-                  orElse: () {
-                    return const SizedBox();
-                  },
-                  loading: (_) {
-                    return SizedBox(
-                      width: Screens.width(context),
-                      height: 300,
-                      child: ListView.builder(
+    return RefreshIndicator(
+      onRefresh: () async {
+        context
+            .read<TrendingArticleWatcherBloc>()
+            .add(const TrendingArticleWatcherEvent.fetch());
+        context
+            .read<LatestArticleWatcherBloc>()
+            .add(const LatestArticleWatcherEvent.fetch());
+      },
+      child: Scaffold(
+        appBar: _appBar(context),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: Const.space15),
+              _HeadingTile(
+                label: lang.trending_news,
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    ARTICLE_TRENDING,
+                  );
+                },
+              ),
+              const SizedBox(height: Const.space8),
+              BlocBuilder<TrendingArticleWatcherBloc,
+                  TrendingArticleWatcherState>(
+                builder: (context, state) {
+                  return state.maybeMap(
+                    orElse: () {
+                      return const SizedBox();
+                    },
+                    loading: (_) {
+                      return SizedBox(
+                        width: Screens.width(context),
+                        height: 300,
+                        child: ListView.builder(
+                          itemCount: 3,
+                          scrollDirection: Axis.horizontal,
+                          physics: const BouncingScrollPhysics(),
+                          padding: const EdgeInsets.only(left: Const.margin),
+                          itemBuilder: (context, index) {
+                            return const ArticleCardLoadingWidget(
+                              align: CardAlignment.horizontal,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    loaded: (state) {
+                      return SizedBox(
+                        width: Screens.width(context),
+                        height: 300,
+                        child: ListView.builder(
+                          itemCount: state.articleList.length,
+                          scrollDirection: Axis.horizontal,
+                          physics: const BouncingScrollPhysics(),
+                          padding: const EdgeInsets.only(left: Const.margin),
+                          itemBuilder: (context, index) {
+                            final article = state.articleList[index];
+
+                            return ArticleCardWidget(
+                              article: article,
+                              index: index,
+                              align: CardAlignment.horizontal,
+                              showShareButton: true,
+                              showReportButton: true,
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  ARTICLE_DETAIL,
+                                  arguments: article,
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+              const SizedBox(height: Const.space15),
+              _HeadingTile(
+                label: lang.explore,
+                onTap: () {
+                  Navigator.pushNamed(context, EXPLORE_ARTICLE);
+                },
+              ),
+              const SizedBox(height: Const.space8),
+              BlocBuilder<LatestArticleWatcherBloc, LatestArticleWatcherState>(
+                builder: (context, state) {
+                  return state.maybeMap(
+                    orElse: () {
+                      return const SizedBox();
+                    },
+                    loading: (_) {
+                      return ListView.builder(
                         itemCount: 3,
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        padding: const EdgeInsets.only(left: Const.margin),
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return const ArticleCardLoadingWidget(
-                            align: CardAlignment.horizontal,
-                          );
+                          return const ArticleCardLoadingWidget();
                         },
-                      ),
-                    );
-                  },
-                  loaded: (state) {
-                    return SizedBox(
-                      width: Screens.width(context),
-                      height: 300,
-                      child: ListView.builder(
+                      );
+                    },
+                    loaded: (state) {
+                      return ListView.builder(
                         itemCount: state.articleList.length,
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        padding: const EdgeInsets.only(left: Const.margin),
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
                         itemBuilder: (context, index) {
                           final article = state.articleList[index];
 
                           return ArticleCardWidget(
                             article: article,
                             index: index,
-                            align: CardAlignment.horizontal,
                             showShareButton: true,
                             showReportButton: true,
                             onTap: () {
@@ -87,64 +149,13 @@ class HomePage extends StatelessWidget {
                             },
                           );
                         },
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
-            const SizedBox(height: Const.space15),
-            _HeadingTile(
-              label: lang.explore,
-              onTap: () {
-                Navigator.pushNamed(context, EXPLORE_ARTICLE);
-              },
-            ),
-            const SizedBox(height: Const.space8),
-            BlocBuilder<LatestArticleWatcherBloc, LatestArticleWatcherState>(
-              builder: (context, state) {
-                return state.maybeMap(
-                  orElse: () {
-                    return const SizedBox();
-                  },
-                  loading: (_) {
-                    return ListView.builder(
-                      itemCount: 3,
-                      physics: const ScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return const ArticleCardLoadingWidget();
-                      },
-                    );
-                  },
-                  loaded: (state) {
-                    return ListView.builder(
-                      itemCount: state.articleList.length,
-                      physics: const ScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        final article = state.articleList[index];
-
-                        return ArticleCardWidget(
-                          article: article,
-                          index: index,
-                          showShareButton: true,
-                          showReportButton: true,
-                          onTap: () {
-                            Navigator.pushNamed(
-                              context,
-                              ARTICLE_DETAIL,
-                              arguments: article,
-                            );
-                          },
-                        );
-                      },
-                    );
-                  },
-                );
-              },
-            ),
-          ],
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

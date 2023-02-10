@@ -30,58 +30,65 @@ class _ReadHistoryPageState extends State<ReadHistoryPage> {
   Widget build(BuildContext context) {
     final lang = AppLocalizations.of(context)!;
 
-    return Scaffold(
-      appBar: _appBar(context),
-      body: BlocBuilder<ReadHistoryWatcherBloc, ReadHistoryWatcherState>(
-        builder: (context, state) {
-          return state.maybeMap(
-            orElse: () {
-              return const SizedBox();
-            },
-            loading: (_) {
-              return ListView.builder(
-                itemCount: 3,
-                physics: const ScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return const ArticleCardLoadingWidget();
-                },
-              );
-            },
-            loaded: (state) {
-              if (state.articleList.isNotEmpty) {
+    return RefreshIndicator(
+      onRefresh: () async {
+        context
+            .read<ReadHistoryWatcherBloc>()
+            .add(const ReadHistoryWatcherEvent.fetch());
+      },
+      child: Scaffold(
+        appBar: _appBar(context),
+        body: BlocBuilder<ReadHistoryWatcherBloc, ReadHistoryWatcherState>(
+          builder: (context, state) {
+            return state.maybeMap(
+              orElse: () {
+                return const SizedBox();
+              },
+              loading: (_) {
                 return ListView.builder(
-                  itemCount: state.articleList.length,
-                  physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.symmetric(vertical: Const.margin),
+                  itemCount: 3,
+                  physics: const ScrollPhysics(),
+                  shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    final article = state.articleList[index];
-
-                    return ArticleCardWidget(
-                      article: article,
-                      index: index,
-                      showShareButton: true,
-                      showReportButton: true,
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          ARTICLE_DETAIL,
-                          arguments: article,
-                        );
-                      },
-                    );
+                    return const ArticleCardLoadingWidget();
                   },
                 );
-              }
-              return EmptyDataWidget(
-                illustration: Assets.read,
-                title: lang.read_history_empty,
-                subtitle: lang
-                    .your_reading_history_is_still_empty_lets_explore_by_reading_interesting_articles,
-              );
-            },
-          );
-        },
+              },
+              loaded: (state) {
+                if (state.articleList.isNotEmpty) {
+                  return ListView.builder(
+                    itemCount: state.articleList.length,
+                    physics: const ScrollPhysics(),
+                    padding: const EdgeInsets.symmetric(vertical: Const.margin),
+                    itemBuilder: (context, index) {
+                      final article = state.articleList[index];
+
+                      return ArticleCardWidget(
+                        article: article,
+                        index: index,
+                        showShareButton: true,
+                        showReportButton: true,
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            ARTICLE_DETAIL,
+                            arguments: article,
+                          );
+                        },
+                      );
+                    },
+                  );
+                }
+                return EmptyDataWidget(
+                  illustration: Assets.read,
+                  title: lang.read_history_empty,
+                  subtitle: lang
+                      .your_reading_history_is_still_empty_lets_explore_by_reading_interesting_articles,
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

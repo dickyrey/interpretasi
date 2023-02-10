@@ -13,50 +13,57 @@ class LatestPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appBar(context),
-      body: BlocBuilder<LatestArticleWatcherBloc, LatestArticleWatcherState>(
-        builder: (context, state) {
-          return state.maybeMap(
-            orElse: () {
-              return const SizedBox();
-            },
-            loading: (_) {
-              return ListView.builder(
-                itemCount: 3,
-                physics: const ScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return const ArticleCardLoadingWidget();
-                },
-              );
-            },
-            loaded: (state) {
-              return ListView.builder(
-                itemCount: state.articleList.length,
-                physics: const ScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  final article = state.articleList[index];
+    return RefreshIndicator(
+      onRefresh: () async {
+        context
+            .read<LatestArticleWatcherBloc>()
+            .add(const LatestArticleWatcherEvent.fetch());
+      },
+      child: Scaffold(
+        appBar: _appBar(context),
+        body: BlocBuilder<LatestArticleWatcherBloc, LatestArticleWatcherState>(
+          builder: (context, state) {
+            return state.maybeMap(
+              orElse: () {
+                return const SizedBox();
+              },
+              loading: (_) {
+                return ListView.builder(
+                  itemCount: 3,
+                  physics: const ScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return const ArticleCardLoadingWidget();
+                  },
+                );
+              },
+              loaded: (state) {
+                return ListView.builder(
+                  itemCount: state.articleList.length,
+                  physics: const ScrollPhysics(),
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    final article = state.articleList[index];
 
-                  return ArticleCardWidget(
-                    article: article,
-                    index: index,
-                    showShareButton: true,
-                    showReportButton: true,
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        ARTICLE_DETAIL,
-                        arguments: article,
-                      );
-                    },
-                  );
-                },
-              );
-            },
-          );
-        },
+                    return ArticleCardWidget(
+                      article: article,
+                      index: index,
+                      showShareButton: true,
+                      showReportButton: true,
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          ARTICLE_DETAIL,
+                          arguments: article,
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

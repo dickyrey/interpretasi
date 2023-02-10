@@ -176,7 +176,7 @@ class ProfilePage extends StatelessWidget {
               icon: FeatherIcons.trendingUp,
               title: lang.trending,
               onTap: () {
-                // Navigator.pushNamed(context, TRENDING_ARTICLE);
+                Navigator.pushNamed(context, ARTICLE_TRENDING);
               },
             ),
             ExpansionTile(
