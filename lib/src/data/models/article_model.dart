@@ -19,7 +19,7 @@ class ArticleModel extends Equatable {
       comments: json['comments_count'] as int,
       likes: json['likes_count'] as int,
       viewers: json['viewers'] as int,
-      categoryId: json['category_id'] == null ? 1 : json['category_id'] as int,
+      categoryId: json['category_id'] as int,
       image: json['image'] as String,
       title: json['title'] as String,
       url: json['url'] as String,
