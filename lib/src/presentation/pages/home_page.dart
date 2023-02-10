@@ -9,6 +9,7 @@ import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/common/screens.dart';
 import 'package:interpretasi/src/presentation/bloc/article/latest_article_watcher/latest_article_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/article/trending_article_watcher/trending_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
@@ -36,7 +37,7 @@ class HomePage extends StatelessWidget {
               },
             ),
             const SizedBox(height: Const.space8),
-            BlocBuilder<LatestArticleWatcherBloc, LatestArticleWatcherState>(
+            BlocBuilder<TrendingArticleWatcherBloc, TrendingArticleWatcherState>(
               builder: (context, state) {
                 return state.maybeMap(
                   orElse: () {

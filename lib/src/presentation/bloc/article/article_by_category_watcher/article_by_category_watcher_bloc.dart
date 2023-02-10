@@ -30,6 +30,7 @@ class ArticleByCategoryWatcherBloc
               category: event.id.toString(),
               page: '',
               query: '',
+              isTrending: false,
             );
 
             result.fold(

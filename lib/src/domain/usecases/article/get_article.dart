@@ -12,11 +12,13 @@ class GetArticle {
     required String page,
     required String query,
     required String category,
+    required bool isTrending,
   }) {
     return repository.getArticle(
       page: page,
       query: query,
       category: category,
+      isTrending: isTrending,
     );
   }
 }

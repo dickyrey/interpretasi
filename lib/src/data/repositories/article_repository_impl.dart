@@ -19,12 +19,14 @@ class ArticleRepositoryImpl extends ArticleRepository {
     required String page,
     required String query,
     required String category,
+    required bool isTrending,
   }) async {
     try {
       final result = await dataSource.getArticle(
         page: page,
         query: query,
         category: category,
+        isTrending: isTrending,
       );
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException catch (e) {

@@ -10,6 +10,7 @@ abstract class ArticleRepository {
     required String page,
     required String query,
     required String category,
+    required bool isTrending,
   });
   Future<Either<Failure, ArticleDetail>> getArticleDetail(String id);
   Future<Either<Failure, List<Article>>> searchArticle(String query);

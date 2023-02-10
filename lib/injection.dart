@@ -73,6 +73,7 @@ import 'package:interpretasi/src/presentation/bloc/article/article_form/article_
 import 'package:interpretasi/src/presentation/bloc/article/delete_article_actor/delete_article_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/latest_article_watcher/latest_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/search_article_watcher/search_article_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/article/trending_article_watcher/trending_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/sign_in_with_email_form/sign_in_with_email_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/sign_in_with_google_actor/sign_in_with_google_actor_bloc.dart';
@@ -454,6 +455,11 @@ void init() {
   final searchArticleWatcherBloc = SearchArticleWatcherBloc(locator());
   locator.registerLazySingleton(
     () => searchArticleWatcherBloc,
+  );
+
+  final trendingArticleWatcherBloc = TrendingArticleWatcherBloc(locator());
+  locator.registerLazySingleton(
+    () => trendingArticleWatcherBloc,
   );
 
   //* Auth BLoC folder

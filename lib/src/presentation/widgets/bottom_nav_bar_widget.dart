@@ -4,6 +4,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/bloc/article/latest_article_watcher/latest_article_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/article/trending_article_watcher/trending_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/category/category_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
@@ -34,6 +35,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
     Future.microtask(() {
       context.read<UserWatcherBloc>().add(const UserWatcherEvent.fetch());
       context.read<CategoryWatcherBloc>().add(const CategoryWatcherEvent.fetch());
+      context.read<TrendingArticleWatcherBloc>().add(const TrendingArticleWatcherEvent.fetch());
       context.read<LatestArticleWatcherBloc>().add(const LatestArticleWatcherEvent.fetch());
     });
   }

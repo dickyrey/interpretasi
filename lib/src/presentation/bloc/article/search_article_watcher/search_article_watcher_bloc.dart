@@ -21,6 +21,7 @@ class SearchArticleWatcherBloc
               category: '',
               page: '1',
               query: event.query,
+              isTrending: false,
             );
 
             result.fold(

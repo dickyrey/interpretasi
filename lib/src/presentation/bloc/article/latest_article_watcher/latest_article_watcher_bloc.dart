@@ -20,6 +20,7 @@ class LatestArticleWatcherBloc
             category: '',
             page: '',
             query: '',
+            isTrending: false,
           );
 
           result.fold(

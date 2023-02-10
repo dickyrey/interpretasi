@@ -15,6 +15,7 @@ abstract class ArticleDataSource {
     required String page,
     required String query,
     required String category,
+    required bool isTrending,
   });
   Future<ArticleDetailModel> getArticleDetail(String id);
   Future<List<ArticleModel>> searchArticle(String query);
@@ -51,6 +52,7 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     required String page,
     required String query,
     required String category,
+    required bool isTrending,
   }) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
@@ -67,6 +69,7 @@ class ArticleDataSourceImpl extends ArticleDataSource {
         'page': page,
         'find': query,
         'category': (category == '0') ? '' : category,
+        'trending': (isTrending == true) ? '1' : '0',
       },
     );
 
@@ -272,7 +275,7 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     );
 
     final response = await client.post(url, headers: header, body: body);
-    
+
     if (response.statusCode == 200) {
       return true;
     } else {
