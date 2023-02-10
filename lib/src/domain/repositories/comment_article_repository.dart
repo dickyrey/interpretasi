@@ -12,4 +12,9 @@ abstract class CommentArticleRepository {
     required String id,
     required int userId,
   });
+  Future<Either<Failure, bool>> reportComment({
+    required String articleId,
+    required int commentId,
+    required String reason,
+  });
 }

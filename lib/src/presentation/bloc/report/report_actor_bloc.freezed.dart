@@ -21,6 +21,8 @@ mixin _$ReportActorEvent {
     required TResult Function() init,
     required TResult Function(String id, String reason) reportArticle,
     required TResult Function(int id, String reason) reportAuthor,
+    required TResult Function(String url, int commentId, String reason)
+        reportComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +30,7 @@ mixin _$ReportActorEvent {
     TResult? Function()? init,
     TResult? Function(String id, String reason)? reportArticle,
     TResult? Function(int id, String reason)? reportAuthor,
+    TResult? Function(String url, int commentId, String reason)? reportComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +38,7 @@ mixin _$ReportActorEvent {
     TResult Function()? init,
     TResult Function(String id, String reason)? reportArticle,
     TResult Function(int id, String reason)? reportAuthor,
+    TResult Function(String url, int commentId, String reason)? reportComment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +47,7 @@ mixin _$ReportActorEvent {
     required TResult Function(_Init value) init,
     required TResult Function(_ReportArticle value) reportArticle,
     required TResult Function(_ReportAuthor value) reportAuthor,
+    required TResult Function(_ReportComment value) reportComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +55,7 @@ mixin _$ReportActorEvent {
     TResult? Function(_Init value)? init,
     TResult? Function(_ReportArticle value)? reportArticle,
     TResult? Function(_ReportAuthor value)? reportAuthor,
+    TResult? Function(_ReportComment value)? reportComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +63,7 @@ mixin _$ReportActorEvent {
     TResult Function(_Init value)? init,
     TResult Function(_ReportArticle value)? reportArticle,
     TResult Function(_ReportAuthor value)? reportAuthor,
+    TResult Function(_ReportComment value)? reportComment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,6 +126,8 @@ class _$_Init implements _Init {
     required TResult Function() init,
     required TResult Function(String id, String reason) reportArticle,
     required TResult Function(int id, String reason) reportAuthor,
+    required TResult Function(String url, int commentId, String reason)
+        reportComment,
   }) {
     return init();
   }
@@ -129,6 +138,7 @@ class _$_Init implements _Init {
     TResult? Function()? init,
     TResult? Function(String id, String reason)? reportArticle,
     TResult? Function(int id, String reason)? reportAuthor,
+    TResult? Function(String url, int commentId, String reason)? reportComment,
   }) {
     return init?.call();
   }
@@ -139,6 +149,7 @@ class _$_Init implements _Init {
     TResult Function()? init,
     TResult Function(String id, String reason)? reportArticle,
     TResult Function(int id, String reason)? reportAuthor,
+    TResult Function(String url, int commentId, String reason)? reportComment,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -153,6 +164,7 @@ class _$_Init implements _Init {
     required TResult Function(_Init value) init,
     required TResult Function(_ReportArticle value) reportArticle,
     required TResult Function(_ReportAuthor value) reportAuthor,
+    required TResult Function(_ReportComment value) reportComment,
   }) {
     return init(this);
   }
@@ -163,6 +175,7 @@ class _$_Init implements _Init {
     TResult? Function(_Init value)? init,
     TResult? Function(_ReportArticle value)? reportArticle,
     TResult? Function(_ReportAuthor value)? reportAuthor,
+    TResult? Function(_ReportComment value)? reportComment,
   }) {
     return init?.call(this);
   }
@@ -173,6 +186,7 @@ class _$_Init implements _Init {
     TResult Function(_Init value)? init,
     TResult Function(_ReportArticle value)? reportArticle,
     TResult Function(_ReportAuthor value)? reportAuthor,
+    TResult Function(_ReportComment value)? reportComment,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -261,6 +275,8 @@ class _$_ReportArticle implements _ReportArticle {
     required TResult Function() init,
     required TResult Function(String id, String reason) reportArticle,
     required TResult Function(int id, String reason) reportAuthor,
+    required TResult Function(String url, int commentId, String reason)
+        reportComment,
   }) {
     return reportArticle(id, reason);
   }
@@ -271,6 +287,7 @@ class _$_ReportArticle implements _ReportArticle {
     TResult? Function()? init,
     TResult? Function(String id, String reason)? reportArticle,
     TResult? Function(int id, String reason)? reportAuthor,
+    TResult? Function(String url, int commentId, String reason)? reportComment,
   }) {
     return reportArticle?.call(id, reason);
   }
@@ -281,6 +298,7 @@ class _$_ReportArticle implements _ReportArticle {
     TResult Function()? init,
     TResult Function(String id, String reason)? reportArticle,
     TResult Function(int id, String reason)? reportAuthor,
+    TResult Function(String url, int commentId, String reason)? reportComment,
     required TResult orElse(),
   }) {
     if (reportArticle != null) {
@@ -295,6 +313,7 @@ class _$_ReportArticle implements _ReportArticle {
     required TResult Function(_Init value) init,
     required TResult Function(_ReportArticle value) reportArticle,
     required TResult Function(_ReportAuthor value) reportAuthor,
+    required TResult Function(_ReportComment value) reportComment,
   }) {
     return reportArticle(this);
   }
@@ -305,6 +324,7 @@ class _$_ReportArticle implements _ReportArticle {
     TResult? Function(_Init value)? init,
     TResult? Function(_ReportArticle value)? reportArticle,
     TResult? Function(_ReportAuthor value)? reportAuthor,
+    TResult? Function(_ReportComment value)? reportComment,
   }) {
     return reportArticle?.call(this);
   }
@@ -315,6 +335,7 @@ class _$_ReportArticle implements _ReportArticle {
     TResult Function(_Init value)? init,
     TResult Function(_ReportArticle value)? reportArticle,
     TResult Function(_ReportAuthor value)? reportAuthor,
+    TResult Function(_ReportComment value)? reportComment,
     required TResult orElse(),
   }) {
     if (reportArticle != null) {
@@ -411,6 +432,8 @@ class _$_ReportAuthor implements _ReportAuthor {
     required TResult Function() init,
     required TResult Function(String id, String reason) reportArticle,
     required TResult Function(int id, String reason) reportAuthor,
+    required TResult Function(String url, int commentId, String reason)
+        reportComment,
   }) {
     return reportAuthor(id, reason);
   }
@@ -421,6 +444,7 @@ class _$_ReportAuthor implements _ReportAuthor {
     TResult? Function()? init,
     TResult? Function(String id, String reason)? reportArticle,
     TResult? Function(int id, String reason)? reportAuthor,
+    TResult? Function(String url, int commentId, String reason)? reportComment,
   }) {
     return reportAuthor?.call(id, reason);
   }
@@ -431,6 +455,7 @@ class _$_ReportAuthor implements _ReportAuthor {
     TResult Function()? init,
     TResult Function(String id, String reason)? reportArticle,
     TResult Function(int id, String reason)? reportAuthor,
+    TResult Function(String url, int commentId, String reason)? reportComment,
     required TResult orElse(),
   }) {
     if (reportAuthor != null) {
@@ -445,6 +470,7 @@ class _$_ReportAuthor implements _ReportAuthor {
     required TResult Function(_Init value) init,
     required TResult Function(_ReportArticle value) reportArticle,
     required TResult Function(_ReportAuthor value) reportAuthor,
+    required TResult Function(_ReportComment value) reportComment,
   }) {
     return reportAuthor(this);
   }
@@ -455,6 +481,7 @@ class _$_ReportAuthor implements _ReportAuthor {
     TResult? Function(_Init value)? init,
     TResult? Function(_ReportArticle value)? reportArticle,
     TResult? Function(_ReportAuthor value)? reportAuthor,
+    TResult? Function(_ReportComment value)? reportComment,
   }) {
     return reportAuthor?.call(this);
   }
@@ -465,6 +492,7 @@ class _$_ReportAuthor implements _ReportAuthor {
     TResult Function(_Init value)? init,
     TResult Function(_ReportArticle value)? reportArticle,
     TResult Function(_ReportAuthor value)? reportAuthor,
+    TResult Function(_ReportComment value)? reportComment,
     required TResult orElse(),
   }) {
     if (reportAuthor != null) {
@@ -482,6 +510,175 @@ abstract class _ReportAuthor implements ReportActorEvent {
   String get reason;
   @JsonKey(ignore: true)
   _$$_ReportAuthorCopyWith<_$_ReportAuthor> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ReportCommentCopyWith<$Res> {
+  factory _$$_ReportCommentCopyWith(
+          _$_ReportComment value, $Res Function(_$_ReportComment) then) =
+      __$$_ReportCommentCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String url, int commentId, String reason});
+}
+
+/// @nodoc
+class __$$_ReportCommentCopyWithImpl<$Res>
+    extends _$ReportActorEventCopyWithImpl<$Res, _$_ReportComment>
+    implements _$$_ReportCommentCopyWith<$Res> {
+  __$$_ReportCommentCopyWithImpl(
+      _$_ReportComment _value, $Res Function(_$_ReportComment) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+    Object? commentId = null,
+    Object? reason = null,
+  }) {
+    return _then(_$_ReportComment(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      commentId: null == commentId
+          ? _value.commentId
+          : commentId // ignore: cast_nullable_to_non_nullable
+              as int,
+      reason: null == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ReportComment implements _ReportComment {
+  const _$_ReportComment(
+      {required this.url, required this.commentId, required this.reason});
+
+  @override
+  final String url;
+  @override
+  final int commentId;
+  @override
+  final String reason;
+
+  @override
+  String toString() {
+    return 'ReportActorEvent.reportComment(url: $url, commentId: $commentId, reason: $reason)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ReportComment &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.commentId, commentId) ||
+                other.commentId == commentId) &&
+            (identical(other.reason, reason) || other.reason == reason));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, url, commentId, reason);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ReportCommentCopyWith<_$_ReportComment> get copyWith =>
+      __$$_ReportCommentCopyWithImpl<_$_ReportComment>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String id, String reason) reportArticle,
+    required TResult Function(int id, String reason) reportAuthor,
+    required TResult Function(String url, int commentId, String reason)
+        reportComment,
+  }) {
+    return reportComment(url, commentId, reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String id, String reason)? reportArticle,
+    TResult? Function(int id, String reason)? reportAuthor,
+    TResult? Function(String url, int commentId, String reason)? reportComment,
+  }) {
+    return reportComment?.call(url, commentId, reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String id, String reason)? reportArticle,
+    TResult Function(int id, String reason)? reportAuthor,
+    TResult Function(String url, int commentId, String reason)? reportComment,
+    required TResult orElse(),
+  }) {
+    if (reportComment != null) {
+      return reportComment(url, commentId, reason);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ReportArticle value) reportArticle,
+    required TResult Function(_ReportAuthor value) reportAuthor,
+    required TResult Function(_ReportComment value) reportComment,
+  }) {
+    return reportComment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ReportArticle value)? reportArticle,
+    TResult? Function(_ReportAuthor value)? reportAuthor,
+    TResult? Function(_ReportComment value)? reportComment,
+  }) {
+    return reportComment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ReportArticle value)? reportArticle,
+    TResult Function(_ReportAuthor value)? reportAuthor,
+    TResult Function(_ReportComment value)? reportComment,
+    required TResult orElse(),
+  }) {
+    if (reportComment != null) {
+      return reportComment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ReportComment implements ReportActorEvent {
+  const factory _ReportComment(
+      {required final String url,
+      required final int commentId,
+      required final String reason}) = _$_ReportComment;
+
+  String get url;
+  int get commentId;
+  String get reason;
+  @JsonKey(ignore: true)
+  _$$_ReportCommentCopyWith<_$_ReportComment> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

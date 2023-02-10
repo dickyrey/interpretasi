@@ -20,7 +20,7 @@ import 'package:interpretasi/src/presentation/bloc/comment_article/article_comme
 import 'package:interpretasi/src/presentation/bloc/comment_article/delete_comment_actor/delete_comment_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/comment_article/send_comment_actor/send_comment_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_article_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/pages/report_article_page.dart';
+import 'package:interpretasi/src/presentation/pages/report_page.dart';
 import 'package:interpretasi/src/presentation/widgets/comment_card.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_field_widget.dart';
@@ -433,7 +433,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
               case _ArticleValues.report:
                 await Navigator.pushNamed(
                   context,
-                  REPORT_ARTICLE,
+                  REPORT,
                   arguments: ReportArgument(
                     type: ReportType.article,
                     article: widget.article,

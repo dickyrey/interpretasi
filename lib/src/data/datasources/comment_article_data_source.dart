@@ -9,8 +9,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class CommentArticleDataSource {
   Future<List<CommentModel>> getCommentList(String id);
-  Future<bool> sendComment({required String id, required String comment});
-  Future<bool> deleteComment({required String id, required int userId});
+  Future<bool> sendComment({
+    required String id,
+    required String comment,
+  });
+  Future<bool> deleteComment({
+    required String id,
+    required int userId,
+  });
+  Future<bool> reportComment({
+    required String articleId,
+    required int commentId,
+    required String reason,
+  });
 }
 
 class CommentArticleDataSourceImpl extends CommentArticleDataSource {
@@ -89,7 +100,38 @@ class CommentArticleDataSourceImpl extends CommentArticleDataSource {
     );
 
     final response = await client.post(url, headers: header, body: body);
-    
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      throw ServerException(ExceptionMessage.internetNotConnected);
+    }
+  }
+
+  @override
+  Future<bool> reportComment({
+    required String articleId,
+    required int commentId,
+    required String reason,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(Const.token);
+    final header = {
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+    };
+    final body = {
+      'reason': reason,
+    };
+
+    final url = Uri(
+      scheme: Const.scheme,
+      host: Const.host,
+      path: '/v1/article/$articleId/comment/$commentId/report',
+    );
+
+    final response = await client.post(url, headers: header, body: body);
+    print(response.body);
     if (response.statusCode == 200) {
       return true;
     } else {

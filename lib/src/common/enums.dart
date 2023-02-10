@@ -10,4 +10,4 @@ enum SnackbarType { error, success, info }
 
 enum TextFieldType { email, text, phone }
 
-enum ReportType { article, author }
+enum ReportType { article, author, comment }

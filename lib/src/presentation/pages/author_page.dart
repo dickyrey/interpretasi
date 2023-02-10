@@ -9,7 +9,7 @@ import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/common/screens.dart';
 import 'package:interpretasi/src/presentation/bloc/article/latest_article_watcher/latest_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/author/author_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/pages/report_article_page.dart';
+import 'package:interpretasi/src/presentation/pages/report_page.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
@@ -135,7 +135,7 @@ class _AuthorPageState extends State<AuthorPage> {
                                   onTap: () {
                                     Navigator.pushNamed(
                                       context,
-                                      REPORT_ARTICLE,
+                                      REPORT,
                                       arguments: ReportArgument(
                                         type: ReportType.author,
                                         author: state.author,

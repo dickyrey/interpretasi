@@ -4,10 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:interpretasi/src/common/const.dart';
+import 'package:interpretasi/src/common/enums.dart';
+import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/entities/comment.dart';
 import 'package:interpretasi/src/presentation/bloc/comment_article/delete_comment_actor/delete_comment_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/pages/report_page.dart';
 import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -95,7 +98,16 @@ class CommentCardWidget extends StatelessWidget {
                           else
                             TileButtonDialog(
                               onTap: () {
-                                // TODO(dickyrey): Report comment
+                                Navigator.pop(context);
+                                Navigator.pushNamed(
+                                  context,
+                                  REPORT,
+                                  arguments: ReportArgument(
+                                    type: ReportType.comment,
+                                    article: article,
+                                    comment: comment,
+                                  ),
+                                );
                               },
                               icon: FeatherIcons.info,
                               label: lang.report,

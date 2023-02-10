@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/domain/usecases/article/report_article.dart';
 import 'package:interpretasi/src/domain/usecases/author/report_author.dart';
+import 'package:interpretasi/src/domain/usecases/comment_article/report_comment.dart';
 
 part 'report_actor_event.dart';
 part 'report_actor_state.dart';
@@ -12,6 +13,7 @@ class ReportActorBloc extends Bloc<ReportActorEvent, ReportActorState> {
   ReportActorBloc({
     required this.article,
     required this.author,
+    required this.comment,
   }) : super(const _Initial()) {
     on<ReportActorEvent>((event, emit) async {
       await event.map(
@@ -40,9 +42,24 @@ class ReportActorBloc extends Bloc<ReportActorEvent, ReportActorState> {
             (_) => emit(const ReportActorState.success()),
           );
         },
+        reportComment: (event) async {
+          emit(const ReportActorState.loading());
+
+          final articleId = event.url.replaceFirst(Const.unusedPath, '');
+          final result = await comment.execute(
+            articleId: articleId,
+            commentId: event.commentId,
+            reason: event.reason,
+          );
+          result.fold(
+            (f) => emit(ReportActorState.error(f.message)),
+            (_) => emit(const ReportActorState.success()),
+          );
+        },
       );
     });
   }
   final ReportArticle article;
   final ReportAuthor author;
+  final ReportComment comment;
 }

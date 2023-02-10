@@ -7,6 +7,7 @@ import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/entities/author.dart';
+import 'package:interpretasi/src/domain/entities/comment.dart';
 import 'package:interpretasi/src/presentation/bloc/report/report_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dart';
@@ -15,22 +16,28 @@ import 'package:interpretasi/src/presentation/widgets/text_form_field_widget.dar
 import 'package:interpretasi/src/utilities/snackbar.dart';
 
 class ReportArgument {
-  ReportArgument({this.article, this.author, required this.type});
+  ReportArgument({
+    this.article,
+    this.author,
+    this.comment,
+    required this.type,
+  });
 
   final Article? article;
   final Author? author;
+  final Comment? comment;
   final ReportType type;
 }
 
-class ReportArticlePage extends StatefulWidget {
-  const ReportArticlePage({super.key, required this.args});
+class ReportPage extends StatefulWidget {
+  const ReportPage({super.key, required this.args});
   final ReportArgument args;
 
   @override
-  State<ReportArticlePage> createState() => _ReportArticlePageState();
+  State<ReportPage> createState() => _ReportPageState();
 }
 
-class _ReportArticlePageState extends State<ReportArticlePage> {
+class _ReportPageState extends State<ReportPage> {
   late TextEditingController _controller;
   int _selectedRadio = 0;
 
@@ -60,6 +67,8 @@ class _ReportArticlePageState extends State<ReportArticlePage> {
           return lang.why_are_you_reporting_this_post;
         case ReportType.author:
           return lang.why_are_you_reporting_this_author;
+        case ReportType.comment:
+          return lang.why_are_you_reporting_this_comment;
       }
     }
 
@@ -71,6 +80,9 @@ class _ReportArticlePageState extends State<ReportArticlePage> {
         case ReportType.author:
           return lang
               .your_report_is_anonymouse_interpretasi_team_will_use_your_report_to_check_out_this_author;
+        case ReportType.comment:
+          return lang
+              .your_report_is_anonymouse_interpretasi_team_will_use_your_report_to_check_out_this_comment;
       }
     }
 
@@ -254,6 +266,17 @@ class _ReportArticlePageState extends State<ReportArticlePage> {
                                   context.read<ReportActorBloc>().add(
                                         ReportActorEvent.reportAuthor(
                                           id: widget.args.author!.id,
+                                          reason: recommendReport(
+                                            _selectedRadio,
+                                          ),
+                                        ),
+                                      );
+                                } else if (widget.args.type ==
+                                    ReportType.comment) {
+                                  context.read<ReportActorBloc>().add(
+                                        ReportActorEvent.reportComment(
+                                          url: widget.args.article!.url,
+                                          commentId: widget.args.comment!.id,
                                           reason: recommendReport(
                                             _selectedRadio,
                                           ),

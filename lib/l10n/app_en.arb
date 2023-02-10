@@ -144,6 +144,7 @@
   "we_encountered_an_error_while_trying_to_connect_to_our_server_please_try_after_some_again": "We encountered an error while trying to connect to our server. Please try after some again.",
   "we_have_sent_an_email_to": "We have sent an email to",
   "why_are_you_reporting_this_author": "Why are you reporting this Author?",
+  "why_are_you_reporting_this_comment": "Why are you reporting this comment?",
   "why_are_you_reporting_this_post": "Why are you reporting this post?",
   "write_comment": "Write comment...",
   "write_your_reason": "Write your reason...",
@@ -157,5 +158,6 @@
   "your_report_has_been_sent": "Your report has been sent",
   "your_report_is_anonymouse_interpretasi_team_will_use_your_report_to_check_out_this_article": "Your report is anonymouse, Interpretasi team will use your report to check out this article.",
   "your_report_is_anonymouse_interpretasi_team_will_use_your_report_to_check_out_this_author": "Your report is anonymouse, Interpretasi team will use your report to check out this Author.",
+  "your_report_is_anonymouse_interpretasi_team_will_use_your_report_to_check_out_this_comment": "Your report is anonymouse, Interpretasi team will use your report to check out this comment.",
   "your_tags": "Your tags"
 }

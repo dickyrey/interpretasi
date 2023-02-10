@@ -20,7 +20,7 @@ import 'package:interpretasi/src/presentation/pages/profile_detail_page.dart';
 import 'package:interpretasi/src/presentation/pages/profile_form_page.dart';
 import 'package:interpretasi/src/presentation/pages/read_history_page.dart';
 import 'package:interpretasi/src/presentation/pages/register_page.dart';
-import 'package:interpretasi/src/presentation/pages/report_article_page.dart';
+import 'package:interpretasi/src/presentation/pages/report_page.dart';
 import 'package:interpretasi/src/presentation/pages/settings_and_privacy_page.dart';
 import 'package:interpretasi/src/presentation/pages/splash_page.dart';
 import 'package:interpretasi/src/presentation/widgets/bottom_nav_bar_widget.dart';
@@ -130,10 +130,10 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const ExploreArticlePage(),
         );
-      case REPORT_ARTICLE:
+      case REPORT:
         if (args is ReportArgument) {
           return MaterialPageRoute(
-            builder: (_) => ReportArticlePage(args: args),
+            builder: (_) => ReportPage(args: args),
           );
         }
         return _errorRoute();

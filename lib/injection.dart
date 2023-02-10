@@ -50,6 +50,7 @@ import 'package:interpretasi/src/domain/usecases/author/report_author.dart';
 import 'package:interpretasi/src/domain/usecases/category/get_categories.dart';
 import 'package:interpretasi/src/domain/usecases/comment_article/delete_comment.dart';
 import 'package:interpretasi/src/domain/usecases/comment_article/get_comment_list.dart';
+import 'package:interpretasi/src/domain/usecases/comment_article/report_comment.dart';
 import 'package:interpretasi/src/domain/usecases/comment_article/send_comment.dart';
 import 'package:interpretasi/src/domain/usecases/like_article/check_like_status.dart';
 import 'package:interpretasi/src/domain/usecases/like_article/like_article.dart';
@@ -327,6 +328,11 @@ void init() {
     () => getCommentListUseCase,
   );
 
+  final reportCommentUseCase = ReportComment(locator());
+  locator.registerLazySingleton(
+    () => reportCommentUseCase,
+  );
+
   final sendCommentUseCase = SendComment(locator());
   locator.registerLazySingleton(
     () => sendCommentUseCase,
@@ -556,6 +562,7 @@ void init() {
   final reportActorBloc = ReportActorBloc(
     article: locator(),
     author: locator(),
+    comment: locator(),
   );
   locator.registerLazySingleton(
     () => reportActorBloc,

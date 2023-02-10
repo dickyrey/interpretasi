@@ -59,4 +59,26 @@ class CommentArticleRepositoryImpl extends CommentArticleRepository {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> reportComment({
+    required String articleId,
+    required int commentId,
+    required String reason,
+  }) async {
+    try {
+      final result = await dataSource.reportComment(
+        articleId: articleId,
+        commentId: commentId,
+        reason: reason,
+      );
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    } on SocketException {
+      return const Left(
+        ConnectionFailure(ExceptionMessage.internetNotConnected),
+      );
+    }
+  }
 }
