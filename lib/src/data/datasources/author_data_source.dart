@@ -33,7 +33,7 @@ class AuthorDataSourceImpl extends AuthorDataSource {
     );
 
     final response = await client.get(url, headers: header);
-    print(response.body);
+
     if (response.statusCode == 200) {
       return AuthorResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
@@ -64,7 +64,7 @@ class AuthorDataSourceImpl extends AuthorDataSource {
     );
 
     final response = await client.post(url, headers: header, body: body);
-    print(response.body);
+    
     if (response.statusCode == 200) {
       return true;
     } else {

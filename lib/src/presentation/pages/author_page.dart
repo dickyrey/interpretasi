@@ -12,7 +12,6 @@ import 'package:interpretasi/src/presentation/bloc/author/author_watcher_bloc.da
 import 'package:interpretasi/src/presentation/pages/report_article_page.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
-import 'package:interpretasi/src/presentation/widgets/outlined_button_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
 
 class AuthorPage extends StatefulWidget {
