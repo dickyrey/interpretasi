@@ -198,21 +198,21 @@ class ProfilePage extends StatelessWidget {
                   title: lang.about_us,
                   fontSize: 12,
                   onTap: () {
-                    // TODO(dickyrey): life_at_kumparan
+                    // TODO(dickyrey): About us
                   },
                 ),
                 ListTileWidget(
                   title: lang.help,
                   fontSize: 12,
                   onTap: () {
-                    // TODO(dickyrey): call center
+                    // TODO(dickyrey): help
                   },
                 ),
                 ListTileWidget(
                   title: lang.privacy_policy,
                   fontSize: 12,
                   onTap: () {
-                    // TODO(dickyrey): terms_and_privacy_policy
+                    // TODO(dickyrey): privacy_policy
                   },
                 ),
                 ListTileWidget(

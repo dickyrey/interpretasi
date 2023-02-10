@@ -69,7 +69,6 @@ class _PasswordPageState extends State<PasswordPage> {
               ScaffoldMessenger.of(context).showSnackBar(snack);
               Navigator.pop(context);
             } else {
-              // TODO(dickyrey): Navigate to Loading screen for auto sign in
               Navigator.pushNamedAndRemoveUntil(
                 context,
                 HOME,
