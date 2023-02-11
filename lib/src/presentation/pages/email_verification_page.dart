@@ -127,7 +127,9 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
                               (state.isTimeoutDone)
                                   ? lang.resend_the_verification_link
                                   : '${lang.resend_in} ',
-                              style: theme.textTheme.labelMedium,
+                              style: theme.textTheme.titleLarge?.copyWith(
+                                color: Colors.white,
+                              ),
                             ),
                             Countdown(
                               seconds: countdownTime,
@@ -137,7 +139,9 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
                                   (state.isTimeoutDone == true)
                                       ? ''
                                       : '0:${timer.toInt()}',
-                                  style: theme.textTheme.labelMedium,
+                                  style: theme.textTheme.titleLarge?.copyWith(
+                                    color: Colors.white,
+                                  ),
                                 );
                               },
                               onFinished: () =>

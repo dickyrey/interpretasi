@@ -17,7 +17,12 @@ class SignUpWithEmailFormBloc
           emit(SignUpWithEmailFormState.initial());
         },
         email: (event) {
-          emit(state.copyWith(email: event.val));
+          emit(
+            state.copyWith(
+              email: event.val,
+              state: RequestState.empty,
+            ),
+          );
         },
         signUp: (_) async {
           emit(
