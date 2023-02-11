@@ -23,15 +23,9 @@ class ArticleModel extends Equatable {
       image: json['image'] as String,
       title: json['title'] as String,
       url: json['url'] as String,
-      createdAt: DateTime.parse(
-        json['created_at'] == null
-            ? '2023-02-09 15:03:33'
-            : json['created_at'] as String,
-      ),
+      createdAt: DateTime.parse(json['created_at'] as String),
     );
   }
-
-  // TODO(dickyrey): https://github.com/dickyrey/interpretasi/issues/15
 
   final int comments;
   final int likes;
