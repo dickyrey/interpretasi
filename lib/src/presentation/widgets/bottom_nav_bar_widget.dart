@@ -11,6 +11,7 @@ import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watche
 import 'package:interpretasi/src/presentation/pages/home_page.dart';
 import 'package:interpretasi/src/presentation/pages/latest_page.dart';
 import 'package:interpretasi/src/presentation/pages/profile_page.dart';
+import 'package:interpretasi/src/utilities/toast.dart';
 
 class BottomNavBarWidget extends StatefulWidget {
   const BottomNavBarWidget({
@@ -27,6 +28,7 @@ class BottomNavBarWidget extends StatefulWidget {
 class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
   late PageController _controller;
   int _selectedIndex = 0;
+  DateTime? currentBackPressTime;
 
   @override
   void initState() {
@@ -34,9 +36,15 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
     super.initState();
     Future.microtask(() {
       context.read<UserWatcherBloc>().add(const UserWatcherEvent.fetch());
-      context.read<CategoryWatcherBloc>().add(const CategoryWatcherEvent.fetch());
-      context.read<TrendingArticleWatcherBloc>().add(const TrendingArticleWatcherEvent.fetch());
-      context.read<LatestArticleWatcherBloc>().add(const LatestArticleWatcherEvent.fetch());
+      context
+          .read<CategoryWatcherBloc>()
+          .add(const CategoryWatcherEvent.fetch());
+      context
+          .read<TrendingArticleWatcherBloc>()
+          .add(const TrendingArticleWatcherEvent.fetch());
+      context
+          .read<LatestArticleWatcherBloc>()
+          .add(const LatestArticleWatcherEvent.fetch());
     });
   }
 
@@ -46,6 +54,26 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
     const SizedBox(),
     const ProfilePage(),
   ];
+
+  Future<bool> _willPopCallback(BuildContext context) async {
+    final now = DateTime.now();
+    if (_selectedIndex == 0) {
+      if (currentBackPressTime == null ||
+          now.difference(currentBackPressTime!) > const Duration(seconds: 4)) {
+        currentBackPressTime = now;
+        await showToast(msg: AppLocalizations.of(context)!.press_again_to_exit);
+        return Future.value(false);
+      }
+    } else {
+      await _controller.animateToPage(
+        0,
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeIn,
+      );
+      return Future.value(false);
+    }
+    return Future.value(true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,49 +93,52 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
           },
         );
       },
-      child: Scaffold(
-        body: PageView(
-          controller: _controller,
-          physics: const NeverScrollableScrollPhysics(),
-          onPageChanged: (v) => setState(() => _selectedIndex = v),
-          children: _tabView,
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: (v) => setState(() {
-            _selectedIndex = v;
-            _controller.animateToPage(
-              v,
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.easeIn,
-            );
-          }),
-          type: BottomNavigationBarType.fixed,
-          iconSize: 20,
-          selectedLabelStyle: theme.textTheme.bodyMedium?.copyWith(
-            fontSize: 9,
+      child: WillPopScope(
+        onWillPop: () => _willPopCallback(context),
+        child: Scaffold(
+          body: PageView(
+            controller: _controller,
+            physics: const NeverScrollableScrollPhysics(),
+            onPageChanged: (v) => setState(() => _selectedIndex = v),
+            children: _tabView,
           ),
-          unselectedLabelStyle: theme.textTheme.titleMedium?.copyWith(
-            fontSize: 9,
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: _selectedIndex,
+            onTap: (v) => setState(() {
+              _selectedIndex = v;
+              _controller.animateToPage(
+                v,
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeIn,
+              );
+            }),
+            type: BottomNavigationBarType.fixed,
+            iconSize: 20,
+            selectedLabelStyle: theme.textTheme.bodyMedium?.copyWith(
+              fontSize: 9,
+            ),
+            unselectedLabelStyle: theme.textTheme.titleMedium?.copyWith(
+              fontSize: 9,
+            ),
+            items: [
+              BottomNavigationBarItem(
+                icon: const Icon(FeatherIcons.home),
+                label: lang.home,
+              ),
+              BottomNavigationBarItem(
+                icon: const Icon(FeatherIcons.clock),
+                label: lang.latest,
+              ),
+              BottomNavigationBarItem(
+                icon: const Icon(FeatherIcons.bell),
+                label: lang.notification,
+              ),
+              BottomNavigationBarItem(
+                icon: const Icon(FeatherIcons.user),
+                label: lang.menu,
+              ),
+            ],
           ),
-          items: [
-            BottomNavigationBarItem(
-              icon: const Icon(FeatherIcons.home),
-              label: lang.home,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(FeatherIcons.clock),
-              label: lang.latest,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(FeatherIcons.bell),
-              label: lang.notification,
-            ),
-            BottomNavigationBarItem(
-              icon: const Icon(FeatherIcons.user),
-              label: lang.menu,
-            ),
-          ],
         ),
       ),
     );
