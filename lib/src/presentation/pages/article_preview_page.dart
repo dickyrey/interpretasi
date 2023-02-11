@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
+import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/common/screens.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
@@ -16,6 +17,8 @@ import 'package:interpretasi/src/presentation/bloc/article/article_form/article_
 import 'package:interpretasi/src/presentation/bloc/article/delete_article_actor/delete_article_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/category/category_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
+import 'package:interpretasi/src/utilities/snackbar.dart';
+import 'package:interpretasi/src/utilities/toast.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -50,237 +53,258 @@ class _ArticlePreviewPageState extends State<ArticlePreviewPage> {
     final lang = AppLocalizations.of(context)!;
     final categoryBloc = context.read<CategoryWatcherBloc>().state.categoryList;
 
-    return Scaffold(
-      appBar: _appBar(context),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: Const.space25),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: Const.margin,
+    return BlocListener<DeleteArticleActorBloc, DeleteArticleActorState>(
+      listener: (context, state) {
+            state.maybeMap(
+              orElse: () {},
+              error: (_) {
+                final snack = showSnackbar(
+                  context,
+                  type: SnackbarType.error,
+                  labelText: lang.failed_to_delete_article_try_again_later,
+                  labelButton: lang.close,
+                  onTap: () {},
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snack);
+              },
+              success: (_) {
+                showToast(msg: lang.article_deleted);
+                Navigator.pop(context);
+              },
+            );
+          },
+      child: Scaffold(
+        appBar: _appBar(context),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: Const.space25),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Const.margin,
+                ),
+                child: BlocBuilder<ArticleDetailWatcherBloc,
+                    ArticleDetailWatcherState>(
+                  builder: (context, state) {
+                    return state.maybeMap(
+                      orElse: () {
+                        return const ShimmerWidget(
+                          child: ShimmerContainerWidget(height: 15),
+                        );
+                      },
+                      loaded: (state) {
+                        return Text(
+                          categoryBloc.firstWhere((v) {
+                            return v.id == state.articleDetail.categoryId;
+                          }).name,
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: Colors.red,
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
-              child: BlocBuilder<ArticleDetailWatcherBloc,
-                  ArticleDetailWatcherState>(
+              const SizedBox(height: Const.space8),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Const.margin,
+                ),
+                child: Text(
+                  widget.article.title,
+                  style: theme.textTheme.headlineMedium?.copyWith(
+                    height: 1.2,
+                  ),
+                ),
+              ),
+              BlocBuilder<ArticleDetailWatcherBloc, ArticleDetailWatcherState>(
                 builder: (context, state) {
                   return state.maybeMap(
                     orElse: () {
-                      return const ShimmerWidget(
-                        child: ShimmerContainerWidget(height: 15),
-                      );
-                    },
-                    loaded: (state) {
-                      return Text(
-                        categoryBloc.firstWhere((v) {
-                          return v.id == state.articleDetail.categoryId;
-                        }).name,
-                        style: theme.textTheme.labelSmall?.copyWith(
-                          color: Colors.red,
+                      return ShimmerWidget(
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: Const.margin,
+                          ),
+                          leading: CircleAvatar(
+                            radius: 25,
+                            backgroundColor: theme.disabledColor,
+                          ),
+                          title: const ShimmerContainerWidget(height: 15),
+                          subtitle: const ShimmerContainerWidget(),
                         ),
                       );
                     },
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: Const.space8),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: Const.margin,
-              ),
-              child: Text(
-                widget.article.title,
-                style: theme.textTheme.headlineMedium?.copyWith(
-                  height: 1.2,
-                ),
-              ),
-            ),
-            BlocBuilder<ArticleDetailWatcherBloc, ArticleDetailWatcherState>(
-              builder: (context, state) {
-                return state.maybeMap(
-                  orElse: () {
-                    return ShimmerWidget(
-                      child: ListTile(
+                    loaded: (state) {
+                      return ListTile(
                         contentPadding: const EdgeInsets.symmetric(
                           horizontal: Const.margin,
                         ),
                         leading: CircleAvatar(
                           radius: 25,
                           backgroundColor: theme.disabledColor,
+                          backgroundImage: CachedNetworkImageProvider(
+                            state.articleDetail.author.photo,
+                          ),
                         ),
-                        title: const ShimmerContainerWidget(height: 15),
-                        subtitle: const ShimmerContainerWidget(),
-                      ),
-                    );
-                  },
-                  loaded: (state) {
-                    return ListTile(
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: Const.margin,
-                      ),
-                      leading: CircleAvatar(
-                        radius: 25,
-                        backgroundColor: theme.disabledColor,
-                        backgroundImage: CachedNetworkImageProvider(
-                          state.articleDetail.author.photo,
+                        title: Text(
+                          state.articleDetail.author.name,
+                          style: theme.textTheme.labelSmall,
                         ),
-                      ),
-                      title: Text(
-                        state.articleDetail.author.name,
-                        style: theme.textTheme.labelSmall,
-                      ),
-                      subtitle: Text(
-                        '${lang.author}, ${DateFormat('d MMM yy').format(widget.article.createdAt)}',
-                        style: theme.textTheme.titleSmall,
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
-            CachedNetworkImage(
-              imageUrl: widget.article.image,
-              errorWidget: (context, url, error) {
-                return const Icon(Icons.error);
-              },
-              placeholder: (context, url) {
-                return const ShimmerWidget(
-                  child: ShimmerContainerWidget(
-                    width: 250,
-                    height: 150,
-                  ),
-                );
-              },
-              imageBuilder: (context, imageProvider) {
-                return Container(
-                  width: Screens.width(context),
-                  height: 200,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
+                        subtitle: Text(
+                          '${lang.author}, ${DateFormat('d MMM yy').format(widget.article.createdAt)}',
+                          style: theme.textTheme.titleSmall,
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+              CachedNetworkImage(
+                imageUrl: widget.article.image,
+                errorWidget: (context, url, error) {
+                  return const Icon(Icons.error);
+                },
+                placeholder: (context, url) {
+                  return const ShimmerWidget(
+                    child: ShimmerContainerWidget(
+                      width: 250,
+                      height: 150,
                     ),
-                  ),
-                );
-              },
-            ),
-            const SizedBox(height: Const.space15),
-            BlocBuilder<ArticleDetailWatcherBloc, ArticleDetailWatcherState>(
-              builder: (context, state) {
-                return state.maybeMap(
-                  orElse: () {
-                    return ShimmerWidget(
-                      child: Padding(
-                        padding: const EdgeInsets.all(Const.margin),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ShimmerContainerWidget(
-                              width: Screens.width(context) / 2,
-                              height: 15,
-                            ),
-                            const SizedBox(height: Const.space8),
-                            ShimmerContainerWidget(
-                              width: Screens.width(context) / 1.7,
-                              height: 15,
-                            ),
-                            const SizedBox(height: Const.space8),
-                            const ShimmerContainerWidget(
-                              height: 15,
-                            ),
-                            const SizedBox(height: Const.space8),
-                            ShimmerContainerWidget(
-                              width: Screens.width(context) / 1.4,
-                              height: 15,
-                            ),
-                          ],
+                  );
+                },
+                imageBuilder: (context, imageProvider) {
+                  return Container(
+                    width: Screens.width(context),
+                    height: 200,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: Const.space15),
+              BlocBuilder<ArticleDetailWatcherBloc, ArticleDetailWatcherState>(
+                builder: (context, state) {
+                  return state.maybeMap(
+                    orElse: () {
+                      return ShimmerWidget(
+                        child: Padding(
+                          padding: const EdgeInsets.all(Const.margin),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ShimmerContainerWidget(
+                                width: Screens.width(context) / 2,
+                                height: 15,
+                              ),
+                              const SizedBox(height: Const.space8),
+                              ShimmerContainerWidget(
+                                width: Screens.width(context) / 1.7,
+                                height: 15,
+                              ),
+                              const SizedBox(height: Const.space8),
+                              const ShimmerContainerWidget(
+                                height: 15,
+                              ),
+                              const SizedBox(height: Const.space8),
+                              ShimmerContainerWidget(
+                                width: Screens.width(context) / 1.4,
+                                height: 15,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  loaded: (state) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: Const.margin,
-                      ),
-                      child: Html(
-                        data: state.articleDetail.content,
-                        onLinkTap: (
-                          String? url,
-                          RenderContext context,
-                          Map<String, String> attributes,
-                          dom.Element? element,
-                        ) {
-                          launchUrl(
-                            Uri.parse(url ?? 'https://interpretasi.id'),
-                            mode: LaunchMode.externalApplication,
-                          );
-                        },
-                        style: {
-                          'h1': Style(
-                            fontSize: const FontSize(20),
-                            color: ColorLight.fontTitle,
-                            fontFamily: GoogleFonts.roboto().fontFamily,
-                            letterSpacing: 1.5,
-                          ),
-                          'h2': Style(
-                            fontSize: const FontSize(18),
-                            color: ColorLight.fontTitle,
-                            fontFamily: GoogleFonts.roboto().fontFamily,
-                            letterSpacing: 1.5,
-                          ),
-                          'h3': Style(
-                            fontSize: const FontSize(16),
-                            color: ColorLight.fontTitle,
-                            fontFamily: GoogleFonts.roboto().fontFamily,
-                            letterSpacing: 1.5,
-                          ),
-                          'p': Style(
-                            fontSize: FontSize.medium,
-                            color: ColorLight.fontTitle,
-                            lineHeight: LineHeight.number(1.2),
-                            fontFamily: GoogleFonts.merriweather().fontFamily,
-                          ),
-                          'li': Style(
-                            fontSize: FontSize.medium,
-                            color: ColorLight.fontTitle,
-                          ),
-                          'strong': Style(
-                            fontSize: FontSize.medium,
-                            color: ColorLight.fontTitle,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          'blockquote': Style(
-                            fontSize: FontSize.large,
-                            color: ColorLight.fontSubtitle,
-                            fontFamily: GoogleFonts.catamaran().fontFamily,
-                            before: '"',
-                          ),
-                        },
-                      ),
-                    );
-                  },
-                );
-              },
-            )
-          ],
+                      );
+                    },
+                    loaded: (state) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: Const.margin,
+                        ),
+                        child: Html(
+                          data: state.articleDetail.content,
+                          onLinkTap: (
+                            String? url,
+                            RenderContext context,
+                            Map<String, String> attributes,
+                            dom.Element? element,
+                          ) {
+                            launchUrl(
+                              Uri.parse(url ?? 'https://interpretasi.id'),
+                              mode: LaunchMode.externalApplication,
+                            );
+                          },
+                          style: {
+                            'h1': Style(
+                              fontSize: const FontSize(20),
+                              color: ColorLight.fontTitle,
+                              fontFamily: GoogleFonts.roboto().fontFamily,
+                              letterSpacing: 1.5,
+                            ),
+                            'h2': Style(
+                              fontSize: const FontSize(18),
+                              color: ColorLight.fontTitle,
+                              fontFamily: GoogleFonts.roboto().fontFamily,
+                              letterSpacing: 1.5,
+                            ),
+                            'h3': Style(
+                              fontSize: const FontSize(16),
+                              color: ColorLight.fontTitle,
+                              fontFamily: GoogleFonts.roboto().fontFamily,
+                              letterSpacing: 1.5,
+                            ),
+                            'p': Style(
+                              fontSize: FontSize.medium,
+                              color: ColorLight.fontTitle,
+                              lineHeight: LineHeight.number(1.2),
+                              fontFamily: GoogleFonts.merriweather().fontFamily,
+                            ),
+                            'li': Style(
+                              fontSize: FontSize.medium,
+                              color: ColorLight.fontTitle,
+                            ),
+                            'strong': Style(
+                              fontSize: FontSize.medium,
+                              color: ColorLight.fontTitle,
+                              fontWeight: FontWeight.w700,
+                            ),
+                            'blockquote': Style(
+                              fontSize: FontSize.large,
+                              color: ColorLight.fontSubtitle,
+                              fontFamily: GoogleFonts.catamaran().fontFamily,
+                              before: '"',
+                            ),
+                          },
+                        ),
+                      );
+                    },
+                  );
+                },
+              )
+            ],
+          ),
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Visibility(
-        visible: false,
-        child: FloatingActionButton.extended(
-          onPressed: () {},
-          backgroundColor: theme.primaryColor,
-          label: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: Const.space12,
-            ),
-            child: Text(
-              lang.publish_now,
-              style: theme.textTheme.labelMedium?.copyWith(
-                color: Colors.white,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: Visibility(
+          visible: false,
+          child: FloatingActionButton.extended(
+            onPressed: () {},
+            backgroundColor: theme.primaryColor,
+            label: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: Const.space12,
+              ),
+              child: Text(
+                lang.publish_now,
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

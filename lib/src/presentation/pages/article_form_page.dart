@@ -15,6 +15,7 @@ import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dar
 import 'package:interpretasi/src/presentation/widgets/text_field_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_form_field_widget.dart';
 import 'package:interpretasi/src/utilities/snackbar.dart';
+import 'package:interpretasi/src/utilities/toast.dart';
 import 'package:tuple/tuple.dart';
 
 class ArticleFormPage extends StatefulWidget {
@@ -200,23 +201,30 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
                 isLoading: (state.isSubmit == true) ? true : false,
                 label: (_selectedIndex == 0) ? lang.next : lang.save,
                 onTap: () {
-                  if (_selectedIndex == 0) {
-                    _pageCtrl.nextPage(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeIn,
-                    );
-                  } else {
-                    if (widget.isEdit == true) {
-                      final delta = _quillCtrl.document.toDelta();
-                      context
-                          .read<ArticleFormBloc>()
-                          .add(ArticleFormEvent.update(delta));
+                  if (state.imageFile != null &&
+                      state.title != '' &&
+                      state.selectedCategory != null &&
+                      state.tagList.isNotEmpty) {
+                    if (_selectedIndex == 0) {
+                      _pageCtrl.nextPage(
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeIn,
+                      );
                     } else {
-                      final delta = _quillCtrl.document.toDelta();
-                      context
-                          .read<ArticleFormBloc>()
-                          .add(ArticleFormEvent.create(delta));
+                      if (widget.isEdit == true) {
+                        final delta = _quillCtrl.document.toDelta();
+                        context
+                            .read<ArticleFormBloc>()
+                            .add(ArticleFormEvent.update(delta));
+                      } else {
+                        final delta = _quillCtrl.document.toDelta();
+                        context
+                            .read<ArticleFormBloc>()
+                            .add(ArticleFormEvent.create(delta));
+                      }
                     }
+                  } else {
+                    showToast(msg: lang.please_check_again_before_continue);
                   }
                 },
               );

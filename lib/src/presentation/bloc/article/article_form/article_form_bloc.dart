@@ -166,9 +166,8 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
                 message: ExceptionMessage.tagNull,
               ),
             );
-          }
-
-          emit(
+          }else {
+            emit(
             state.copyWith(
               state: RequestState.loading,
               isSubmit: true,
@@ -205,6 +204,7 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
                 ),
               ),
             );
+          }
           }
         },
         update: (event) async {
