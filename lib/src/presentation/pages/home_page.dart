@@ -195,10 +195,20 @@ class HomePage extends StatelessWidget {
                 );
               },
               loaded: (state) {
-                return CircleAvatar(
-                  radius: 20,
-                  backgroundImage: CachedNetworkImageProvider(state.user.photo),
-                  backgroundColor: theme.disabledColor,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      PROFILE_DETAIL,
+                      arguments: state.user,
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 20,
+                    backgroundImage:
+                        CachedNetworkImageProvider(state.user.photo),
+                    backgroundColor: theme.disabledColor,
+                  ),
                 );
               },
             );
