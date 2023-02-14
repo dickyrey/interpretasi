@@ -98,7 +98,7 @@ class _ArticlePreviewPageState extends State<ArticlePreviewPage> {
                             return v.id == state.articleDetail.categoryId;
                           }).name,
                           style: theme.textTheme.labelSmall?.copyWith(
-                            color: Colors.red,
+                            color: theme.colorScheme.secondary,
                           ),
                         );
                       },

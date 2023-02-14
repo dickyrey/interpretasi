@@ -89,7 +89,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                                 return v.id == state.articleDetail.categoryId;
                               }).name,
                               style: theme.textTheme.labelSmall?.copyWith(
-                                color: Colors.red,
+                                color: theme.colorScheme.secondary,
                               ),
                             );
                           },
@@ -331,7 +331,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                                     ),
                                   );
                             },
-                            child:  Icon(
+                            child: Icon(
                               FeatherIcons.heart,
                               color: theme.iconTheme.color,
                             ),
