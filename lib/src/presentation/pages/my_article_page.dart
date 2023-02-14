@@ -529,7 +529,7 @@ class _MyArticlePageState extends State<MyArticlePage> {
             }
           } else if (index == 1) {
             final state = context.read<UserArticleModeratedWatcherBloc>().state;
-            if (state != const UserArticleModeratedWatcherState.loaded([])) {
+            if (state == const UserArticleModeratedWatcherState.initial()) {
               context
                   .read<UserArticleModeratedWatcherBloc>()
                   .add(const UserArticleModeratedWatcherEvent.fetch());

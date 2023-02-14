@@ -5,7 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/theme_watcher/theme_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/theme/theme_watcher_bloc.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

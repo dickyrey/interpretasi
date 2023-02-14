@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:interpretasi/src/common/const.dart';
-import 'package:interpretasi/src/presentation/bloc/theme_watcher/theme_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/theme/theme_watcher_bloc.dart';
 
 class ThemeSettingPage extends StatefulWidget {
   const ThemeSettingPage({super.key});

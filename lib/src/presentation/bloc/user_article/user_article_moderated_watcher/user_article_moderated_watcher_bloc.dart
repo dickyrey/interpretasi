@@ -11,18 +11,20 @@ class UserArticleModeratedWatcherBloc extends Bloc<
     UserArticleModeratedWatcherEvent, UserArticleModeratedWatcherState> {
   UserArticleModeratedWatcherBloc(this._article)
       : super(const UserArticleModeratedWatcherState.initial()) {
-    on<UserArticleModeratedWatcherEvent>((event, emit) async {
-      await event.map(
-        fetch: (_) async {
-          emit(const UserArticleModeratedWatcherState.loading());
-          final result = await _article.execute();
-          result.fold(
-            (f) => emit(const UserArticleModeratedWatcherState.error()),
-            (data) => emit(UserArticleModeratedWatcherState.loaded(data)),
-          );
-        },
-      );
-    });
+    on<UserArticleModeratedWatcherEvent>(
+      (event, emit) async {
+        await event.map(
+          fetch: (_) async {
+            emit(const UserArticleModeratedWatcherState.loading());
+            final result = await _article.execute();
+            result.fold(
+              (f) => emit(const UserArticleModeratedWatcherState.error()),
+              (data) => emit(UserArticleModeratedWatcherState.loaded(data)),
+            );
+          },
+        );
+      },
+    );
   }
   final GetModeratedArticle _article;
 }

@@ -196,10 +196,11 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
           BlocBuilder<ArticleFormBloc, ArticleFormState>(
             builder: (context, state) {
               return ElevatedButtonWidget(
-                width: 80,
+                width: 100,
                 height: 30,
                 isLoading: (state.isSubmit == true) ? true : false,
                 label: (_selectedIndex == 0) ? lang.next : lang.save,
+                labelSize: 12,
                 onTap: () {
                   if (state.imageFile != null &&
                       state.title != '' &&

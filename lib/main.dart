@@ -26,10 +26,11 @@ import 'package:interpretasi/src/presentation/bloc/comment_article/delete_commen
 import 'package:interpretasi/src/presentation/bloc/comment_article/send_comment_actor/send_comment_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/email_verification/email_verification_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_article_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/localization/localization_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/password/add_password_form/add_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/password/change_password_form/change_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/report/report_actor_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/theme_watcher/theme_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/theme/theme_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/moderated_actor/moderated_actor_bloc.dart';
@@ -83,6 +84,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.locator<EmailVerificationFormBloc>()),
         //* Like/Unlike Article in BLoC folder
         BlocProvider(create: (context) => di.locator<LikeArticleWatcherBloc>()),
+        //* Localization in BLoC folder
+        BlocProvider(create: (context) => di.locator<LocalizationWatcherBloc>()),
         //* Password BLoC folder
         BlocProvider(create: (context) => di.locator<AddPasswordFormBloc>()),
         BlocProvider(create: (context) => di.locator<ChangePasswordFormBloc>()),
@@ -103,22 +106,29 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.locator<UserArticleRejectedWatcherBloc>()),
       ],
       child: BlocBuilder<ThemeWatcherBloc, ThemeWatcherState>(
-        builder: (context, state) {
-          return MaterialApp(
-            title: 'Interpretasi',
-            debugShowCheckedModeBanner: false,
-            theme: themeLight(context),
-            darkTheme: themeDark(context),
-            themeMode: (state.isThemeLight == true ) ? ThemeMode.light : ThemeMode.dark,
-            supportedLocales: L10n.all,
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            initialRoute: SPLASH,
-            onGenerateRoute: RouteGenerator.generateRoute,
+        builder: (context, theme) {
+          return BlocBuilder<LocalizationWatcherBloc, LocalizationWatcherState>(
+            builder: (context, localization) {
+              return MaterialApp(
+                title: 'Interpretasi',
+                debugShowCheckedModeBanner: false,
+                theme: themeLight(context),
+                darkTheme: themeDark(context),
+                themeMode: (theme.isThemeLight == true)
+                    ? ThemeMode.light
+                    : ThemeMode.dark,
+                supportedLocales: L10n.all,
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                locale: localization.selectedLocale,
+                initialRoute: SPLASH,
+                onGenerateRoute: RouteGenerator.generateRoute,
+              );
+            },
           );
         },
       ),

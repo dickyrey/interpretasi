@@ -87,6 +87,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
     );
 
     final response = await client.get(url, headers: header);
+    
     if (response.statusCode == 200) {
       return ArticleResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,

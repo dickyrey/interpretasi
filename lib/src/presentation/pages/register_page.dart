@@ -293,6 +293,7 @@ Future<dynamic> alertDialog(
               height: 35,
               onTap: onTap,
               label: lang.close,
+              labelSize: 12,
             ),
           ),
         ],
