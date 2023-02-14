@@ -278,7 +278,7 @@ abstract class _ChangeTheme implements ThemeWatcherEvent {
 
 /// @nodoc
 mixin _$ThemeWatcherState {
-  bool get isThemeLight => throw _privateConstructorUsedError;
+  bool get isDarkMode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ThemeWatcherStateCopyWith<ThemeWatcherState> get copyWith =>
@@ -291,7 +291,7 @@ abstract class $ThemeWatcherStateCopyWith<$Res> {
           ThemeWatcherState value, $Res Function(ThemeWatcherState) then) =
       _$ThemeWatcherStateCopyWithImpl<$Res, ThemeWatcherState>;
   @useResult
-  $Res call({bool isThemeLight});
+  $Res call({bool isDarkMode});
 }
 
 /// @nodoc
@@ -307,12 +307,12 @@ class _$ThemeWatcherStateCopyWithImpl<$Res, $Val extends ThemeWatcherState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isThemeLight = null,
+    Object? isDarkMode = null,
   }) {
     return _then(_value.copyWith(
-      isThemeLight: null == isThemeLight
-          ? _value.isThemeLight
-          : isThemeLight // ignore: cast_nullable_to_non_nullable
+      isDarkMode: null == isDarkMode
+          ? _value.isDarkMode
+          : isDarkMode // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -326,7 +326,7 @@ abstract class _$$_ThemeWatcherStateCopyWith<$Res>
       __$$_ThemeWatcherStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isThemeLight});
+  $Res call({bool isDarkMode});
 }
 
 /// @nodoc
@@ -340,12 +340,12 @@ class __$$_ThemeWatcherStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isThemeLight = null,
+    Object? isDarkMode = null,
   }) {
     return _then(_$_ThemeWatcherState(
-      isThemeLight: null == isThemeLight
-          ? _value.isThemeLight
-          : isThemeLight // ignore: cast_nullable_to_non_nullable
+      isDarkMode: null == isDarkMode
+          ? _value.isDarkMode
+          : isDarkMode // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -354,14 +354,14 @@ class __$$_ThemeWatcherStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_ThemeWatcherState implements _ThemeWatcherState {
-  const _$_ThemeWatcherState({required this.isThemeLight});
+  const _$_ThemeWatcherState({required this.isDarkMode});
 
   @override
-  final bool isThemeLight;
+  final bool isDarkMode;
 
   @override
   String toString() {
-    return 'ThemeWatcherState(isThemeLight: $isThemeLight)';
+    return 'ThemeWatcherState(isDarkMode: $isDarkMode)';
   }
 
   @override
@@ -369,12 +369,12 @@ class _$_ThemeWatcherState implements _ThemeWatcherState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ThemeWatcherState &&
-            (identical(other.isThemeLight, isThemeLight) ||
-                other.isThemeLight == isThemeLight));
+            (identical(other.isDarkMode, isDarkMode) ||
+                other.isDarkMode == isDarkMode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isThemeLight);
+  int get hashCode => Object.hash(runtimeType, isDarkMode);
 
   @JsonKey(ignore: true)
   @override
@@ -385,11 +385,11 @@ class _$_ThemeWatcherState implements _ThemeWatcherState {
 }
 
 abstract class _ThemeWatcherState implements ThemeWatcherState {
-  const factory _ThemeWatcherState({required final bool isThemeLight}) =
+  const factory _ThemeWatcherState({required final bool isDarkMode}) =
       _$_ThemeWatcherState;
 
   @override
-  bool get isThemeLight;
+  bool get isDarkMode;
   @override
   @JsonKey(ignore: true)
   _$$_ThemeWatcherStateCopyWith<_$_ThemeWatcherState> get copyWith =>

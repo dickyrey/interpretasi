@@ -12,20 +12,18 @@ class ThemeWatcherBloc extends Bloc<ThemeWatcherEvent, ThemeWatcherState> {
       await event.map(
         init: (_) async {
           final prefs = await SharedPreferences.getInstance();
-          final mode = await prefs.setBool('isThemeLight', true);
-          if (mode == true) {
-            emit(state.copyWith(isThemeLight: true));
-          }
-          emit(state.copyWith(isThemeLight: false));
+          final isDarkMode = prefs.getBool('isDarkMode') ?? false;
+          emit(state.copyWith(isDarkMode: isDarkMode));
         },
         changeTheme: (_) async {
           final prefs = await SharedPreferences.getInstance();
-          if (state.isThemeLight == true) {
-            await prefs.setBool('isThemeLight', false);
-            emit(state.copyWith(isThemeLight: false));
+
+          if (state.isDarkMode == true) {
+            emit(state.copyWith(isDarkMode: false));
+            await prefs.setBool('isDarkMode', false);
           } else {
-            await prefs.setBool('isThemeLight', true);
-            emit(state.copyWith(isThemeLight: true));
+            emit(state.copyWith(isDarkMode: true));
+            await prefs.setBool('isDarkMode', true);
           }
         },
       );

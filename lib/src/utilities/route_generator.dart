@@ -12,6 +12,7 @@ import 'package:interpretasi/src/presentation/pages/change_password_page.dart';
 import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
 import 'package:interpretasi/src/presentation/pages/explore_article_page.dart';
+import 'package:interpretasi/src/presentation/pages/language_page.dart';
 import 'package:interpretasi/src/presentation/pages/login_page.dart';
 import 'package:interpretasi/src/presentation/pages/my_article_page.dart';
 import 'package:interpretasi/src/presentation/pages/on_boarding_page.dart';
@@ -148,6 +149,10 @@ class RouteGenerator {
       case THEME_SETTING:
         return MaterialPageRoute(
           builder: (_) => const ThemeSettingPage(),
+        );
+      case LANGUAGE:
+        return MaterialPageRoute(
+          builder: (_) => const LanguagePage(),
         );
       default:
         return _errorRoute();

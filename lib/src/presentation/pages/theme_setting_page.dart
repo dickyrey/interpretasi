@@ -12,7 +12,7 @@ class ThemeSettingPage extends StatefulWidget {
 }
 
 class _ThemeSettingPageState extends State<ThemeSettingPage> {
-  int _selectedRadio = 0;
+  int _selectedRadio = 1;
 
   void _handleRadioValueChanged(int? value) {
     setState(() {
@@ -26,17 +26,20 @@ class _ThemeSettingPageState extends State<ThemeSettingPage> {
     super.initState();
     Future.microtask(() {
       final state = context.read<ThemeWatcherBloc>().state;
-      if (state.isThemeLight == true) {
-        _selectedRadio = 0;
+      if (state.isDarkMode == false) {
+        setState(() {
+          _selectedRadio = 0;
+        });
       } else {
-        _selectedRadio = 1;
+        setState(() {
+          _selectedRadio = 1;
+        });
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<ThemeWatcherBloc, ThemeWatcherState>(
       builder: (context, state) {
         return Scaffold(

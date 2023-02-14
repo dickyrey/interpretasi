@@ -23,3 +23,4 @@ const String EXPLORE_ARTICLE = '/explore_article';
 const String REPORT = '/report';
 const String AUTHOR = '/author';
 const String THEME_SETTING = '/theme_setting';
+const String LANGUAGE = '/language';

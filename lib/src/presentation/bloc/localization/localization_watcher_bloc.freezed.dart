@@ -16,42 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LocalizationWatcherEvent {
-  Locale get locale => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
     required TResult Function(Locale locale) select,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
     TResult? Function(Locale locale)? select,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function(Locale locale)? select,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Select value) select,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
     TResult? Function(_Select value)? select,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Select value)? select,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $LocalizationWatcherEventCopyWith<LocalizationWatcherEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +61,6 @@ abstract class $LocalizationWatcherEventCopyWith<$Res> {
   factory $LocalizationWatcherEventCopyWith(LocalizationWatcherEvent value,
           $Res Function(LocalizationWatcherEvent) then) =
       _$LocalizationWatcherEventCopyWithImpl<$Res, LocalizationWatcherEvent>;
-  @useResult
-  $Res call({Locale locale});
 }
 
 /// @nodoc
@@ -74,27 +73,112 @@ class _$LocalizationWatcherEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? locale = null,
-  }) {
-    return _then(_value.copyWith(
-      locale: null == locale
-          ? _value.locale
-          : locale // ignore: cast_nullable_to_non_nullable
-              as Locale,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_SelectCopyWith<$Res>
-    implements $LocalizationWatcherEventCopyWith<$Res> {
+abstract class _$$_InitCopyWith<$Res> {
+  factory _$$_InitCopyWith(_$_Init value, $Res Function(_$_Init) then) =
+      __$$_InitCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_InitCopyWithImpl<$Res>
+    extends _$LocalizationWatcherEventCopyWithImpl<$Res, _$_Init>
+    implements _$$_InitCopyWith<$Res> {
+  __$$_InitCopyWithImpl(_$_Init _value, $Res Function(_$_Init) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Init implements _Init {
+  const _$_Init();
+
+  @override
+  String toString() {
+    return 'LocalizationWatcherEvent.init()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Init);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(Locale locale) select,
+  }) {
+    return init();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(Locale locale)? select,
+  }) {
+    return init?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(Locale locale)? select,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Select value) select,
+  }) {
+    return init(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Select value)? select,
+  }) {
+    return init?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Select value)? select,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Init implements LocalizationWatcherEvent {
+  const factory _Init() = _$_Init;
+}
+
+/// @nodoc
+abstract class _$$_SelectCopyWith<$Res> {
   factory _$$_SelectCopyWith(_$_Select value, $Res Function(_$_Select) then) =
       __$$_SelectCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({Locale locale});
 }
@@ -153,6 +237,7 @@ class _$_Select implements _Select {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
     required TResult Function(Locale locale) select,
   }) {
     return select(locale);
@@ -161,6 +246,7 @@ class _$_Select implements _Select {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
     TResult? Function(Locale locale)? select,
   }) {
     return select?.call(locale);
@@ -169,6 +255,7 @@ class _$_Select implements _Select {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function(Locale locale)? select,
     required TResult orElse(),
   }) {
@@ -181,6 +268,7 @@ class _$_Select implements _Select {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Select value) select,
   }) {
     return select(this);
@@ -189,6 +277,7 @@ class _$_Select implements _Select {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
     TResult? Function(_Select value)? select,
   }) {
     return select?.call(this);
@@ -197,6 +286,7 @@ class _$_Select implements _Select {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Select value)? select,
     required TResult orElse(),
   }) {
@@ -210,9 +300,7 @@ class _$_Select implements _Select {
 abstract class _Select implements LocalizationWatcherEvent {
   const factory _Select(final Locale locale) = _$_Select;
 
-  @override
   Locale get locale;
-  @override
   @JsonKey(ignore: true)
   _$$_SelectCopyWith<_$_Select> get copyWith =>
       throw _privateConstructorUsedError;

@@ -115,14 +115,14 @@ class _SettingsAndPrivacyPageState extends State<SettingsAndPrivacyPage> {
                 );
               },
             ),
-            ListTileWidget(
-              title: lang.notification,
-              icon: FeatherIcons.bell,
-              onTap: () {
-                // TODO(dickyrey): Notification Settings
-                // Navigator.pushNamed(context, INTEREST_SETTING);
-              },
-            ),
+            // ListTileWidget(
+            //   title: lang.notification,
+            //   icon: FeatherIcons.bell,
+            //   onTap: () {
+            //     // TODO(dickyrey): Notification Settings
+            //     // Navigator.pushNamed(context, INTEREST_SETTING);
+            //   },
+            // ),
             ListTileWidget(
               title: lang.dark_mode,
               icon: FeatherIcons.moon,
@@ -134,7 +134,10 @@ class _SettingsAndPrivacyPageState extends State<SettingsAndPrivacyPage> {
               title: lang.change_language,
               icon: FeatherIcons.globe,
               onTap: () {
-                // TODO(dickyrey): Change Language
+                Navigator.pushNamed(
+                  context,
+                  LANGUAGE,
+                );
               },
             ),
           ],

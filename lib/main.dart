@@ -114,9 +114,9 @@ class MyApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 theme: themeLight(context),
                 darkTheme: themeDark(context),
-                themeMode: (theme.isThemeLight == true)
-                    ? ThemeMode.light
-                    : ThemeMode.dark,
+                themeMode: (theme.isDarkMode==true)
+                    ? ThemeMode.dark
+                    : ThemeMode.light,
                 supportedLocales: L10n.all,
                 localizationsDelegates: const [
                   AppLocalizations.delegate,
