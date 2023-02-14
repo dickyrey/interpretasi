@@ -21,7 +21,7 @@ class ColorLight {
 }
 
 class ColorDark {
-  static const Color primary = Color(0xFF77578B);
+  static const Color primary = Color(0xFFC38FFF);
   static const Color secondary = Color(0xFFF9C702);
   static const Color background = Color(0xFF303030);
   static const Color card = Color(0xFF424242);

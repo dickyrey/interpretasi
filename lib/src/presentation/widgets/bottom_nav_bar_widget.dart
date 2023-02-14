@@ -120,11 +120,17 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
             }),
             type: BottomNavigationBarType.fixed,
             iconSize: 20,
+            selectedItemColor: theme.primaryColor,
+            selectedIconTheme: theme.iconTheme.copyWith(
+              color: theme.primaryColor,
+            ),
             selectedLabelStyle: theme.textTheme.bodyMedium?.copyWith(
               fontSize: 9,
+              color: theme.textTheme.titleMedium?.color,
             ),
             unselectedLabelStyle: theme.textTheme.titleMedium?.copyWith(
               fontSize: 9,
+              color: theme.textTheme.bodyLarge?.color,
             ),
             items: [
               BottomNavigationBarItem(
