@@ -242,41 +242,41 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                               style: {
                                 'h1': Style(
                                   fontSize: const FontSize(20),
-                                  color: ColorLight.fontTitle,
+                                  color: theme.textTheme.titleMedium?.color,
                                   fontFamily: GoogleFonts.roboto().fontFamily,
                                   letterSpacing: 1.5,
                                 ),
                                 'h2': Style(
                                   fontSize: const FontSize(18),
-                                  color: ColorLight.fontTitle,
+                                  color: theme.textTheme.titleMedium?.color,
                                   fontFamily: GoogleFonts.roboto().fontFamily,
                                   letterSpacing: 1.5,
                                 ),
                                 'h3': Style(
                                   fontSize: const FontSize(16),
-                                  color: ColorLight.fontTitle,
+                                  color: theme.textTheme.titleMedium?.color,
                                   fontFamily: GoogleFonts.roboto().fontFamily,
                                   letterSpacing: 1.5,
                                 ),
                                 'p': Style(
                                   fontSize: FontSize.medium,
-                                  color: ColorLight.fontTitle,
+                                  color: theme.textTheme.titleMedium?.color,
                                   lineHeight: LineHeight.number(1.2),
                                   fontFamily:
                                       GoogleFonts.merriweather().fontFamily,
                                 ),
                                 'li': Style(
                                   fontSize: FontSize.medium,
-                                  color: ColorLight.fontTitle,
+                                  color: theme.textTheme.titleMedium?.color,
                                 ),
                                 'strong': Style(
                                   fontSize: FontSize.medium,
-                                  color: ColorLight.fontTitle,
+                                  color: theme.textTheme.titleMedium?.color,
                                   fontWeight: FontWeight.w700,
                                 ),
                                 'blockquote': Style(
                                   fontSize: FontSize.large,
-                                  color: ColorLight.fontSubtitle,
+                                  color: theme.textTheme.bodyLarge?.color,
                                   fontFamily:
                                       GoogleFonts.catamaran().fontFamily,
                                   before: '"',
@@ -331,9 +331,9 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                                     ),
                                   );
                             },
-                            child: const Icon(
+                            child:  Icon(
                               FeatherIcons.heart,
-                              color: ColorLight.fontTitle,
+                              color: theme.iconTheme.color,
                             ),
                           );
                         },
@@ -367,17 +367,6 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                     },
                     child: const Icon(FeatherIcons.messageCircle),
                   ),
-                  // const SizedBox(width: Const.space15),
-                  // GestureDetector(
-                  //   onTap: () async {
-                  //     await FlutterShare.share(
-                  //       title: widget.article.url,
-                  //       linkUrl: widget.article.url,
-                  //       chooserTitle: lang.share_with,
-                  //     );
-                  //   },
-                  //   child: const Icon(FeatherIcons.share2),
-                  // ),
                 ],
               ),
             ),
@@ -416,10 +405,10 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
       ),
       actions: [
         PopupMenuButton<_ArticleValues>(
-          icon: const Icon(
+          icon: Icon(
             FeatherIcons.moreVertical,
             size: 20,
-            color: ColorLight.fontTitle,
+            color: theme.iconTheme.color,
           ),
           onSelected: (value) async {
             switch (value) {
@@ -447,10 +436,10 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
               value: _ArticleValues.share,
               child: Row(
                 children: [
-                  const Icon(
+                  Icon(
                     FeatherIcons.share2,
                     size: 20,
-                    color: ColorLight.fontTitle,
+                    color: theme.iconTheme.color,
                   ),
                   const SizedBox(width: Const.space8),
                   Text(lang.share, style: theme.textTheme.titleMedium),
@@ -461,10 +450,10 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
               value: _ArticleValues.report,
               child: Row(
                 children: [
-                  const Icon(
+                  Icon(
                     FeatherIcons.info,
                     size: 20,
-                    color: ColorLight.fontTitle,
+                    color: theme.iconTheme.color,
                   ),
                   const SizedBox(width: Const.space8),
                   Text(lang.report, style: theme.textTheme.titleMedium),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/routes.dart';
@@ -500,6 +499,7 @@ class _MyArticlePageState extends State<MyArticlePage> {
       ),
       actions: [
         IconButton(
+          color: theme.iconTheme.color,
           icon: const Icon(FeatherIcons.plus),
           onPressed: () {
             context.read<ArticleFormBloc>().add(const ArticleFormEvent.init());
@@ -513,9 +513,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
         ),
       ],
       bottom: TabBar(
-        labelStyle: theme.textTheme.headlineSmall,
-        labelColor: ColorLight.fontTitle,
-        unselectedLabelColor: ColorLight.fontSubtitle,
+        labelColor: theme.primaryColor,
+        unselectedLabelColor: theme.hintColor,
+        labelStyle: theme.textTheme.labelSmall,
+        unselectedLabelStyle: theme.textTheme.bodyLarge,
+        indicatorSize: TabBarIndicatorSize.tab,
         isScrollable: true,
         onTap: (index) async {
           if (index == 0) {

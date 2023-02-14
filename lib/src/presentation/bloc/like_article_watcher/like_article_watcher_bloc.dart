@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/domain/usecases/like_article/check_like_status.dart';
 import 'package:interpretasi/src/domain/usecases/like_article/like_article.dart';
 
@@ -18,11 +17,10 @@ class LikeArticleWatcherBloc
       await event.map(
         fetch: (event) async {
           emit(const LikeArticleWatcherState.unliked());
-          final id = event.id.replaceFirst(Const.unusedPath, '');
 
-          final result = await checkLikeStatus.execute(id);
+          final result = await checkLikeStatus.execute(event.id);
           result.fold(
-            (f) => emit(const LikeArticleWatcherState.unliked()),
+            (_) => emit(const LikeArticleWatcherState.unliked()),
             (data) {
               if (data == true) {
                 emit(const LikeArticleWatcherState.liked());
@@ -33,11 +31,10 @@ class LikeArticleWatcherBloc
           );
         },
         like: (event) async {
-          final id = event.id.replaceFirst(Const.unusedPath, '');
           if (state == const LikeArticleWatcherState.liked()) {
             emit(const LikeArticleWatcherState.unliked());
 
-            final result = await likeArticle.execute(id);
+            final result = await likeArticle.execute(event.id);
 
             result.fold(
               (_) => emit(const LikeArticleWatcherState.unliked()),
@@ -46,7 +43,7 @@ class LikeArticleWatcherBloc
           } else {
             emit(const LikeArticleWatcherState.liked());
 
-            final result = await likeArticle.execute(id);
+            final result = await likeArticle.execute(event.id);
 
             result.fold(
               (_) => emit(const LikeArticleWatcherState.liked()),

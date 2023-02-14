@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 
 class ListTileWidget extends StatelessWidget {
@@ -32,7 +31,10 @@ class ListTileWidget extends StatelessWidget {
         child: Row(
           children: [
             if (icon != null)
-              Icon(icon, color: ColorLight.fontTitle)
+              Icon(
+                icon,
+                color: theme.iconTheme.color,
+              )
             else
               const SizedBox(),
             if (icon != null)

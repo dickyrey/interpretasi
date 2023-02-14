@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/domain/usecases/comment_article/delete_comment.dart';
 
 part 'delete_comment_actor_event.dart';
@@ -14,11 +13,10 @@ class DeleteCommentActorBloc extends Bloc<DeleteCommentActorEvent, DeleteComment
         init: (_) {
           emit(const DeleteCommentActorState.initial());
         },
-        delete: (e) async {
-          final id = e.id.replaceFirst(Const.unusedPath, '');
+        delete: (event) async {
           final result = await _deleteComment.execute(
-            id: id,
-            userId: e.userId,
+            id: event.id,
+            userId: event.userId,
           );
 
           result.fold(

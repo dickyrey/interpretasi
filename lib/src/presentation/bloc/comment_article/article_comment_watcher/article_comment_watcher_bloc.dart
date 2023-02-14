@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/domain/entities/comment.dart';
 import 'package:interpretasi/src/domain/usecases/comment_article/get_comment_list.dart';
 
@@ -14,19 +13,17 @@ class ArticleCommentWatcherBloc
       : super(const ArticleCommentWatcherState.initial()) {
     on<ArticleCommentWatcherEvent>((event, emit) async {
       await event.map(
-        fetch: (e) async {
+        fetch: (event) async {
           emit(const ArticleCommentWatcherState.loading());
-          final id = e.id.replaceFirst(Const.unusedPath, '');
 
-          final result = await _commentList.execute(id);
+          final result = await _commentList.execute(event.id);
           result.fold(
             (f) => emit(ArticleCommentWatcherState.error(f.message)),
             (data) => emit(ArticleCommentWatcherState.loaded(data)),
           );
         },
-        refresh: (e) async {
-          final id = e.id.replaceFirst(Const.unusedPath, '');
-          final result = await _commentList.execute(id);
+        refresh: (event) async {
+          final result = await _commentList.execute(event.id);
           result.fold(
             (f) => emit(ArticleCommentWatcherState.error(f.message)),
             (data) => emit(ArticleCommentWatcherState.loaded(data)),

@@ -6,7 +6,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:html/dom.dart' as dom;
-import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/routes.dart';
@@ -55,24 +54,24 @@ class _ArticlePreviewPageState extends State<ArticlePreviewPage> {
 
     return BlocListener<DeleteArticleActorBloc, DeleteArticleActorState>(
       listener: (context, state) {
-            state.maybeMap(
-              orElse: () {},
-              error: (_) {
-                final snack = showSnackbar(
-                  context,
-                  type: SnackbarType.error,
-                  labelText: lang.failed_to_delete_article_try_again_later,
-                  labelButton: lang.close,
-                  onTap: () {},
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snack);
-              },
-              success: (_) {
-                showToast(msg: lang.article_deleted);
-                Navigator.pop(context);
-              },
+        state.maybeMap(
+          orElse: () {},
+          error: (_) {
+            final snack = showSnackbar(
+              context,
+              type: SnackbarType.error,
+              labelText: lang.failed_to_delete_article_try_again_later,
+              labelButton: lang.close,
+              onTap: () {},
             );
+            ScaffoldMessenger.of(context).showSnackBar(snack);
           },
+          success: (_) {
+            showToast(msg: lang.article_deleted);
+            Navigator.pop(context);
+          },
+        );
+      },
       child: Scaffold(
         appBar: _appBar(context),
         body: SingleChildScrollView(
@@ -243,40 +242,40 @@ class _ArticlePreviewPageState extends State<ArticlePreviewPage> {
                           style: {
                             'h1': Style(
                               fontSize: const FontSize(20),
-                              color: ColorLight.fontTitle,
+                              color: theme.textTheme.headlineMedium?.color,
                               fontFamily: GoogleFonts.roboto().fontFamily,
                               letterSpacing: 1.5,
                             ),
                             'h2': Style(
                               fontSize: const FontSize(18),
-                              color: ColorLight.fontTitle,
+                              color: theme.textTheme.headlineMedium?.color,
                               fontFamily: GoogleFonts.roboto().fontFamily,
                               letterSpacing: 1.5,
                             ),
                             'h3': Style(
                               fontSize: const FontSize(16),
-                              color: ColorLight.fontTitle,
+                              color: theme.textTheme.headlineMedium?.color,
                               fontFamily: GoogleFonts.roboto().fontFamily,
                               letterSpacing: 1.5,
                             ),
                             'p': Style(
                               fontSize: FontSize.medium,
-                              color: ColorLight.fontTitle,
+                              color: theme.textTheme.headlineMedium?.color,
                               lineHeight: LineHeight.number(1.2),
                               fontFamily: GoogleFonts.merriweather().fontFamily,
                             ),
                             'li': Style(
                               fontSize: FontSize.medium,
-                              color: ColorLight.fontTitle,
+                              color: theme.textTheme.headlineMedium?.color,
                             ),
                             'strong': Style(
                               fontSize: FontSize.medium,
-                              color: ColorLight.fontTitle,
+                              color: theme.textTheme.headlineMedium?.color,
                               fontWeight: FontWeight.w700,
                             ),
                             'blockquote': Style(
                               fontSize: FontSize.large,
-                              color: ColorLight.fontSubtitle,
+                              color: theme.textTheme.bodyLarge?.color,
                               fontFamily: GoogleFonts.catamaran().fontFamily,
                               before: '"',
                             ),
@@ -333,10 +332,10 @@ class _ArticlePreviewPageState extends State<ArticlePreviewPage> {
       ),
       actions: [
         PopupMenuButton<_ArticleValues>(
-          icon: const Icon(
+          icon: Icon(
             FeatherIcons.moreVertical,
             size: 20,
-            color: ColorLight.fontTitle,
+            color: theme.iconTheme.color,
           ),
           onSelected: (value) async {
             switch (value) {

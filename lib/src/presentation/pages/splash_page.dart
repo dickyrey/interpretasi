@@ -5,6 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/theme_watcher/theme_watcher_bloc.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -18,11 +19,10 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-      () => context
-          .read<AuthWatcherBloc>()
-          .add(const AuthWatcherEvent.check()),
-    );
+    Future.microtask(() {
+      context.read<AuthWatcherBloc>().add(const AuthWatcherEvent.check());
+      context.read<ThemeWatcherBloc>().add(const ThemeWatcherEvent.init());
+    });
   }
 
   @override

@@ -127,7 +127,7 @@ class _SettingsAndPrivacyPageState extends State<SettingsAndPrivacyPage> {
               title: lang.dark_mode,
               icon: FeatherIcons.moon,
               onTap: () {
-                // TODO(dickyrey): Theme Setting
+                Navigator.pushNamed(context, THEME_SETTING);
               },
             ),
             ListTileWidget(

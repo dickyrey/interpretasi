@@ -90,6 +90,7 @@ import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_art
 import 'package:interpretasi/src/presentation/bloc/password/add_password_form/add_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/password/change_password_form/change_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/report/report_actor_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/theme_watcher/theme_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/moderated_actor/moderated_actor_bloc.dart';
@@ -572,6 +573,13 @@ void init() {
   );
   locator.registerLazySingleton(
     () => reportActorBloc,
+  );
+
+  //* Theme BLoC folder
+  //*
+  final themeWatcherBloc = ThemeWatcherBloc();
+  locator.registerLazySingleton(
+    () => themeWatcherBloc,
   );
 
   //* User BLoC folder

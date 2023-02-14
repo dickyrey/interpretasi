@@ -31,20 +31,19 @@ class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
           emit(ArticleFormState.initial());
         },
         initialize: (event) async {
-          final id = event.article.url.replaceFirst(Const.unusedPath, '');
           final category = event.categoryList
               .firstWhere((e) => e.id == event.article.categoryId);
           emit(
             state.copyWith(
               state: RequestState.loading,
-              id: id,
+              id: event.article.url,
               title: event.article.title,
               imageUrl: event.article.image,
               selectedCategory: category,
               categoryList: event.categoryList,
             ),
           );
-          final detail = await articleDetail.execute(id);
+          final detail = await articleDetail.execute(event.article.url);
           detail.fold(
             (f) {
               emit(

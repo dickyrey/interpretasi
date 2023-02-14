@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/domain/entities/article_detail.dart';
 import 'package:interpretasi/src/domain/usecases/article/get_article_detail.dart';
 
@@ -14,9 +13,8 @@ class ArticleDetailWatcherBloc extends Bloc<ArticleDetailWatcherEvent, ArticleDe
       await event.map(
         fetch: (event) async {
           emit(const ArticleDetailWatcherState.loading());
-          final id = event.url.replaceFirst(Const.unusedPath, '');
 
-          final result = await _article.execute(id);
+          final result = await _article.execute(event.url);
 
           result.fold(
             (f) => emit(ArticleDetailWatcherState.error(f.message)),

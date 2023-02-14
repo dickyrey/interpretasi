@@ -22,3 +22,4 @@ const String ARTICLE_SEARCH = '/article_search';
 const String EXPLORE_ARTICLE = '/explore_article';
 const String REPORT = '/report';
 const String AUTHOR = '/author';
+const String THEME_SETTING = '/theme_setting';

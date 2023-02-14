@@ -29,6 +29,7 @@ import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_art
 import 'package:interpretasi/src/presentation/bloc/password/add_password_form/add_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/password/change_password_form/change_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/report/report_actor_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/theme_watcher/theme_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/moderated_actor/moderated_actor_bloc.dart';
@@ -87,6 +88,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.locator<ChangePasswordFormBloc>()),
         //* Report
         BlocProvider(create: (context) => di.locator<ReportActorBloc>()),
+        //* Theme
+        BlocProvider(create: (context) => di.locator<ThemeWatcherBloc>()),
         //* User BLoC folder
         BlocProvider(create: (context) => di.locator<UserFormBloc>()),
         BlocProvider(create: (context) => di.locator<UserWatcherBloc>()),
@@ -99,21 +102,25 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.locator<UserArticlePublishedWatcherBloc>()),
         BlocProvider(create: (context) => di.locator<UserArticleRejectedWatcherBloc>()),
       ],
-      child: MaterialApp(
-        title: 'Interpretasi',
-        debugShowCheckedModeBanner: false,
-        theme: themeLight(context),
-        darkTheme: themeDark(context),
-        themeMode: ThemeMode.light,
-        supportedLocales: L10n.all,
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        initialRoute: SPLASH,
-        onGenerateRoute: RouteGenerator.generateRoute,
+      child: BlocBuilder<ThemeWatcherBloc, ThemeWatcherState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Interpretasi',
+            debugShowCheckedModeBanner: false,
+            theme: themeLight(context),
+            darkTheme: themeDark(context),
+            themeMode: (state.isThemeLight == true ) ? ThemeMode.light : ThemeMode.dark,
+            supportedLocales: L10n.all,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            initialRoute: SPLASH,
+            onGenerateRoute: RouteGenerator.generateRoute,
+          );
+        },
       ),
     );
   }

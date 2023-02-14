@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/bloc/article/latest_article_watcher/latest_article_watcher_bloc.dart';
@@ -85,7 +84,7 @@ class LatestPage extends StatelessWidget {
             Navigator.pushNamed(context, ARTICLE_SEARCH);
           },
           icon: const Icon(FeatherIcons.search),
-          color: ColorLight.fontTitle,
+          color: theme.iconTheme.color,
         ),
         const SizedBox(width: Const.margin),
       ],

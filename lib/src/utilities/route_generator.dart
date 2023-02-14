@@ -23,6 +23,7 @@ import 'package:interpretasi/src/presentation/pages/register_page.dart';
 import 'package:interpretasi/src/presentation/pages/report_page.dart';
 import 'package:interpretasi/src/presentation/pages/settings_and_privacy_page.dart';
 import 'package:interpretasi/src/presentation/pages/splash_page.dart';
+import 'package:interpretasi/src/presentation/pages/theme_setting_page.dart';
 import 'package:interpretasi/src/presentation/widgets/bottom_nav_bar_widget.dart';
 
 class RouteGenerator {
@@ -144,6 +145,10 @@ class RouteGenerator {
           );
         }
         return _errorRoute();
+      case THEME_SETTING:
+        return MaterialPageRoute(
+          builder: (_) => const ThemeSettingPage(),
+        );
       default:
         return _errorRoute();
     }

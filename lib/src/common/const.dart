@@ -10,17 +10,18 @@ class Const {
   static const String token = 'access_token';
   static const String host = 'api.interpretasi.id';
   static const String scheme = 'https';
-  static const String unusedPath = 'https://api.interpretasi.id/v1/article/';
   static const String photo =
       'https://i.pinimg.com/564x/57/70/f0/5770f01a32c3c53e90ecda61483ccb08.jpg';
 }
 
 class Assets {
   // SVG Assets
+  static const String empty = 'assets/empty.svg';
   static const String error = 'assets/error.svg';
   static const String fire = 'assets/fire.svg';
   static const String google = 'assets/google.svg';
   static const String logo = 'assets/logo.svg';
+  static const String notification = 'assets/notification.svg';
   static const String read = 'assets/read.svg';
   static const String search = 'assets/search.svg';
   static const String write = 'assets/write.svg';

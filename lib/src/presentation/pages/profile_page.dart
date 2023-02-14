@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
@@ -182,9 +181,9 @@ class ProfilePage extends StatelessWidget {
             ExpansionTile(
               title: Row(
                 children: [
-                  const Icon(
+                  Icon(
                     FeatherIcons.info,
-                    color: ColorLight.fontTitle,
+                    color: theme.iconTheme.color,
                   ),
                   const SizedBox(width: Const.space15),
                   Text(

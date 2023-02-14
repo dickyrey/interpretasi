@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/outlined_button_widget.dart';
@@ -27,6 +26,7 @@ class TileButtonDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return Visibility(
       visible: isVisible,
       child: Padding(
@@ -41,13 +41,13 @@ class TileButtonDialog extends StatelessWidget {
                 Icon(
                   icon,
                   size: 18,
-                  color: color ?? ColorLight.fontTitle,
+                  color: color ?? theme.iconTheme.color,
                 ),
                 const SizedBox(width: Const.space12),
                 Text(
                   label,
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: color ?? ColorLight.fontTitle,
+                    color: color ?? theme.iconTheme.color,
                   ),
                 ),
               ],

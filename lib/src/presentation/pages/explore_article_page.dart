@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/routes.dart';
@@ -57,27 +56,34 @@ class _ExploreArticlePageState extends State<ExploreArticlePage> {
                   .we_encountered_an_error_while_trying_to_connect_to_our_server_please_try_after_some_again,
             );
           } else if (state.state == RequestState.loaded) {
-            return ListView.builder(
-              itemCount: state.articleList.length,
-              physics: const ScrollPhysics(),
-              shrinkWrap: true,
-              padding: const EdgeInsets.only(top: Const.margin),
-              itemBuilder: (context, index) {
-                final article = state.articleList[index];
-                return ArticleCardWidget(
-                  article: article,
-                  index: index,
-                  showShareButton: true,
-                  showReportButton: true,
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      ARTICLE_DETAIL,
-                      arguments: article,
-                    );
-                  },
-                );
-              },
+            if (state.articleList.isNotEmpty) {
+              return ListView.builder(
+                itemCount: state.articleList.length,
+                physics: const ScrollPhysics(),
+                shrinkWrap: true,
+                padding: const EdgeInsets.only(top: Const.margin),
+                itemBuilder: (context, index) {
+                  final article = state.articleList[index];
+                  return ArticleCardWidget(
+                    article: article,
+                    index: index,
+                    showShareButton: true,
+                    showReportButton: true,
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        ARTICLE_DETAIL,
+                        arguments: article,
+                      );
+                    },
+                  );
+                },
+              );
+            }
+            return EmptyDataWidget(
+              illustration: Assets.empty,
+              title: lang.article_empty,
+              subtitle: lang.sorry_the_articles_for_this_category_are_still_empty_you_can_search_for_articles_in_other_categories,
             );
           } else {
             return const SizedBox();
@@ -150,7 +156,7 @@ class _ExploreArticlePageState extends State<ExploreArticlePage> {
                           style: theme.textTheme.titleMedium?.copyWith(
                             color: (state.index == index)
                                 ? Colors.white
-                                : ColorLight.fontTitle,
+                                : theme.textTheme.bodyLarge?.color,
                           ),
                         ),
                         padding: const EdgeInsets.symmetric(
@@ -171,7 +177,7 @@ class _ExploreArticlePageState extends State<ExploreArticlePage> {
             Navigator.pushNamed(context, ARTICLE_SEARCH);
           },
           icon: const Icon(FeatherIcons.search),
-          color: ColorLight.fontTitle,
+          color: theme.iconTheme.color,
         ),
         const SizedBox(width: Const.space12),
       ],

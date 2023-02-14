@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/domain/usecases/article/report_article.dart';
 import 'package:interpretasi/src/domain/usecases/author/report_author.dart';
 import 'package:interpretasi/src/domain/usecases/comment_article/report_comment.dart';
@@ -23,8 +22,10 @@ class ReportActorBloc extends Bloc<ReportActorEvent, ReportActorState> {
         reportArticle: (event) async {
           emit(const ReportActorState.loading());
 
-          final id = event.id.replaceFirst(Const.unusedPath, '');
-          final result = await article.execute(id: id, reason: event.reason);
+          final result = await article.execute(
+            id: event.id,
+            reason: event.reason,
+          );
           result.fold(
             (f) => emit(ReportActorState.error(f.message)),
             (_) => emit(const ReportActorState.success()),
@@ -45,9 +46,8 @@ class ReportActorBloc extends Bloc<ReportActorEvent, ReportActorState> {
         reportComment: (event) async {
           emit(const ReportActorState.loading());
 
-          final articleId = event.url.replaceFirst(Const.unusedPath, '');
           final result = await comment.execute(
-            articleId: articleId,
+            articleId: event.url,
             commentId: event.commentId,
             reason: event.reason,
           );

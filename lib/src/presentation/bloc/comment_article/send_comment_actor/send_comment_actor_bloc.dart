@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/domain/usecases/comment_article/send_comment.dart';
 
 part 'send_comment_actor_event.dart';
@@ -13,14 +12,13 @@ class SendCommentActorBloc
       : super(const SendCommentActorState.initial()) {
     on<SendCommentActorEvent>((event, emit) async {
       await event.map(
-        init: (e) {
+        init: (_) {
           emit(const SendCommentActorState.initial());
         },
-        sendComment: (e) async {
-          final id = e.id.replaceFirst(Const.unusedPath, '');
+        sendComment: (event) async {
           final result = await _sendComment.execute(
-            id: id,
-            comment: e.comment,
+            id: event.id,
+            comment: event.comment,
           );
 
           result.fold(

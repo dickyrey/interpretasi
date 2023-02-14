@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/presentation/bloc/article/latest_article_watcher/latest_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/trending_article_watcher/trending_article_watcher_bloc.dart';
@@ -11,6 +12,7 @@ import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watche
 import 'package:interpretasi/src/presentation/pages/home_page.dart';
 import 'package:interpretasi/src/presentation/pages/latest_page.dart';
 import 'package:interpretasi/src/presentation/pages/profile_page.dart';
+import 'package:interpretasi/src/presentation/widgets/empty_data_widget.dart';
 import 'package:interpretasi/src/utilities/toast.dart';
 
 class BottomNavBarWidget extends StatefulWidget {
@@ -51,7 +53,11 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
   final List<Widget> _tabView = [
     const HomePage(),
     const LatestPage(),
-    const SizedBox(),
+     const EmptyDataWidget(
+      illustration: Assets.notification,
+      title: 'Notifikasi Kosong',
+      subtitle: 'Kamu belum memiliki notifikasi apapun, artikel trending dan kategori kesukaanmu akan ditampilkan di sini.',
+    ),
     const ProfilePage(),
   ];
 

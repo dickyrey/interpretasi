@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/common/screens.dart';
@@ -74,7 +73,7 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
             Navigator.pushNamed(context, SETTINGS_AND_PRIVACY);
           },
           icon: const Icon(FeatherIcons.settings),
-          color: ColorLight.fontTitle,
+          color: theme.iconTheme.color,
         ),
       ],
       bottom: PreferredSize(
@@ -117,7 +116,6 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
                     ),
                   ),
                   const SizedBox(width: Const.space8),
-                  // const Spacer(),
                   OutlinedButtonWidget(
                     width: 80,
                     height: 30,
@@ -251,11 +249,11 @@ class _MyArticlesWidget extends StatelessWidget {
           loaded: (state) {
             if (state.articleList.isNotEmpty) {
               return RefreshIndicator(
-                  onRefresh: () async {
-                    context
-                        .read<UserArticlePublishedWatcherBloc>()
-                        .add(const UserArticlePublishedWatcherEvent.fetch());
-                  },
+                onRefresh: () async {
+                  context
+                      .read<UserArticlePublishedWatcherBloc>()
+                      .add(const UserArticlePublishedWatcherEvent.fetch());
+                },
                 child: ListView.builder(
                   itemCount: state.articleList.length,
                   physics: const ScrollPhysics(),
