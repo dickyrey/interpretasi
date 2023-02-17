@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/common/failure.dart';
-import 'package:interpretasi/src/data/datasources/boarding_remote_data_source.dart';
+import 'package:interpretasi/src/data/datasources/boarding_data_source.dart';
 import 'package:interpretasi/src/domain/entities/boarding.dart';
 import 'package:interpretasi/src/domain/repositories/boarding_repository.dart';
 
@@ -12,7 +12,7 @@ class BoardingRepositoryImpl extends BoardingRepository {
   
   BoardingRepositoryImpl(this.dataSource);
 
-  final BoardingRemoteDataSource dataSource;
+  final BoardingDataSource dataSource;
 
   @override
   Future<Either<Failure, List<Boarding>>> getBoardingList() async {

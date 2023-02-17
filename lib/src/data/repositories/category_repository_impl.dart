@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/common/failure.dart';
-import 'package:interpretasi/src/data/datasources/category_remote_data_source.dart';
+import 'package:interpretasi/src/data/datasources/category_data_source.dart';
 import 'package:interpretasi/src/domain/entities/category.dart';
 import 'package:interpretasi/src/domain/repositories/category_repository.dart';
 
@@ -12,7 +12,7 @@ class CategoryRepositoryImpl extends CategoryRepository {
   
   CategoryRepositoryImpl(this.dataSource);
 
-  final CategoryRemoteDataSource dataSource;
+  final CategoryDataSource dataSource;
 
   @override
   Future<Either<Failure, List<Category>>> getCategories() async {

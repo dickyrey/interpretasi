@@ -8,11 +8,11 @@ import 'package:interpretasi/src/data/models/category_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: one_member_abstracts
-abstract class CategoryRemoteDataSource {
+abstract class CategoryDataSource {
   Future<List<CategoryModel>> getCategories();
 }
 
-class CategoryRemoteDataSourceImpl extends CategoryRemoteDataSource {
+class CategoryDataSourceImpl extends CategoryDataSource {
   @override
   Future<List<CategoryModel>> getCategories() async {
     final prefs = await SharedPreferences.getInstance();

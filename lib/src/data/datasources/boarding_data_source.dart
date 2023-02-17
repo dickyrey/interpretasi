@@ -5,11 +5,11 @@ import 'package:interpretasi/src/data/models/boarding_model.dart';
 import 'package:interpretasi/src/data/models/boarding_response.dart';
 
 // ignore: one_member_abstracts
-abstract class BoardingRemoteDataSource {
+abstract class BoardingDataSource {
   Future<List<BoardingModel>> getBoardingList();
 }
 
-class BoardingRemoteDataSourceImpl extends BoardingRemoteDataSource {
+class BoardingDataSourceImpl extends BoardingDataSource {
   @override
   Future<List<BoardingModel>> getBoardingList() async {
     // Load the JSON data from the mock_json/boarding.json file

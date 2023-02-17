@@ -6,8 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:interpretasi/src/data/datasources/article_data_source.dart';
 import 'package:interpretasi/src/data/datasources/auth_data_source.dart';
 import 'package:interpretasi/src/data/datasources/author_data_source.dart';
-import 'package:interpretasi/src/data/datasources/boarding_remote_data_source.dart';
-import 'package:interpretasi/src/data/datasources/category_remote_data_source.dart';
+import 'package:interpretasi/src/data/datasources/boarding_data_source.dart';
+import 'package:interpretasi/src/data/datasources/category_data_source.dart';
 import 'package:interpretasi/src/data/datasources/comment_article_data_source.dart';
 import 'package:interpretasi/src/data/datasources/like_article_data_source.dart';
 import 'package:interpretasi/src/data/datasources/password_data_source.dart';
@@ -139,14 +139,14 @@ void init() {
     () => authorDataSource,
   );
 
-  final boardingRemoteDataSource = BoardingRemoteDataSourceImpl();
-  locator.registerLazySingleton<BoardingRemoteDataSource>(
-    () => boardingRemoteDataSource,
+  final boardingDataSource = BoardingDataSourceImpl();
+  locator.registerLazySingleton<BoardingDataSource>(
+    () => boardingDataSource,
   );
 
-  final categoryRemoteDataSource = CategoryRemoteDataSourceImpl();
-  locator.registerLazySingleton<CategoryRemoteDataSource>(
-    () => categoryRemoteDataSource,
+  final categoryDataSource = CategoryDataSourceImpl();
+  locator.registerLazySingleton<CategoryDataSource>(
+    () => categoryDataSource,
   );
 
   final commentArticleDataSource = CommentArticleDataSourceImpl(locator());
