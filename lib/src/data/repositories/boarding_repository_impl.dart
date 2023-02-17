@@ -10,7 +10,7 @@ import 'package:interpretasi/src/domain/repositories/boarding_repository.dart';
 
 class BoardingRepositoryImpl extends BoardingRepository {
   
-  BoardingRepositoryImpl({required this.dataSource});
+  BoardingRepositoryImpl(this.dataSource);
 
   final BoardingRemoteDataSource dataSource;
 

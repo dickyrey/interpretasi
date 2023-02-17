@@ -10,7 +10,7 @@ import 'package:interpretasi/src/domain/repositories/category_repository.dart';
 
 class CategoryRepositoryImpl extends CategoryRepository {
   
-  CategoryRepositoryImpl({required this.dataSource});
+  CategoryRepositoryImpl(this.dataSource);
 
   final CategoryRemoteDataSource dataSource;
 

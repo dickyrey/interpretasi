@@ -192,12 +192,12 @@ void init() {
     () => authorRepository,
   );
 
-  final boardingRepository = BoardingRepositoryImpl(dataSource: locator());
+  final boardingRepository = BoardingRepositoryImpl(locator());
   locator.registerLazySingleton<BoardingRepository>(
     () => boardingRepository,
   );
 
-  final categoryRepository = CategoryRepositoryImpl(dataSource: locator());
+  final categoryRepository = CategoryRepositoryImpl(locator());
   locator.registerLazySingleton<CategoryRepository>(
     () => categoryRepository,
   );
