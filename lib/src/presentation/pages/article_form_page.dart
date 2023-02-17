@@ -126,6 +126,7 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: PageView(
               controller: _pageCtrl,
+              physics: const NeverScrollableScrollPhysics(),
               onPageChanged: (v) {
                 setState(() {
                   _selectedIndex = v;
@@ -157,7 +158,16 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
       backgroundColor: theme.colorScheme.background,
       elevation: .5,
       leading: IconButton(
-        onPressed: () => Navigator.pop(context),
+        onPressed: () {
+          if (_selectedIndex == 1) {
+            _pageCtrl.previousPage(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.linear,
+            );
+          } else {
+            Navigator.pop(context);
+          }
+        },
         icon: Icon(
           FeatherIcons.arrowLeft,
           color: theme.iconTheme.color,
@@ -165,36 +175,39 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
       ),
       title: Row(
         children: [
-          Expanded(
-            child: QuillToolbar.basic(
-              controller: _quillCtrl,
-              toolbarIconSize: 23,
-              showFontFamily: false,
-              showBackgroundColorButton: false,
-              showBoldButton: false,
-              showCenterAlignment: false,
-              showClearFormat: false,
-              showCodeBlock: false,
-              showColorButton: false,
-              showDividers: false,
-              showFontSize: false,
-              showHeaderStyle: false,
-              showIndent: false,
-              showInlineCode: false,
-              showItalicButton: false,
-              showJustifyAlignment: false,
-              showLeftAlignment: false,
-              showLink: false,
-              showListBullets: false,
-              showListCheck: false,
-              showListNumbers: false,
-              showQuote: false,
-              showRightAlignment: false,
-              showSearchButton: false,
-              showStrikeThrough: false,
-              showUnderLineButton: false,
-            ),
-          ),
+          if (_selectedIndex == 1)
+            Expanded(
+              child: QuillToolbar.basic(
+                controller: _quillCtrl,
+                toolbarIconSize: 23,
+                showFontFamily: false,
+                showBackgroundColorButton: false,
+                showBoldButton: false,
+                showCenterAlignment: false,
+                showClearFormat: false,
+                showCodeBlock: false,
+                showColorButton: false,
+                showDividers: false,
+                showFontSize: false,
+                showHeaderStyle: false,
+                showIndent: false,
+                showInlineCode: false,
+                showItalicButton: false,
+                showJustifyAlignment: false,
+                showLeftAlignment: false,
+                showLink: false,
+                showListBullets: false,
+                showListCheck: false,
+                showListNumbers: false,
+                showQuote: false,
+                showRightAlignment: false,
+                showSearchButton: false,
+                showStrikeThrough: false,
+                showUnderLineButton: false,
+              ),
+            )
+          else
+            const SizedBox(),
           const Spacer(),
           BlocBuilder<ArticleFormBloc, ArticleFormState>(
             builder: (context, state) {
@@ -205,30 +218,43 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
                 label: (_selectedIndex == 0) ? lang.next : lang.save,
                 labelSize: 12,
                 onTap: () {
-                  if (state.imageFile != null &&
-                      state.title != '' &&
-                      state.selectedCategory != null &&
-                      state.tagList.isNotEmpty) {
-                    if (_selectedIndex == 0) {
-                      _pageCtrl.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeIn,
-                      );
-                    } else {
-                      if (widget.isEdit == true) {
+                  if (widget.isEdit == true) {
+                    if (state.title != '' &&
+                        state.selectedCategory != null &&
+                        state.tagList.isNotEmpty) {
+                      if (_selectedIndex == 0) {
+                        _pageCtrl.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeIn,
+                        );
+                      } else {
                         final delta = _quillCtrl.document.toDelta();
                         context
                             .read<ArticleFormBloc>()
                             .add(ArticleFormEvent.update(delta));
+                      }
+                    } else {
+                      showToast(msg: lang.please_check_again_before_continue);
+                    }
+                  } else {
+                    if (state.imageFile != null &&
+                        state.title != '' &&
+                        state.selectedCategory != null &&
+                        state.tagList.isNotEmpty) {
+                      if (_selectedIndex == 0) {
+                        _pageCtrl.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn,
+                        );
                       } else {
                         final delta = _quillCtrl.document.toDelta();
                         context
                             .read<ArticleFormBloc>()
                             .add(ArticleFormEvent.create(delta));
                       }
+                    } else {
+                      showToast(msg: lang.please_check_again_before_continue);
                     }
-                  } else {
-                    showToast(msg: lang.please_check_again_before_continue);
                   }
                 },
               );
