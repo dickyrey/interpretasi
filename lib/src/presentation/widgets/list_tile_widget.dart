@@ -3,10 +3,10 @@ import 'package:interpretasi/src/common/const.dart';
 
 class ListTileWidget extends StatelessWidget {
   const ListTileWidget({
-    super.key,
     required this.title,
-    this.subtitle,
     required this.onTap,
+    super.key,
+    this.subtitle,
     this.icon,
     this.fontSize,
   });

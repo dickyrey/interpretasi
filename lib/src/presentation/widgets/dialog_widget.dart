@@ -7,10 +7,10 @@ import 'package:interpretasi/src/presentation/widgets/outlined_button_widget.dar
 
 class TileButtonDialog extends StatelessWidget {
   const TileButtonDialog({
-    super.key,
     required this.label,
     required this.icon,
     required this.onTap,
+    super.key,
     this.isVisible = true,
     this.color,
     this.padding,
@@ -101,11 +101,11 @@ Future<dynamic> showMultiButtonDialog(
 
 Future<dynamic> showConfirmationDialog(
   BuildContext context, {
-  bool barrierDismissible = false,
   required String title,
   required String primaryButtonLabel,
-  String? secondaryButtonLabel,
   required VoidCallback onPrimaryButtonTap,
+  String? secondaryButtonLabel,
+  bool barrierDismissible = false,
   VoidCallback? onSecondaryButtonTap,
 }) {
   final theme = Theme.of(context);

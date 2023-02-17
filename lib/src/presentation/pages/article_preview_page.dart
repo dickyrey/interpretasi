@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,8 +27,8 @@ enum _ArticleValues { edit, delete }
 
 class ArticlePreviewPage extends StatefulWidget {
   const ArticlePreviewPage({
-    super.key,
     required this.article,
+    super.key,
   });
 
   final Article article;

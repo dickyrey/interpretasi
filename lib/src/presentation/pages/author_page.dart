@@ -15,7 +15,10 @@ import 'package:interpretasi/src/presentation/widgets/dialog_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
 
 class AuthorPage extends StatefulWidget {
-  const AuthorPage({super.key, required this.id});
+  const AuthorPage({
+    required this.id,
+    super.key,
+  });
 
   final int id;
 

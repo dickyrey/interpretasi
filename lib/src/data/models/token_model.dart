@@ -1,5 +1,7 @@
-class TokenModel {
-  TokenModel({
+import 'package:equatable/equatable.dart';
+
+class TokenModel extends Equatable{
+  const TokenModel({
     required this.token,
   });
 
@@ -10,4 +12,7 @@ class TokenModel {
   }
 
   final String token;
+  
+  @override
+  List<Object?> get props => [token];
 }

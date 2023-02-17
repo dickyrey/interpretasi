@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,10 +9,10 @@ import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dar
 
 class EmptyDataWidget extends StatelessWidget {
   const EmptyDataWidget({
-    super.key,
     required this.illustration,
     required this.title,
     required this.subtitle,
+    super.key,
     this.onTap,
   });
 

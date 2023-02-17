@@ -32,7 +32,10 @@ import 'package:url_launcher/url_launcher.dart';
 enum _ArticleValues { share, report }
 
 class ArticleDetailPage extends StatefulWidget {
-  const ArticleDetailPage({super.key, required this.article});
+  const ArticleDetailPage({
+    required this.article,
+    super.key,
+  });
 
   final Article article;
 
@@ -468,7 +471,10 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
 }
 
 class CommentDialog extends StatefulWidget {
-  const CommentDialog({super.key, required this.article});
+  const CommentDialog({
+    required this.article,
+    super.key,
+  });
 
   final Article article;
 

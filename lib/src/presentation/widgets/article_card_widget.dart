@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,10 +23,10 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class ArticleCardWidget extends StatelessWidget {
   const ArticleCardWidget({
-    super.key,
     required this.article,
     required this.index,
     required this.onTap,
+    super.key,
     this.align = CardAlignment.vertical,
     this.showPreviewButton = false,
     this.showPublishButton = false,

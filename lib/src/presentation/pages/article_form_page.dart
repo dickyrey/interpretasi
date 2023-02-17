@@ -19,7 +19,10 @@ import 'package:interpretasi/src/utilities/toast.dart';
 import 'package:tuple/tuple.dart';
 
 class ArticleFormPage extends StatefulWidget {
-  const ArticleFormPage({super.key, required this.isEdit});
+  const ArticleFormPage({
+    required this.isEdit,
+    super.key,
+  });
 
   final bool isEdit;
 

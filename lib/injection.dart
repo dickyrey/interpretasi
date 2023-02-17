@@ -177,7 +177,7 @@ void init() {
   /// List of [Repositories]
   ///
   ///
-  final articleRepository = ArticleRepositoryImpl(dataSource: locator());
+  final articleRepository = ArticleRepositoryImpl(locator());
   locator.registerLazySingleton<ArticleRepository>(
     () => articleRepository,
   );
@@ -468,7 +468,6 @@ void init() {
   //*
   final authWatcherBloc = AuthWatcherBloc(
     checkGoogleAuth: locator(),
-    checkUserVerif: locator(),
     signOut: locator(),
   );
   locator.registerLazySingleton(

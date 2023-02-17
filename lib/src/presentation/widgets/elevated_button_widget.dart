@@ -4,12 +4,12 @@ import 'package:interpretasi/src/common/const.dart';
 
 class ElevatedButtonWidget extends StatelessWidget {
   const ElevatedButtonWidget({
+    required this.onTap,
     super.key,
     this.label,
     this.labelLoading,
     this.color,
     this.child,
-    required this.onTap,
     this.isLoading = false,
     this.width = double.infinity,
     this.height = 47,

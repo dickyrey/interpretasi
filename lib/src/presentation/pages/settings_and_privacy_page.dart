@@ -119,8 +119,8 @@ class _SettingsAndPrivacyPageState extends State<SettingsAndPrivacyPage> {
             //   title: lang.notification,
             //   icon: FeatherIcons.bell,
             //   onTap: () {
-            //     // TODO(dickyrey): Notification Settings
-            //     // Navigator.pushNamed(context, INTEREST_SETTING);
+                // TODO(dickyrey): Notification Settings
+                // Navigator.pushNamed(context, INTEREST_SETTING);
             //   },
             // ),
             ListTileWidget(

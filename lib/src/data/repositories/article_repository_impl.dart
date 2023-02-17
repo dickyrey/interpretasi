@@ -10,7 +10,7 @@ import 'package:interpretasi/src/domain/entities/article_detail.dart';
 import 'package:interpretasi/src/domain/repositories/article_repository.dart';
 
 class ArticleRepositoryImpl extends ArticleRepository {
-  ArticleRepositoryImpl({required this.dataSource});
+  ArticleRepositoryImpl(this.dataSource);
 
   final ArticleDataSource dataSource;
 

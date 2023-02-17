@@ -17,10 +17,10 @@ import 'package:interpretasi/src/utilities/snackbar.dart';
 
 class ReportArgument {
   ReportArgument({
+    required this.type,
     this.article,
     this.author,
     this.comment,
-    required this.type,
   });
 
   final Article? article;
@@ -30,7 +30,10 @@ class ReportArgument {
 }
 
 class ReportPage extends StatefulWidget {
-  const ReportPage({super.key, required this.args});
+  const ReportPage({
+    required this.args,
+    super.key,
+  });
   final ReportArgument args;
 
   @override

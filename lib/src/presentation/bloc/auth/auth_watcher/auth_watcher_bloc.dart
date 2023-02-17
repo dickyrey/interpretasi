@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:interpretasi/src/domain/usecases/auth/check_google_auth.dart';
 import 'package:interpretasi/src/domain/usecases/auth/sign_out_with_google.dart';
-import 'package:interpretasi/src/domain/usecases/user/check_user_verification.dart';
 
 part 'auth_watcher_bloc.freezed.dart';
 part 'auth_watcher_event.dart';
@@ -12,7 +11,6 @@ class AuthWatcherBloc extends Bloc<AuthWatcherEvent, AuthWatcherState> {
   AuthWatcherBloc({
     required this.checkGoogleAuth,
     required this.signOut,
-    required this.checkUserVerif,
   }) : super(const AuthWatcherState.initial()) {
     on<AuthWatcherEvent>((event, emit) async {
       await event.map(
@@ -46,5 +44,4 @@ class AuthWatcherBloc extends Bloc<AuthWatcherEvent, AuthWatcherState> {
 
   final CheckGoogleAuth checkGoogleAuth;
   final SignOut signOut;
-  final CheckUserVerification checkUserVerif;
 }

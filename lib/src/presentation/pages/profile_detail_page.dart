@@ -15,7 +15,10 @@ import 'package:interpretasi/src/presentation/widgets/empty_data_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/outlined_button_widget.dart';
 
 class ProfileDetailPage extends StatefulWidget {
-  const ProfileDetailPage({super.key, required this.user});
+  const ProfileDetailPage({
+    required this.user,
+    super.key,
+  });
 
   final User user;
 

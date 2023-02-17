@@ -3,16 +3,16 @@ import 'package:interpretasi/src/common/const.dart';
 
 class OutlinedButtonWidget extends StatelessWidget {
   const OutlinedButtonWidget({
+    required this.label,
+    required this.onTap,
     super.key,
     this.width = double.infinity,
     this.height = 47,
     this.margin,
     this.isLoading = false,
-    required this.onTap,
     this.borderColor,
     this.labelColor,
     this.backgroundColor,
-    required this.label,
     this.icon,
   });
 

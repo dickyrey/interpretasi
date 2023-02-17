@@ -3,7 +3,10 @@ import 'package:interpretasi/src/common/const.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerWidget extends StatelessWidget {
-  const ShimmerWidget({super.key, required this.child});
+  const ShimmerWidget({
+    required this.child,
+    super.key,
+  });
 
   final Widget child;
 

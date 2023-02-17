@@ -16,9 +16,9 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class CommentCardWidget extends StatelessWidget {
   const CommentCardWidget({
-    super.key,
     required this.article,
     required this.comment,
+    super.key,
   });
 
   final Article article;
