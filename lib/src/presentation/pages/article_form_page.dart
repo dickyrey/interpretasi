@@ -1,14 +1,18 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
+import 'package:flutter_quill_extensions/flutter_quill_extensions.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:interpretasi/src/common/colors.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_form/article_form_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/article/upload_image_actor/upload_image_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/category/category_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_drafted_watcher/user_article_drafted_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dart';
@@ -456,9 +460,7 @@ class _EditorWidget extends StatelessWidget {
               padding: EdgeInsets.zero,
               autoFocus: false,
               expands: false,
-              onImagePaste: (imageBytes) async {
-                return '';
-              },
+              embedBuilders: FlutterQuillEmbeds.builders(),
               customStyles: DefaultStyles(
                 color: ColorLight.fontTitle,
                 h1: DefaultTextBlockStyle(
@@ -494,12 +496,36 @@ class _EditorWidget extends StatelessWidget {
           toolbarIconSize: 23,
           showClearFormat: false,
           showListCheck: false,
-          customButtons: [
-            QuillCustomButton(
-              icon: FeatherIcons.image,
-              onTap: () {},
-            ),
-          ],
+          embedButtons: FlutterQuillEmbeds.buttons(
+            showVideoButton: false,
+            onImagePickCallback: (file) async {
+              final completer = Completer<String>();
+                    context
+                        .read<UploadImageActorBloc>()
+                        .add(const UploadImageActorEvent.init());
+              context
+                  .read<UploadImageActorBloc>()
+                  .add(UploadImageActorEvent.upload(file));
+              context.read<UploadImageActorBloc>().stream.listen((state) {
+                state.maybeMap(
+                  orElse: () {
+                  },
+                  error: (state) {
+                    completer.completeError(state.message);
+                  },
+                  success: (state) {
+                    completer.complete(state.url);
+                  },
+                );
+                // if (state is UploadImageActorState) {
+                //   completer.complete(uploadImageBloc.url);
+                // } else if (state.state == RequestState.error) {
+                //   completer.completeError(state.message);
+                // }
+              });
+              return completer.future;
+            },
+          ),
           showBackgroundColorButton: false,
           showSearchButton: false,
           multiRowsDisplay: false,

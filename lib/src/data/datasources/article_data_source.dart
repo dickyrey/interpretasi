@@ -8,6 +8,7 @@ import 'package:interpretasi/src/data/models/article_detail_model.dart';
 import 'package:interpretasi/src/data/models/article_detail_response.dart';
 import 'package:interpretasi/src/data/models/article_model.dart';
 import 'package:interpretasi/src/data/models/article_response.dart';
+import 'package:interpretasi/src/data/models/url_image_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class ArticleDataSource {
@@ -42,6 +43,7 @@ abstract class ArticleDataSource {
     required String id,
     required String reason,
   });
+  Future<String> uploadImage(File image);
 }
 
 class ArticleDataSourceImpl extends ArticleDataSource {
@@ -302,6 +304,44 @@ class ArticleDataSourceImpl extends ArticleDataSource {
 
     if (response.statusCode == 200) {
       return true;
+    } else {
+      throw ServerException(ExceptionMessage.internetNotConnected);
+    }
+  }
+
+  @override
+  Future<String> uploadImage(File image) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(Const.token);
+    final header = {
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+    };
+
+    final url = Uri(
+      scheme: Const.scheme,
+      host: Const.host,
+      path: '/v1/article/upload-image',
+    );
+
+    final request = http.MultipartRequest(
+      'POST',
+      url,
+    );
+    final storeImage = await http.MultipartFile.fromPath(
+      'image',
+      image.path,
+    );
+
+    request.headers.addAll(header);
+    request.files.add(storeImage);
+    final response = await request.send();
+    if (response.statusCode == 200) {
+      final jsonResult = await response.stream.bytesToString();
+      final imageUrl = UrlImageModel.fromJson(
+        json.decode(jsonResult) as Map<String, dynamic>,
+      );
+      return imageUrl.url;
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }

@@ -13,6 +13,7 @@ import 'package:interpretasi/src/presentation/bloc/article/delete_article_actor/
 import 'package:interpretasi/src/presentation/bloc/article/latest_article_watcher/latest_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/search_article_watcher/search_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/trending_article_watcher/trending_article_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/article/upload_image_actor/upload_image_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/view_count_actor/view_count_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/sign_in_with_email_form/sign_in_with_email_form_bloc.dart';
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.locator<LatestArticleWatcherBloc>()),
         BlocProvider(create: (context) => di.locator<SearchArticleWatcherBloc>()),
         BlocProvider(create: (context) => di.locator<TrendingArticleWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<UploadImageActorBloc>()),
         BlocProvider(create: (context) => di.locator<ViewCountActorBloc>()),
         //* Auth BLoC folder
         BlocProvider(create: (context) => di.locator<AuthWatcherBloc>()),

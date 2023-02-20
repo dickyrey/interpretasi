@@ -37,4 +37,5 @@ abstract class ArticleRepository {
     required String id,
     required String reason,
   });
+  Future<Either<Failure, String>>uploadImage(File image);
 }
