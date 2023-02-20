@@ -33,6 +33,7 @@ import 'package:interpretasi/src/domain/repositories/like_article_repository.dar
 import 'package:interpretasi/src/domain/repositories/password_repository.dart';
 import 'package:interpretasi/src/domain/repositories/user_article_repository.dart';
 import 'package:interpretasi/src/domain/repositories/user_repository.dart';
+import 'package:interpretasi/src/domain/usecases/article/add_view_count.dart';
 import 'package:interpretasi/src/domain/usecases/article/create_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/delete_article.dart';
 import 'package:interpretasi/src/domain/usecases/article/get_article.dart';
@@ -75,6 +76,7 @@ import 'package:interpretasi/src/presentation/bloc/article/delete_article_actor/
 import 'package:interpretasi/src/presentation/bloc/article/latest_article_watcher/latest_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/search_article_watcher/search_article_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/trending_article_watcher/trending_article_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/article/view_count_actor/view_count_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/auth_watcher/auth_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/sign_in_with_email_form/sign_in_with_email_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/auth/sign_in_with_google_actor/sign_in_with_google_actor_bloc.dart';
@@ -238,6 +240,11 @@ void init() {
   final createArtcleUseCase = CreateArticle(locator());
   locator.registerLazySingleton(
     () => createArtcleUseCase,
+  );
+
+  final addViewCountUseCase = AddViewCount(locator());
+  locator.registerLazySingleton(
+    () => addViewCountUseCase,
   );
 
   final deleteArticleUseCase = DeleteArticle(locator());
@@ -470,6 +477,11 @@ void init() {
   final trendingArticleWatcherBloc = TrendingArticleWatcherBloc(locator());
   locator.registerLazySingleton(
     () => trendingArticleWatcherBloc,
+  );
+
+  final viewCountActorBloc = ViewCountActorBloc(locator());
+  locator.registerLazySingleton(
+    () => viewCountActorBloc,
   );
 
   //* Auth BLoC folder

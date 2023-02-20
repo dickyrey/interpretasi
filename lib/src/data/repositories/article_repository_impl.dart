@@ -15,6 +15,20 @@ class ArticleRepositoryImpl extends ArticleRepository {
   final ArticleDataSource dataSource;
 
   @override
+  Future<Either<Failure, bool>> addViewCount(String id) async {
+    try {
+      final result = await dataSource.addViewCount(id);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    } on SocketException {
+      return const Left(
+        ConnectionFailure(ExceptionMessage.internetNotConnected),
+      );
+    }
+  }
+
+  @override
   Future<Either<Failure, List<Article>>> getArticle({
     required String page,
     required String query,

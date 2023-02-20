@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +17,7 @@ import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/common/screens.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_detail_watcher/article_detail_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/article/view_count_actor/view_count_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/category/category_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/comment_article/article_comment_watcher/article_comment_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/comment_article/delete_comment_actor/delete_comment_actor_bloc.dart';
@@ -44,9 +47,12 @@ class ArticleDetailPage extends StatefulWidget {
 }
 
 class _ArticleDetailPageState extends State<ArticleDetailPage> {
+  late Timer _timer;
+  bool _isActive = true;
   @override
   void initState() {
     super.initState();
+    _startTimer();
     Future.microtask(() {
       context
           .read<ArticleDetailWatcherBloc>()
@@ -55,6 +61,29 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           .read<LikeArticleWatcherBloc>()
           .add(LikeArticleWatcherEvent.fetch(widget.article.url));
     });
+  }
+
+  @override
+  void dispose() {
+    _stopTimer();
+    super.dispose();
+  }
+
+  void _startTimer() {
+    const duration = Duration(seconds: 30);
+    _timer = Timer(duration, () {
+      if (_isActive) {
+        context
+            .read<ViewCountActorBloc>()
+            .add(ViewCountActorEvent.add(widget.article.url));
+      }
+    });
+  }
+
+  void _stopTimer() {
+    if (_timer.isActive) {
+      _timer.cancel();
+    }
   }
 
   @override

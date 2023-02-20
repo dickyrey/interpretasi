@@ -6,6 +6,7 @@ import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/entities/article_detail.dart';
 
 abstract class ArticleRepository {
+  Future<Either<Failure, bool>>  addViewCount(String id);
   Future<Either<Failure, List<Article>>> getArticle({
     required String page,
     required String query,

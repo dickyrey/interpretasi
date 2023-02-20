@@ -11,6 +11,7 @@ import 'package:interpretasi/src/data/models/article_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class ArticleDataSource {
+  Future<bool> addViewCount(String id);
   Future<List<ArticleModel>> getArticle({
     required String page,
     required String query,
@@ -46,6 +47,29 @@ abstract class ArticleDataSource {
 class ArticleDataSourceImpl extends ArticleDataSource {
   ArticleDataSourceImpl(this.client);
   final http.Client client;
+
+  @override
+  Future<bool> addViewCount(String id) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(Const.token);
+    final header = {
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+    };
+
+    final url = Uri(
+      scheme: Const.scheme,
+      host: Const.host,
+      path: '/v1/article/$id/preview',
+    );
+
+    final response = await client.post(url, headers: header);
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      throw ServerException(ExceptionMessage.internetNotConnected);
+    }
+  }
 
   @override
   Future<List<ArticleModel>> getArticle({
