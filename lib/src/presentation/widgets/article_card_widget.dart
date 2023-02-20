@@ -265,7 +265,7 @@ class _HorizontalCard extends StatelessWidget {
                                 onTap: () async {
                                   Navigator.pop(context);
                                   await FlutterShare.share(
-                                    title: article.url,
+                                    title: article.title,
                                     linkUrl: article.url,
                                     chooserTitle: lang.share_with,
                                   );

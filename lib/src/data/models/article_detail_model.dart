@@ -20,8 +20,8 @@ class ArticleDetailModel extends Equatable {
   factory ArticleDetailModel.fromJson(Map<String, dynamic> json) {
     return ArticleDetailModel(
       categoryId: json['category_id'] as int,
-      comments: json['comments'] as int,
-      likes: json['likes'] as int,
+      comments: json['comments_count'] as int,
+      likes: json['likes_count'] as int,
       viewers: json['viewers'] as int,
       content: json['content'] as String,
       originalContent: json['original_content'] as String,
