@@ -48,7 +48,7 @@ class ArticleDetailPage extends StatefulWidget {
 
 class _ArticleDetailPageState extends State<ArticleDetailPage> {
   late Timer _timer;
-  bool _isActive = true;
+  final bool _isActive = true;
   @override
   void initState() {
     super.initState();
