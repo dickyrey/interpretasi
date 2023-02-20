@@ -21,6 +21,7 @@ mixin _$UserFormEvent {
     required TResult Function() init,
     required TResult Function(User user) initialize,
     required TResult Function(String name) name,
+    required TResult Function(String bio) bio,
     required TResult Function(ImageSource source) pickImage,
     required TResult Function() save,
   }) =>
@@ -30,6 +31,7 @@ mixin _$UserFormEvent {
     TResult? Function()? init,
     TResult? Function(User user)? initialize,
     TResult? Function(String name)? name,
+    TResult? Function(String bio)? bio,
     TResult? Function(ImageSource source)? pickImage,
     TResult? Function()? save,
   }) =>
@@ -39,6 +41,7 @@ mixin _$UserFormEvent {
     TResult Function()? init,
     TResult Function(User user)? initialize,
     TResult Function(String name)? name,
+    TResult Function(String bio)? bio,
     TResult Function(ImageSource source)? pickImage,
     TResult Function()? save,
     required TResult orElse(),
@@ -49,6 +52,7 @@ mixin _$UserFormEvent {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Name value) name,
+    required TResult Function(_Bio value) bio,
     required TResult Function(_PickImage value) pickImage,
     required TResult Function(_Save value) save,
   }) =>
@@ -58,6 +62,7 @@ mixin _$UserFormEvent {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Name value)? name,
+    TResult? Function(_Bio value)? bio,
     TResult? Function(_PickImage value)? pickImage,
     TResult? Function(_Save value)? save,
   }) =>
@@ -67,6 +72,7 @@ mixin _$UserFormEvent {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Name value)? name,
+    TResult Function(_Bio value)? bio,
     TResult Function(_PickImage value)? pickImage,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -131,6 +137,7 @@ class _$_Init implements _Init {
     required TResult Function() init,
     required TResult Function(User user) initialize,
     required TResult Function(String name) name,
+    required TResult Function(String bio) bio,
     required TResult Function(ImageSource source) pickImage,
     required TResult Function() save,
   }) {
@@ -143,6 +150,7 @@ class _$_Init implements _Init {
     TResult? Function()? init,
     TResult? Function(User user)? initialize,
     TResult? Function(String name)? name,
+    TResult? Function(String bio)? bio,
     TResult? Function(ImageSource source)? pickImage,
     TResult? Function()? save,
   }) {
@@ -155,6 +163,7 @@ class _$_Init implements _Init {
     TResult Function()? init,
     TResult Function(User user)? initialize,
     TResult Function(String name)? name,
+    TResult Function(String bio)? bio,
     TResult Function(ImageSource source)? pickImage,
     TResult Function()? save,
     required TResult orElse(),
@@ -171,6 +180,7 @@ class _$_Init implements _Init {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Name value) name,
+    required TResult Function(_Bio value) bio,
     required TResult Function(_PickImage value) pickImage,
     required TResult Function(_Save value) save,
   }) {
@@ -183,6 +193,7 @@ class _$_Init implements _Init {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Name value)? name,
+    TResult? Function(_Bio value)? bio,
     TResult? Function(_PickImage value)? pickImage,
     TResult? Function(_Save value)? save,
   }) {
@@ -195,6 +206,7 @@ class _$_Init implements _Init {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Name value)? name,
+    TResult Function(_Bio value)? bio,
     TResult Function(_PickImage value)? pickImage,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -277,6 +289,7 @@ class _$_Initialize implements _Initialize {
     required TResult Function() init,
     required TResult Function(User user) initialize,
     required TResult Function(String name) name,
+    required TResult Function(String bio) bio,
     required TResult Function(ImageSource source) pickImage,
     required TResult Function() save,
   }) {
@@ -289,6 +302,7 @@ class _$_Initialize implements _Initialize {
     TResult? Function()? init,
     TResult? Function(User user)? initialize,
     TResult? Function(String name)? name,
+    TResult? Function(String bio)? bio,
     TResult? Function(ImageSource source)? pickImage,
     TResult? Function()? save,
   }) {
@@ -301,6 +315,7 @@ class _$_Initialize implements _Initialize {
     TResult Function()? init,
     TResult Function(User user)? initialize,
     TResult Function(String name)? name,
+    TResult Function(String bio)? bio,
     TResult Function(ImageSource source)? pickImage,
     TResult Function()? save,
     required TResult orElse(),
@@ -317,6 +332,7 @@ class _$_Initialize implements _Initialize {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Name value) name,
+    required TResult Function(_Bio value) bio,
     required TResult Function(_PickImage value) pickImage,
     required TResult Function(_Save value) save,
   }) {
@@ -329,6 +345,7 @@ class _$_Initialize implements _Initialize {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Name value)? name,
+    TResult? Function(_Bio value)? bio,
     TResult? Function(_PickImage value)? pickImage,
     TResult? Function(_Save value)? save,
   }) {
@@ -341,6 +358,7 @@ class _$_Initialize implements _Initialize {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Name value)? name,
+    TResult Function(_Bio value)? bio,
     TResult Function(_PickImage value)? pickImage,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -426,6 +444,7 @@ class _$_Name implements _Name {
     required TResult Function() init,
     required TResult Function(User user) initialize,
     required TResult Function(String name) name,
+    required TResult Function(String bio) bio,
     required TResult Function(ImageSource source) pickImage,
     required TResult Function() save,
   }) {
@@ -438,6 +457,7 @@ class _$_Name implements _Name {
     TResult? Function()? init,
     TResult? Function(User user)? initialize,
     TResult? Function(String name)? name,
+    TResult? Function(String bio)? bio,
     TResult? Function(ImageSource source)? pickImage,
     TResult? Function()? save,
   }) {
@@ -450,6 +470,7 @@ class _$_Name implements _Name {
     TResult Function()? init,
     TResult Function(User user)? initialize,
     TResult Function(String name)? name,
+    TResult Function(String bio)? bio,
     TResult Function(ImageSource source)? pickImage,
     TResult Function()? save,
     required TResult orElse(),
@@ -466,6 +487,7 @@ class _$_Name implements _Name {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Name value) name,
+    required TResult Function(_Bio value) bio,
     required TResult Function(_PickImage value) pickImage,
     required TResult Function(_Save value) save,
   }) {
@@ -478,6 +500,7 @@ class _$_Name implements _Name {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Name value)? name,
+    TResult? Function(_Bio value)? bio,
     TResult? Function(_PickImage value)? pickImage,
     TResult? Function(_Save value)? save,
   }) {
@@ -490,6 +513,7 @@ class _$_Name implements _Name {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Name value)? name,
+    TResult Function(_Bio value)? bio,
     TResult Function(_PickImage value)? pickImage,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -507,6 +531,160 @@ abstract class _Name implements UserFormEvent {
   String get name;
   @JsonKey(ignore: true)
   _$$_NameCopyWith<_$_Name> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_BioCopyWith<$Res> {
+  factory _$$_BioCopyWith(_$_Bio value, $Res Function(_$_Bio) then) =
+      __$$_BioCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String bio});
+}
+
+/// @nodoc
+class __$$_BioCopyWithImpl<$Res>
+    extends _$UserFormEventCopyWithImpl<$Res, _$_Bio>
+    implements _$$_BioCopyWith<$Res> {
+  __$$_BioCopyWithImpl(_$_Bio _value, $Res Function(_$_Bio) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? bio = null,
+  }) {
+    return _then(_$_Bio(
+      null == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Bio implements _Bio {
+  const _$_Bio(this.bio);
+
+  @override
+  final String bio;
+
+  @override
+  String toString() {
+    return 'UserFormEvent.bio(bio: $bio)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Bio &&
+            (identical(other.bio, bio) || other.bio == bio));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, bio);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_BioCopyWith<_$_Bio> get copyWith =>
+      __$$_BioCopyWithImpl<_$_Bio>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(User user) initialize,
+    required TResult Function(String name) name,
+    required TResult Function(String bio) bio,
+    required TResult Function(ImageSource source) pickImage,
+    required TResult Function() save,
+  }) {
+    return bio(this.bio);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(User user)? initialize,
+    TResult? Function(String name)? name,
+    TResult? Function(String bio)? bio,
+    TResult? Function(ImageSource source)? pickImage,
+    TResult? Function()? save,
+  }) {
+    return bio?.call(this.bio);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(User user)? initialize,
+    TResult Function(String name)? name,
+    TResult Function(String bio)? bio,
+    TResult Function(ImageSource source)? pickImage,
+    TResult Function()? save,
+    required TResult orElse(),
+  }) {
+    if (bio != null) {
+      return bio(this.bio);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Initialize value) initialize,
+    required TResult Function(_Name value) name,
+    required TResult Function(_Bio value) bio,
+    required TResult Function(_PickImage value) pickImage,
+    required TResult Function(_Save value) save,
+  }) {
+    return bio(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Initialize value)? initialize,
+    TResult? Function(_Name value)? name,
+    TResult? Function(_Bio value)? bio,
+    TResult? Function(_PickImage value)? pickImage,
+    TResult? Function(_Save value)? save,
+  }) {
+    return bio?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Initialize value)? initialize,
+    TResult Function(_Name value)? name,
+    TResult Function(_Bio value)? bio,
+    TResult Function(_PickImage value)? pickImage,
+    TResult Function(_Save value)? save,
+    required TResult orElse(),
+  }) {
+    if (bio != null) {
+      return bio(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Bio implements UserFormEvent {
+  const factory _Bio(final String bio) = _$_Bio;
+
+  String get bio;
+  @JsonKey(ignore: true)
+  _$$_BioCopyWith<_$_Bio> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -576,6 +754,7 @@ class _$_PickImage implements _PickImage {
     required TResult Function() init,
     required TResult Function(User user) initialize,
     required TResult Function(String name) name,
+    required TResult Function(String bio) bio,
     required TResult Function(ImageSource source) pickImage,
     required TResult Function() save,
   }) {
@@ -588,6 +767,7 @@ class _$_PickImage implements _PickImage {
     TResult? Function()? init,
     TResult? Function(User user)? initialize,
     TResult? Function(String name)? name,
+    TResult? Function(String bio)? bio,
     TResult? Function(ImageSource source)? pickImage,
     TResult? Function()? save,
   }) {
@@ -600,6 +780,7 @@ class _$_PickImage implements _PickImage {
     TResult Function()? init,
     TResult Function(User user)? initialize,
     TResult Function(String name)? name,
+    TResult Function(String bio)? bio,
     TResult Function(ImageSource source)? pickImage,
     TResult Function()? save,
     required TResult orElse(),
@@ -616,6 +797,7 @@ class _$_PickImage implements _PickImage {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Name value) name,
+    required TResult Function(_Bio value) bio,
     required TResult Function(_PickImage value) pickImage,
     required TResult Function(_Save value) save,
   }) {
@@ -628,6 +810,7 @@ class _$_PickImage implements _PickImage {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Name value)? name,
+    TResult? Function(_Bio value)? bio,
     TResult? Function(_PickImage value)? pickImage,
     TResult? Function(_Save value)? save,
   }) {
@@ -640,6 +823,7 @@ class _$_PickImage implements _PickImage {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Name value)? name,
+    TResult Function(_Bio value)? bio,
     TResult Function(_PickImage value)? pickImage,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -699,6 +883,7 @@ class _$_Save implements _Save {
     required TResult Function() init,
     required TResult Function(User user) initialize,
     required TResult Function(String name) name,
+    required TResult Function(String bio) bio,
     required TResult Function(ImageSource source) pickImage,
     required TResult Function() save,
   }) {
@@ -711,6 +896,7 @@ class _$_Save implements _Save {
     TResult? Function()? init,
     TResult? Function(User user)? initialize,
     TResult? Function(String name)? name,
+    TResult? Function(String bio)? bio,
     TResult? Function(ImageSource source)? pickImage,
     TResult? Function()? save,
   }) {
@@ -723,6 +909,7 @@ class _$_Save implements _Save {
     TResult Function()? init,
     TResult Function(User user)? initialize,
     TResult Function(String name)? name,
+    TResult Function(String bio)? bio,
     TResult Function(ImageSource source)? pickImage,
     TResult Function()? save,
     required TResult orElse(),
@@ -739,6 +926,7 @@ class _$_Save implements _Save {
     required TResult Function(_Init value) init,
     required TResult Function(_Initialize value) initialize,
     required TResult Function(_Name value) name,
+    required TResult Function(_Bio value) bio,
     required TResult Function(_PickImage value) pickImage,
     required TResult Function(_Save value) save,
   }) {
@@ -751,6 +939,7 @@ class _$_Save implements _Save {
     TResult? Function(_Init value)? init,
     TResult? Function(_Initialize value)? initialize,
     TResult? Function(_Name value)? name,
+    TResult? Function(_Bio value)? bio,
     TResult? Function(_PickImage value)? pickImage,
     TResult? Function(_Save value)? save,
   }) {
@@ -763,6 +952,7 @@ class _$_Save implements _Save {
     TResult Function(_Init value)? init,
     TResult Function(_Initialize value)? initialize,
     TResult Function(_Name value)? name,
+    TResult Function(_Bio value)? bio,
     TResult Function(_PickImage value)? pickImage,
     TResult Function(_Save value)? save,
     required TResult orElse(),
@@ -784,6 +974,7 @@ mixin _$UserFormState {
   String get message => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String get bio => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   File? get imageFile => throw _privateConstructorUsedError;
   bool get isSubmit => throw _privateConstructorUsedError;
@@ -804,6 +995,7 @@ abstract class $UserFormStateCopyWith<$Res> {
       String message,
       String name,
       String email,
+      String bio,
       String imageUrl,
       File? imageFile,
       bool isSubmit});
@@ -826,6 +1018,7 @@ class _$UserFormStateCopyWithImpl<$Res, $Val extends UserFormState>
     Object? message = null,
     Object? name = null,
     Object? email = null,
+    Object? bio = null,
     Object? imageUrl = null,
     Object? imageFile = freezed,
     Object? isSubmit = null,
@@ -846,6 +1039,10 @@ class _$UserFormStateCopyWithImpl<$Res, $Val extends UserFormState>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      bio: null == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
@@ -876,6 +1073,7 @@ abstract class _$$_UserFormStateCopyWith<$Res>
       String message,
       String name,
       String email,
+      String bio,
       String imageUrl,
       File? imageFile,
       bool isSubmit});
@@ -896,6 +1094,7 @@ class __$$_UserFormStateCopyWithImpl<$Res>
     Object? message = null,
     Object? name = null,
     Object? email = null,
+    Object? bio = null,
     Object? imageUrl = null,
     Object? imageFile = freezed,
     Object? isSubmit = null,
@@ -916,6 +1115,10 @@ class __$$_UserFormStateCopyWithImpl<$Res>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      bio: null == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
               as String,
       imageUrl: null == imageUrl
           ? _value.imageUrl
@@ -941,6 +1144,7 @@ class _$_UserFormState implements _UserFormState {
       required this.message,
       required this.name,
       required this.email,
+      required this.bio,
       required this.imageUrl,
       required this.imageFile,
       required this.isSubmit});
@@ -954,6 +1158,8 @@ class _$_UserFormState implements _UserFormState {
   @override
   final String email;
   @override
+  final String bio;
+  @override
   final String imageUrl;
   @override
   final File? imageFile;
@@ -962,7 +1168,7 @@ class _$_UserFormState implements _UserFormState {
 
   @override
   String toString() {
-    return 'UserFormState(state: $state, message: $message, name: $name, email: $email, imageUrl: $imageUrl, imageFile: $imageFile, isSubmit: $isSubmit)';
+    return 'UserFormState(state: $state, message: $message, name: $name, email: $email, bio: $bio, imageUrl: $imageUrl, imageFile: $imageFile, isSubmit: $isSubmit)';
   }
 
   @override
@@ -974,6 +1180,7 @@ class _$_UserFormState implements _UserFormState {
             (identical(other.message, message) || other.message == message) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.bio, bio) || other.bio == bio) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.imageFile, imageFile) ||
@@ -983,8 +1190,8 @@ class _$_UserFormState implements _UserFormState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, state, message, name, email, imageUrl, imageFile, isSubmit);
+  int get hashCode => Object.hash(runtimeType, state, message, name, email, bio,
+      imageUrl, imageFile, isSubmit);
 
   @JsonKey(ignore: true)
   @override
@@ -999,6 +1206,7 @@ abstract class _UserFormState implements UserFormState {
       required final String message,
       required final String name,
       required final String email,
+      required final String bio,
       required final String imageUrl,
       required final File? imageFile,
       required final bool isSubmit}) = _$_UserFormState;
@@ -1011,6 +1219,8 @@ abstract class _UserFormState implements UserFormState {
   String get name;
   @override
   String get email;
+  @override
+  String get bio;
   @override
   String get imageUrl;
   @override

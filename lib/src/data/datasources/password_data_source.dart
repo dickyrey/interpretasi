@@ -109,7 +109,6 @@ class PasswordDataSourceImpl extends PasswordDataSource {
       body: body,
     );
 
-    print(response.body);
     if (response.statusCode == 200) {
       return true;
     } else if (response.statusCode == 404) {

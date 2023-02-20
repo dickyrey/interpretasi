@@ -10,6 +10,7 @@ abstract class UserRepository {
   Future<Either<Failure, User>> getProfile();
   Future<Either<Failure, bool>> changeProfile({
     required String name,
+    required String bio,
     required File? imageFile,
   });
 }

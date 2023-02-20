@@ -14,6 +14,7 @@ abstract class UserDataSource {
   Future<UserModel> getProfile();
   Future<bool> changeProfile({
     required String name,
+    required String bio,
     required File? imageFile,
   });
 }
@@ -48,6 +49,7 @@ class UserDataSourceImpl extends UserDataSource {
   @override
   Future<bool> changeProfile({
     required String name,
+    required String bio,
     required File? imageFile,
   }) async {
     final prefs = await SharedPreferences.getInstance();
@@ -68,6 +70,7 @@ class UserDataSourceImpl extends UserDataSource {
       url,
     );
     request.fields['name'] = name;
+    request.fields['bio'] = bio;
 
     if (imageFile != null) {
       final storeImage = await http.MultipartFile.fromPath(

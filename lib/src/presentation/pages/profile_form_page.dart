@@ -24,6 +24,7 @@ class ProfileFormPage extends StatefulWidget {
 class _ProfileFormPageState extends State<ProfileFormPage> {
   late TextEditingController _nameController = TextEditingController();
   late TextEditingController _emailController = TextEditingController();
+  late TextEditingController _bioController = TextEditingController();
 
   @override
   void initState() {
@@ -32,6 +33,7 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
     final state = context.read<UserFormBloc>().state;
     _nameController = TextEditingController(text: state.name);
     _emailController = TextEditingController(text: state.email);
+    _bioController = TextEditingController(text: state.bio);
   }
 
   @override
@@ -53,9 +55,7 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
             );
             ScaffoldMessenger.of(context).showSnackBar(snack);
           } else if (state.state == RequestState.loaded) {
-            context
-                .read<UserWatcherBloc>()
-                .add(const UserWatcherEvent.fetch());
+            context.read<UserWatcherBloc>().add(const UserWatcherEvent.fetch());
             showToast(msg: lang.profile_updated);
             Navigator.pop(context);
           }
@@ -160,6 +160,28 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                           FeatherIcons.check,
                           color: ColorLight.success,
                         ),
+                      ),
+                      const SizedBox(height: Const.space25),
+                      Text(
+                        lang.bio,
+                        style: theme.textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: Const.space8),
+                      TextFormFieldWidget(
+                        controller: _bioController,
+                        maxLength: 200,
+                        maxLines: null,
+                        hintText: 'Tulis sesuatu tentang anda...',
+                        prefixIcon: Icon(
+                          FeatherIcons.info,
+                          color: theme.primaryColor,
+                          size: 20,
+                        ),
+                        onChanged: (v) {
+                          context
+                              .read<UserFormBloc>()
+                              .add(UserFormEvent.bio(v));
+                        },
                       ),
                       const SizedBox(height: Const.space50),
                       ElevatedButtonWidget(

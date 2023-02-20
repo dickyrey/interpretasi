@@ -7,6 +7,7 @@ class UserModel extends Equatable {
     required this.name,
     required this.email,
     required this.photo,
+    required this.bio,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -15,6 +16,7 @@ class UserModel extends Equatable {
       name: json['name'] as String,
       email: json['email'] as String,
       photo: json['photo'] as String,
+      bio: json['bio'] as String,
     );
   }
 
@@ -22,6 +24,7 @@ class UserModel extends Equatable {
   final String name;
   final String email;
   final String photo;
+  final String bio;
 
   User toEntity() {
     return User(
@@ -29,6 +32,7 @@ class UserModel extends Equatable {
       name: name,
       email: email,
       photo: photo,
+      bio: bio,
     );
   }
 
@@ -38,5 +42,6 @@ class UserModel extends Equatable {
         name,
         email,
         photo,
+        bio,
       ];
 }

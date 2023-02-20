@@ -31,11 +31,13 @@ class UserRepositoryImpl extends UserRepository {
   @override
   Future<Either<Failure, bool>> changeProfile({
     required String name,
+    required String bio,
     required File? imageFile,
   }) async {
     try {
       final result = await dataSource.changeProfile(
         name: name,
+        bio: bio,
         imageFile: imageFile,
       );
       return Right(result);

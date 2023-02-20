@@ -115,7 +115,7 @@ class TextFormFieldWidget extends StatelessWidget {
       style: theme.textTheme.titleMedium,
       inputFormatters: inputFormatters ?? [],
       keyboardType: textInputType ?? keyboardType(textFieldType),
-      validator: validatorOption(textFieldType, errorText: errorText),
+      validator: validatorOption(textFieldType, errorText: errorText).call,
       textInputAction: textInputAction,
       decoration: InputDecoration(
         hintText: hintText,

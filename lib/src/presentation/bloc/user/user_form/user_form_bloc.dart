@@ -27,6 +27,7 @@ class UserFormBloc extends Bloc<UserFormEvent, UserFormState> {
               message: '',
               isSubmit: false,
               name: event.user.name,
+              bio: event.user.bio,
               email: event.user.email,
               imageUrl: event.user.photo,
               imageFile: null,
@@ -37,6 +38,14 @@ class UserFormBloc extends Bloc<UserFormEvent, UserFormState> {
           emit(
             state.copyWith(
               name: e.name,
+              isSubmit: false,
+            ),
+          );
+        },
+        bio: (e) {
+          emit(
+            state.copyWith(
+              bio: e.bio,
               isSubmit: false,
             ),
           );
@@ -63,6 +72,7 @@ class UserFormBloc extends Bloc<UserFormEvent, UserFormState> {
           );
           final result = await _update.execute(
             name: state.name,
+            bio: state.bio,
             imageFile: state.imageFile,
           );
           result.fold(
