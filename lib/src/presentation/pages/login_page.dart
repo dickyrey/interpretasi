@@ -304,7 +304,7 @@ class LoginPage extends StatelessWidget {
                                 },
                             ),
                             TextSpan(
-                              text: lang.applies_to_you,
+                              text: lang.applies,
                             ),
                           ],
                         ),

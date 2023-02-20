@@ -104,7 +104,7 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: Const.space15),
               _HeadingTile(
-                label: lang.explore,
+                label: lang.todays_news,
                 onTap: () {
                   Navigator.pushNamed(context, EXPLORE_ARTICLE);
                 },

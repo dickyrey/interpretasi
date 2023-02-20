@@ -56,7 +56,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
      const EmptyDataWidget(
       illustration: Assets.notification,
       title: 'Notifikasi Kosong',
-      subtitle: 'Kamu belum memiliki notifikasi apapun, artikel trending dan kategori kesukaanmu akan ditampilkan di sini.',
+      subtitle: 'Anda belum memiliki notifikasi apapun, artikel trending dan kategori favorit akan ditampilkan disini.',
     ),
     const ProfilePage(),
   ];
