@@ -44,4 +44,18 @@ class PasswordRepositoryImpl extends PasswordRepository {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> forgotPassword(String email) async {
+    try {
+      final result = await dataSource.forgotPassword(email);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    } on SocketException {
+      return const Left(
+        ConnectionFailure(ExceptionMessage.internetNotConnected),
+      );
+    }
+  }
 }

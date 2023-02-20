@@ -9,6 +9,7 @@ abstract class PasswordDataSource {
     required String oldPassword,
     required String newPassword,
   });
+  Future<bool> forgotPassword(String email);
 }
 
 class PasswordDataSourceImpl extends PasswordDataSource {
@@ -76,11 +77,43 @@ class PasswordDataSourceImpl extends PasswordDataSource {
       headers: header,
       body: body,
     );
-    
+
     if (response.statusCode == 200) {
       return true;
     } else if (response.statusCode == 403) {
       throw ServerException(ExceptionMessage.wrongOldPassword);
+    } else {
+      throw ServerException(ExceptionMessage.internetNotConnected);
+    }
+  }
+
+  @override
+  Future<bool> forgotPassword(String email) async {
+    final header = {
+      'Accept': 'application/json',
+    };
+
+    final body = {
+      'email': email,
+    };
+
+    final url = Uri(
+      scheme: Const.scheme,
+      host: Const.host,
+      path: '/v1/password-reset',
+    );
+
+    final response = await client.post(
+      url,
+      headers: header,
+      body: body,
+    );
+
+    print(response.body);
+    if (response.statusCode == 200) {
+      return true;
+    } else if (response.statusCode == 404) {
+      throw ServerException(ExceptionMessage.userNotFound);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }

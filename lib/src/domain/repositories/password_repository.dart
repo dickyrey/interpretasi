@@ -7,4 +7,5 @@ abstract class PasswordRepository {
     required String oldPassword,
     required String newPassword,
   });
+  Future<Either<Failure, bool>> forgotPassword(String email);
 }

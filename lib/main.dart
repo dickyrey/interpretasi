@@ -29,6 +29,7 @@ import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_art
 import 'package:interpretasi/src/presentation/bloc/localization/localization_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/password/add_password_form/add_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/password/change_password_form/change_password_form_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/password/forgot_password_form/forgot_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/report/report_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/theme/theme_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
@@ -89,6 +90,7 @@ class MyApp extends StatelessWidget {
         //* Password BLoC folder
         BlocProvider(create: (context) => di.locator<AddPasswordFormBloc>()),
         BlocProvider(create: (context) => di.locator<ChangePasswordFormBloc>()),
+        BlocProvider(create: (context) => di.locator<ForgotPasswordFormBloc>()),
         //* Report
         BlocProvider(create: (context) => di.locator<ReportActorBloc>()),
         //* Theme

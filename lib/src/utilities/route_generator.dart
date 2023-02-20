@@ -12,6 +12,8 @@ import 'package:interpretasi/src/presentation/pages/change_password_page.dart';
 import 'package:interpretasi/src/presentation/pages/email_verification_page.dart';
 import 'package:interpretasi/src/presentation/pages/error_page.dart';
 import 'package:interpretasi/src/presentation/pages/explore_article_page.dart';
+import 'package:interpretasi/src/presentation/pages/forgot_password_page.dart';
+import 'package:interpretasi/src/presentation/pages/forgot_password_success_page.dart';
 import 'package:interpretasi/src/presentation/pages/language_page.dart';
 import 'package:interpretasi/src/presentation/pages/login_page.dart';
 import 'package:interpretasi/src/presentation/pages/my_article_page.dart';
@@ -153,6 +155,14 @@ class RouteGenerator {
       case LANGUAGE:
         return MaterialPageRoute(
           builder: (_) => const LanguagePage(),
+        );
+      case FORGOT_PASSWORD:
+        return MaterialPageRoute(
+          builder: (_) => const ForgotPasswordPage(),
+        );
+      case FORGOT_PASSWORD_SUCCESS:
+        return MaterialPageRoute(
+          builder: (_) => const ForgotPasswordSuccessPage(),
         );
       default:
         return _errorRoute();

@@ -57,6 +57,7 @@ import 'package:interpretasi/src/domain/usecases/like_article/like_article.dart'
 import 'package:interpretasi/src/domain/usecases/on_boarding/get_boarding_list.dart';
 import 'package:interpretasi/src/domain/usecases/password/add_password.dart';
 import 'package:interpretasi/src/domain/usecases/password/change_password.dart';
+import 'package:interpretasi/src/domain/usecases/password/forgot_password.dart';
 import 'package:interpretasi/src/domain/usecases/user/check_user_verification.dart';
 import 'package:interpretasi/src/domain/usecases/user/get_user_profile.dart';
 import 'package:interpretasi/src/domain/usecases/user/update_user_profile.dart';
@@ -90,6 +91,7 @@ import 'package:interpretasi/src/presentation/bloc/like_article_watcher/like_art
 import 'package:interpretasi/src/presentation/bloc/localization/localization_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/password/add_password_form/add_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/password/change_password_form/change_password_form_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/password/forgot_password_form/forgot_password_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/report/report_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/theme/theme_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
@@ -365,9 +367,15 @@ void init() {
   locator.registerLazySingleton(
     () => addPasswordUseCase,
   );
+  
   final changePasswordUseCase = ChangePassword(locator());
   locator.registerLazySingleton(
     () => changePasswordUseCase,
+  );
+
+  final forgotPasswordUseCase = ForgotPassword(locator());
+  locator.registerLazySingleton(
+    () => forgotPasswordUseCase,
   );
 
   //* Filter by [User] folder
@@ -569,6 +577,11 @@ void init() {
   final changePasswordFormBloc = ChangePasswordFormBloc(locator());
   locator.registerLazySingleton(
     () => changePasswordFormBloc,
+  );
+
+  final forgotPasswordFormBloc = ForgotPasswordFormBloc(locator());
+  locator.registerLazySingleton(
+    () => forgotPasswordFormBloc,
   );
 
   //* Report BLoC folder

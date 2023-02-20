@@ -24,3 +24,5 @@ const String REPORT = '/report';
 const String AUTHOR = '/author';
 const String THEME_SETTING = '/theme_setting';
 const String LANGUAGE = '/language';
+const String FORGOT_PASSWORD = '/forgot_password';
+const String FORGOT_PASSWORD_SUCCESS = '/forgot_password_success';
