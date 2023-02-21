@@ -498,6 +498,7 @@ class _EditorWidget extends StatelessWidget {
           showListCheck: false,
           embedButtons: FlutterQuillEmbeds.buttons(
             showVideoButton: false,
+            showCameraButton: false,
             onImagePickCallback: (file) async {
               final completer = Completer<String>();
                     context

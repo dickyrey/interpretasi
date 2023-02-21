@@ -71,30 +71,21 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         //* Article BLoC folder
-        BlocProvider(
-            create: (context) => di.locator<ArticleByCategoryWatcherBloc>()),
-        BlocProvider(
-            create: (context) => di.locator<ArticleDetailWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<ArticleByCategoryWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<ArticleDetailWatcherBloc>()),
         BlocProvider(create: (context) => di.locator<ArticleFormBloc>()),
         BlocProvider(create: (context) => di.locator<DeleteArticleActorBloc>()),
-        BlocProvider(
-            create: (context) => di.locator<LatestArticleWatcherBloc>()),
-        BlocProvider(
-            create: (context) => di.locator<SearchArticleWatcherBloc>()),
-        BlocProvider(
-            create: (context) => di.locator<TrendingArticleWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<LatestArticleWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<SearchArticleWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<TrendingArticleWatcherBloc>()),
         BlocProvider(create: (context) => di.locator<UploadImageActorBloc>()),
         BlocProvider(create: (context) => di.locator<ViewCountActorBloc>()),
         //* Auth BLoC folder
         BlocProvider(create: (context) => di.locator<AuthWatcherBloc>()),
-        BlocProvider(
-            create: (context) => di.locator<SignInWithEmailFormBloc>()),
-        BlocProvider(
-            create: (context) => di.locator<SignInWithGoogleActorBloc>()),
-        BlocProvider(
-            create: (context) => di.locator<SignUpWithEmailFormBloc>()),
-        BlocProvider(
-            create: (context) => di.locator<VerificationStatusWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<SignInWithEmailFormBloc>()),
+        BlocProvider(create: (context) => di.locator<SignInWithGoogleActorBloc>()),
+        BlocProvider(create: (context) => di.locator<SignUpWithEmailFormBloc>()),
+        BlocProvider(create: (context) => di.locator<VerificationStatusWatcherBloc>()),
         //* OnBoarding BLoC folder
         BlocProvider(create: (context) => di.locator<AuthorWatcherBloc>()),
         //* OnBoarding BLoC folder
@@ -102,18 +93,15 @@ class MyApp extends StatelessWidget {
         //* Category BLoC folder
         BlocProvider(create: (context) => di.locator<CategoryWatcherBloc>()),
         //* Comment Article BLoC folder
-        BlocProvider(
-            create: (context) => di.locator<ArticleCommentWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<ArticleCommentWatcherBloc>()),
         BlocProvider(create: (context) => di.locator<DeleteCommentActorBloc>()),
         BlocProvider(create: (context) => di.locator<SendCommentActorBloc>()),
         //* Email Verification BLoC folder
-        BlocProvider(
-            create: (context) => di.locator<EmailVerificationFormBloc>()),
+        BlocProvider(create: (context) => di.locator<EmailVerificationFormBloc>()),
         //* Like/Unlike Article in BLoC folder
         BlocProvider(create: (context) => di.locator<LikeArticleWatcherBloc>()),
         //* Localization in BLoC folder
-        BlocProvider(
-            create: (context) => di.locator<LocalizationWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<LocalizationWatcherBloc>()),
         //* Password BLoC folder
         BlocProvider(create: (context) => di.locator<AddPasswordFormBloc>()),
         BlocProvider(create: (context) => di.locator<ChangePasswordFormBloc>()),
@@ -128,16 +116,11 @@ class MyApp extends StatelessWidget {
         //* User Article BLoC folder
         BlocProvider(create: (context) => di.locator<ModeratedActorBloc>()),
         BlocProvider(create: (context) => di.locator<ReadHistoryWatcherBloc>()),
-        BlocProvider(
-            create: (context) => di.locator<UserArticleBannedWatcherBloc>()),
-        BlocProvider(
-            create: (context) => di.locator<UserArticleDraftedWatcherBloc>()),
-        BlocProvider(
-            create: (context) => di.locator<UserArticleModeratedWatcherBloc>()),
-        BlocProvider(
-            create: (context) => di.locator<UserArticlePublishedWatcherBloc>()),
-        BlocProvider(
-            create: (context) => di.locator<UserArticleRejectedWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<UserArticleBannedWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<UserArticleDraftedWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<UserArticleModeratedWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<UserArticlePublishedWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<UserArticleRejectedWatcherBloc>()),
       ],
       child: BlocBuilder<ThemeWatcherBloc, ThemeWatcherState>(
         builder: (context, theme) {
