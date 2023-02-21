@@ -164,32 +164,27 @@ class _HorizontalCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            CachedNetworkImage(
               width: 250,
               height: 150,
-              decoration: BoxDecoration(image: DecorationImage(image: CachedNetworkImageProvider(article.image))),
+              imageUrl: article.image,
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              placeholder: (context, url) => const ShimmerWidget(
+                child: ShimmerContainerWidget(
+                  width: 250,
+                  height: 150,
+                ),
+              ),
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Const.radius),
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
             ),
-            // CachedNetworkImage(
-            //   width: 250,
-            //   height: 150,
-            //   imageUrl: article.image,
-            //   errorWidget: (context, url, error) => const Icon(Icons.error),
-            //   placeholder: (context, url) => const ShimmerWidget(
-            //     child: ShimmerContainerWidget(
-            //       width: 250,
-            //       height: 150,
-            //     ),
-            //   ),
-            //   imageBuilder: (context, imageProvider) => Container(
-            //     decoration: BoxDecoration(
-            //       borderRadius: BorderRadius.circular(Const.radius),
-            //       image: DecorationImage(
-            //         image: imageProvider,
-            //         fit: BoxFit.cover,
-            //       ),
-            //     ),
-            //   ),
-            // ),
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: Const.space12 / 2,
@@ -568,7 +563,10 @@ class _VerticalCard extends StatelessWidget {
                                       Navigator.pushNamed(
                                         context,
                                         REPORT,
-                                        arguments: article,
+                                        arguments: ReportArgument(
+                                          type: ReportType.article,
+                                          article: article,
+                                        ),
                                       );
                                     },
                                     isVisible: showReportButton,
