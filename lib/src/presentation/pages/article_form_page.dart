@@ -328,7 +328,7 @@ class _DetailsWidget extends StatelessWidget {
               ),
               const SizedBox(height: Const.space15),
               Text(
-                lang.your_awesome_title,
+                lang.title,
                 style: theme.textTheme.titleMedium,
                 textAlign: TextAlign.start,
               ),
@@ -345,7 +345,7 @@ class _DetailsWidget extends StatelessWidget {
               ),
               const SizedBox(height: Const.space15),
               Text(
-                lang.choose_a_category,
+                lang.category,
                 style: theme.textTheme.titleMedium,
                 textAlign: TextAlign.start,
               ),
@@ -389,7 +389,7 @@ class _DetailsWidget extends StatelessWidget {
               ),
               const SizedBox(height: Const.space15),
               Text(
-                lang.related_tags,
+                lang.tag,
                 style: theme.textTheme.titleMedium,
                 textAlign: TextAlign.start,
               ),

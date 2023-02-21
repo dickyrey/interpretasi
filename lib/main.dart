@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -45,9 +47,18 @@ import 'package:interpretasi/src/presentation/bloc/user_article/user_article_pub
 import 'package:interpretasi/src/presentation/bloc/user_article/user_article_rejected_watcher/user_article_rejected_watcher_bloc.dart';
 import 'package:interpretasi/src/utilities/route_generator.dart';
 
+class PostHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, host, port) => true;
+  }
+}
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   di.init();
+  HttpOverrides.global = PostHttpOverrides();
   runApp(const MyApp());
 }
 
@@ -60,21 +71,30 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         //* Article BLoC folder
-        BlocProvider(create: (context) => di.locator<ArticleByCategoryWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<ArticleDetailWatcherBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<ArticleByCategoryWatcherBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<ArticleDetailWatcherBloc>()),
         BlocProvider(create: (context) => di.locator<ArticleFormBloc>()),
         BlocProvider(create: (context) => di.locator<DeleteArticleActorBloc>()),
-        BlocProvider(create: (context) => di.locator<LatestArticleWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<SearchArticleWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<TrendingArticleWatcherBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<LatestArticleWatcherBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<SearchArticleWatcherBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<TrendingArticleWatcherBloc>()),
         BlocProvider(create: (context) => di.locator<UploadImageActorBloc>()),
         BlocProvider(create: (context) => di.locator<ViewCountActorBloc>()),
         //* Auth BLoC folder
         BlocProvider(create: (context) => di.locator<AuthWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<SignInWithEmailFormBloc>()),
-        BlocProvider(create: (context) => di.locator<SignInWithGoogleActorBloc>()),
-        BlocProvider(create: (context) => di.locator<SignUpWithEmailFormBloc>()),
-        BlocProvider(create: (context) => di.locator<VerificationStatusWatcherBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<SignInWithEmailFormBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<SignInWithGoogleActorBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<SignUpWithEmailFormBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<VerificationStatusWatcherBloc>()),
         //* OnBoarding BLoC folder
         BlocProvider(create: (context) => di.locator<AuthorWatcherBloc>()),
         //* OnBoarding BLoC folder
@@ -82,15 +102,18 @@ class MyApp extends StatelessWidget {
         //* Category BLoC folder
         BlocProvider(create: (context) => di.locator<CategoryWatcherBloc>()),
         //* Comment Article BLoC folder
-        BlocProvider(create: (context) => di.locator<ArticleCommentWatcherBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<ArticleCommentWatcherBloc>()),
         BlocProvider(create: (context) => di.locator<DeleteCommentActorBloc>()),
         BlocProvider(create: (context) => di.locator<SendCommentActorBloc>()),
         //* Email Verification BLoC folder
-        BlocProvider(create: (context) => di.locator<EmailVerificationFormBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<EmailVerificationFormBloc>()),
         //* Like/Unlike Article in BLoC folder
         BlocProvider(create: (context) => di.locator<LikeArticleWatcherBloc>()),
         //* Localization in BLoC folder
-        BlocProvider(create: (context) => di.locator<LocalizationWatcherBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<LocalizationWatcherBloc>()),
         //* Password BLoC folder
         BlocProvider(create: (context) => di.locator<AddPasswordFormBloc>()),
         BlocProvider(create: (context) => di.locator<ChangePasswordFormBloc>()),
@@ -105,11 +128,16 @@ class MyApp extends StatelessWidget {
         //* User Article BLoC folder
         BlocProvider(create: (context) => di.locator<ModeratedActorBloc>()),
         BlocProvider(create: (context) => di.locator<ReadHistoryWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<UserArticleBannedWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<UserArticleDraftedWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<UserArticleModeratedWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<UserArticlePublishedWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<UserArticleRejectedWatcherBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<UserArticleBannedWatcherBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<UserArticleDraftedWatcherBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<UserArticleModeratedWatcherBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<UserArticlePublishedWatcherBloc>()),
+        BlocProvider(
+            create: (context) => di.locator<UserArticleRejectedWatcherBloc>()),
       ],
       child: BlocBuilder<ThemeWatcherBloc, ThemeWatcherState>(
         builder: (context, theme) {
@@ -120,7 +148,7 @@ class MyApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 theme: themeLight(context),
                 darkTheme: themeDark(context),
-                themeMode: (theme.isDarkMode==true)
+                themeMode: (theme.isDarkMode == true)
                     ? ThemeMode.dark
                     : ThemeMode.light,
                 supportedLocales: L10n.all,
