@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:http/http.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/routes.dart';
@@ -29,14 +28,17 @@ class MyArticlePage extends StatefulWidget {
 class _MyArticlePageState extends State<MyArticlePage> {
   late ScrollController _drafScrollCtrl;
   late ScrollController _moderatedScrollCtrl;
+  late ScrollController _bannedScrollCtrl;
 
   @override
   void initState() {
     super.initState();
     _drafScrollCtrl = ScrollController();
     _moderatedScrollCtrl = ScrollController();
+    _bannedScrollCtrl = ScrollController();
     final drafBloc = context.read<UserArticleDraftedWatcherBloc>().state;
     final moderatedBloc = context.read<UserArticleModeratedWatcherBloc>().state;
+    final bannedBloc = context.read<UserArticleBannedWatcherBloc>().state;
     _drafScrollCtrl.addListener(() {
       if (_drafScrollCtrl.position.pixels >=
           _drafScrollCtrl.position.maxScrollExtent) {
@@ -54,6 +56,16 @@ class _MyArticlePageState extends State<MyArticlePage> {
           context
               .read<UserArticleModeratedWatcherBloc>()
               .add(const UserArticleModeratedWatcherEvent.fetch());
+        }
+      }
+    });
+    _bannedScrollCtrl.addListener(() {
+      if (_bannedScrollCtrl.position.pixels >=
+          _bannedScrollCtrl.position.maxScrollExtent) {
+        if (bannedBloc.page != null) {
+          context
+              .read<UserArticleBannedWatcherBloc>()
+              .add(const UserArticleBannedWatcherEvent.fetch());
         }
       }
     });
@@ -449,60 +461,8 @@ class _MyArticlePageState extends State<MyArticlePage> {
               BlocBuilder<UserArticleBannedWatcherBloc,
                   UserArticleBannedWatcherState>(
                 builder: (context, state) {
-                  return state.maybeMap(
-                    orElse: () {
-                      // TODO(dickyrey): Error View
-                      return const SizedBox();
-                    },
-                    loading: (_) {
-                      return ListView.builder(
-                        itemCount: 3,
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: Const.margin,
-                        ),
-                        itemBuilder: (context, index) {
-                          return const ArticleCardLoadingWidget();
-                        },
-                      );
-                    },
-                    loaded: (state) {
-                      if (state.articleList.isNotEmpty) {
-                        return RefreshIndicator(
-                          onRefresh: () async {
-                            context.read<UserArticleBannedWatcherBloc>().add(
-                                  const UserArticleBannedWatcherEvent.fetch(),
-                                );
-                          },
-                          child: ListView.separated(
-                            itemCount: state.articleList.length,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: Const.margin,
-                            ),
-                            physics: const ScrollPhysics(),
-                            shrinkWrap: true,
-                            separatorBuilder: (context, index) {
-                              return const SizedBox(height: Const.space15);
-                            },
-                            itemBuilder: (context, index) {
-                              final article = state.articleList[index];
-                              return ArticleCardWidget(
-                                index: index,
-                                article: article,
-                                showDeleteButton: true,
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    ARTICLE_PREVIEW,
-                                    arguments: article,
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        );
-                      }
+                  switch (state.state) {
+                    case RequestState.empty:
                       return EmptyDataWidget(
                         illustration: Assets.write,
                         title: lang.my_articles_empty,
@@ -516,8 +476,136 @@ class _MyArticlePageState extends State<MyArticlePage> {
                           );
                         },
                       );
-                    },
-                  );
+                    case RequestState.loading:
+                      return ListView.builder(
+                        itemCount: 3,
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: Const.margin,
+                        ),
+                        itemBuilder: (context, index) {
+                          return const ArticleCardLoadingWidget();
+                        },
+                      );
+                    case RequestState.error:
+                      // TODO(dickyrey): Error View
+                      return const SizedBox();
+                    case RequestState.loaded:
+                      return RefreshIndicator(
+                        onRefresh: () async {
+                          context.read<UserArticleBannedWatcherBloc>().add(
+                                const UserArticleBannedWatcherEvent.fetch(),
+                              );
+                        },
+                        child: ListView.separated(
+                          controller: _bannedScrollCtrl,
+                          itemCount: state.articleList.length +
+                              (state.page != null ? 1 : 0),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: Const.margin,
+                          ),
+                          physics: const ScrollPhysics(),
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(height: Const.space15);
+                          },
+                          itemBuilder: (context, index) {
+                            if (index == state.articleList.length &&
+                                state.page != null) {
+                              return const Center(
+                                child: Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            }
+                            final article = state.articleList[index];
+                            return ArticleCardWidget(
+                              index: index,
+                              article: article,
+                              showDeleteButton: true,
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  ARTICLE_PREVIEW,
+                                  arguments: article,
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      );
+                  }
+                  // return state.maybeMap(
+                  //   orElse: () {
+                  //     // TODO(dickyrey): Error View
+                  //     return const SizedBox();
+                  //   },
+                  //   loading: (_) {
+                  //     return ListView.builder(
+                  //       itemCount: 3,
+                  //       physics: const ScrollPhysics(),
+                  //       shrinkWrap: true,
+                  //       padding: const EdgeInsets.symmetric(
+                  //         vertical: Const.margin,
+                  //       ),
+                  //       itemBuilder: (context, index) {
+                  //         return const ArticleCardLoadingWidget();
+                  //       },
+                  //     );
+                  //   },
+                  //   loaded: (state) {
+                  //     if (state.articleList.isNotEmpty) {
+                  //       return RefreshIndicator(
+                  //         onRefresh: () async {
+                  //           context.read<UserArticleBannedWatcherBloc>().add(
+                  //                 const UserArticleBannedWatcherEvent.fetch(),
+                  //               );
+                  //         },
+                  //         child: ListView.separated(
+                  //           itemCount: state.articleList.length,
+                  //           padding: const EdgeInsets.symmetric(
+                  //             vertical: Const.margin,
+                  //           ),
+                  //           physics: const ScrollPhysics(),
+                  //           shrinkWrap: true,
+                  //           separatorBuilder: (context, index) {
+                  //             return const SizedBox(height: Const.space15);
+                  //           },
+                  //           itemBuilder: (context, index) {
+                  //             final article = state.articleList[index];
+                  //             return ArticleCardWidget(
+                  //               index: index,
+                  //               article: article,
+                  //               showDeleteButton: true,
+                  //               onTap: () {
+                  //                 Navigator.pushNamed(
+                  //                   context,
+                  //                   ARTICLE_PREVIEW,
+                  //                   arguments: article,
+                  //                 );
+                  //               },
+                  //             );
+                  //           },
+                  //         ),
+                  //       );
+                  //     }
+                  //     return EmptyDataWidget(
+                  //       illustration: Assets.write,
+                  //       title: lang.my_articles_empty,
+                  //       subtitle: lang
+                  //           .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
+                  //       onTap: () {
+                  //         Navigator.pushNamed(
+                  //           context,
+                  //           ARTICLE_SEARCH,
+                  //           arguments: false,
+                  //         );
+                  //       },
+                  //     );
+                  //   },
+                  // );
                 },
               ),
             ],
@@ -597,7 +685,7 @@ class _MyArticlePageState extends State<MyArticlePage> {
             }
           } else if (index == 4) {
             final state = context.read<UserArticleBannedWatcherBloc>().state;
-            if (state != const UserArticleBannedWatcherState.loaded([])) {
+            if (state.state != RequestState.loaded) {
               context
                   .read<UserArticleBannedWatcherBloc>()
                   .add(const UserArticleBannedWatcherEvent.fetch());
