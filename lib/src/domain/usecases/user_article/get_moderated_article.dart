@@ -8,7 +8,7 @@ class GetModeratedArticle {
 
   final UserArticleRepository repository;
 
-  Future<Either<Failure, List<Article>>> execute() {
-    return repository.getMyModeratedArticle();
+  Future<Either<Failure, List<Article>>> execute(int page) {
+    return repository.getMyModeratedArticle(page);
   }
 }

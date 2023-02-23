@@ -15,7 +15,7 @@ class UserArticleBannedWatcherBloc
       await event.map(
         fetch: (_) async {
           emit(const UserArticleBannedWatcherState.loading());
-          final result = await _article.execute();
+          final result = await _article.execute(1);
           result.fold(
             (f) => emit(const UserArticleBannedWatcherState.error()),
             (data) => emit(UserArticleBannedWatcherState.loaded(data)),

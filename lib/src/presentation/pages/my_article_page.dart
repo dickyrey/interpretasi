@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:http/http.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/routes.dart';
@@ -26,14 +27,47 @@ class MyArticlePage extends StatefulWidget {
 }
 
 class _MyArticlePageState extends State<MyArticlePage> {
+  late ScrollController _drafScrollCtrl;
+  late ScrollController _moderatedScrollCtrl;
+
   @override
   void initState() {
     super.initState();
+    _drafScrollCtrl = ScrollController();
+    _moderatedScrollCtrl = ScrollController();
+    final drafBloc = context.read<UserArticleDraftedWatcherBloc>().state;
+    final moderatedBloc = context.read<UserArticleModeratedWatcherBloc>().state;
+    _drafScrollCtrl.addListener(() {
+      if (_drafScrollCtrl.position.pixels >=
+          _drafScrollCtrl.position.maxScrollExtent) {
+        if (drafBloc.page != null) {
+          context
+              .read<UserArticleDraftedWatcherBloc>()
+              .add(const UserArticleDraftedWatcherEvent.fetch());
+        }
+      }
+    });
+    _moderatedScrollCtrl.addListener(() {
+      if (_moderatedScrollCtrl.position.pixels >=
+          _moderatedScrollCtrl.position.maxScrollExtent) {
+        if (moderatedBloc.page != null) {
+          context
+              .read<UserArticleModeratedWatcherBloc>()
+              .add(const UserArticleModeratedWatcherEvent.fetch());
+        }
+      }
+    });
     Future.microtask(
       () => context
           .read<UserArticleDraftedWatcherBloc>()
           .add(const UserArticleDraftedWatcherEvent.fetch()),
     );
+  }
+
+  @override
+  void dispose() {
+    _drafScrollCtrl.dispose();
+    super.dispose();
   }
 
   @override
@@ -98,63 +132,8 @@ class _MyArticlePageState extends State<MyArticlePage> {
               BlocBuilder<UserArticleDraftedWatcherBloc,
                   UserArticleDraftedWatcherState>(
                 builder: (context, state) {
-                  return state.maybeMap(
-                    orElse: () {
-                      // TODO(dickyrey): Error View
-                      return const SizedBox();
-                    },
-                    loading: (_) {
-                      return ListView.builder(
-                        itemCount: 3,
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: Const.margin,
-                        ),
-                        itemBuilder: (context, index) {
-                          return const ArticleCardLoadingWidget();
-                        },
-                      );
-                    },
-                    loaded: (state) {
-                      if (state.articleList.isNotEmpty) {
-                        return RefreshIndicator(
-                          onRefresh: () async {
-                            context.read<UserArticleDraftedWatcherBloc>().add(
-                                  const UserArticleDraftedWatcherEvent.fetch(),
-                                );
-                          },
-                          child: ListView.separated(
-                            itemCount: state.articleList.length,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: Const.margin,
-                            ),
-                            physics: const ScrollPhysics(),
-                            shrinkWrap: true,
-                            separatorBuilder: (context, index) {
-                              return const SizedBox(height: Const.space15);
-                            },
-                            itemBuilder: (context, index) {
-                              final article = state.articleList[index];
-                              return ArticleCardWidget(
-                                index: index,
-                                article: article,
-                                showPreviewButton: true,
-                                showEditButton: true,
-                                showPublishButton: true,
-                                showDeleteButton: true,
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    ARTICLE_PREVIEW,
-                                    arguments: article,
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        );
-                      }
+                  switch (state.state) {
+                    case RequestState.empty:
                       return EmptyDataWidget(
                         illustration: Assets.write,
                         title: lang.my_articles_empty,
@@ -168,69 +147,77 @@ class _MyArticlePageState extends State<MyArticlePage> {
                           );
                         },
                       );
-                    },
-                  );
+                    case RequestState.loading:
+                      return ListView.builder(
+                        itemCount: 3,
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: Const.margin,
+                        ),
+                        itemBuilder: (context, index) {
+                          return const ArticleCardLoadingWidget();
+                        },
+                      );
+                    case RequestState.error:
+                      // TODO(dickyrey): Error View
+                      return const SizedBox();
+                    case RequestState.loaded:
+                      return RefreshIndicator(
+                        onRefresh: () async {
+                          context.read<UserArticleDraftedWatcherBloc>().add(
+                                const UserArticleDraftedWatcherEvent.fetch(),
+                              );
+                        },
+                        child: ListView.separated(
+                          controller: _drafScrollCtrl,
+                          itemCount: state.articleList.length +
+                              (state.page != null ? 1 : 0),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: Const.margin,
+                          ),
+                          physics: const ScrollPhysics(),
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(height: Const.space15);
+                          },
+                          itemBuilder: (context, index) {
+                            if (index == state.articleList.length &&
+                                state.page != null) {
+                              return const Center(
+                                child: Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            }
+                            final article = state.articleList[index];
+                            return ArticleCardWidget(
+                              index: index,
+                              article: article,
+                              showPreviewButton: true,
+                              showEditButton: true,
+                              showPublishButton: true,
+                              showDeleteButton: true,
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  ARTICLE_PREVIEW,
+                                  arguments: article,
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      );
+                  }
                 },
               ),
               BlocBuilder<UserArticleModeratedWatcherBloc,
                   UserArticleModeratedWatcherState>(
                 builder: (context, state) {
-                  return state.maybeMap(
-                    orElse: () {
-                      // TODO(dickyrey): Error View
-                      return const SizedBox();
-                    },
-                    loading: (_) {
-                      return ListView.builder(
-                        itemCount: 3,
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: Const.margin,
-                        ),
-                        itemBuilder: (context, index) {
-                          return const ArticleCardLoadingWidget();
-                        },
-                      );
-                    },
-                    loaded: (state) {
-                      if (state.articleList.isNotEmpty) {
-                        return RefreshIndicator(
-                          onRefresh: () async {
-                            context.read<UserArticleModeratedWatcherBloc>().add(
-                                  const UserArticleModeratedWatcherEvent
-                                      .fetch(),
-                                );
-                          },
-                          child: ListView.separated(
-                            itemCount: state.articleList.length,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: Const.margin,
-                            ),
-                            physics: const ScrollPhysics(),
-                            shrinkWrap: true,
-                            separatorBuilder: (context, index) {
-                              return const SizedBox(height: Const.space15);
-                            },
-                            itemBuilder: (context, index) {
-                              final article = state.articleList[index];
-                              return ArticleCardWidget(
-                                index: index,
-                                article: article,
-                                showPreviewButton: true,
-                                showDeleteButton: true,
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    ARTICLE_PREVIEW,
-                                    arguments: article,
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        );
-                      }
+                  switch (state.state) {
+                    case RequestState.empty:
                       return EmptyDataWidget(
                         illustration: Assets.write,
                         title: lang.my_articles_empty,
@@ -244,8 +231,68 @@ class _MyArticlePageState extends State<MyArticlePage> {
                           );
                         },
                       );
-                    },
-                  );
+                    case RequestState.loading:
+                      return ListView.builder(
+                        itemCount: 3,
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: Const.margin,
+                        ),
+                        itemBuilder: (context, index) {
+                          return const ArticleCardLoadingWidget();
+                        },
+                      );
+                    case RequestState.error:
+                      // TODO(dickyrey): Error View
+                      return const SizedBox();
+                    case RequestState.loaded:
+                      return RefreshIndicator(
+                        onRefresh: () async {
+                          context.read<UserArticleModeratedWatcherBloc>().add(
+                                const UserArticleModeratedWatcherEvent.fetch(),
+                              );
+                        },
+                        child: ListView.separated(
+                          controller: _moderatedScrollCtrl,
+                          itemCount: state.articleList.length +
+                              (state.page != null ? 1 : 0),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: Const.margin,
+                          ),
+                          physics: const ScrollPhysics(),
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(height: Const.space15);
+                          },
+                          itemBuilder: (context, index) {
+                            if (index == state.articleList.length &&
+                                state.page != null) {
+                              return const Center(
+                                child: Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            }
+                            final article = state.articleList[index];
+                            return ArticleCardWidget(
+                              index: index,
+                              article: article,
+                              showPreviewButton: true,
+                              showDeleteButton: true,
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  ARTICLE_PREVIEW,
+                                  arguments: article,
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      );
+                  }
                 },
               ),
               BlocBuilder<UserArticleRejectedWatcherBloc,
@@ -522,14 +569,14 @@ class _MyArticlePageState extends State<MyArticlePage> {
         onTap: (index) async {
           if (index == 0) {
             final state = context.read<UserArticleDraftedWatcherBloc>().state;
-            if (state != const UserArticleDraftedWatcherState.loaded([])) {
+            if (state.state == RequestState.loaded) {
               context
                   .read<UserArticleDraftedWatcherBloc>()
                   .add(const UserArticleDraftedWatcherEvent.fetch());
             }
           } else if (index == 1) {
             final state = context.read<UserArticleModeratedWatcherBloc>().state;
-            if (state == const UserArticleModeratedWatcherState.initial()) {
+            if (state.state != RequestState.loaded) {
               context
                   .read<UserArticleModeratedWatcherBloc>()
                   .add(const UserArticleModeratedWatcherEvent.fetch());

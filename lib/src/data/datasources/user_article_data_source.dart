@@ -8,11 +8,11 @@ import 'package:interpretasi/src/data/models/article_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class UserArticleDataSource {
-  Future<List<ArticleModel>> getMyBannedArticle();
-  Future<List<ArticleModel>> getMyDraftedArticle();
-  Future<List<ArticleModel>> getMyModeratedArticle();
-  Future<List<ArticleModel>> getMyPublishedArticle();
-  Future<List<ArticleModel>> getMyRejectedArticle();
+  Future<List<ArticleModel>> getMyBannedArticle(int page);
+  Future<List<ArticleModel>> getMyDraftedArticle(int page);
+  Future<List<ArticleModel>> getMyModeratedArticle(int page);
+  Future<List<ArticleModel>> getMyPublishedArticle(int page);
+  Future<List<ArticleModel>> getMyRejectedArticle(int page);
   Future<List<ArticleModel>> readHistory();
   Future<bool> changeToModerated(String id);
 }
@@ -22,7 +22,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
   final http.Client client;
 
   @override
-  Future<List<ArticleModel>> getMyBannedArticle() async {
+  Future<List<ArticleModel>> getMyBannedArticle(int page) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
     final header = {
@@ -34,6 +34,9 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       scheme: Const.scheme,
       host: Const.host,
       path: '/v1/user/articles/banned',
+      queryParameters: {
+        'page': page.toString(),
+      },
     );
 
     final response = await client.get(url, headers: header);
@@ -47,7 +50,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
   }
 
   @override
-  Future<List<ArticleModel>> getMyDraftedArticle() async {
+  Future<List<ArticleModel>> getMyDraftedArticle(int page) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
     final header = {
@@ -59,6 +62,9 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       scheme: Const.scheme,
       host: Const.host,
       path: '/v1/user/articles/drafted',
+      queryParameters: {
+        'page': page.toString(),
+      },
     );
 
     final response = await client.get(url, headers: header);
@@ -72,7 +78,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
   }
 
   @override
-  Future<List<ArticleModel>> getMyModeratedArticle() async {
+  Future<List<ArticleModel>> getMyModeratedArticle(int page) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
     final header = {
@@ -84,10 +90,13 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       scheme: Const.scheme,
       host: Const.host,
       path: '/v1/user/articles/moderated',
+      queryParameters: {
+        'page': page.toString(),
+      },
     );
 
     final response = await client.get(url, headers: header);
-    
+
     if (response.statusCode == 200) {
       return ArticleResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
@@ -98,7 +107,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
   }
 
   @override
-  Future<List<ArticleModel>> getMyPublishedArticle() async {
+  Future<List<ArticleModel>> getMyPublishedArticle(int page) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
     final header = {
@@ -110,6 +119,9 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       scheme: Const.scheme,
       host: Const.host,
       path: '/v1/user/articles/published',
+      queryParameters: {
+        'page': page.toString(),
+      },
     );
 
     final response = await client.get(url, headers: header);
@@ -123,7 +135,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
   }
 
   @override
-  Future<List<ArticleModel>> getMyRejectedArticle() async {
+  Future<List<ArticleModel>> getMyRejectedArticle(int page) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
     final header = {
@@ -135,6 +147,9 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       scheme: Const.scheme,
       host: Const.host,
       path: '/v1/user/articles/rejected',
+      queryParameters: {
+        'page': page.toString(),
+      },
     );
 
     final response = await client.get(url, headers: header);

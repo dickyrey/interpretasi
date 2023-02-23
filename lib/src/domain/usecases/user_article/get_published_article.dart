@@ -8,7 +8,7 @@ class GetPublishedArticle {
 
   final UserArticleRepository repository;
 
-  Future<Either<Failure, List<Article>>> execute() {
-    return repository.getMyPublishedArticle();
+  Future<Either<Failure, List<Article>>> execute(int page) {
+    return repository.getMyPublishedArticle(page);
   }
 }

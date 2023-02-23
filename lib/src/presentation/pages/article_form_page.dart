@@ -108,6 +108,7 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
           );
           ScaffoldMessenger.of(context).showSnackBar(snack);
         } else if (state.state == RequestState.loaded) {
+          // TODO(dickrey): https://github.com/dickyrey/interpretasi/issues/26 ADD VALIDATION FROM WHERE TO EDIT 
           context
               .read<UserArticleDraftedWatcherBloc>()
               .add(const UserArticleDraftedWatcherEvent.fetch());
@@ -503,16 +504,15 @@ class _EditorWidget extends StatelessWidget {
             showCameraButton: false,
             onImagePickCallback: (file) async {
               final completer = Completer<String>();
-                    context
-                        .read<UploadImageActorBloc>()
-                        .add(const UploadImageActorEvent.init());
+              context
+                  .read<UploadImageActorBloc>()
+                  .add(const UploadImageActorEvent.init());
               context
                   .read<UploadImageActorBloc>()
                   .add(UploadImageActorEvent.upload(file));
               context.read<UploadImageActorBloc>().stream.listen((state) {
                 state.maybeMap(
-                  orElse: () {
-                  },
+                  orElse: () {},
                   error: (state) {
                     completer.completeError(state.message);
                   },

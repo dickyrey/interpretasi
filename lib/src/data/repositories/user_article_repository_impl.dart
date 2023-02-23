@@ -13,9 +13,9 @@ class UserArticleRepositoryImpl extends UserArticleRepository {
 
   final UserArticleDataSource dataSource;
   @override
-  Future<Either<Failure, List<Article>>> getMyBannedArticle() async {
+  Future<Either<Failure, List<Article>>> getMyBannedArticle(int page) async {
     try {
-      final result = await dataSource.getMyBannedArticle();
+      final result = await dataSource.getMyBannedArticle(page);
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
@@ -27,9 +27,9 @@ class UserArticleRepositoryImpl extends UserArticleRepository {
   }
 
   @override
-  Future<Either<Failure, List<Article>>> getMyDraftedArticle() async {
+  Future<Either<Failure, List<Article>>> getMyDraftedArticle(int page) async {
     try {
-      final result = await dataSource.getMyDraftedArticle();
+      final result = await dataSource.getMyDraftedArticle(page);
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
@@ -41,9 +41,9 @@ class UserArticleRepositoryImpl extends UserArticleRepository {
   }
 
   @override
-  Future<Either<Failure, List<Article>>> getMyModeratedArticle() async {
+  Future<Either<Failure, List<Article>>> getMyModeratedArticle(int page) async {
     try {
-      final result = await dataSource.getMyModeratedArticle();
+      final result = await dataSource.getMyModeratedArticle(page);
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
@@ -55,9 +55,9 @@ class UserArticleRepositoryImpl extends UserArticleRepository {
   }
 
   @override
-  Future<Either<Failure, List<Article>>> getMyPublishedArticle() async {
+  Future<Either<Failure, List<Article>>> getMyPublishedArticle(int page) async {
     try {
-      final result = await dataSource.getMyPublishedArticle();
+      final result = await dataSource.getMyPublishedArticle(page);
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
@@ -69,9 +69,9 @@ class UserArticleRepositoryImpl extends UserArticleRepository {
   }
 
   @override
-  Future<Either<Failure, List<Article>>> getMyRejectedArticle() async {
+  Future<Either<Failure, List<Article>>> getMyRejectedArticle(int page) async {
     try {
-      final result = await dataSource.getMyRejectedArticle();
+      final result = await dataSource.getMyRejectedArticle(page);
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));

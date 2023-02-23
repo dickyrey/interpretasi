@@ -3,4 +3,5 @@ part of 'user_article_drafted_watcher_bloc.dart';
 @freezed
 class UserArticleDraftedWatcherEvent with _$UserArticleDraftedWatcherEvent {
   const factory UserArticleDraftedWatcherEvent.fetch() = _Fetch;
+  // const factory UserArticleDraftedWatcherEvent.loadMore() = _LoadMore;
 }

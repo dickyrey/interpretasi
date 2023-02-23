@@ -8,7 +8,7 @@ class GetRejectedArticle {
 
   final UserArticleRepository repository;
 
-  Future<Either<Failure, List<Article>>> execute() {
-    return repository.getMyRejectedArticle();
+  Future<Either<Failure, List<Article>>> execute(int page) {
+    return repository.getMyRejectedArticle(page);
   }
 }

@@ -8,7 +8,7 @@ class GetDraftedArticle {
 
   final UserArticleRepository repository;
 
-  Future<Either<Failure, List<Article>>> execute() {
-    return repository.getMyDraftedArticle();
+  Future<Either<Failure, List<Article>>> execute(int page) {
+    return repository.getMyDraftedArticle(page);
   }
 }

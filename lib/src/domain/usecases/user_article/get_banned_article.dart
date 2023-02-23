@@ -8,7 +8,7 @@ class GetBannedArticle {
 
   final UserArticleRepository repository;
 
-  Future<Either<Failure, List<Article>>> execute() {
-    return repository.getMyBannedArticle();
+  Future<Either<Failure, List<Article>>> execute(int page) {
+    return repository.getMyBannedArticle(page);
   }
 }
