@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
-import 'package:interpretasi/src/domain/usecases/user_article/get_drafted_article.dart';
 import 'package:interpretasi/src/domain/usecases/user_article/get_moderated_article.dart';
 
 part 'user_article_moderated_watcher_event.dart';
@@ -24,7 +23,6 @@ class UserArticleModeratedWatcherBloc extends Bloc<
             }
             if (state.page != null) {
               final result = await _article.execute(state.page!);
-              print('REQ PAGE ${state.page}');
               result.fold(
                 (f) => emit(
                   state.copyWith(

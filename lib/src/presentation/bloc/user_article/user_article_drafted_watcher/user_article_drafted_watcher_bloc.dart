@@ -23,7 +23,6 @@ class UserArticleDraftedWatcherBloc extends Bloc<UserArticleDraftedWatcherEvent,
             }
             if (state.page != null) {
               final result = await _article.execute(state.page!);
-              print('REQ PAGE DRAFT${state.page}');
               result.fold(
                 (f) => emit(
                   state.copyWith(
