@@ -83,8 +83,8 @@ class TextFormFieldWidget extends StatelessWidget {
               errorText: errorText ?? lang.cannot_be_empty,
             ),
             MinLengthValidator(
-              2,
-              errorText: lang.text_too_short,
+              minLength,
+              errorText: errorText ?? lang.text_too_short,
             )
           ]);
         case TextFieldType.phone:

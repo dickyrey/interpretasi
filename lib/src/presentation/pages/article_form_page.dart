@@ -336,6 +336,8 @@ class _DetailsWidget extends StatelessWidget {
               TextFormFieldWidget(
                 controller: titleCtrl,
                 maxLines: null,
+                minLength: 65,
+                errorText: lang.the_title_must_be_at_least_65_characters_long,
                 hintText: lang.ten_ways_to_explore_this_world,
                 onChanged: (v) {
                   context
