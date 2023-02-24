@@ -16,7 +16,7 @@ class LatestPage extends StatelessWidget {
       onRefresh: () async {
         context
             .read<LatestArticleWatcherBloc>()
-            .add(const LatestArticleWatcherEvent.fetch());
+            .add(const LatestArticleWatcherEvent.fetch(isRefresh: true));
       },
       child: Scaffold(
         appBar: _appBar(context),

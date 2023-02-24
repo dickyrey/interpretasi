@@ -13,8 +13,37 @@ import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watche
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/shimmer_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late ScrollController _latestScrollCtrl;
+
+  bool _hasReachedMax = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    /// [ScrollController] init
+    _latestScrollCtrl = ScrollController();
+
+    ///  Pagination [Listener]
+    _latestScrollCtrl.addListener(() {
+      if (_latestScrollCtrl.position.pixels >=
+          _latestScrollCtrl.position.maxScrollExtent) {
+        if (_hasReachedMax == false) {
+          context
+              .read<LatestArticleWatcherBloc>()
+              .add(const LatestArticleWatcherEvent.fetch(isRefresh: false));
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +56,12 @@ class HomePage extends StatelessWidget {
             .add(const TrendingArticleWatcherEvent.fetch());
         context
             .read<LatestArticleWatcherBloc>()
-            .add(const LatestArticleWatcherEvent.fetch());
+            .add(const LatestArticleWatcherEvent.fetch(isRefresh: true));
       },
       child: Scaffold(
         appBar: _appBar(context),
         body: SingleChildScrollView(
+          controller: _latestScrollCtrl,
           child: Column(
             children: [
               const SizedBox(height: Const.space15),
@@ -127,11 +157,24 @@ class HomePage extends StatelessWidget {
                       );
                     },
                     loaded: (state) {
+                      _hasReachedMax = state.hasReachedMax;
                       return ListView.builder(
-                        itemCount: state.articleList.length,
+                        // controller: _latestScrollCtrl,
+                        itemCount: state.hasReachedMax
+                            ? state.articleList.length
+                            : state.articleList.length + 1,
                         physics: const ScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
+                          if (index == state.articleList.length &&
+                              state.hasReachedMax != true) {
+                            return const Center(
+                              child: Padding(
+                                padding: EdgeInsets.all(8),
+                                child: CircularProgressIndicator(),
+                              ),
+                            );
+                          }
                           final article = state.articleList[index];
 
                           return ArticleCardWidget(

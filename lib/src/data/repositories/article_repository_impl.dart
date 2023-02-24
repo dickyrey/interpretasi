@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:interpretasi/src/common/const.dart';
+import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/common/failure.dart';
 import 'package:interpretasi/src/data/datasources/article_data_source.dart';
@@ -30,10 +31,11 @@ class ArticleRepositoryImpl extends ArticleRepository {
 
   @override
   Future<Either<Failure, List<Article>>> getArticle({
-    required String page,
+    required int page,
     required String query,
     required String category,
     required bool isTrending,
+    required OrderBy orderby,
   }) async {
     try {
       final result = await dataSource.getArticle(
@@ -41,6 +43,7 @@ class ArticleRepositoryImpl extends ArticleRepository {
         query: query,
         category: category,
         isTrending: isTrending,
+        orderBy: orderby,
       );
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException catch (e) {

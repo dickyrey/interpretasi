@@ -192,7 +192,7 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                         },
                         label: lang.save_changes,
                         labelLoading: lang.saving,
-                        isLoading: (state.isSubmit) ? true : false,
+                        isLoading: state.isSubmit,
                       ),
                       const SizedBox(height: Const.space25),
                     ],

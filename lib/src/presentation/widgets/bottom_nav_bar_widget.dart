@@ -46,7 +46,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
           .add(const TrendingArticleWatcherEvent.fetch());
       context
           .read<LatestArticleWatcherBloc>()
-          .add(const LatestArticleWatcherEvent.fetch());
+          .add(const LatestArticleWatcherEvent.fetch(isRefresh: false));
     });
   }
 

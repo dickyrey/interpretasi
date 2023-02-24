@@ -28,9 +28,10 @@ class ArticleByCategoryWatcherBloc
 
             final result = await _article.execute(
               category: event.id.toString(),
-              page: '',
+              page: 1,
               query: '',
               isTrending: false,
+              orderBy: OrderBy.latest,
             );
 
             result.fold(

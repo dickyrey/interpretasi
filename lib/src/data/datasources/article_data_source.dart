@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:interpretasi/src/common/const.dart';
+import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/data/models/article_detail_model.dart';
 import 'package:interpretasi/src/data/models/article_detail_response.dart';
@@ -14,10 +15,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 abstract class ArticleDataSource {
   Future<bool> addViewCount(String id);
   Future<List<ArticleModel>> getArticle({
-    required String page,
+    required int page,
     required String query,
     required String category,
     required bool isTrending,
+    required OrderBy orderBy,
   });
   Future<ArticleDetailModel> getArticleDetail(String id);
   Future<List<ArticleModel>> searchArticle(String query);
@@ -75,10 +77,11 @@ class ArticleDataSourceImpl extends ArticleDataSource {
 
   @override
   Future<List<ArticleModel>> getArticle({
-    required String page,
+    required int page,
     required String query,
     required String category,
     required bool isTrending,
+    required OrderBy orderBy,
   }) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
@@ -92,10 +95,11 @@ class ArticleDataSourceImpl extends ArticleDataSource {
       host: Const.host,
       path: '/v1/article/',
       queryParameters: {
-        'page': page,
+        'page': '$page',
         'find': query,
         'category': (category == '0') ? '' : category,
         'trending': (isTrending == true) ? '1' : '0',
+        'orderBy' : orderBy.name,
       },
     );
 
@@ -144,8 +148,8 @@ class ArticleDataSourceImpl extends ArticleDataSource {
       host: Const.host,
       path: '/v1/article',
       queryParameters: {
-        // 'page': 1,
         'find': query,
+        'orderBy': OrderBy.latest.name,
       },
     );
 

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/usecases/article/get_article.dart';
 import 'package:rxdart/rxdart.dart';
@@ -19,9 +20,10 @@ class SearchArticleWatcherBloc
 
             final result = await _getArticle.execute(
               category: '',
-              page: '1',
+              page: 1,
               query: event.query,
               isTrending: false,
+              orderBy: OrderBy.latest,
             );
 
             result.fold(
