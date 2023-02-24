@@ -21,28 +21,57 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late ScrollController _trendingScrollCtrl;
   late ScrollController _latestScrollCtrl;
 
-  bool _hasReachedMax = false;
+  bool _trendingHasReachedMax = false;
+  bool _latestHasReachedMax = false;
 
   @override
   void initState() {
     super.initState();
 
     /// [ScrollController] init
+    _trendingScrollCtrl = ScrollController();
     _latestScrollCtrl = ScrollController();
 
     ///  Pagination [Listener]
+    _trendingScrollCtrl.addListener(() {
+      if (_trendingScrollCtrl.position.pixels >=
+          _trendingScrollCtrl.position.maxScrollExtent) {
+        if (_trendingHasReachedMax == false) {
+          context
+              .read<TrendingArticleWatcherBloc>()
+              .add(const TrendingArticleWatcherEvent.fetch(isRefresh: false));
+        }
+      }
+    });
     _latestScrollCtrl.addListener(() {
       if (_latestScrollCtrl.position.pixels >=
           _latestScrollCtrl.position.maxScrollExtent) {
-        if (_hasReachedMax == false) {
+        if (_latestHasReachedMax == false) {
           context
               .read<LatestArticleWatcherBloc>()
               .add(const LatestArticleWatcherEvent.fetch(isRefresh: false));
         }
       }
     });
+
+    Future.microtask(() {
+      context
+          .read<TrendingArticleWatcherBloc>()
+          .add(const TrendingArticleWatcherEvent.fetch(isRefresh: false));
+      context
+          .read<LatestArticleWatcherBloc>()
+          .add(const LatestArticleWatcherEvent.fetch(isRefresh: false));
+    });
+  }
+
+  @override
+  void dispose() {
+    _trendingScrollCtrl.dispose();
+    _latestScrollCtrl.dispose();
+    super.dispose();
   }
 
   @override
@@ -53,7 +82,7 @@ class _HomePageState extends State<HomePage> {
       onRefresh: () async {
         context
             .read<TrendingArticleWatcherBloc>()
-            .add(const TrendingArticleWatcherEvent.fetch());
+            .add(const TrendingArticleWatcherEvent.fetch(isRefresh: true));
         context
             .read<LatestArticleWatcherBloc>()
             .add(const LatestArticleWatcherEvent.fetch(isRefresh: true));
@@ -100,15 +129,28 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                     loaded: (state) {
+                      _trendingHasReachedMax = state.hasReachedMax;
                       return SizedBox(
                         width: Screens.width(context),
                         height: 300,
                         child: ListView.builder(
-                          itemCount: state.articleList.length,
+                          controller: _trendingScrollCtrl,
+                          itemCount: state.hasReachedMax
+                              ? state.articleList.length
+                              : state.articleList.length + 1,
                           scrollDirection: Axis.horizontal,
-                          physics: const BouncingScrollPhysics(),
+                          physics: const ScrollPhysics(),
                           padding: const EdgeInsets.only(left: Const.margin),
                           itemBuilder: (context, index) {
+                            if (index == state.articleList.length &&
+                                state.hasReachedMax != true) {
+                              return const Center(
+                                child: Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            }
                             final article = state.articleList[index];
 
                             return ArticleCardWidget(
@@ -157,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                     loaded: (state) {
-                      _hasReachedMax = state.hasReachedMax;
+                      _latestHasReachedMax = state.hasReachedMax;
                       return ListView.builder(
                         // controller: _latestScrollCtrl,
                         itemCount: state.hasReachedMax

@@ -5,5 +5,8 @@ class TrendingArticleWatcherState with _$TrendingArticleWatcherState {
   const factory TrendingArticleWatcherState.initial() = _Initial;
   const factory TrendingArticleWatcherState.loading() = _Loading;
   const factory TrendingArticleWatcherState.error(String message) = _Error;
-  const factory TrendingArticleWatcherState.loaded(List<Article> articleList) = _loaded;
+  const factory TrendingArticleWatcherState.loaded({
+    required List<Article> articleList,
+    required bool hasReachedMax,
+  }) = _Loaded;
 }

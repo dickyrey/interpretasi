@@ -29,10 +29,10 @@ class LatestArticleWatcherBloc
             isTrending: false,
             orderBy: OrderBy.latest,
           );
+          print('REQ PAGE latest : $page');
           result.fold(
             (f) => emit(LatestArticleWatcherState.error(f.message)),
             (data) {
-              print(data);
               if (data.isNotEmpty) {
                 if (data.length < 5) {
                   final list = List.of(localArticleList)..addAll(data);

@@ -14,14 +14,38 @@ class ArticleTrendingPage extends StatefulWidget {
 }
 
 class ArticleTrendingPageState extends State<ArticleTrendingPage> {
+  late ScrollController _scrollCtrl;
+
+  bool _hasReachedMax = false;
+
   @override
   void initState() {
     super.initState();
+
+    /// [ScrollController] init
+    _scrollCtrl = ScrollController();
+
+    ///  Pagination [Listener]
+    _scrollCtrl.addListener(() {
+      if (_scrollCtrl.position.pixels >= _scrollCtrl.position.maxScrollExtent) {
+        if (_hasReachedMax == false) {
+          context
+              .read<TrendingArticleWatcherBloc>()
+              .add(const TrendingArticleWatcherEvent.fetch(isRefresh: false));
+        }
+      }
+    });
     Future.microtask(
       () => context
           .read<TrendingArticleWatcherBloc>()
-          .add(const TrendingArticleWatcherEvent.fetch()),
+          .add(const TrendingArticleWatcherEvent.fetch(isRefresh: false)),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollCtrl.dispose();
+    super.dispose();
   }
 
   @override
@@ -30,7 +54,7 @@ class ArticleTrendingPageState extends State<ArticleTrendingPage> {
       onRefresh: () async {
         context
             .read<TrendingArticleWatcherBloc>()
-            .add(const TrendingArticleWatcherEvent.fetch());
+            .add(const TrendingArticleWatcherEvent.fetch(isRefresh: true));
       },
       child: Scaffold(
         appBar: _appBar(context),
@@ -52,11 +76,24 @@ class ArticleTrendingPageState extends State<ArticleTrendingPage> {
                 );
               },
               loaded: (state) {
+                _hasReachedMax = state.hasReachedMax;
                 return ListView.builder(
-                  itemCount: state.articleList.length,
+                  controller: _scrollCtrl,
+                  itemCount: state.hasReachedMax
+                      ? state.articleList.length
+                      : state.articleList.length + 1,
                   physics: const ScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
+                    if (index == state.articleList.length &&
+                        state.hasReachedMax != true) {
+                      return const Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(8),
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
                     final article = state.articleList[index];
 
                     return ArticleCardWidget(

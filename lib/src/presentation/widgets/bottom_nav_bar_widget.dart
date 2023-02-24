@@ -34,29 +34,31 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
 
   @override
   void initState() {
-    _controller = PageController(initialPage: widget.index);
     super.initState();
+    _controller = PageController(initialPage: widget.index);
+
     Future.microtask(() {
       context.read<UserWatcherBloc>().add(const UserWatcherEvent.fetch());
       context
           .read<CategoryWatcherBloc>()
           .add(const CategoryWatcherEvent.fetch());
-      context
-          .read<TrendingArticleWatcherBloc>()
-          .add(const TrendingArticleWatcherEvent.fetch());
-      context
-          .read<LatestArticleWatcherBloc>()
-          .add(const LatestArticleWatcherEvent.fetch(isRefresh: false));
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   final List<Widget> _tabView = [
     const HomePage(),
     const LatestPage(),
-     const EmptyDataWidget(
+    const EmptyDataWidget(
       illustration: Assets.notification,
       title: 'Notifikasi Kosong',
-      subtitle: 'Anda belum memiliki notifikasi apapun, artikel trending dan kategori favorit akan ditampilkan disini.',
+      subtitle:
+          'Anda belum memiliki notifikasi apapun, artikel trending dan kategori favorit akan ditampilkan disini.',
     ),
     const ProfilePage(),
   ];

@@ -13,24 +13,61 @@ class TrendingArticleWatcherBloc
   TrendingArticleWatcherBloc(this._article) : super(const _Initial()) {
     on<TrendingArticleWatcherEvent>((event, emit) async {
       await event.map(
-        fetch: (_) async {
-          emit(const TrendingArticleWatcherState.loading());
-
+        fetch: (event) async {
+          if (event.isRefresh == true) {
+            page = 1;
+            localArticleList.clear();
+          }
+          if (page == 1) {
+            emit(const TrendingArticleWatcherState.loading());
+          }
           final result = await _article.execute(
             category: '',
-            page: 1,
+            page: page,
             query: '',
             isTrending: true,
             orderBy: OrderBy.latest,
           );
-
+          print('REQ PAGE : $page');
           result.fold(
             (f) => emit(TrendingArticleWatcherState.error(f.message)),
-            (data) => emit(TrendingArticleWatcherState.loaded(data)),
+            (data) {
+              if (data.isNotEmpty) {
+                if (data.length < 5) {
+                  final list = List.of(localArticleList)..addAll(data);
+                  emit(
+                    TrendingArticleWatcherState.loaded(
+                      hasReachedMax: true,
+                      articleList: list,
+                    ),
+                  );
+                  localArticleList.addAll(data);
+                } else {
+                  page += 1;
+                  final list = List.of(localArticleList)..addAll(data);
+                  emit(
+                    TrendingArticleWatcherState.loaded(
+                      hasReachedMax: false,
+                      articleList: list,
+                    ),
+                  );
+                  localArticleList.addAll(data);
+                }
+              } else {
+                emit(
+                  TrendingArticleWatcherState.loaded(
+                    hasReachedMax: true,
+                    articleList: localArticleList,
+                  ),
+                );
+              }
+            },
           );
         },
       );
     });
   }
+  int page = 1;
+  final localArticleList = <Article>[];
   final GetArticle _article;
 }

@@ -116,6 +116,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
   @override
   void dispose() {
     _drafScrollCtrl.dispose();
+    _moderatedScrollCtrl.dispose();
+    _rejectedScrollCtrl.dispose();
+    _publishedScrollCtrl.dispose();
+    _bannedScrollCtrl.dispose();
+
     super.dispose();
   }
 

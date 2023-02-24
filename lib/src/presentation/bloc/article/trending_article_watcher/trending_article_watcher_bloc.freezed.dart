@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TrendingArticleWatcherEvent {
+  bool get isRefresh => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function(bool isRefresh) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function(bool isRefresh)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function(bool isRefresh)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +49,10 @@ mixin _$TrendingArticleWatcherEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TrendingArticleWatcherEventCopyWith<TrendingArticleWatcherEvent>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -57,6 +62,8 @@ abstract class $TrendingArticleWatcherEventCopyWith<$Res> {
           $Res Function(TrendingArticleWatcherEvent) then) =
       _$TrendingArticleWatcherEventCopyWithImpl<$Res,
           TrendingArticleWatcherEvent>;
+  @useResult
+  $Res call({bool isRefresh});
 }
 
 /// @nodoc
@@ -69,12 +76,29 @@ class _$TrendingArticleWatcherEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isRefresh = null,
+  }) {
+    return _then(_value.copyWith(
+      isRefresh: null == isRefresh
+          ? _value.isRefresh
+          : isRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_FetchCopyWith<$Res> {
+abstract class _$$_FetchCopyWith<$Res>
+    implements $TrendingArticleWatcherEventCopyWith<$Res> {
   factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
       __$$_FetchCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isRefresh});
 }
 
 /// @nodoc
@@ -83,51 +107,76 @@ class __$$_FetchCopyWithImpl<$Res>
     implements _$$_FetchCopyWith<$Res> {
   __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isRefresh = null,
+  }) {
+    return _then(_$_Fetch(
+      isRefresh: null == isRefresh
+          ? _value.isRefresh
+          : isRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Fetch implements _Fetch {
-  const _$_Fetch();
+  const _$_Fetch({required this.isRefresh});
+
+  @override
+  final bool isRefresh;
 
   @override
   String toString() {
-    return 'TrendingArticleWatcherEvent.fetch()';
+    return 'TrendingArticleWatcherEvent.fetch(isRefresh: $isRefresh)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Fetch);
+        (other.runtimeType == runtimeType &&
+            other is _$_Fetch &&
+            (identical(other.isRefresh, isRefresh) ||
+                other.isRefresh == isRefresh));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isRefresh);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
+      __$$_FetchCopyWithImpl<_$_Fetch>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function(bool isRefresh) fetch,
   }) {
-    return fetch();
+    return fetch(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function(bool isRefresh)? fetch,
   }) {
-    return fetch?.call();
+    return fetch?.call(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function(bool isRefresh)? fetch,
     required TResult orElse(),
   }) {
     if (fetch != null) {
-      return fetch();
+      return fetch(isRefresh);
     }
     return orElse();
   }
@@ -162,7 +211,14 @@ class _$_Fetch implements _Fetch {
 }
 
 abstract class _Fetch implements TrendingArticleWatcherEvent {
-  const factory _Fetch() = _$_Fetch;
+  const factory _Fetch({required final bool isRefresh}) = _$_Fetch;
+
+  @override
+  bool get isRefresh;
+  @override
+  @JsonKey(ignore: true)
+  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -172,7 +228,8 @@ mixin _$TrendingArticleWatcherState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<Article> articleList) loaded,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -180,7 +237,7 @@ mixin _$TrendingArticleWatcherState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<Article> articleList)? loaded,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -188,7 +245,7 @@ mixin _$TrendingArticleWatcherState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<Article> articleList)? loaded,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -197,7 +254,7 @@ mixin _$TrendingArticleWatcherState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_loaded value) loaded,
+    required TResult Function(_Loaded value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -205,7 +262,7 @@ mixin _$TrendingArticleWatcherState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
-    TResult? Function(_loaded value)? loaded,
+    TResult? Function(_Loaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -213,7 +270,7 @@ mixin _$TrendingArticleWatcherState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_loaded value)? loaded,
+    TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -280,7 +337,8 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<Article> articleList) loaded,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
   }) {
     return initial();
   }
@@ -291,7 +349,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<Article> articleList)? loaded,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
   }) {
     return initial?.call();
   }
@@ -302,7 +360,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<Article> articleList)? loaded,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -317,7 +375,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_loaded value) loaded,
+    required TResult Function(_Loaded value) loaded,
   }) {
     return initial(this);
   }
@@ -328,7 +386,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
-    TResult? Function(_loaded value)? loaded,
+    TResult? Function(_Loaded value)? loaded,
   }) {
     return initial?.call(this);
   }
@@ -339,7 +397,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_loaded value)? loaded,
+    TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -393,7 +451,8 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<Article> articleList) loaded,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
   }) {
     return loading();
   }
@@ -404,7 +463,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<Article> articleList)? loaded,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
   }) {
     return loading?.call();
   }
@@ -415,7 +474,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<Article> articleList)? loaded,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -430,7 +489,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_loaded value) loaded,
+    required TResult Function(_Loaded value) loaded,
   }) {
     return loading(this);
   }
@@ -441,7 +500,7 @@ class _$_Loading implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
-    TResult? Function(_loaded value)? loaded,
+    TResult? Function(_Loaded value)? loaded,
   }) {
     return loading?.call(this);
   }
@@ -452,7 +511,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_loaded value)? loaded,
+    TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -531,7 +590,8 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<Article> articleList) loaded,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
   }) {
     return error(message);
   }
@@ -542,7 +602,7 @@ class _$_Error implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<Article> articleList)? loaded,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
   }) {
     return error?.call(message);
   }
@@ -553,7 +613,7 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<Article> articleList)? loaded,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -568,7 +628,7 @@ class _$_Error implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_loaded value) loaded,
+    required TResult Function(_Loaded value) loaded,
   }) {
     return error(this);
   }
@@ -579,7 +639,7 @@ class _$_Error implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
-    TResult? Function(_loaded value)? loaded,
+    TResult? Function(_Loaded value)? loaded,
   }) {
     return error?.call(this);
   }
@@ -590,7 +650,7 @@ class _$_Error implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_loaded value)? loaded,
+    TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -610,38 +670,45 @@ abstract class _Error implements TrendingArticleWatcherState {
 }
 
 /// @nodoc
-abstract class _$$_loadedCopyWith<$Res> {
-  factory _$$_loadedCopyWith(_$_loaded value, $Res Function(_$_loaded) then) =
-      __$$_loadedCopyWithImpl<$Res>;
+abstract class _$$_LoadedCopyWith<$Res> {
+  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
+      __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Article> articleList});
+  $Res call({List<Article> articleList, bool hasReachedMax});
 }
 
 /// @nodoc
-class __$$_loadedCopyWithImpl<$Res>
-    extends _$TrendingArticleWatcherStateCopyWithImpl<$Res, _$_loaded>
-    implements _$$_loadedCopyWith<$Res> {
-  __$$_loadedCopyWithImpl(_$_loaded _value, $Res Function(_$_loaded) _then)
+class __$$_LoadedCopyWithImpl<$Res>
+    extends _$TrendingArticleWatcherStateCopyWithImpl<$Res, _$_Loaded>
+    implements _$$_LoadedCopyWith<$Res> {
+  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? articleList = null,
+    Object? hasReachedMax = null,
   }) {
-    return _then(_$_loaded(
-      null == articleList
+    return _then(_$_Loaded(
+      articleList: null == articleList
           ? _value._articleList
           : articleList // ignore: cast_nullable_to_non_nullable
               as List<Article>,
+      hasReachedMax: null == hasReachedMax
+          ? _value.hasReachedMax
+          : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_loaded implements _loaded {
-  const _$_loaded(final List<Article> articleList) : _articleList = articleList;
+class _$_Loaded implements _Loaded {
+  const _$_Loaded(
+      {required final List<Article> articleList, required this.hasReachedMax})
+      : _articleList = articleList;
 
   final List<Article> _articleList;
   @override
@@ -652,28 +719,33 @@ class _$_loaded implements _loaded {
   }
 
   @override
+  final bool hasReachedMax;
+
+  @override
   String toString() {
-    return 'TrendingArticleWatcherState.loaded(articleList: $articleList)';
+    return 'TrendingArticleWatcherState.loaded(articleList: $articleList, hasReachedMax: $hasReachedMax)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_loaded &&
+            other is _$_Loaded &&
             const DeepCollectionEquality()
-                .equals(other._articleList, _articleList));
+                .equals(other._articleList, _articleList) &&
+            (identical(other.hasReachedMax, hasReachedMax) ||
+                other.hasReachedMax == hasReachedMax));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_articleList));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_articleList), hasReachedMax);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_loadedCopyWith<_$_loaded> get copyWith =>
-      __$$_loadedCopyWithImpl<_$_loaded>(this, _$identity);
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -681,9 +753,10 @@ class _$_loaded implements _loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<Article> articleList) loaded,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
   }) {
-    return loaded(articleList);
+    return loaded(articleList, hasReachedMax);
   }
 
   @override
@@ -692,9 +765,9 @@ class _$_loaded implements _loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<Article> articleList)? loaded,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
   }) {
-    return loaded?.call(articleList);
+    return loaded?.call(articleList, hasReachedMax);
   }
 
   @override
@@ -703,11 +776,11 @@ class _$_loaded implements _loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<Article> articleList)? loaded,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(articleList);
+      return loaded(articleList, hasReachedMax);
     }
     return orElse();
   }
@@ -718,7 +791,7 @@ class _$_loaded implements _loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_loaded value) loaded,
+    required TResult Function(_Loaded value) loaded,
   }) {
     return loaded(this);
   }
@@ -729,7 +802,7 @@ class _$_loaded implements _loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
-    TResult? Function(_loaded value)? loaded,
+    TResult? Function(_Loaded value)? loaded,
   }) {
     return loaded?.call(this);
   }
@@ -740,7 +813,7 @@ class _$_loaded implements _loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_loaded value)? loaded,
+    TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -750,11 +823,14 @@ class _$_loaded implements _loaded {
   }
 }
 
-abstract class _loaded implements TrendingArticleWatcherState {
-  const factory _loaded(final List<Article> articleList) = _$_loaded;
+abstract class _Loaded implements TrendingArticleWatcherState {
+  const factory _Loaded(
+      {required final List<Article> articleList,
+      required final bool hasReachedMax}) = _$_Loaded;
 
   List<Article> get articleList;
+  bool get hasReachedMax;
   @JsonKey(ignore: true)
-  _$$_loadedCopyWith<_$_loaded> get copyWith =>
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
