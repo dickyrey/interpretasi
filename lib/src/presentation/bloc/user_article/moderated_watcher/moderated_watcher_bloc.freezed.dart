@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'user_article_published_watcher_bloc.dart';
+part of 'moderated_watcher_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,20 +15,21 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$UserArticlePublishedWatcherEvent {
+mixin _$ModeratedWatcherEvent {
+  bool get isRefresh => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function(bool isRefresh) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function(bool isRefresh)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function(bool isRefresh)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,86 +49,132 @@ mixin _$UserArticlePublishedWatcherEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ModeratedWatcherEventCopyWith<ModeratedWatcherEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserArticlePublishedWatcherEventCopyWith<$Res> {
-  factory $UserArticlePublishedWatcherEventCopyWith(
-          UserArticlePublishedWatcherEvent value,
-          $Res Function(UserArticlePublishedWatcherEvent) then) =
-      _$UserArticlePublishedWatcherEventCopyWithImpl<$Res,
-          UserArticlePublishedWatcherEvent>;
+abstract class $ModeratedWatcherEventCopyWith<$Res> {
+  factory $ModeratedWatcherEventCopyWith(ModeratedWatcherEvent value,
+          $Res Function(ModeratedWatcherEvent) then) =
+      _$ModeratedWatcherEventCopyWithImpl<$Res, ModeratedWatcherEvent>;
+  @useResult
+  $Res call({bool isRefresh});
 }
 
 /// @nodoc
-class _$UserArticlePublishedWatcherEventCopyWithImpl<$Res,
-        $Val extends UserArticlePublishedWatcherEvent>
-    implements $UserArticlePublishedWatcherEventCopyWith<$Res> {
-  _$UserArticlePublishedWatcherEventCopyWithImpl(this._value, this._then);
+class _$ModeratedWatcherEventCopyWithImpl<$Res,
+        $Val extends ModeratedWatcherEvent>
+    implements $ModeratedWatcherEventCopyWith<$Res> {
+  _$ModeratedWatcherEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isRefresh = null,
+  }) {
+    return _then(_value.copyWith(
+      isRefresh: null == isRefresh
+          ? _value.isRefresh
+          : isRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_FetchCopyWith<$Res> {
+abstract class _$$_FetchCopyWith<$Res>
+    implements $ModeratedWatcherEventCopyWith<$Res> {
   factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
       __$$_FetchCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isRefresh});
 }
 
 /// @nodoc
 class __$$_FetchCopyWithImpl<$Res>
-    extends _$UserArticlePublishedWatcherEventCopyWithImpl<$Res, _$_Fetch>
+    extends _$ModeratedWatcherEventCopyWithImpl<$Res, _$_Fetch>
     implements _$$_FetchCopyWith<$Res> {
   __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isRefresh = null,
+  }) {
+    return _then(_$_Fetch(
+      isRefresh: null == isRefresh
+          ? _value.isRefresh
+          : isRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Fetch implements _Fetch {
-  const _$_Fetch();
+  const _$_Fetch({required this.isRefresh});
+
+  @override
+  final bool isRefresh;
 
   @override
   String toString() {
-    return 'UserArticlePublishedWatcherEvent.fetch()';
+    return 'ModeratedWatcherEvent.fetch(isRefresh: $isRefresh)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Fetch);
+        (other.runtimeType == runtimeType &&
+            other is _$_Fetch &&
+            (identical(other.isRefresh, isRefresh) ||
+                other.isRefresh == isRefresh));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isRefresh);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
+      __$$_FetchCopyWithImpl<_$_Fetch>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function(bool isRefresh) fetch,
   }) {
-    return fetch();
+    return fetch(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function(bool isRefresh)? fetch,
   }) {
-    return fetch?.call();
+    return fetch?.call(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function(bool isRefresh)? fetch,
     required TResult orElse(),
   }) {
     if (fetch != null) {
-      return fetch();
+      return fetch(isRefresh);
     }
     return orElse();
   }
@@ -161,34 +208,42 @@ class _$_Fetch implements _Fetch {
   }
 }
 
-abstract class _Fetch implements UserArticlePublishedWatcherEvent {
-  const factory _Fetch() = _$_Fetch;
+abstract class _Fetch implements ModeratedWatcherEvent {
+  const factory _Fetch({required final bool isRefresh}) = _$_Fetch;
+
+  @override
+  bool get isRefresh;
+  @override
+  @JsonKey(ignore: true)
+  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$UserArticlePublishedWatcherState {
+mixin _$ModeratedWatcherState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() error,
-    required TResult Function(List<Article> articleList) loaded,
+    required TResult Function(String message) error,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? error,
-    TResult? Function(List<Article> articleList)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function(List<Article> articleList)? loaded,
+    TResult Function(String message)? error,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -220,19 +275,17 @@ mixin _$UserArticlePublishedWatcherState {
 }
 
 /// @nodoc
-abstract class $UserArticlePublishedWatcherStateCopyWith<$Res> {
-  factory $UserArticlePublishedWatcherStateCopyWith(
-          UserArticlePublishedWatcherState value,
-          $Res Function(UserArticlePublishedWatcherState) then) =
-      _$UserArticlePublishedWatcherStateCopyWithImpl<$Res,
-          UserArticlePublishedWatcherState>;
+abstract class $ModeratedWatcherStateCopyWith<$Res> {
+  factory $ModeratedWatcherStateCopyWith(ModeratedWatcherState value,
+          $Res Function(ModeratedWatcherState) then) =
+      _$ModeratedWatcherStateCopyWithImpl<$Res, ModeratedWatcherState>;
 }
 
 /// @nodoc
-class _$UserArticlePublishedWatcherStateCopyWithImpl<$Res,
-        $Val extends UserArticlePublishedWatcherState>
-    implements $UserArticlePublishedWatcherStateCopyWith<$Res> {
-  _$UserArticlePublishedWatcherStateCopyWithImpl(this._value, this._then);
+class _$ModeratedWatcherStateCopyWithImpl<$Res,
+        $Val extends ModeratedWatcherState>
+    implements $ModeratedWatcherStateCopyWith<$Res> {
+  _$ModeratedWatcherStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -249,7 +302,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$UserArticlePublishedWatcherStateCopyWithImpl<$Res, _$_Initial>
+    extends _$ModeratedWatcherStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -262,7 +315,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'UserArticlePublishedWatcherState.initial()';
+    return 'ModeratedWatcherState.initial()';
   }
 
   @override
@@ -279,8 +332,9 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() error,
-    required TResult Function(List<Article> articleList) loaded,
+    required TResult Function(String message) error,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
   }) {
     return initial();
   }
@@ -290,8 +344,8 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? error,
-    TResult? Function(List<Article> articleList)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
   }) {
     return initial?.call();
   }
@@ -301,8 +355,8 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function(List<Article> articleList)? loaded,
+    TResult Function(String message)? error,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -349,7 +403,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements UserArticlePublishedWatcherState {
+abstract class _Initial implements ModeratedWatcherState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -362,7 +416,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$UserArticlePublishedWatcherStateCopyWithImpl<$Res, _$_Loading>
+    extends _$ModeratedWatcherStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -375,7 +429,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'UserArticlePublishedWatcherState.loading()';
+    return 'ModeratedWatcherState.loading()';
   }
 
   @override
@@ -392,8 +446,9 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() error,
-    required TResult Function(List<Article> articleList) loaded,
+    required TResult Function(String message) error,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
   }) {
     return loading();
   }
@@ -403,8 +458,8 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? error,
-    TResult? Function(List<Article> articleList)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
   }) {
     return loading?.call();
   }
@@ -414,8 +469,8 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function(List<Article> articleList)? loaded,
+    TResult Function(String message)? error,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -462,7 +517,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements UserArticlePublishedWatcherState {
+abstract class _Loading implements ModeratedWatcherState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -470,44 +525,71 @@ abstract class _Loading implements UserArticlePublishedWatcherState {
 abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
 }
 
 /// @nodoc
 class __$$_ErrorCopyWithImpl<$Res>
-    extends _$UserArticlePublishedWatcherStateCopyWithImpl<$Res, _$_Error>
+    extends _$ModeratedWatcherStateCopyWithImpl<$Res, _$_Error>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$_Error(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Error implements _Error {
-  const _$_Error();
+  const _$_Error(this.message);
+
+  @override
+  final String message;
 
   @override
   String toString() {
-    return 'UserArticlePublishedWatcherState.error()';
+    return 'ModeratedWatcherState.error(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Error);
+        (other.runtimeType == runtimeType &&
+            other is _$_Error &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() error,
-    required TResult Function(List<Article> articleList) loaded,
+    required TResult Function(String message) error,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
   }) {
-    return error();
+    return error(message);
   }
 
   @override
@@ -515,10 +597,10 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? error,
-    TResult? Function(List<Article> articleList)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
   }) {
-    return error?.call();
+    return error?.call(message);
   }
 
   @override
@@ -526,12 +608,12 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function(List<Article> articleList)? loaded,
+    TResult Function(String message)? error,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(message);
     }
     return orElse();
   }
@@ -574,8 +656,13 @@ class _$_Error implements _Error {
   }
 }
 
-abstract class _Error implements UserArticlePublishedWatcherState {
-  const factory _Error() = _$_Error;
+abstract class _Error implements ModeratedWatcherState {
+  const factory _Error(final String message) = _$_Error;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -583,12 +670,12 @@ abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Article> articleList});
+  $Res call({List<Article> articleList, bool hasReachedMax});
 }
 
 /// @nodoc
 class __$$_LoadedCopyWithImpl<$Res>
-    extends _$UserArticlePublishedWatcherStateCopyWithImpl<$Res, _$_Loaded>
+    extends _$ModeratedWatcherStateCopyWithImpl<$Res, _$_Loaded>
     implements _$$_LoadedCopyWith<$Res> {
   __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
@@ -597,12 +684,17 @@ class __$$_LoadedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? articleList = null,
+    Object? hasReachedMax = null,
   }) {
     return _then(_$_Loaded(
-      null == articleList
+      articleList: null == articleList
           ? _value._articleList
           : articleList // ignore: cast_nullable_to_non_nullable
               as List<Article>,
+      hasReachedMax: null == hasReachedMax
+          ? _value.hasReachedMax
+          : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -610,7 +702,9 @@ class __$$_LoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Loaded implements _Loaded {
-  const _$_Loaded(final List<Article> articleList) : _articleList = articleList;
+  const _$_Loaded(
+      {required final List<Article> articleList, required this.hasReachedMax})
+      : _articleList = articleList;
 
   final List<Article> _articleList;
   @override
@@ -621,8 +715,11 @@ class _$_Loaded implements _Loaded {
   }
 
   @override
+  final bool hasReachedMax;
+
+  @override
   String toString() {
-    return 'UserArticlePublishedWatcherState.loaded(articleList: $articleList)';
+    return 'ModeratedWatcherState.loaded(articleList: $articleList, hasReachedMax: $hasReachedMax)';
   }
 
   @override
@@ -631,12 +728,14 @@ class _$_Loaded implements _Loaded {
         (other.runtimeType == runtimeType &&
             other is _$_Loaded &&
             const DeepCollectionEquality()
-                .equals(other._articleList, _articleList));
+                .equals(other._articleList, _articleList) &&
+            (identical(other.hasReachedMax, hasReachedMax) ||
+                other.hasReachedMax == hasReachedMax));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_articleList));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_articleList), hasReachedMax);
 
   @JsonKey(ignore: true)
   @override
@@ -649,10 +748,11 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() error,
-    required TResult Function(List<Article> articleList) loaded,
+    required TResult Function(String message) error,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
   }) {
-    return loaded(articleList);
+    return loaded(articleList, hasReachedMax);
   }
 
   @override
@@ -660,10 +760,10 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? error,
-    TResult? Function(List<Article> articleList)? loaded,
+    TResult? Function(String message)? error,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
   }) {
-    return loaded?.call(articleList);
+    return loaded?.call(articleList, hasReachedMax);
   }
 
   @override
@@ -671,12 +771,12 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function(List<Article> articleList)? loaded,
+    TResult Function(String message)? error,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(articleList);
+      return loaded(articleList, hasReachedMax);
     }
     return orElse();
   }
@@ -719,10 +819,13 @@ class _$_Loaded implements _Loaded {
   }
 }
 
-abstract class _Loaded implements UserArticlePublishedWatcherState {
-  const factory _Loaded(final List<Article> articleList) = _$_Loaded;
+abstract class _Loaded implements ModeratedWatcherState {
+  const factory _Loaded(
+      {required final List<Article> articleList,
+      required final bool hasReachedMax}) = _$_Loaded;
 
   List<Article> get articleList;
+  bool get hasReachedMax;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;

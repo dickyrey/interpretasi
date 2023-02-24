@@ -14,7 +14,7 @@ import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_form/article_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/upload_image_actor/upload_image_actor_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/category/category_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_drafted_watcher/user_article_drafted_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/drafted_watcher/drafted_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/elevated_button_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_field_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/text_form_field_widget.dart';
@@ -108,10 +108,10 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
           );
           ScaffoldMessenger.of(context).showSnackBar(snack);
         } else if (state.state == RequestState.loaded) {
-          // TODO(dickrey): https://github.com/dickyrey/interpretasi/issues/26 ADD VALIDATION FROM WHERE TO EDIT 
+          // TODO(dickrey): https://github.com/dickyrey/interpretasi/issues/26 ADD VALIDATION FROM WHERE TO EDIT
           context
-              .read<UserArticleDraftedWatcherBloc>()
-              .add(const UserArticleDraftedWatcherEvent.fetch(isRefresh: true));
+              .read<DraftedWatcherBloc>()
+              .add(const DraftedWatcherEvent.fetch(isRefresh: true));
           final snack = showSnackbar(
             context,
             type: SnackbarType.success,
@@ -219,7 +219,7 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
               return ElevatedButtonWidget(
                 width: 100,
                 height: 30,
-                isLoading: (state.isSubmit == true) ? true : false,
+                isLoading: state.isSubmit,
                 label: (_selectedIndex == 0) ? lang.next : lang.save,
                 labelSize: 12,
                 onTap: () {

@@ -92,7 +92,7 @@ class ForgotPasswordPage extends StatelessWidget {
                   ElevatedButtonWidget(
                     label: lang.send,
                     labelLoading: lang.please_wait,
-                    isLoading: (state.isSubmit == true) ? true : false,
+                    isLoading: state.isSubmit,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
                         context.read<ForgotPasswordFormBloc>().add(

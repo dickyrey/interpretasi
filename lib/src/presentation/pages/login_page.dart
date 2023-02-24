@@ -184,7 +184,7 @@ class LoginPage extends StatelessWidget {
                     ElevatedButtonWidget(
                       label: lang.login,
                       labelLoading: lang.signing,
-                      isLoading: (state.isSubmitting == true) ? true : false,
+                      isLoading: state.isSubmitting,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
                           context.read<SignInWithEmailFormBloc>().add(

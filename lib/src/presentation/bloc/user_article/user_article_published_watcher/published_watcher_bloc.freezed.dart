@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'user_article_drafted_watcher_bloc.dart';
+part of 'published_watcher_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$UserArticleDraftedWatcherEvent {
+mixin _$PublishedWatcherEvent {
   bool get isRefresh => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -51,26 +51,24 @@ mixin _$UserArticleDraftedWatcherEvent {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $UserArticleDraftedWatcherEventCopyWith<UserArticleDraftedWatcherEvent>
-      get copyWith => throw _privateConstructorUsedError;
+  $PublishedWatcherEventCopyWith<PublishedWatcherEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserArticleDraftedWatcherEventCopyWith<$Res> {
-  factory $UserArticleDraftedWatcherEventCopyWith(
-          UserArticleDraftedWatcherEvent value,
-          $Res Function(UserArticleDraftedWatcherEvent) then) =
-      _$UserArticleDraftedWatcherEventCopyWithImpl<$Res,
-          UserArticleDraftedWatcherEvent>;
+abstract class $PublishedWatcherEventCopyWith<$Res> {
+  factory $PublishedWatcherEventCopyWith(PublishedWatcherEvent value,
+          $Res Function(PublishedWatcherEvent) then) =
+      _$PublishedWatcherEventCopyWithImpl<$Res, PublishedWatcherEvent>;
   @useResult
   $Res call({bool isRefresh});
 }
 
 /// @nodoc
-class _$UserArticleDraftedWatcherEventCopyWithImpl<$Res,
-        $Val extends UserArticleDraftedWatcherEvent>
-    implements $UserArticleDraftedWatcherEventCopyWith<$Res> {
-  _$UserArticleDraftedWatcherEventCopyWithImpl(this._value, this._then);
+class _$PublishedWatcherEventCopyWithImpl<$Res,
+        $Val extends PublishedWatcherEvent>
+    implements $PublishedWatcherEventCopyWith<$Res> {
+  _$PublishedWatcherEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -93,7 +91,7 @@ class _$UserArticleDraftedWatcherEventCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$_FetchCopyWith<$Res>
-    implements $UserArticleDraftedWatcherEventCopyWith<$Res> {
+    implements $PublishedWatcherEventCopyWith<$Res> {
   factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
       __$$_FetchCopyWithImpl<$Res>;
   @override
@@ -103,7 +101,7 @@ abstract class _$$_FetchCopyWith<$Res>
 
 /// @nodoc
 class __$$_FetchCopyWithImpl<$Res>
-    extends _$UserArticleDraftedWatcherEventCopyWithImpl<$Res, _$_Fetch>
+    extends _$PublishedWatcherEventCopyWithImpl<$Res, _$_Fetch>
     implements _$$_FetchCopyWith<$Res> {
   __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
       : super(_value, _then);
@@ -132,7 +130,7 @@ class _$_Fetch implements _Fetch {
 
   @override
   String toString() {
-    return 'UserArticleDraftedWatcherEvent.fetch(isRefresh: $isRefresh)';
+    return 'PublishedWatcherEvent.fetch(isRefresh: $isRefresh)';
   }
 
   @override
@@ -210,7 +208,7 @@ class _$_Fetch implements _Fetch {
   }
 }
 
-abstract class _Fetch implements UserArticleDraftedWatcherEvent {
+abstract class _Fetch implements PublishedWatcherEvent {
   const factory _Fetch({required final bool isRefresh}) = _$_Fetch;
 
   @override
@@ -222,7 +220,7 @@ abstract class _Fetch implements UserArticleDraftedWatcherEvent {
 }
 
 /// @nodoc
-mixin _$UserArticleDraftedWatcherState {
+mixin _$PublishedWatcherState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -277,19 +275,17 @@ mixin _$UserArticleDraftedWatcherState {
 }
 
 /// @nodoc
-abstract class $UserArticleDraftedWatcherStateCopyWith<$Res> {
-  factory $UserArticleDraftedWatcherStateCopyWith(
-          UserArticleDraftedWatcherState value,
-          $Res Function(UserArticleDraftedWatcherState) then) =
-      _$UserArticleDraftedWatcherStateCopyWithImpl<$Res,
-          UserArticleDraftedWatcherState>;
+abstract class $PublishedWatcherStateCopyWith<$Res> {
+  factory $PublishedWatcherStateCopyWith(PublishedWatcherState value,
+          $Res Function(PublishedWatcherState) then) =
+      _$PublishedWatcherStateCopyWithImpl<$Res, PublishedWatcherState>;
 }
 
 /// @nodoc
-class _$UserArticleDraftedWatcherStateCopyWithImpl<$Res,
-        $Val extends UserArticleDraftedWatcherState>
-    implements $UserArticleDraftedWatcherStateCopyWith<$Res> {
-  _$UserArticleDraftedWatcherStateCopyWithImpl(this._value, this._then);
+class _$PublishedWatcherStateCopyWithImpl<$Res,
+        $Val extends PublishedWatcherState>
+    implements $PublishedWatcherStateCopyWith<$Res> {
+  _$PublishedWatcherStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -306,7 +302,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$UserArticleDraftedWatcherStateCopyWithImpl<$Res, _$_Initial>
+    extends _$PublishedWatcherStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -319,7 +315,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'UserArticleDraftedWatcherState.initial()';
+    return 'PublishedWatcherState.initial()';
   }
 
   @override
@@ -407,7 +403,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements UserArticleDraftedWatcherState {
+abstract class _Initial implements PublishedWatcherState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -420,7 +416,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$UserArticleDraftedWatcherStateCopyWithImpl<$Res, _$_Loading>
+    extends _$PublishedWatcherStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -433,7 +429,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'UserArticleDraftedWatcherState.loading()';
+    return 'PublishedWatcherState.loading()';
   }
 
   @override
@@ -521,7 +517,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements UserArticleDraftedWatcherState {
+abstract class _Loading implements PublishedWatcherState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -535,7 +531,7 @@ abstract class _$$_ErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ErrorCopyWithImpl<$Res>
-    extends _$UserArticleDraftedWatcherStateCopyWithImpl<$Res, _$_Error>
+    extends _$PublishedWatcherStateCopyWithImpl<$Res, _$_Error>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
       : super(_value, _then);
@@ -564,7 +560,7 @@ class _$_Error implements _Error {
 
   @override
   String toString() {
-    return 'UserArticleDraftedWatcherState.error(message: $message)';
+    return 'PublishedWatcherState.error(message: $message)';
   }
 
   @override
@@ -660,7 +656,7 @@ class _$_Error implements _Error {
   }
 }
 
-abstract class _Error implements UserArticleDraftedWatcherState {
+abstract class _Error implements PublishedWatcherState {
   const factory _Error(final String message) = _$_Error;
 
   String get message;
@@ -679,7 +675,7 @@ abstract class _$$_LoadedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadedCopyWithImpl<$Res>
-    extends _$UserArticleDraftedWatcherStateCopyWithImpl<$Res, _$_Loaded>
+    extends _$PublishedWatcherStateCopyWithImpl<$Res, _$_Loaded>
     implements _$$_LoadedCopyWith<$Res> {
   __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
       : super(_value, _then);
@@ -723,7 +719,7 @@ class _$_Loaded implements _Loaded {
 
   @override
   String toString() {
-    return 'UserArticleDraftedWatcherState.loaded(articleList: $articleList, hasReachedMax: $hasReachedMax)';
+    return 'PublishedWatcherState.loaded(articleList: $articleList, hasReachedMax: $hasReachedMax)';
   }
 
   @override
@@ -823,7 +819,7 @@ class _$_Loaded implements _Loaded {
   }
 }
 
-abstract class _Loaded implements UserArticleDraftedWatcherState {
+abstract class _Loaded implements PublishedWatcherState {
   const factory _Loaded(
       {required final List<Article> articleList,
       required final bool hasReachedMax}) = _$_Loaded;

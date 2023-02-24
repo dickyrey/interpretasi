@@ -38,13 +38,13 @@ import 'package:interpretasi/src/presentation/bloc/report/report_actor_bloc.dart
 import 'package:interpretasi/src/presentation/bloc/theme/theme_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/banned_watcher/banned_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/drafted_watcher/drafted_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/moderated_actor/moderated_actor_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/moderated_watcher/moderated_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/read_history_watcher/read_history_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_banned_watcher/user_article_banned_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_drafted_watcher/user_article_drafted_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_moderated_watcher/user_article_moderated_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_published_watcher/user_article_published_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_rejected_watcher/user_article_rejected_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/rejected_watcher/rejected_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/user_article_published_watcher/published_watcher_bloc.dart';
 import 'package:interpretasi/src/utilities/route_generator.dart';
 
 class PostHttpOverrides extends HttpOverrides {
@@ -116,11 +116,11 @@ class MyApp extends StatelessWidget {
         //* User Article BLoC folder
         BlocProvider(create: (context) => di.locator<ModeratedActorBloc>()),
         BlocProvider(create: (context) => di.locator<ReadHistoryWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<UserArticleBannedWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<UserArticleDraftedWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<UserArticleModeratedWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<UserArticlePublishedWatcherBloc>()),
-        BlocProvider(create: (context) => di.locator<UserArticleRejectedWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<BannedWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<DraftedWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<ModeratedWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<PublishedWatcherBloc>()),
+        BlocProvider(create: (context) => di.locator<RejectedWatcherBloc>()),
       ],
       child: BlocBuilder<ThemeWatcherBloc, ThemeWatcherState>(
         builder: (context, theme) {

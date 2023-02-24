@@ -150,7 +150,7 @@ class RegisterPage extends StatelessWidget {
                     ElevatedButtonWidget(
                       label: lang.register,
                       labelLoading: lang.please_wait,
-                      isLoading: (state.isSubmit == true) ? true : false,
+                      isLoading: state.isSubmit,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
                           context.read<SignUpWithEmailFormBloc>().add(

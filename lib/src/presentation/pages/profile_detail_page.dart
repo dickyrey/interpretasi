@@ -9,7 +9,7 @@ import 'package:interpretasi/src/common/screens.dart';
 import 'package:interpretasi/src/domain/entities/user.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/read_history_watcher/read_history_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_published_watcher/user_article_published_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/user_article_published_watcher/published_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/empty_data_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/outlined_button_widget.dart';
@@ -35,8 +35,8 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
           .read<ReadHistoryWatcherBloc>()
           .add(const ReadHistoryWatcherEvent.fetch());
       context
-          .read<UserArticlePublishedWatcherBloc>()
-          .add(const UserArticlePublishedWatcherEvent.fetch());
+          .read<PublishedWatcherBloc>()
+          .add(const PublishedWatcherEvent.fetch(isRefresh: false));
     });
   }
 
@@ -232,8 +232,7 @@ class _MyArticlesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final lang = AppLocalizations.of(context)!;
 
-    return BlocBuilder<UserArticlePublishedWatcherBloc,
-        UserArticlePublishedWatcherState>(
+    return BlocBuilder<PublishedWatcherBloc, PublishedWatcherState>(
       builder: (context, state) {
         return state.maybeMap(
           orElse: () {
@@ -254,8 +253,8 @@ class _MyArticlesWidget extends StatelessWidget {
               return RefreshIndicator(
                 onRefresh: () async {
                   context
-                      .read<UserArticlePublishedWatcherBloc>()
-                      .add(const UserArticlePublishedWatcherEvent.fetch());
+                      .read<PublishedWatcherBloc>()
+                      .add(const PublishedWatcherEvent.fetch(isRefresh: true));
                 },
                 child: ListView.builder(
                   itemCount: state.articleList.length,

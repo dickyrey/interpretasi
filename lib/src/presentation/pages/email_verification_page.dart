@@ -118,7 +118,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
                             ? theme.primaryColor.withOpacity(.5)
                             : theme.primaryColor,
                         labelLoading: lang.please_wait,
-                        isLoading: (state.isSubmit == true) ? true : false,
+                        isLoading: state.isSubmit,
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,

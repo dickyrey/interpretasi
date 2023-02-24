@@ -5,14 +5,15 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/routes.dart';
+import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/presentation/bloc/article/article_form/article_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/article/delete_article_actor/delete_article_actor_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/banned_watcher/banned_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/drafted_watcher/drafted_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/moderated_actor/moderated_actor_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_banned_watcher/user_article_banned_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_drafted_watcher/user_article_drafted_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_moderated_watcher/user_article_moderated_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_published_watcher/user_article_published_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_rejected_watcher/user_article_rejected_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/moderated_watcher/moderated_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/rejected_watcher/rejected_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/user_article_published_watcher/published_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/widgets/article_card_widget.dart';
 import 'package:interpretasi/src/presentation/widgets/empty_data_widget.dart';
 import 'package:interpretasi/src/utilities/snackbar.dart';
@@ -28,6 +29,8 @@ class MyArticlePage extends StatefulWidget {
 class _MyArticlePageState extends State<MyArticlePage> {
   late ScrollController _drafScrollCtrl;
   late ScrollController _moderatedScrollCtrl;
+  late ScrollController _rejectedScrollCtrl;
+  late ScrollController _publishedScrollCtrl;
   late ScrollController _bannedScrollCtrl;
 
   bool _hasReachedMax = false;
@@ -35,45 +38,78 @@ class _MyArticlePageState extends State<MyArticlePage> {
   @override
   void initState() {
     super.initState();
+
+    /// [ScrollController] init
     _drafScrollCtrl = ScrollController();
     _moderatedScrollCtrl = ScrollController();
+    _rejectedScrollCtrl = ScrollController();
+    _publishedScrollCtrl = ScrollController();
     _bannedScrollCtrl = ScrollController();
-    final moderatedBloc = context.read<UserArticleModeratedWatcherBloc>().state;
-    final bannedBloc = context.read<UserArticleBannedWatcherBloc>().state;
+
+    ///  Pagination [Listener]
+    //* Draf Article ListView
     _drafScrollCtrl.addListener(() {
       if (_drafScrollCtrl.position.pixels >=
           _drafScrollCtrl.position.maxScrollExtent) {
         if (_hasReachedMax == false) {
-          context.read<UserArticleDraftedWatcherBloc>().add(
-                const UserArticleDraftedWatcherEvent.fetch(isRefresh: false),
+          context
+              .read<DraftedWatcherBloc>()
+              .add(const DraftedWatcherEvent.fetch(isRefresh: false));
+        }
+      }
+    });
+
+    //* Moderated Article ListView
+    _moderatedScrollCtrl.addListener(() {
+      if (_moderatedScrollCtrl.position.pixels >=
+          _moderatedScrollCtrl.position.maxScrollExtent) {
+        if (_hasReachedMax == false) {
+          context.read<ModeratedWatcherBloc>().add(
+                const ModeratedWatcherEvent.fetch(isRefresh: false),
               );
         }
       }
     });
-    _moderatedScrollCtrl.addListener(() {
-      if (_moderatedScrollCtrl.position.pixels >=
-          _moderatedScrollCtrl.position.maxScrollExtent) {
-        if (moderatedBloc.page != null) {
-          context
-              .read<UserArticleModeratedWatcherBloc>()
-              .add(const UserArticleModeratedWatcherEvent.fetch());
+
+    //* Rejected Article ListView
+    _rejectedScrollCtrl.addListener(() {
+      if (_rejectedScrollCtrl.position.pixels >=
+          _rejectedScrollCtrl.position.maxScrollExtent) {
+        if (_hasReachedMax == false) {
+          context.read<RejectedWatcherBloc>().add(
+                const RejectedWatcherEvent.fetch(isRefresh: false),
+              );
         }
       }
     });
+
+    //* Published Article ListView
+    _publishedScrollCtrl.addListener(() {
+      if (_publishedScrollCtrl.position.pixels >=
+          _publishedScrollCtrl.position.maxScrollExtent) {
+        if (_hasReachedMax == false) {
+          context.read<PublishedWatcherBloc>().add(
+                const PublishedWatcherEvent.fetch(isRefresh: false),
+              );
+        }
+      }
+    });
+
+    //* Banned Article ListView
     _bannedScrollCtrl.addListener(() {
       if (_bannedScrollCtrl.position.pixels >=
           _bannedScrollCtrl.position.maxScrollExtent) {
-        if (bannedBloc.page != null) {
+        if (_hasReachedMax == false) {
           context
-              .read<UserArticleBannedWatcherBloc>()
-              .add(const UserArticleBannedWatcherEvent.fetch());
+              .read<BannedWatcherBloc>()
+              .add(const BannedWatcherEvent.fetch(isRefresh: false));
         }
       }
     });
     Future.microtask(
       () => context
-          .read<UserArticleDraftedWatcherBloc>()
-          .add(const UserArticleDraftedWatcherEvent.fetch(isRefresh: false)),
+          .read<DraftedWatcherBloc>()
+          .add(const DraftedWatcherEvent.fetch(isRefresh: false)),
     );
   }
 
@@ -105,11 +141,9 @@ class _MyArticlePageState extends State<MyArticlePage> {
               },
               success: (_) {
                 showToast(msg: lang.article_deleted);
-                context.read<UserArticleDraftedWatcherBloc>().add(
-                      const UserArticleDraftedWatcherEvent.fetch(
-                        isRefresh: true,
-                      ),
-                    );
+                context
+                    .read<DraftedWatcherBloc>()
+                    .add(const DraftedWatcherEvent.fetch(isRefresh: true));
               },
             );
           },
@@ -130,11 +164,9 @@ class _MyArticlePageState extends State<MyArticlePage> {
               },
               success: (_) {
                 showToast(msg: lang.articles_are_sent_to_be_checked_by_admin);
-                context.read<UserArticleDraftedWatcherBloc>().add(
-                      const UserArticleDraftedWatcherEvent.fetch(
-                        isRefresh: true,
-                      ),
-                    );
+                context
+                    .read<DraftedWatcherBloc>()
+                    .add(const DraftedWatcherEvent.fetch(isRefresh: true));
               },
             );
           },
@@ -146,476 +178,142 @@ class _MyArticlePageState extends State<MyArticlePage> {
           appBar: _appBar(context),
           body: TabBarView(
             children: [
-              BlocBuilder<UserArticleDraftedWatcherBloc,
-                  UserArticleDraftedWatcherState>(
+              BlocBuilder<DraftedWatcherBloc, DraftedWatcherState>(
                 builder: (context, state) {
                   return state.maybeMap(
                     orElse: () {
-                      return EmptyDataWidget(
-                        illustration: Assets.write,
-                        title: lang.my_articles_empty,
-                        subtitle: lang
-                            .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            ARTICLE_SEARCH,
-                            arguments: false,
-                          );
-                        },
-                      );
+                      // TODO(dickyrey): Implement Error UI
+                      return const SizedBox();
                     },
                     loading: (_) {
-                      return ListView.builder(
-                        itemCount: 3,
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: Const.margin,
-                        ),
-                        itemBuilder: (context, index) {
-                          return const ArticleCardLoadingWidget();
-                        },
-                      );
+                      return const _LoadingWidget();
                     },
                     loaded: (state) {
                       _hasReachedMax = state.hasReachedMax;
-
-                      return RefreshIndicator(
+                      return _ListArticleWidget(
+                        controller: _drafScrollCtrl,
+                        hasReachedMax: state.hasReachedMax,
+                        articleList: state.articleList,
                         onRefresh: () async {
-                          context.read<UserArticleDraftedWatcherBloc>().add(
-                                const UserArticleDraftedWatcherEvent.fetch(
+                          context.read<DraftedWatcherBloc>().add(
+                                const DraftedWatcherEvent.fetch(
                                   isRefresh: true,
                                 ),
                               );
                         },
-                        child: ListView.separated(
-                          controller: _drafScrollCtrl,
-                          itemCount: state.hasReachedMax
-                              ? state.articleList.length
-                              : state.articleList.length + 1,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: Const.margin,
-                          ),
-                          physics: const ScrollPhysics(),
-                          shrinkWrap: true,
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(height: Const.space15);
-                          },
-                          itemBuilder: (context, index) {
-                            if (index == state.articleList.length &&
-                                state.hasReachedMax != true) {
-                              return const Center(
-                                child: Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: CircularProgressIndicator(),
-                                ),
-                              );
-                            }
-                            final article = state.articleList[index];
-                            return ArticleCardWidget(
-                              index: index,
-                              article: article,
-                              showPreviewButton: true,
-                              showEditButton: true,
-                              showPublishButton: true,
-                              showDeleteButton: true,
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  ARTICLE_PREVIEW,
-                                  arguments: article,
-                                );
-                              },
-                            );
-                          },
-                        ),
                       );
                     },
                   );
                 },
               ),
-              BlocBuilder<UserArticleModeratedWatcherBloc,
-                  UserArticleModeratedWatcherState>(
-                builder: (context, state) {
-                  switch (state.state) {
-                    case RequestState.empty:
-                      return EmptyDataWidget(
-                        illustration: Assets.write,
-                        title: lang.my_articles_empty,
-                        subtitle: lang
-                            .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            ARTICLE_SEARCH,
-                            arguments: false,
-                          );
-                        },
-                      );
-                    case RequestState.loading:
-                      return ListView.builder(
-                        itemCount: 3,
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: Const.margin,
-                        ),
-                        itemBuilder: (context, index) {
-                          return const ArticleCardLoadingWidget();
-                        },
-                      );
-                    case RequestState.error:
-                      // TODO(dickyrey): Error View
-                      return const SizedBox();
-                    case RequestState.loaded:
-                      return RefreshIndicator(
-                        onRefresh: () async {
-                          context.read<UserArticleModeratedWatcherBloc>().add(
-                                const UserArticleModeratedWatcherEvent.fetch(),
-                              );
-                        },
-                        child: ListView.separated(
-                          controller: _moderatedScrollCtrl,
-                          itemCount: state.articleList.length +
-                              (state.page != null ? 1 : 0),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: Const.margin,
-                          ),
-                          physics: const ScrollPhysics(),
-                          shrinkWrap: true,
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(height: Const.space15);
-                          },
-                          itemBuilder: (context, index) {
-                            if (index == state.articleList.length &&
-                                state.page != null) {
-                              return const Center(
-                                child: Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: CircularProgressIndicator(),
-                                ),
-                              );
-                            }
-                            final article = state.articleList[index];
-                            return ArticleCardWidget(
-                              index: index,
-                              article: article,
-                              showPreviewButton: true,
-                              showDeleteButton: true,
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  ARTICLE_PREVIEW,
-                                  arguments: article,
-                                );
-                              },
-                            );
-                          },
-                        ),
-                      );
-                  }
-                },
-              ),
-              BlocBuilder<UserArticleRejectedWatcherBloc,
-                  UserArticleRejectedWatcherState>(
+              BlocBuilder<ModeratedWatcherBloc, ModeratedWatcherState>(
                 builder: (context, state) {
                   return state.maybeMap(
                     orElse: () {
-                      // TODO(dickyrey): Error View
+                      // TODO(dickyrey): Implement Error UI
                       return const SizedBox();
                     },
                     loading: (_) {
-                      return ListView.builder(
-                        itemCount: 3,
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: Const.margin,
-                        ),
-                        itemBuilder: (context, index) {
-                          return const ArticleCardLoadingWidget();
-                        },
-                      );
+                      return const _LoadingWidget();
                     },
                     loaded: (state) {
-                      if (state.articleList.isNotEmpty) {
-                        return RefreshIndicator(
-                          onRefresh: () async {
-                            context.read<UserArticleRejectedWatcherBloc>().add(
-                                  const UserArticleRejectedWatcherEvent.fetch(),
-                                );
-                          },
-                          child: ListView.separated(
-                            itemCount: state.articleList.length,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: Const.margin,
-                            ),
-                            physics: const ScrollPhysics(),
-                            shrinkWrap: true,
-                            separatorBuilder: (context, index) {
-                              return const SizedBox(height: Const.space15);
-                            },
-                            itemBuilder: (context, index) {
-                              final article = state.articleList[index];
-                              return ArticleCardWidget(
-                                index: index,
-                                article: article,
-                                showEditButton: true,
-                                showDeleteButton: true,
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    ARTICLE_PREVIEW,
-                                    arguments: article,
-                                  );
-                                },
+                      _hasReachedMax = state.hasReachedMax;
+                      return _ListArticleWidget(
+                        controller: _moderatedScrollCtrl,
+                        hasReachedMax: state.hasReachedMax,
+                        articleList: state.articleList,
+                        onRefresh: () async {
+                          context.read<ModeratedWatcherBloc>().add(
+                                const ModeratedWatcherEvent.fetch(
+                                  isRefresh: true,
+                                ),
                               );
-                            },
-                          ),
-                        );
-                      }
-                      return EmptyDataWidget(
-                        illustration: Assets.write,
-                        title: lang.my_articles_empty,
-                        subtitle: lang
-                            .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            ARTICLE_SEARCH,
-                            arguments: false,
-                          );
                         },
                       );
                     },
                   );
                 },
               ),
-              BlocBuilder<UserArticlePublishedWatcherBloc,
-                  UserArticlePublishedWatcherState>(
+              BlocBuilder<RejectedWatcherBloc, RejectedWatcherState>(
                 builder: (context, state) {
                   return state.maybeMap(
                     orElse: () {
-                      // TODO(dickyrey): Error View
+                      // TODO(dickyrey): Implement Error UI
                       return const SizedBox();
                     },
                     loading: (_) {
-                      return ListView.builder(
-                        itemCount: 3,
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: Const.margin,
-                        ),
-                        itemBuilder: (context, index) {
-                          return const ArticleCardLoadingWidget();
-                        },
-                      );
+                      return const _LoadingWidget();
                     },
                     loaded: (state) {
-                      if (state.articleList.isNotEmpty) {
-                        return RefreshIndicator(
-                          onRefresh: () async {
-                            context.read<UserArticlePublishedWatcherBloc>().add(
-                                  const UserArticlePublishedWatcherEvent
-                                      .fetch(),
-                                );
-                          },
-                          child: ListView.separated(
-                            itemCount: state.articleList.length,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: Const.margin,
-                            ),
-                            physics: const ScrollPhysics(),
-                            shrinkWrap: true,
-                            separatorBuilder: (context, index) {
-                              return const SizedBox(height: Const.space15);
-                            },
-                            itemBuilder: (context, index) {
-                              final article = state.articleList[index];
-                              return ArticleCardWidget(
-                                index: index,
-                                article: article,
-                                showEditButton: true,
-                                showDeleteButton: true,
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    ARTICLE_PREVIEW,
-                                    arguments: article,
-                                  );
-                                },
+                      _hasReachedMax = state.hasReachedMax;
+                      return _ListArticleWidget(
+                        controller: _rejectedScrollCtrl,
+                        hasReachedMax: state.hasReachedMax,
+                        articleList: state.articleList,
+                        onRefresh: () async {
+                          context.read<RejectedWatcherBloc>().add(
+                                const RejectedWatcherEvent.fetch(
+                                  isRefresh: true,
+                                ),
                               );
-                            },
-                          ),
-                        );
-                      }
-                      return EmptyDataWidget(
-                        illustration: Assets.write,
-                        title: lang.my_articles_empty,
-                        subtitle: lang
-                            .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            ARTICLE_SEARCH,
-                            arguments: false,
-                          );
                         },
                       );
                     },
                   );
                 },
               ),
-              BlocBuilder<UserArticleBannedWatcherBloc,
-                  UserArticleBannedWatcherState>(
+              BlocBuilder<PublishedWatcherBloc, PublishedWatcherState>(
                 builder: (context, state) {
-                  switch (state.state) {
-                    case RequestState.empty:
-                      return EmptyDataWidget(
-                        illustration: Assets.write,
-                        title: lang.my_articles_empty,
-                        subtitle: lang
-                            .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            ARTICLE_SEARCH,
-                            arguments: false,
-                          );
-                        },
-                      );
-                    case RequestState.loading:
-                      return ListView.builder(
-                        itemCount: 3,
-                        physics: const ScrollPhysics(),
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: Const.margin,
-                        ),
-                        itemBuilder: (context, index) {
-                          return const ArticleCardLoadingWidget();
-                        },
-                      );
-                    case RequestState.error:
-                      // TODO(dickyrey): Error View
+                  return state.maybeMap(
+                    orElse: () {
+                      // TODO(dickyrey): Implement Error UI
                       return const SizedBox();
-                    case RequestState.loaded:
-                      return RefreshIndicator(
+                    },
+                    loading: (_) {
+                      return const _LoadingWidget();
+                    },
+                    loaded: (state) {
+                      _hasReachedMax = state.hasReachedMax;
+                      return _ListArticleWidget(
+                        controller: _publishedScrollCtrl,
+                        hasReachedMax: state.hasReachedMax,
+                        articleList: state.articleList,
                         onRefresh: () async {
-                          context.read<UserArticleBannedWatcherBloc>().add(
-                                const UserArticleBannedWatcherEvent.fetch(),
-                              );
-                        },
-                        child: ListView.separated(
-                          controller: _bannedScrollCtrl,
-                          itemCount: state.articleList.length +
-                              (state.page != null ? 1 : 0),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: Const.margin,
-                          ),
-                          physics: const ScrollPhysics(),
-                          shrinkWrap: true,
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(height: Const.space15);
-                          },
-                          itemBuilder: (context, index) {
-                            if (index == state.articleList.length &&
-                                state.page != null) {
-                              return const Center(
-                                child: Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: CircularProgressIndicator(),
+                          context.read<PublishedWatcherBloc>().add(
+                                const PublishedWatcherEvent.fetch(
+                                  isRefresh: true,
                                 ),
                               );
-                            }
-                            final article = state.articleList[index];
-                            return ArticleCardWidget(
-                              index: index,
-                              article: article,
-                              showDeleteButton: true,
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  ARTICLE_PREVIEW,
-                                  arguments: article,
-                                );
-                              },
-                            );
-                          },
-                        ),
+                        },
                       );
-                  }
-                  // return state.maybeMap(
-                  //   orElse: () {
-                  //     // TODO(dickyrey): Error View
-                  //     return const SizedBox();
-                  //   },
-                  //   loading: (_) {
-                  //     return ListView.builder(
-                  //       itemCount: 3,
-                  //       physics: const ScrollPhysics(),
-                  //       shrinkWrap: true,
-                  //       padding: const EdgeInsets.symmetric(
-                  //         vertical: Const.margin,
-                  //       ),
-                  //       itemBuilder: (context, index) {
-                  //         return const ArticleCardLoadingWidget();
-                  //       },
-                  //     );
-                  //   },
-                  //   loaded: (state) {
-                  //     if (state.articleList.isNotEmpty) {
-                  //       return RefreshIndicator(
-                  //         onRefresh: () async {
-                  //           context.read<UserArticleBannedWatcherBloc>().add(
-                  //                 const UserArticleBannedWatcherEvent.fetch(),
-                  //               );
-                  //         },
-                  //         child: ListView.separated(
-                  //           itemCount: state.articleList.length,
-                  //           padding: const EdgeInsets.symmetric(
-                  //             vertical: Const.margin,
-                  //           ),
-                  //           physics: const ScrollPhysics(),
-                  //           shrinkWrap: true,
-                  //           separatorBuilder: (context, index) {
-                  //             return const SizedBox(height: Const.space15);
-                  //           },
-                  //           itemBuilder: (context, index) {
-                  //             final article = state.articleList[index];
-                  //             return ArticleCardWidget(
-                  //               index: index,
-                  //               article: article,
-                  //               showDeleteButton: true,
-                  //               onTap: () {
-                  //                 Navigator.pushNamed(
-                  //                   context,
-                  //                   ARTICLE_PREVIEW,
-                  //                   arguments: article,
-                  //                 );
-                  //               },
-                  //             );
-                  //           },
-                  //         ),
-                  //       );
-                  //     }
-                  //     return EmptyDataWidget(
-                  //       illustration: Assets.write,
-                  //       title: lang.my_articles_empty,
-                  //       subtitle: lang
-                  //           .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
-                  //       onTap: () {
-                  //         Navigator.pushNamed(
-                  //           context,
-                  //           ARTICLE_SEARCH,
-                  //           arguments: false,
-                  //         );
-                  //       },
-                  //     );
-                  //   },
-                  // );
+                    },
+                  );
+                },
+              ),
+              BlocBuilder<BannedWatcherBloc, BannedWatcherState>(
+                builder: (context, state) {
+                  return state.maybeMap(
+                    orElse: () {
+                      // TODO(dickyrey): Implement Error UI
+                      return const SizedBox();
+                    },
+                    loading: (_) {
+                      return const _LoadingWidget();
+                    },
+                    loaded: (state) {
+                      _hasReachedMax = state.hasReachedMax;
+                      return _ListArticleWidget(
+                        controller: _bannedScrollCtrl,
+                        hasReachedMax: state.hasReachedMax,
+                        articleList: state.articleList,
+                        onRefresh: () async {
+                          context.read<BannedWatcherBloc>().add(
+                                const BannedWatcherEvent.fetch(isRefresh: true),
+                              );
+                        },
+                      );
+                    },
+                  );
                 },
               ),
             ],
@@ -666,40 +364,39 @@ class _MyArticlePageState extends State<MyArticlePage> {
         isScrollable: true,
         onTap: (index) async {
           if (index == 0) {
-            final state = context.read<UserArticleDraftedWatcherBloc>().state;
-            if (state.runtimeType !=
-                UserArticleDraftedWatcherState.loaded.runtimeType) {
-              context.read<UserArticleDraftedWatcherBloc>().add(
-                    const UserArticleDraftedWatcherEvent.fetch(isRefresh: true),
-                  );
+            final state = context.read<DraftedWatcherBloc>().state;
+            if (state.runtimeType != DraftedWatcherState.loaded.runtimeType) {
+              context
+                  .read<DraftedWatcherBloc>()
+                  .add(const DraftedWatcherEvent.fetch(isRefresh: true));
             }
           } else if (index == 1) {
-            final state = context.read<UserArticleModeratedWatcherBloc>().state;
-            if (state.state != RequestState.loaded) {
+            final state = context.read<ModeratedWatcherBloc>().state;
+            if (state.runtimeType != DraftedWatcherState.loaded.runtimeType) {
               context
-                  .read<UserArticleModeratedWatcherBloc>()
-                  .add(const UserArticleModeratedWatcherEvent.fetch());
+                  .read<ModeratedWatcherBloc>()
+                  .add(const ModeratedWatcherEvent.fetch(isRefresh: true));
             }
           } else if (index == 2) {
-            final state = context.read<UserArticleRejectedWatcherBloc>().state;
-            if (state != const UserArticleRejectedWatcherState.loaded([])) {
+            final state = context.read<RejectedWatcherBloc>().state;
+            if (state.runtimeType != BannedWatcherState.loaded.runtimeType) {
               context
-                  .read<UserArticleRejectedWatcherBloc>()
-                  .add(const UserArticleRejectedWatcherEvent.fetch());
+                  .read<RejectedWatcherBloc>()
+                  .add(const RejectedWatcherEvent.fetch(isRefresh: true));
             }
           } else if (index == 3) {
-            final state = context.read<UserArticlePublishedWatcherBloc>().state;
-            if (state != const UserArticlePublishedWatcherState.loaded([])) {
+            final state = context.read<PublishedWatcherBloc>().state;
+            if (state.runtimeType != BannedWatcherState.loaded.runtimeType) {
               context
-                  .read<UserArticlePublishedWatcherBloc>()
-                  .add(const UserArticlePublishedWatcherEvent.fetch());
+                  .read<PublishedWatcherBloc>()
+                  .add(const PublishedWatcherEvent.fetch(isRefresh: true));
             }
           } else if (index == 4) {
-            final state = context.read<UserArticleBannedWatcherBloc>().state;
-            if (state.state != RequestState.loaded) {
+            final state = context.read<BannedWatcherBloc>().state;
+            if (state.runtimeType != BannedWatcherState.loaded.runtimeType) {
               context
-                  .read<UserArticleBannedWatcherBloc>()
-                  .add(const UserArticleBannedWatcherEvent.fetch());
+                  .read<BannedWatcherBloc>()
+                  .add(const BannedWatcherEvent.fetch(isRefresh: true));
             }
           }
         },
@@ -711,6 +408,103 @@ class _MyArticlePageState extends State<MyArticlePage> {
           Tab(text: lang.banned),
         ],
       ),
+    );
+  }
+}
+
+class _ListArticleWidget extends StatelessWidget {
+  const _ListArticleWidget({
+    required this.controller,
+    required this.hasReachedMax,
+    required this.articleList,
+    required this.onRefresh,
+  });
+
+  final ScrollController controller;
+  final bool hasReachedMax;
+  final List<Article> articleList;
+  final Future<void> Function() onRefresh;
+
+  @override
+  Widget build(BuildContext context) {
+    final lang = AppLocalizations.of(context)!;
+
+    if (articleList.isNotEmpty) {
+      return RefreshIndicator(
+        onRefresh: onRefresh,
+        child: ListView.separated(
+          controller: controller,
+          itemCount:
+              hasReachedMax ? articleList.length : articleList.length + 1,
+          padding: const EdgeInsets.symmetric(
+            vertical: Const.margin,
+          ),
+          physics: const ScrollPhysics(),
+          shrinkWrap: true,
+          separatorBuilder: (context, index) {
+            return const SizedBox(height: Const.space15);
+          },
+          itemBuilder: (context, index) {
+            if (index == articleList.length && hasReachedMax != true) {
+              return const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8),
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+            final article = articleList[index];
+            return ArticleCardWidget(
+              index: index,
+              article: article,
+              showPreviewButton: true,
+              showEditButton: true,
+              showPublishButton: true,
+              showDeleteButton: true,
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  ARTICLE_PREVIEW,
+                  arguments: article,
+                );
+              },
+            );
+          },
+        ),
+      );
+    } else {
+      return EmptyDataWidget(
+        illustration: Assets.write,
+        title: lang.my_articles_empty,
+        subtitle: lang
+            .you_havent_written_any_article_here_yet_lets_write_yours_from_now_on,
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            ARTICLE_SEARCH,
+            arguments: false,
+          );
+        },
+      );
+    }
+  }
+}
+
+class _LoadingWidget extends StatelessWidget {
+  const _LoadingWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 3,
+      physics: const ScrollPhysics(),
+      shrinkWrap: true,
+      padding: const EdgeInsets.symmetric(
+        vertical: Const.margin,
+      ),
+      itemBuilder: (context, index) {
+        return const ArticleCardLoadingWidget();
+      },
     );
   }
 }

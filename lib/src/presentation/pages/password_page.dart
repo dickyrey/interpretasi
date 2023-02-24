@@ -180,7 +180,7 @@ class _PasswordPageState extends State<PasswordPage> {
                       },
                       label: lang.save,
                       labelLoading: lang.please_wait,
-                      isLoading: (state.isSubmit == true) ? true : false,
+                      isLoading: state.isSubmit,
                     ),
                   ],
                 ),

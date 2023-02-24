@@ -187,7 +187,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     },
                     label: lang.save,
                     labelLoading: lang.please_wait,
-                    isLoading: (state.isSubmit == true) ? true : false,
+                    isLoading: state.isSubmit,
                   ),
                 ],
               ),

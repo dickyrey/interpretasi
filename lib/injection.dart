@@ -100,13 +100,13 @@ import 'package:interpretasi/src/presentation/bloc/report/report_actor_bloc.dart
 import 'package:interpretasi/src/presentation/bloc/theme/theme_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_form/user_form_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user/user_watcher/user_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/banned_watcher/banned_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/drafted_watcher/drafted_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/moderated_actor/moderated_actor_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/moderated_watcher/moderated_watcher_bloc.dart';
 import 'package:interpretasi/src/presentation/bloc/user_article/read_history_watcher/read_history_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_banned_watcher/user_article_banned_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_drafted_watcher/user_article_drafted_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_moderated_watcher/user_article_moderated_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_published_watcher/user_article_published_watcher_bloc.dart';
-import 'package:interpretasi/src/presentation/bloc/user_article/user_article_rejected_watcher/user_article_rejected_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/rejected_watcher/rejected_watcher_bloc.dart';
+import 'package:interpretasi/src/presentation/bloc/user_article/user_article_published_watcher/published_watcher_bloc.dart';
 
 final locator = GetIt.instance;
 
@@ -381,7 +381,7 @@ void init() {
   locator.registerLazySingleton(
     () => addPasswordUseCase,
   );
-  
+
   final changePasswordUseCase = ChangePassword(locator());
   locator.registerLazySingleton(
     () => changePasswordUseCase,
@@ -648,36 +648,28 @@ void init() {
   locator.registerLazySingleton(
     () => readHistoryWatcherBloc,
   );
-  final userArticleBannedWatcherBloc = UserArticleBannedWatcherBloc(locator());
+  final bannedWatcherBloc = BannedWatcherBloc(locator());
   locator.registerLazySingleton(
-    () => userArticleBannedWatcherBloc,
+    () => bannedWatcherBloc,
   );
 
-  final userArticleDraftedWatcherBloc = UserArticleDraftedWatcherBloc(
-    locator(),
-  );
+  final draftedWatcherBloc = DraftedWatcherBloc(locator());
   locator.registerLazySingleton(
-    () => userArticleDraftedWatcherBloc,
+    () => draftedWatcherBloc,
   );
 
-  final userArticleModeratedWatcherBloc = UserArticleModeratedWatcherBloc(
-    locator(),
-  );
+  final moderatedWatcherBloc = ModeratedWatcherBloc(locator());
   locator.registerLazySingleton(
-    () => userArticleModeratedWatcherBloc,
+    () => moderatedWatcherBloc,
   );
 
-  final userArticlePublishedWatcherBloc = UserArticlePublishedWatcherBloc(
-    locator(),
-  );
+  final publishedWatcherBloc = PublishedWatcherBloc(locator());
   locator.registerLazySingleton(
-    () => userArticlePublishedWatcherBloc,
+    () => publishedWatcherBloc,
   );
 
-  final userArticleRejectedWatcherBloc = UserArticleRejectedWatcherBloc(
-    locator(),
-  );
+  final rejectedWatcherBloc = RejectedWatcherBloc(locator());
   locator.registerLazySingleton(
-    () => userArticleRejectedWatcherBloc,
+    () => rejectedWatcherBloc,
   );
 }
