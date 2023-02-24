@@ -226,7 +226,6 @@ mixin _$UserArticleDraftedWatcherState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(String message) error,
     required TResult Function(List<Article> articleList, bool hasReachedMax)
@@ -236,7 +235,6 @@ mixin _$UserArticleDraftedWatcherState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? empty,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
     TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
@@ -245,7 +243,6 @@ mixin _$UserArticleDraftedWatcherState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(String message)? error,
     TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
@@ -255,7 +252,6 @@ mixin _$UserArticleDraftedWatcherState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Empty value) empty,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
@@ -264,7 +260,6 @@ mixin _$UserArticleDraftedWatcherState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Empty value)? empty,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
@@ -273,7 +268,6 @@ mixin _$UserArticleDraftedWatcherState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Empty value)? empty,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
@@ -341,7 +335,6 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(String message) error,
     required TResult Function(List<Article> articleList, bool hasReachedMax)
@@ -354,7 +347,6 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? empty,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
     TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
@@ -366,7 +358,6 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(String message)? error,
     TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
@@ -382,7 +373,6 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Empty value) empty,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
@@ -394,7 +384,6 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Empty value)? empty,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
@@ -406,7 +395,6 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Empty value)? empty,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
@@ -421,125 +409,6 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements UserArticleDraftedWatcherState {
   const factory _Initial() = _$_Initial;
-}
-
-/// @nodoc
-abstract class _$$_EmptyCopyWith<$Res> {
-  factory _$$_EmptyCopyWith(_$_Empty value, $Res Function(_$_Empty) then) =
-      __$$_EmptyCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_EmptyCopyWithImpl<$Res>
-    extends _$UserArticleDraftedWatcherStateCopyWithImpl<$Res, _$_Empty>
-    implements _$$_EmptyCopyWith<$Res> {
-  __$$_EmptyCopyWithImpl(_$_Empty _value, $Res Function(_$_Empty) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Empty implements _Empty {
-  const _$_Empty();
-
-  @override
-  String toString() {
-    return 'UserArticleDraftedWatcherState.empty()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Empty);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() empty,
-    required TResult Function() loading,
-    required TResult Function(String message) error,
-    required TResult Function(List<Article> articleList, bool hasReachedMax)
-        loaded,
-  }) {
-    return empty();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? empty,
-    TResult? Function()? loading,
-    TResult? Function(String message)? error,
-    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
-  }) {
-    return empty?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? empty,
-    TResult Function()? loading,
-    TResult Function(String message)? error,
-    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
-    required TResult orElse(),
-  }) {
-    if (empty != null) {
-      return empty();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Empty value) empty,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-    required TResult Function(_Loaded value) loaded,
-  }) {
-    return empty(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Empty value)? empty,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
-    TResult? Function(_Loaded value)? loaded,
-  }) {
-    return empty?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Empty value)? empty,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_Loaded value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (empty != null) {
-      return empty(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Empty implements UserArticleDraftedWatcherState {
-  const factory _Empty() = _$_Empty;
 }
 
 /// @nodoc
@@ -580,7 +449,6 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(String message) error,
     required TResult Function(List<Article> articleList, bool hasReachedMax)
@@ -593,7 +461,6 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? empty,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
     TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
@@ -605,7 +472,6 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(String message)? error,
     TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
@@ -621,7 +487,6 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Empty value) empty,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
@@ -633,7 +498,6 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Empty value)? empty,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
@@ -645,7 +509,6 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Empty value)? empty,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
@@ -725,7 +588,6 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(String message) error,
     required TResult Function(List<Article> articleList, bool hasReachedMax)
@@ -738,7 +600,6 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? empty,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
     TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
@@ -750,7 +611,6 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(String message)? error,
     TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
@@ -766,7 +626,6 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Empty value) empty,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
@@ -778,7 +637,6 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Empty value)? empty,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
@@ -790,7 +648,6 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Empty value)? empty,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
@@ -894,7 +751,6 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() empty,
     required TResult Function() loading,
     required TResult Function(String message) error,
     required TResult Function(List<Article> articleList, bool hasReachedMax)
@@ -907,7 +763,6 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? empty,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
     TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
@@ -919,7 +774,6 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? empty,
     TResult Function()? loading,
     TResult Function(String message)? error,
     TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
@@ -935,7 +789,6 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Empty value) empty,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
@@ -947,7 +800,6 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Empty value)? empty,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
@@ -959,7 +811,6 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Empty value)? empty,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,

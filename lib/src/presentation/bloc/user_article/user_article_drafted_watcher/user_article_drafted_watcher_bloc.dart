@@ -17,7 +17,7 @@ class UserArticleDraftedWatcherBloc extends Bloc<UserArticleDraftedWatcherEvent,
         fetch: (event) async {
           if (event.isRefresh == true) {
             page = 1;
-            posts.clear();
+            localArticleList.clear();
           }
           if (page == 1) {
             emit(const UserArticleDraftedWatcherState.loading());
@@ -28,27 +28,32 @@ class UserArticleDraftedWatcherBloc extends Bloc<UserArticleDraftedWatcherEvent,
             (data) {
               if (data.isNotEmpty) {
                 if (data.length < 5) {
-                  final list = List.of(posts)..addAll(data);
+                  final list = List.of(localArticleList)..addAll(data);
                   emit(
                     UserArticleDraftedWatcherState.loaded(
                       hasReachedMax: true,
                       articleList: list,
                     ),
                   );
-                  posts.addAll(data);
+                  localArticleList.addAll(data);
                 } else {
                   page += 1;
-                  final list = List.of(posts)..addAll(data);
+                  final list = List.of(localArticleList)..addAll(data);
                   emit(
                     UserArticleDraftedWatcherState.loaded(
-                      hasReachedMax: true,
+                      hasReachedMax: false,
                       articleList: list,
                     ),
                   );
-                  posts.addAll(data);
+                  localArticleList.addAll(data);
                 }
-              } else {
-                emit(const UserArticleDraftedWatcherState.empty());
+              } else if (data.isEmpty) {
+                emit(
+                  UserArticleDraftedWatcherState.loaded(
+                    hasReachedMax: true,
+                    articleList: localArticleList,
+                  ),
+                );
               }
             },
           );
@@ -57,6 +62,6 @@ class UserArticleDraftedWatcherBloc extends Bloc<UserArticleDraftedWatcherEvent,
     });
   }
   int page = 1;
-  final posts = <Article>[];
+  final localArticleList = <Article>[];
   final GetDraftedArticle _article;
 }

@@ -38,7 +38,6 @@ class _MyArticlePageState extends State<MyArticlePage> {
     _drafScrollCtrl = ScrollController();
     _moderatedScrollCtrl = ScrollController();
     _bannedScrollCtrl = ScrollController();
-    final drafBloc = context.read<UserArticleDraftedWatcherBloc>().state;
     final moderatedBloc = context.read<UserArticleModeratedWatcherBloc>().state;
     final bannedBloc = context.read<UserArticleBannedWatcherBloc>().state;
     _drafScrollCtrl.addListener(() {
@@ -46,7 +45,8 @@ class _MyArticlePageState extends State<MyArticlePage> {
           _drafScrollCtrl.position.maxScrollExtent) {
         if (_hasReachedMax == false) {
           context.read<UserArticleDraftedWatcherBloc>().add(
-              const UserArticleDraftedWatcherEvent.fetch(isRefresh: false));
+                const UserArticleDraftedWatcherEvent.fetch(isRefresh: false),
+              );
         }
       }
     });
@@ -106,8 +106,10 @@ class _MyArticlePageState extends State<MyArticlePage> {
               success: (_) {
                 showToast(msg: lang.article_deleted);
                 context.read<UserArticleDraftedWatcherBloc>().add(
-                    const UserArticleDraftedWatcherEvent.fetch(
-                        isRefresh: true));
+                      const UserArticleDraftedWatcherEvent.fetch(
+                        isRefresh: true,
+                      ),
+                    );
               },
             );
           },
@@ -129,8 +131,10 @@ class _MyArticlePageState extends State<MyArticlePage> {
               success: (_) {
                 showToast(msg: lang.articles_are_sent_to_be_checked_by_admin);
                 context.read<UserArticleDraftedWatcherBloc>().add(
-                    const UserArticleDraftedWatcherEvent.fetch(
-                        isRefresh: true));
+                      const UserArticleDraftedWatcherEvent.fetch(
+                        isRefresh: true,
+                      ),
+                    );
               },
             );
           },
@@ -147,20 +151,6 @@ class _MyArticlePageState extends State<MyArticlePage> {
                 builder: (context, state) {
                   return state.maybeMap(
                     orElse: () {
-                      return EmptyDataWidget(
-                        illustration: Assets.write,
-                        title: lang.something_went_wrong,
-                        subtitle: lang
-                            .we_encountered_an_error_while_trying_to_connect_to_our_server_please_try_after_some_again,
-                        onTap: () {
-                          context.read<UserArticleDraftedWatcherBloc>().add(
-                                const UserArticleDraftedWatcherEvent.fetch(
-                                    isRefresh: false),
-                              );
-                        },
-                      );
-                    },
-                    empty: (_) {
                       return EmptyDataWidget(
                         illustration: Assets.write,
                         title: lang.my_articles_empty,
@@ -679,9 +669,9 @@ class _MyArticlePageState extends State<MyArticlePage> {
             final state = context.read<UserArticleDraftedWatcherBloc>().state;
             if (state.runtimeType !=
                 UserArticleDraftedWatcherState.loaded.runtimeType) {
-              context
-                  .read<UserArticleDraftedWatcherBloc>()
-                  .add(const UserArticleDraftedWatcherEvent.fetch(isRefresh: true));
+              context.read<UserArticleDraftedWatcherBloc>().add(
+                    const UserArticleDraftedWatcherEvent.fetch(isRefresh: true),
+                  );
             }
           } else if (index == 1) {
             final state = context.read<UserArticleModeratedWatcherBloc>().state;
