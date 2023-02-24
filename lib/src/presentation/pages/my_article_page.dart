@@ -30,6 +30,8 @@ class _MyArticlePageState extends State<MyArticlePage> {
   late ScrollController _moderatedScrollCtrl;
   late ScrollController _bannedScrollCtrl;
 
+  bool _hasReachedMax = false;
+
   @override
   void initState() {
     super.initState();
@@ -42,10 +44,9 @@ class _MyArticlePageState extends State<MyArticlePage> {
     _drafScrollCtrl.addListener(() {
       if (_drafScrollCtrl.position.pixels >=
           _drafScrollCtrl.position.maxScrollExtent) {
-        if (drafBloc.page != null) {
-          context
-              .read<UserArticleDraftedWatcherBloc>()
-              .add(const UserArticleDraftedWatcherEvent.fetch());
+        if (_hasReachedMax == false) {
+          context.read<UserArticleDraftedWatcherBloc>().add(
+              const UserArticleDraftedWatcherEvent.fetch(isRefresh: false));
         }
       }
     });
@@ -72,7 +73,7 @@ class _MyArticlePageState extends State<MyArticlePage> {
     Future.microtask(
       () => context
           .read<UserArticleDraftedWatcherBloc>()
-          .add(const UserArticleDraftedWatcherEvent.fetch()),
+          .add(const UserArticleDraftedWatcherEvent.fetch(isRefresh: false)),
     );
   }
 
@@ -104,9 +105,9 @@ class _MyArticlePageState extends State<MyArticlePage> {
               },
               success: (_) {
                 showToast(msg: lang.article_deleted);
-                context
-                    .read<UserArticleDraftedWatcherBloc>()
-                    .add(const UserArticleDraftedWatcherEvent.fetch());
+                context.read<UserArticleDraftedWatcherBloc>().add(
+                    const UserArticleDraftedWatcherEvent.fetch(
+                        isRefresh: true));
               },
             );
           },
@@ -127,9 +128,9 @@ class _MyArticlePageState extends State<MyArticlePage> {
               },
               success: (_) {
                 showToast(msg: lang.articles_are_sent_to_be_checked_by_admin);
-                context
-                    .read<UserArticleDraftedWatcherBloc>()
-                    .add(const UserArticleDraftedWatcherEvent.fetch());
+                context.read<UserArticleDraftedWatcherBloc>().add(
+                    const UserArticleDraftedWatcherEvent.fetch(
+                        isRefresh: true));
               },
             );
           },
@@ -144,8 +145,22 @@ class _MyArticlePageState extends State<MyArticlePage> {
               BlocBuilder<UserArticleDraftedWatcherBloc,
                   UserArticleDraftedWatcherState>(
                 builder: (context, state) {
-                  switch (state.state) {
-                    case RequestState.empty:
+                  return state.maybeMap(
+                    orElse: () {
+                      return EmptyDataWidget(
+                        illustration: Assets.write,
+                        title: lang.something_went_wrong,
+                        subtitle: lang
+                            .we_encountered_an_error_while_trying_to_connect_to_our_server_please_try_after_some_again,
+                        onTap: () {
+                          context.read<UserArticleDraftedWatcherBloc>().add(
+                                const UserArticleDraftedWatcherEvent.fetch(
+                                    isRefresh: false),
+                              );
+                        },
+                      );
+                    },
+                    empty: (_) {
                       return EmptyDataWidget(
                         illustration: Assets.write,
                         title: lang.my_articles_empty,
@@ -159,7 +174,8 @@ class _MyArticlePageState extends State<MyArticlePage> {
                           );
                         },
                       );
-                    case RequestState.loading:
+                    },
+                    loading: (_) {
                       return ListView.builder(
                         itemCount: 3,
                         physics: const ScrollPhysics(),
@@ -171,20 +187,23 @@ class _MyArticlePageState extends State<MyArticlePage> {
                           return const ArticleCardLoadingWidget();
                         },
                       );
-                    case RequestState.error:
-                      // TODO(dickyrey): Error View
-                      return const SizedBox();
-                    case RequestState.loaded:
+                    },
+                    loaded: (state) {
+                      _hasReachedMax = state.hasReachedMax;
+
                       return RefreshIndicator(
                         onRefresh: () async {
                           context.read<UserArticleDraftedWatcherBloc>().add(
-                                const UserArticleDraftedWatcherEvent.fetch(),
+                                const UserArticleDraftedWatcherEvent.fetch(
+                                  isRefresh: true,
+                                ),
                               );
                         },
                         child: ListView.separated(
                           controller: _drafScrollCtrl,
-                          itemCount: state.articleList.length +
-                              (state.page != null ? 1 : 0),
+                          itemCount: state.hasReachedMax
+                              ? state.articleList.length
+                              : state.articleList.length + 1,
                           padding: const EdgeInsets.symmetric(
                             vertical: Const.margin,
                           ),
@@ -195,7 +214,7 @@ class _MyArticlePageState extends State<MyArticlePage> {
                           },
                           itemBuilder: (context, index) {
                             if (index == state.articleList.length &&
-                                state.page != null) {
+                                state.hasReachedMax != true) {
                               return const Center(
                                 child: Padding(
                                   padding: EdgeInsets.all(8),
@@ -222,7 +241,8 @@ class _MyArticlePageState extends State<MyArticlePage> {
                           },
                         ),
                       );
-                  }
+                    },
+                  );
                 },
               ),
               BlocBuilder<UserArticleModeratedWatcherBloc,
@@ -657,10 +677,11 @@ class _MyArticlePageState extends State<MyArticlePage> {
         onTap: (index) async {
           if (index == 0) {
             final state = context.read<UserArticleDraftedWatcherBloc>().state;
-            if (state.state == RequestState.loaded) {
+            if (state.runtimeType !=
+                UserArticleDraftedWatcherState.loaded.runtimeType) {
               context
                   .read<UserArticleDraftedWatcherBloc>()
-                  .add(const UserArticleDraftedWatcherEvent.fetch());
+                  .add(const UserArticleDraftedWatcherEvent.fetch(isRefresh: true));
             }
           } else if (index == 1) {
             final state = context.read<UserArticleModeratedWatcherBloc>().state;

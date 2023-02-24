@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserArticleDraftedWatcherEvent {
+  bool get isRefresh => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function(bool isRefresh) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function(bool isRefresh)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function(bool isRefresh)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +49,10 @@ mixin _$UserArticleDraftedWatcherEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $UserArticleDraftedWatcherEventCopyWith<UserArticleDraftedWatcherEvent>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -57,6 +62,8 @@ abstract class $UserArticleDraftedWatcherEventCopyWith<$Res> {
           $Res Function(UserArticleDraftedWatcherEvent) then) =
       _$UserArticleDraftedWatcherEventCopyWithImpl<$Res,
           UserArticleDraftedWatcherEvent>;
+  @useResult
+  $Res call({bool isRefresh});
 }
 
 /// @nodoc
@@ -69,12 +76,29 @@ class _$UserArticleDraftedWatcherEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isRefresh = null,
+  }) {
+    return _then(_value.copyWith(
+      isRefresh: null == isRefresh
+          ? _value.isRefresh
+          : isRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_FetchCopyWith<$Res> {
+abstract class _$$_FetchCopyWith<$Res>
+    implements $UserArticleDraftedWatcherEventCopyWith<$Res> {
   factory _$$_FetchCopyWith(_$_Fetch value, $Res Function(_$_Fetch) then) =
       __$$_FetchCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isRefresh});
 }
 
 /// @nodoc
@@ -83,51 +107,76 @@ class __$$_FetchCopyWithImpl<$Res>
     implements _$$_FetchCopyWith<$Res> {
   __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isRefresh = null,
+  }) {
+    return _then(_$_Fetch(
+      isRefresh: null == isRefresh
+          ? _value.isRefresh
+          : isRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_Fetch implements _Fetch {
-  const _$_Fetch();
+  const _$_Fetch({required this.isRefresh});
+
+  @override
+  final bool isRefresh;
 
   @override
   String toString() {
-    return 'UserArticleDraftedWatcherEvent.fetch()';
+    return 'UserArticleDraftedWatcherEvent.fetch(isRefresh: $isRefresh)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Fetch);
+        (other.runtimeType == runtimeType &&
+            other is _$_Fetch &&
+            (identical(other.isRefresh, isRefresh) ||
+                other.isRefresh == isRefresh));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isRefresh);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
+      __$$_FetchCopyWithImpl<_$_Fetch>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetch,
+    required TResult Function(bool isRefresh) fetch,
   }) {
-    return fetch();
+    return fetch(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetch,
+    TResult? Function(bool isRefresh)? fetch,
   }) {
-    return fetch?.call();
+    return fetch?.call(isRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetch,
+    TResult Function(bool isRefresh)? fetch,
     required TResult orElse(),
   }) {
     if (fetch != null) {
-      return fetch();
+      return fetch(isRefresh);
     }
     return orElse();
   }
@@ -162,20 +211,75 @@ class _$_Fetch implements _Fetch {
 }
 
 abstract class _Fetch implements UserArticleDraftedWatcherEvent {
-  const factory _Fetch() = _$_Fetch;
+  const factory _Fetch({required final bool isRefresh}) = _$_Fetch;
+
+  @override
+  bool get isRefresh;
+  @override
+  @JsonKey(ignore: true)
+  _$$_FetchCopyWith<_$_Fetch> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$UserArticleDraftedWatcherState {
-  RequestState get state => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
-  List<Article> get articleList => throw _privateConstructorUsedError;
-  int? get page => throw _privateConstructorUsedError;
-  int get totalItem => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $UserArticleDraftedWatcherStateCopyWith<UserArticleDraftedWatcherState>
-      get copyWith => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function(String message) error,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? empty,
+    TResult? Function()? loading,
+    TResult? Function(String message)? error,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Loaded value) loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Loaded value)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -185,13 +289,6 @@ abstract class $UserArticleDraftedWatcherStateCopyWith<$Res> {
           $Res Function(UserArticleDraftedWatcherState) then) =
       _$UserArticleDraftedWatcherStateCopyWithImpl<$Res,
           UserArticleDraftedWatcherState>;
-  @useResult
-  $Res call(
-      {RequestState state,
-      String message,
-      List<Article> articleList,
-      int? page,
-      int totalItem});
 }
 
 /// @nodoc
@@ -204,118 +301,558 @@ class _$UserArticleDraftedWatcherStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
 
-  @pragma('vm:prefer-inline')
+/// @nodoc
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$UserArticleDraftedWatcherStateCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Initial implements _Initial {
+  const _$_Initial();
+
   @override
-  $Res call({
-    Object? state = null,
-    Object? message = null,
-    Object? articleList = null,
-    Object? page = freezed,
-    Object? totalItem = null,
+  String toString() {
+    return 'UserArticleDraftedWatcherState.initial()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Initial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function(String message) error,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
   }) {
-    return _then(_value.copyWith(
-      state: null == state
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      articleList: null == articleList
-          ? _value.articleList
-          : articleList // ignore: cast_nullable_to_non_nullable
-              as List<Article>,
-      page: freezed == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as int?,
-      totalItem: null == totalItem
-          ? _value.totalItem
-          : totalItem // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? empty,
+    TResult? Function()? loading,
+    TResult? Function(String message)? error,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Loaded value) loaded,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
-abstract class _$$_UserArticleDraftedWatcherStateCopyWith<$Res>
-    implements $UserArticleDraftedWatcherStateCopyWith<$Res> {
-  factory _$$_UserArticleDraftedWatcherStateCopyWith(
-          _$_UserArticleDraftedWatcherState value,
-          $Res Function(_$_UserArticleDraftedWatcherState) then) =
-      __$$_UserArticleDraftedWatcherStateCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {RequestState state,
-      String message,
-      List<Article> articleList,
-      int? page,
-      int totalItem});
+abstract class _Initial implements UserArticleDraftedWatcherState {
+  const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-class __$$_UserArticleDraftedWatcherStateCopyWithImpl<$Res>
-    extends _$UserArticleDraftedWatcherStateCopyWithImpl<$Res,
-        _$_UserArticleDraftedWatcherState>
-    implements _$$_UserArticleDraftedWatcherStateCopyWith<$Res> {
-  __$$_UserArticleDraftedWatcherStateCopyWithImpl(
-      _$_UserArticleDraftedWatcherState _value,
-      $Res Function(_$_UserArticleDraftedWatcherState) _then)
+abstract class _$$_EmptyCopyWith<$Res> {
+  factory _$$_EmptyCopyWith(_$_Empty value, $Res Function(_$_Empty) then) =
+      __$$_EmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_EmptyCopyWithImpl<$Res>
+    extends _$UserArticleDraftedWatcherStateCopyWithImpl<$Res, _$_Empty>
+    implements _$$_EmptyCopyWith<$Res> {
+  __$$_EmptyCopyWithImpl(_$_Empty _value, $Res Function(_$_Empty) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Empty implements _Empty {
+  const _$_Empty();
+
+  @override
+  String toString() {
+    return 'UserArticleDraftedWatcherState.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Empty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function(String message) error,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? empty,
+    TResult? Function()? loading,
+    TResult? Function(String message)? error,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Loaded value) loaded,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Empty implements UserArticleDraftedWatcherState {
+  const factory _Empty() = _$_Empty;
+}
+
+/// @nodoc
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$UserArticleDraftedWatcherStateCopyWithImpl<$Res, _$_Loading>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Loading implements _Loading {
+  const _$_Loading();
+
+  @override
+  String toString() {
+    return 'UserArticleDraftedWatcherState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function(String message) error,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? empty,
+    TResult? Function()? loading,
+    TResult? Function(String message)? error,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Loaded value) loaded,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements UserArticleDraftedWatcherState {
+  const factory _Loading() = _$_Loading;
+}
+
+/// @nodoc
+abstract class _$$_ErrorCopyWith<$Res> {
+  factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
+      __$$_ErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$$_ErrorCopyWithImpl<$Res>
+    extends _$UserArticleDraftedWatcherStateCopyWithImpl<$Res, _$_Error>
+    implements _$$_ErrorCopyWith<$Res> {
+  __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? state = null,
     Object? message = null,
-    Object? articleList = null,
-    Object? page = freezed,
-    Object? totalItem = null,
   }) {
-    return _then(_$_UserArticleDraftedWatcherState(
-      state: null == state
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as RequestState,
-      message: null == message
+    return _then(_$_Error(
+      null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      articleList: null == articleList
-          ? _value._articleList
-          : articleList // ignore: cast_nullable_to_non_nullable
-              as List<Article>,
-      page: freezed == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as int?,
-      totalItem: null == totalItem
-          ? _value.totalItem
-          : totalItem // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_UserArticleDraftedWatcherState
-    implements _UserArticleDraftedWatcherState {
-  const _$_UserArticleDraftedWatcherState(
-      {required this.state,
-      required this.message,
-      required final List<Article> articleList,
-      required this.page,
-      required this.totalItem})
-      : _articleList = articleList;
+class _$_Error implements _Error {
+  const _$_Error(this.message);
 
   @override
-  final RequestState state;
-  @override
   final String message;
+
+  @override
+  String toString() {
+    return 'UserArticleDraftedWatcherState.error(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Error &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function(String message) error,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
+  }) {
+    return error(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? empty,
+    TResult? Function()? loading,
+    TResult? Function(String message)? error,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
+  }) {
+    return error?.call(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Loaded value) loaded,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Error implements UserArticleDraftedWatcherState {
+  const factory _Error(final String message) = _$_Error;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_LoadedCopyWith<$Res> {
+  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
+      __$$_LoadedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Article> articleList, bool hasReachedMax});
+}
+
+/// @nodoc
+class __$$_LoadedCopyWithImpl<$Res>
+    extends _$UserArticleDraftedWatcherStateCopyWithImpl<$Res, _$_Loaded>
+    implements _$$_LoadedCopyWith<$Res> {
+  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? articleList = null,
+    Object? hasReachedMax = null,
+  }) {
+    return _then(_$_Loaded(
+      articleList: null == articleList
+          ? _value._articleList
+          : articleList // ignore: cast_nullable_to_non_nullable
+              as List<Article>,
+      hasReachedMax: null == hasReachedMax
+          ? _value.hasReachedMax
+          : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Loaded implements _Loaded {
+  const _$_Loaded(
+      {required final List<Article> articleList, required this.hasReachedMax})
+      : _articleList = articleList;
+
   final List<Article> _articleList;
   @override
   List<Article> get articleList {
@@ -325,62 +862,124 @@ class _$_UserArticleDraftedWatcherState
   }
 
   @override
-  final int? page;
-  @override
-  final int totalItem;
+  final bool hasReachedMax;
 
   @override
   String toString() {
-    return 'UserArticleDraftedWatcherState(state: $state, message: $message, articleList: $articleList, page: $page, totalItem: $totalItem)';
+    return 'UserArticleDraftedWatcherState.loaded(articleList: $articleList, hasReachedMax: $hasReachedMax)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserArticleDraftedWatcherState &&
-            (identical(other.state, state) || other.state == state) &&
-            (identical(other.message, message) || other.message == message) &&
+            other is _$_Loaded &&
             const DeepCollectionEquality()
                 .equals(other._articleList, _articleList) &&
-            (identical(other.page, page) || other.page == page) &&
-            (identical(other.totalItem, totalItem) ||
-                other.totalItem == totalItem));
+            (identical(other.hasReachedMax, hasReachedMax) ||
+                other.hasReachedMax == hasReachedMax));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, state, message,
-      const DeepCollectionEquality().hash(_articleList), page, totalItem);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_articleList), hasReachedMax);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserArticleDraftedWatcherStateCopyWith<_$_UserArticleDraftedWatcherState>
-      get copyWith => __$$_UserArticleDraftedWatcherStateCopyWithImpl<
-          _$_UserArticleDraftedWatcherState>(this, _$identity);
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function(String message) error,
+    required TResult Function(List<Article> articleList, bool hasReachedMax)
+        loaded,
+  }) {
+    return loaded(articleList, hasReachedMax);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? empty,
+    TResult? Function()? loading,
+    TResult? Function(String message)? error,
+    TResult? Function(List<Article> articleList, bool hasReachedMax)? loaded,
+  }) {
+    return loaded?.call(articleList, hasReachedMax);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(List<Article> articleList, bool hasReachedMax)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(articleList, hasReachedMax);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Empty value) empty,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Loaded value) loaded,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Empty value)? empty,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Empty value)? empty,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _UserArticleDraftedWatcherState
-    implements UserArticleDraftedWatcherState {
-  const factory _UserArticleDraftedWatcherState(
-      {required final RequestState state,
-      required final String message,
-      required final List<Article> articleList,
-      required final int? page,
-      required final int totalItem}) = _$_UserArticleDraftedWatcherState;
+abstract class _Loaded implements UserArticleDraftedWatcherState {
+  const factory _Loaded(
+      {required final List<Article> articleList,
+      required final bool hasReachedMax}) = _$_Loaded;
 
-  @override
-  RequestState get state;
-  @override
-  String get message;
-  @override
   List<Article> get articleList;
-  @override
-  int? get page;
-  @override
-  int get totalItem;
-  @override
+  bool get hasReachedMax;
   @JsonKey(ignore: true)
-  _$$_UserArticleDraftedWatcherStateCopyWith<_$_UserArticleDraftedWatcherState>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

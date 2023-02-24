@@ -111,7 +111,7 @@ class _ArticleFormPageState extends State<ArticleFormPage> {
           // TODO(dickrey): https://github.com/dickyrey/interpretasi/issues/26 ADD VALIDATION FROM WHERE TO EDIT 
           context
               .read<UserArticleDraftedWatcherBloc>()
-              .add(const UserArticleDraftedWatcherEvent.fetch());
+              .add(const UserArticleDraftedWatcherEvent.fetch(isRefresh: true));
           final snack = showSnackbar(
             context,
             type: SnackbarType.success,

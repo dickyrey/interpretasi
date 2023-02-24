@@ -11,55 +11,52 @@ part 'user_article_drafted_watcher_bloc.freezed.dart';
 class UserArticleDraftedWatcherBloc extends Bloc<UserArticleDraftedWatcherEvent,
     UserArticleDraftedWatcherState> {
   UserArticleDraftedWatcherBloc(this._article)
-      : super(UserArticleDraftedWatcherState.initial()) {
-    on<UserArticleDraftedWatcherEvent>(
-      (event, emit) async {
-        await event.map(
-          fetch: (event) async {
-            final articles = state.articleList;
-
-            if (state.page == 1) {
-              emit(state.copyWith(state: RequestState.loading));
-            }
-            if (state.page != null) {
-              final result = await _article.execute(state.page!);
-              result.fold(
-                (f) => emit(
-                  state.copyWith(
-                    state: RequestState.error,
-                    message: f.message,
-                  ),
-                ),
-                (data) {
-                  final counter = state.page! + 1;
-                  if (data.isEmpty) {
-                    emit(state.copyWith(state: RequestState.empty));
-                  } else if (data.length < state.totalItem) {
-                    final list = List.of(articles)..addAll(data);
-                    emit(
-                      state.copyWith(
-                        state: RequestState.loaded,
-                        articleList: list,
-                        page: null,
-                      ),
-                    );
-                  } else {
-                    final list = List.of(articles)..addAll(data);
-                    emit(
-                      state.copyWith(
-                        state: RequestState.loaded,
-                        articleList: list,
-                        page: counter,
-                      ),
-                    );
-                  }
-                },
-              );
-            }
-          },
-        );
-      },
-    );
+      : super(const UserArticleDraftedWatcherState.initial()) {
+    on<UserArticleDraftedWatcherEvent>((event, emit) async {
+      await event.map(
+        fetch: (event) async {
+          if (event.isRefresh == true) {
+            page = 1;
+            posts.clear();
+          }
+          if (page == 1) {
+            emit(const UserArticleDraftedWatcherState.loading());
+          }
+          final result = await _article.execute(page);
+          result.fold(
+            (f) => emit(UserArticleDraftedWatcherState.error(f.message)),
+            (data) {
+              if (data.isNotEmpty) {
+                if (data.length < 5) {
+                  final list = List.of(posts)..addAll(data);
+                  emit(
+                    UserArticleDraftedWatcherState.loaded(
+                      hasReachedMax: true,
+                      articleList: list,
+                    ),
+                  );
+                  posts.addAll(data);
+                } else {
+                  page += 1;
+                  final list = List.of(posts)..addAll(data);
+                  emit(
+                    UserArticleDraftedWatcherState.loaded(
+                      hasReachedMax: true,
+                      articleList: list,
+                    ),
+                  );
+                  posts.addAll(data);
+                }
+              } else {
+                emit(const UserArticleDraftedWatcherState.empty());
+              }
+            },
+          );
+        },
+      );
+    });
   }
+  int page = 1;
+  final posts = <Article>[];
   final GetDraftedArticle _article;
 }
