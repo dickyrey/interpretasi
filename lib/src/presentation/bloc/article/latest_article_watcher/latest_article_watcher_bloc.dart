@@ -29,7 +29,6 @@ class LatestArticleWatcherBloc
             isTrending: false,
             orderBy: OrderBy.latest,
           );
-          print('REQ PAGE latest : $page');
           result.fold(
             (f) => emit(LatestArticleWatcherState.error(f.message)),
             (data) {

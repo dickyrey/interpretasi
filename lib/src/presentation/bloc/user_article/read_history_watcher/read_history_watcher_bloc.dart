@@ -12,16 +12,60 @@ class ReadHistoryWatcherBloc
   ReadHistoryWatcherBloc(this._history) : super(const _Initial()) {
     on<ReadHistoryWatcherEvent>((event, emit) async {
       await event.map(
-        fetch: (_) async {
-          emit(const ReadHistoryWatcherState.loading());
-          final result = await _history.execute();
+        init: (_) {
+          page = 1;
+          localArticleList.clear();
+          emit(const ReadHistoryWatcherState.initial());
+        },
+        fetch: (event) async {
+          if (event.isRefresh == true) {
+            page = 1;
+            localArticleList.clear();
+          }
+          if (page == 1) {
+            emit(const ReadHistoryWatcherState.loading());
+          }
+          final result = await _history.execute(page);
           result.fold(
             (f) => emit(ReadHistoryWatcherState.error(f.message)),
-            (data) => emit(ReadHistoryWatcherState.loaded(data)),
+            (data) {
+              if (data.isNotEmpty) {
+                if (data.length < 5) {
+                  final list = List.of(localArticleList)..addAll(data);
+                  emit(
+                    ReadHistoryWatcherState.loaded(
+                      hasReachedMax: true,
+                      articleList: list,
+                    ),
+                  );
+                  localArticleList.addAll(data);
+                } else {
+                  page += 1;
+                  final list = List.of(localArticleList)..addAll(data);
+                  emit(
+                    ReadHistoryWatcherState.loaded(
+                      hasReachedMax: false,
+                      articleList: list,
+                    ),
+                  );
+                  localArticleList.addAll(data);
+                }
+              } else {
+                emit(
+                  ReadHistoryWatcherState.loaded(
+                    hasReachedMax: true,
+                    articleList: localArticleList,
+                  ),
+                );
+              }
+            },
           );
         },
       );
     });
   }
+  int page = 1;
+  final localArticleList = <Article>[];
+
   final ReadHistory _history;
 }

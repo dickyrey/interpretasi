@@ -8,7 +8,7 @@ class ReadHistory {
 
   final UserArticleRepository repository;
 
-  Future<Either<Failure, List<Article>>> execute() {
-    return repository.readHistory();
+  Future<Either<Failure, List<Article>>> execute(int page) {
+    return repository.readHistory(page);
   }
 }

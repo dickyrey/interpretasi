@@ -83,9 +83,9 @@ class UserArticleRepositoryImpl extends UserArticleRepository {
   }
 
   @override
-  Future<Either<Failure, List<Article>>> readHistory() async {
+  Future<Either<Failure, List<Article>>> readHistory(int page) async {
     try {
-      final result = await dataSource.readHistory();
+      final result = await dataSource.readHistory(page);
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));

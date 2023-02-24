@@ -13,7 +13,7 @@ abstract class UserArticleDataSource {
   Future<List<ArticleModel>> getMyModeratedArticle(int page);
   Future<List<ArticleModel>> getMyPublishedArticle(int page);
   Future<List<ArticleModel>> getMyRejectedArticle(int page);
-  Future<List<ArticleModel>> readHistory();
+  Future<List<ArticleModel>> readHistory(int page);
   Future<bool> changeToModerated(String id);
 }
 
@@ -35,7 +35,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       host: Const.host,
       path: '/v1/user/articles/banned',
       queryParameters: {
-        'page': page.toString(),
+        'page': '$page',
       },
     );
 
@@ -63,7 +63,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       host: Const.host,
       path: '/v1/user/articles/drafted',
       queryParameters: {
-        'page': page.toString(),
+        'page': '$page',
       },
     );
 
@@ -91,7 +91,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       host: Const.host,
       path: '/v1/user/articles/moderated',
       queryParameters: {
-        'page': page.toString(),
+        'page': '$page',
       },
     );
 
@@ -120,7 +120,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       host: Const.host,
       path: '/v1/user/articles/published',
       queryParameters: {
-        'page': page.toString(),
+        'page': '$page',
       },
     );
 
@@ -148,7 +148,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       host: Const.host,
       path: '/v1/user/articles/rejected',
       queryParameters: {
-        'page': page.toString(),
+        'page': '$page',
       },
     );
 
@@ -163,7 +163,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
   }
 
   @override
-  Future<List<ArticleModel>> readHistory() async {
+  Future<List<ArticleModel>> readHistory(int page) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);
     final header = {
@@ -175,6 +175,7 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       scheme: Const.scheme,
       host: Const.host,
       path: '/v1/user/articles/history',
+      queryParameters: {'page': '$page'},
     );
 
     final response = await client.get(url, headers: header);

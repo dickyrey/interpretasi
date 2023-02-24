@@ -28,7 +28,6 @@ class TrendingArticleWatcherBloc
             isTrending: true,
             orderBy: OrderBy.latest,
           );
-          print('REQ PAGE : $page');
           result.fold(
             (f) => emit(TrendingArticleWatcherState.error(f.message)),
             (data) {

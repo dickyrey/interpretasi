@@ -41,6 +41,7 @@ class EmptyDataWidget extends StatelessWidget {
           const SizedBox(height: Const.space25),
           Text(
             title,
+            textAlign: TextAlign.center,
             style: theme.textTheme.headlineLarge,
           ),
           const SizedBox(height: Const.space12),

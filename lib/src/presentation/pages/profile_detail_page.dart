@@ -33,7 +33,7 @@ class _ProfileDetailPageState extends State<ProfileDetailPage> {
     Future.microtask(() {
       context
           .read<ReadHistoryWatcherBloc>()
-          .add(const ReadHistoryWatcherEvent.fetch());
+          .add(const ReadHistoryWatcherEvent.fetch(isRefresh: false));
       context
           .read<PublishedWatcherBloc>()
           .add(const PublishedWatcherEvent.fetch(isRefresh: false));
@@ -186,7 +186,7 @@ class _ReadHistoryWidget extends StatelessWidget {
                 onRefresh: () async {
                   context
                       .read<ReadHistoryWatcherBloc>()
-                      .add(const ReadHistoryWatcherEvent.fetch());
+                      .add(const ReadHistoryWatcherEvent.fetch(isRefresh: true));
                 },
                 child: ListView.builder(
                   itemCount: state.articleList.take(5).length,

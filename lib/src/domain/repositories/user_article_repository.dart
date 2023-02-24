@@ -8,6 +8,6 @@ abstract class UserArticleRepository {
   Future<Either<Failure, List<Article>>> getMyModeratedArticle(int page);
   Future<Either<Failure, List<Article>>> getMyPublishedArticle(int page);
   Future<Either<Failure, List<Article>>> getMyRejectedArticle(int page);
-  Future<Either<Failure, List<Article>>> readHistory();
+  Future<Either<Failure, List<Article>>> readHistory(int page);
   Future<Either<Failure, bool>> changeToModerated(String id);
 }
