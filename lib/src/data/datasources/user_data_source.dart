@@ -43,6 +43,8 @@ class UserDataSourceImpl extends UserDataSource {
       return VerificationStatusModel.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
       );
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -85,6 +87,8 @@ class UserDataSourceImpl extends UserDataSource {
     final response = await request.send();
     if (response.statusCode == 200) {
       return true;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -114,6 +118,8 @@ class UserDataSourceImpl extends UserDataSource {
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove(Const.token);
       throw ServerException(ExceptionMessage.internetNotConnected);
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }

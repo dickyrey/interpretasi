@@ -72,6 +72,10 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     final response = await client.post(url, headers: header);
     if (response.statusCode == 200) {
       return true;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -101,7 +105,7 @@ class ArticleDataSourceImpl extends ArticleDataSource {
         'find': query,
         'category': (category == '0') ? '' : category,
         'trending': (isTrending == true) ? '1' : '0',
-        'orderBy' : orderBy.name,
+        'orderBy': orderBy.name,
       },
     );
 
@@ -110,6 +114,8 @@ class ArticleDataSourceImpl extends ArticleDataSource {
       return ArticleResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
       ).articleList;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -132,6 +138,8 @@ class ArticleDataSourceImpl extends ArticleDataSource {
       return ArticleDetailResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
       ).article;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -160,6 +168,8 @@ class ArticleDataSourceImpl extends ArticleDataSource {
       return ArticleResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
       ).articleList;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -206,6 +216,8 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     final response = await request.send();
     if (response.statusCode == 200) {
       return true;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -258,6 +270,8 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     final response = await request.send();
     if (response.statusCode == 200) {
       return true;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -280,6 +294,8 @@ class ArticleDataSourceImpl extends ArticleDataSource {
     final response = await client.delete(url, headers: header);
     if (response.statusCode == 200) {
       return true;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -310,6 +326,8 @@ class ArticleDataSourceImpl extends ArticleDataSource {
 
     if (response.statusCode == 200) {
       return true;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -348,6 +366,8 @@ class ArticleDataSourceImpl extends ArticleDataSource {
         json.decode(jsonResult) as Map<String, dynamic>,
       );
       return imageUrl.url;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }

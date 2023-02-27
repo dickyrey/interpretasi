@@ -46,6 +46,8 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       return ArticleResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
       ).articleList;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -74,6 +76,8 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       return ArticleResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
       ).articleList;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -103,6 +107,8 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       return ArticleResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
       ).articleList;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -131,6 +137,8 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       return ArticleResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
       ).articleList;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -159,6 +167,8 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       return ArticleResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
       ).articleList;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -185,6 +195,8 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
       return ArticleResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
       ).articleList;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -209,6 +221,8 @@ class UserArticleDataSourceImpl extends UserArticleDataSource {
     final response = await client.put(url, headers: header);
     if (response.statusCode == 200) {
       return true;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }

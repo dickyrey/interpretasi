@@ -38,6 +38,8 @@ class CategoryDataSourceImpl extends CategoryDataSource {
       return CategoryResponse.fromJson(
         json.decode(response.body) as Map<String, dynamic>,
       ).categoryList;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }

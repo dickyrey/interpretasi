@@ -45,6 +45,8 @@ class PasswordDataSourceImpl extends PasswordDataSource {
 
     if (response.statusCode == 200) {
       return true;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -84,6 +86,8 @@ class PasswordDataSourceImpl extends PasswordDataSource {
       return true;
     } else if (response.statusCode == 403) {
       throw ServerException(ExceptionMessage.wrongOldPassword);
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -115,6 +119,8 @@ class PasswordDataSourceImpl extends PasswordDataSource {
       return true;
     } else if (response.statusCode == 404) {
       throw ServerException(ExceptionMessage.userNotFound);
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }

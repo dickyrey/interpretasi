@@ -64,6 +64,8 @@ class AuthDataSourceImpl extends AuthDataSource {
         await prefs.remove(Const.token);
         return false;
       }
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       await prefs.remove(Const.token);
       throw ServerException(ExceptionMessage.internetNotConnected);
@@ -109,6 +111,8 @@ class AuthDataSourceImpl extends AuthDataSource {
       } else if (response.statusCode == 407) {
         await googleSignIn.signOut();
         throw ServerException(ExceptionMessage.internetNotConnected);
+      } else if (response.statusCode == 401) {
+        throw ServerException(ExceptionMessage.notAuthenticated);
       } else {
         await googleSignIn.signOut();
         throw ServerException(ExceptionMessage.internetNotConnected);
@@ -158,6 +162,8 @@ class AuthDataSourceImpl extends AuthDataSource {
       );
       await prefs.setString(Const.token, accessToken.token);
       return true;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else if (response.statusCode == 403) {
       throw ServerException(ExceptionMessage.wrongPassword);
     } else if (response.statusCode == 404) {
@@ -190,6 +196,8 @@ class AuthDataSourceImpl extends AuthDataSource {
       return true;
     } else if (response.statusCode == 400) {
       throw ServerException(ExceptionMessage.userAlreadyExist);
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
@@ -259,6 +267,8 @@ class AuthDataSourceImpl extends AuthDataSource {
     final response = await http.post(url, headers: header);
     if (response.statusCode == 200) {
       return true;
+    } else if (response.statusCode == 401) {
+      throw ServerException(ExceptionMessage.notAuthenticated);
     } else {
       throw ServerException(ExceptionMessage.internetNotConnected);
     }
