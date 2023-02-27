@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/usecases/article/get_article.dart';
@@ -9,6 +10,7 @@ part 'search_article_watcher_bloc.freezed.dart';
 part 'search_article_watcher_event.dart';
 part 'search_article_watcher_state.dart';
 
+@injectable
 class SearchArticleWatcherBloc
     extends Bloc<SearchArticleWatcherEvent, SearchArticleWatcherState> {
   SearchArticleWatcherBloc(this._getArticle) : super(const _Initial()) {

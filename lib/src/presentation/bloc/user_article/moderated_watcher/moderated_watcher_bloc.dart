@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/usecases/user_article/get_moderated_article.dart';
 
@@ -7,6 +8,7 @@ part 'moderated_watcher_event.dart';
 part 'moderated_watcher_state.dart';
 part 'moderated_watcher_bloc.freezed.dart';
 
+@injectable
 class ModeratedWatcherBloc extends Bloc<
     ModeratedWatcherEvent, ModeratedWatcherState> {
   ModeratedWatcherBloc(this._article)

@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/common/failure.dart';
 import 'package:interpretasi/src/data/datasources/password_data_source.dart';
 import 'package:interpretasi/src/domain/repositories/password_repository.dart';
 
+@Injectable(as: PasswordRepository)
 class PasswordRepositoryImpl extends PasswordRepository {
   PasswordRepositoryImpl(this.dataSource);
 

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/domain/entities/author.dart';
 import 'package:interpretasi/src/domain/usecases/author/get_author.dart';
 
@@ -7,6 +8,7 @@ part 'author_watcher_event.dart';
 part 'author_watcher_state.dart';
 part 'author_watcher_bloc.freezed.dart';
 
+@injectable
 class AuthorWatcherBloc extends Bloc<AuthorWatcherEvent, AuthorWatcherState> {
   AuthorWatcherBloc(this._author) : super(const AuthorWatcherState.initial()) {
     on<AuthorWatcherEvent>((event, emit) async {

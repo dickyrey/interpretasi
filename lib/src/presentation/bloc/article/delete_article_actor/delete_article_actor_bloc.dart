@@ -1,11 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/domain/usecases/article/delete_article.dart';
 
 part 'delete_article_actor_event.dart';
 part 'delete_article_actor_state.dart';
 part 'delete_article_actor_bloc.freezed.dart';
 
+@injectable
 class DeleteArticleActorBloc
     extends Bloc<DeleteArticleActorEvent, DeleteArticleActorState> {
   DeleteArticleActorBloc(this._delete) : super(const _Initial()) {

@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/failure.dart';
 import 'package:interpretasi/src/domain/repositories/user_repository.dart';
 
+@injectable
 class UpdateUserProfile {
   UpdateUserProfile(this.repository);
 

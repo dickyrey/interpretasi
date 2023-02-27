@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/usecases/user_article/get_published_article.dart';
 
@@ -7,6 +8,7 @@ part 'published_watcher_event.dart';
 part 'published_watcher_state.dart';
 part 'published_watcher_bloc.freezed.dart';
 
+@injectable
 class PublishedWatcherBloc
     extends Bloc<PublishedWatcherEvent, PublishedWatcherState> {
   PublishedWatcherBloc(this._article)

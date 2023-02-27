@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/injection.dart' as di;
+import 'package:interpretasi/injection.dart';
 import 'package:interpretasi/l10n/l10n.dart';
 import 'package:interpretasi/src/common/routes.dart';
 import 'package:interpretasi/src/common/themes.dart';
@@ -57,7 +59,7 @@ class PostHttpOverrides extends HttpOverrides {
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  di.init();
+  configureInjection(Environment.dev);
   HttpOverrides.global = PostHttpOverrides();
   runApp(const MyApp());
 }

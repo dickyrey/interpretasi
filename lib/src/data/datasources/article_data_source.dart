@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/exception.dart';
@@ -48,6 +49,7 @@ abstract class ArticleDataSource {
   Future<String> uploadImage(File image);
 }
 
+@Injectable(as: ArticleDataSource)
 class ArticleDataSourceImpl extends ArticleDataSource {
   ArticleDataSourceImpl(this.client);
   final http.Client client;

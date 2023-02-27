@@ -1,11 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/domain/usecases/article/add_view_count.dart';
 
 part 'view_count_actor_event.dart';
 part 'view_count_actor_state.dart';
 part 'view_count_actor_bloc.freezed.dart';
 
+@injectable
 class ViewCountActorBloc
     extends Bloc<ViewCountActorEvent, ViewCountActorState> {
   ViewCountActorBloc(this._count) : super(const ViewCountActorState.initial()) {

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/usecases/article/get_article.dart';
@@ -8,6 +9,7 @@ part 'trending_article_watcher_event.dart';
 part 'trending_article_watcher_state.dart';
 part 'trending_article_watcher_bloc.freezed.dart';
 
+@injectable
 class TrendingArticleWatcherBloc
     extends Bloc<TrendingArticleWatcherEvent, TrendingArticleWatcherState> {
   TrendingArticleWatcherBloc(this._article) : super(const _Initial()) {

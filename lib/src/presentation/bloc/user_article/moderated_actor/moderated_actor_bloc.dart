@@ -1,11 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/domain/usecases/user_article/change_to_moderated.dart';
 
 part 'moderated_actor_event.dart';
 part 'moderated_actor_state.dart';
 part 'moderated_actor_bloc.freezed.dart';
 
+@injectable
 class ModeratedActorBloc
     extends Bloc<ModeratedActorEvent, ModeratedActorState> {
   ModeratedActorBloc(this._changetomoderated) : super(const _Initial()) {

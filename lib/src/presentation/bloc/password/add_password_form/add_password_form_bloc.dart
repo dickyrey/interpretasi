@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/usecases/password/add_password.dart';
 
@@ -7,6 +8,7 @@ part 'add_password_form_event.dart';
 part 'add_password_form_state.dart';
 part 'add_password_form_bloc.freezed.dart';
 
+@injectable
 class AddPasswordFormBloc
     extends Bloc<AddPasswordFormEvent, AddPasswordFormState> {
   AddPasswordFormBloc(this._addPassword)

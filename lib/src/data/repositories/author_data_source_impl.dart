@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/common/failure.dart';
@@ -8,6 +9,7 @@ import 'package:interpretasi/src/data/datasources/author_data_source.dart';
 import 'package:interpretasi/src/domain/entities/author.dart';
 import 'package:interpretasi/src/domain/repositories/author_data_source.dart';
 
+@Injectable(as: AuthorRepository)
 class AuthorRepositoryImpl extends AuthorRepository {
   AuthorRepositoryImpl(this.dataSource);
 

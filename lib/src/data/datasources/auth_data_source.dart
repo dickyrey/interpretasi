@@ -4,6 +4,7 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/data/models/token_model.dart';
@@ -23,6 +24,7 @@ abstract class AuthDataSource {
   Future<bool> resendEmailVerification();
 }
 
+@Injectable(as: AuthDataSource)
 class AuthDataSourceImpl extends AuthDataSource {
   AuthDataSourceImpl({
     required this.client,

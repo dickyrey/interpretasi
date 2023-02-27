@@ -1,11 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/domain/usecases/comment_article/send_comment.dart';
 
 part 'send_comment_actor_event.dart';
 part 'send_comment_actor_state.dart';
 part 'send_comment_actor_bloc.freezed.dart';
 
+@injectable
 class SendCommentActorBloc
     extends Bloc<SendCommentActorEvent, SendCommentActorState> {
   SendCommentActorBloc(this._sendComment)

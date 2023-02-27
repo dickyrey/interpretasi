@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/usecases/user_article/history_article.dart';
 
@@ -7,6 +8,7 @@ part 'read_history_watcher_event.dart';
 part 'read_history_watcher_state.dart';
 part 'read_history_watcher_bloc.freezed.dart';
 
+@injectable
 class ReadHistoryWatcherBloc
     extends Bloc<ReadHistoryWatcherEvent, ReadHistoryWatcherState> {
   ReadHistoryWatcherBloc(this._history) : super(const _Initial()) {

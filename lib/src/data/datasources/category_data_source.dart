@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/data/models/category_model.dart';
@@ -12,7 +13,11 @@ abstract class CategoryDataSource {
   Future<List<CategoryModel>> getCategories();
 }
 
+@Injectable(as: CategoryDataSource)
 class CategoryDataSourceImpl extends CategoryDataSource {
+  CategoryDataSourceImpl(this.client);
+
+  final http.Client client;
   @override
   Future<List<CategoryModel>> getCategories() async {
     final prefs = await SharedPreferences.getInstance();

@@ -7,3 +7,5 @@ linter:
   rules:
     public_member_api_docs: false
     lines_longer_than_80_chars: false
+    cascade_invocations:
+      injection.config.dart: false

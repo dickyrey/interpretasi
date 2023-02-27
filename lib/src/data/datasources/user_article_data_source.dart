@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/data/models/article_model.dart';
@@ -17,6 +18,7 @@ abstract class UserArticleDataSource {
   Future<bool> changeToModerated(String id);
 }
 
+@Injectable(as: UserArticleDataSource)
 class UserArticleDataSourceImpl extends UserArticleDataSource {
   UserArticleDataSourceImpl(this.client);
   final http.Client client;

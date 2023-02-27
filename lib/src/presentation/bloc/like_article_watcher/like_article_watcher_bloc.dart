@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/domain/usecases/like_article/check_like_status.dart';
 import 'package:interpretasi/src/domain/usecases/like_article/like_article.dart';
 
@@ -7,6 +8,7 @@ part 'like_article_watcher_event.dart';
 part 'like_article_watcher_state.dart';
 part 'like_article_watcher_bloc.freezed.dart';
 
+@injectable
 class LikeArticleWatcherBloc
     extends Bloc<LikeArticleWatcherEvent, LikeArticleWatcherState> {
   LikeArticleWatcherBloc({

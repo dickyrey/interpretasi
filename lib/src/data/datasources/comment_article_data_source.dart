@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/data/models/comment_model.dart';
@@ -24,6 +25,7 @@ abstract class CommentArticleDataSource {
   });
 }
 
+@Injectable(as: CommentArticleDataSource)
 class CommentArticleDataSourceImpl extends CommentArticleDataSource {
   CommentArticleDataSourceImpl(this.client);
   final http.Client client;

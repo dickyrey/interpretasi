@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/data/models/user_model.dart';
@@ -19,11 +20,12 @@ abstract class UserDataSource {
   });
 }
 
+@Injectable(as: UserDataSource)
 class UserDataSourceImpl extends UserDataSource {
   UserDataSourceImpl(this.client);
   final http.Client client;
 
-   @override
+  @override
   Future<VerificationStatusModel> checkUserVerification() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString(Const.token);

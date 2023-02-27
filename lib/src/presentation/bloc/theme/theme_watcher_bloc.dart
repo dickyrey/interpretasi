@@ -1,11 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'theme_watcher_event.dart';
 part 'theme_watcher_state.dart';
 part 'theme_watcher_bloc.freezed.dart';
 
+@injectable
 class ThemeWatcherBloc extends Bloc<ThemeWatcherEvent, ThemeWatcherState> {
   ThemeWatcherBloc() : super(ThemeWatcherState.initial()) {
     on<ThemeWatcherEvent>((event, emit) async {

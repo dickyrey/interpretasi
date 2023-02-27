@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/entities/user.dart';
@@ -13,6 +14,7 @@ part 'user_form_bloc.freezed.dart';
 part 'user_form_event.dart';
 part 'user_form_state.dart';
 
+@injectable
 class UserFormBloc extends Bloc<UserFormEvent, UserFormState> {
   UserFormBloc(this._update) : super(UserFormState.initial()) {
     on<UserFormEvent>((event, emit) async {

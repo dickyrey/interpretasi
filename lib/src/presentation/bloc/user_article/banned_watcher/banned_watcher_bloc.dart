@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/usecases/user_article/get_banned_article.dart';
 
@@ -7,6 +8,7 @@ part 'banned_watcher_event.dart';
 part 'banned_watcher_state.dart';
 part 'banned_watcher_bloc.freezed.dart';
 
+@injectable
 class BannedWatcherBloc extends Bloc<BannedWatcherEvent, BannedWatcherState> {
   BannedWatcherBloc(this._article) : super(const BannedWatcherState.initial()) {
     on<BannedWatcherEvent>((event, emit) async {

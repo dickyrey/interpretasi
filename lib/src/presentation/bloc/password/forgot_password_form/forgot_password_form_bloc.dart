@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/usecases/password/forgot_password.dart';
 
@@ -7,6 +8,7 @@ part 'forgot_password_form_event.dart';
 part 'forgot_password_form_state.dart';
 part 'forgot_password_form_bloc.freezed.dart';
 
+@injectable
 class ForgotPasswordFormBloc
     extends Bloc<ForgotPasswordFormEvent, ForgotPasswordFormState> {
   ForgotPasswordFormBloc(this._password)

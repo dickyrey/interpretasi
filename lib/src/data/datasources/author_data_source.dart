@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/data/models/author_model.dart';
@@ -12,6 +13,7 @@ abstract class AuthorDataSource {
   Future<bool> reportAuthor({required int id, required String reason});
 }
 
+@Injectable(as: AuthorDataSource)
 class AuthorDataSourceImpl extends AuthorDataSource {
   AuthorDataSourceImpl(this.client);
   final http.Client client;

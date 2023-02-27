@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/common/exception.dart';
@@ -10,6 +11,7 @@ import 'package:interpretasi/src/domain/entities/article.dart';
 import 'package:interpretasi/src/domain/entities/article_detail.dart';
 import 'package:interpretasi/src/domain/repositories/article_repository.dart';
 
+@Injectable(as: ArticleRepository)
 class ArticleRepositoryImpl extends ArticleRepository {
   ArticleRepositoryImpl(this.dataSource);
 

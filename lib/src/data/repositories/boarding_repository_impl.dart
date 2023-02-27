@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/common/failure.dart';
@@ -8,8 +9,8 @@ import 'package:interpretasi/src/data/datasources/boarding_data_source.dart';
 import 'package:interpretasi/src/domain/entities/boarding.dart';
 import 'package:interpretasi/src/domain/repositories/boarding_repository.dart';
 
+@Injectable(as: BoardingRepository)
 class BoardingRepositoryImpl extends BoardingRepository {
-  
   BoardingRepositoryImpl(this.dataSource);
 
   final BoardingDataSource dataSource;

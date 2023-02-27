@@ -2,12 +2,14 @@ import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/domain/usecases/article/upload_image.dart';
 
 part 'upload_image_actor_event.dart';
 part 'upload_image_actor_state.dart';
 part 'upload_image_actor_bloc.freezed.dart';
 
+@injectable
 class UploadImageActorBloc
     extends Bloc<UploadImageActorEvent, UploadImageActorState> {
   UploadImageActorBloc(this._upload)

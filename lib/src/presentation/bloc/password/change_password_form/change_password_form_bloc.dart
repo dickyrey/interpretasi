@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/usecases/password/change_password.dart';
 
@@ -7,6 +8,7 @@ part 'change_password_form_event.dart';
 part 'change_password_form_state.dart';
 part 'change_password_form_bloc.freezed.dart';
 
+@injectable
 class ChangePasswordFormBloc
     extends Bloc<ChangePasswordFormEvent, ChangePasswordFormState> {
   ChangePasswordFormBloc(this._change)

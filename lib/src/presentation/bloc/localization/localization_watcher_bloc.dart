@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/l10n/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,6 +10,7 @@ part 'localization_watcher_event.dart';
 part 'localization_watcher_state.dart';
 part 'localization_watcher_bloc.freezed.dart';
 
+@injectable
 class LocalizationWatcherBloc
     extends Bloc<LocalizationWatcherEvent, LocalizationWatcherState> {
   LocalizationWatcherBloc() : super(LocalizationWatcherState.initial()) {

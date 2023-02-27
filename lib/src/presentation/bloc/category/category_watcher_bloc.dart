@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/entities/category.dart';
 import 'package:interpretasi/src/domain/usecases/category/get_categories.dart';
@@ -8,6 +9,7 @@ part 'category_watcher_event.dart';
 part 'category_watcher_state.dart';
 part 'category_watcher_bloc.freezed.dart';
 
+@injectable
 class CategoryWatcherBloc
     extends Bloc<CategoryWatcherEvent, CategoryWatcherState> {
   CategoryWatcherBloc(this._getCategories)

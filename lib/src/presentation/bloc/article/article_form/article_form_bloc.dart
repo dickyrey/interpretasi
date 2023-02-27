@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/entities/article.dart';
@@ -19,6 +20,7 @@ part 'article_form_event.dart';
 part 'article_form_state.dart';
 part 'article_form_bloc.freezed.dart';
 
+@injectable
 class ArticleFormBloc extends Bloc<ArticleFormEvent, ArticleFormState> {
   ArticleFormBloc({
     required this.create,

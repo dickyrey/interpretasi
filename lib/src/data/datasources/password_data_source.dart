@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +13,7 @@ abstract class PasswordDataSource {
   Future<bool> forgotPassword(String email);
 }
 
+@Injectable(as: PasswordDataSource)
 class PasswordDataSourceImpl extends PasswordDataSource {
   PasswordDataSourceImpl(this.client);
   final http.Client client;

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/enums.dart';
 import 'package:interpretasi/src/domain/usecases/auth/sign_in_with_email.dart';
 
@@ -7,6 +8,7 @@ part 'sign_in_with_email_form_event.dart';
 part 'sign_in_with_email_form_state.dart';
 part 'sign_in_with_email_form_bloc.freezed.dart';
 
+@injectable
 class SignInWithEmailFormBloc
     extends Bloc<SignInWithEmailFormEvent, SignInWithEmailFormState> {
   SignInWithEmailFormBloc(this._signIn)

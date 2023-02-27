@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/domain/usecases/article/report_article.dart';
 import 'package:interpretasi/src/domain/usecases/author/report_author.dart';
 import 'package:interpretasi/src/domain/usecases/comment_article/report_comment.dart';
@@ -8,6 +9,7 @@ part 'report_actor_event.dart';
 part 'report_actor_state.dart';
 part 'report_actor_bloc.freezed.dart';
 
+@injectable
 class ReportActorBloc extends Bloc<ReportActorEvent, ReportActorState> {
   ReportActorBloc({
     required this.article,

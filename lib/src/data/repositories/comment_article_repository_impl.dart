@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:interpretasi/src/common/const.dart';
 import 'package:interpretasi/src/common/exception.dart';
 import 'package:interpretasi/src/common/failure.dart';
@@ -8,6 +9,7 @@ import 'package:interpretasi/src/data/datasources/comment_article_data_source.da
 import 'package:interpretasi/src/domain/entities/comment.dart';
 import 'package:interpretasi/src/domain/repositories/comment_article_repository.dart';
 
+@Injectable(as: CommentArticleRepository)
 class CommentArticleRepositoryImpl extends CommentArticleRepository {
   CommentArticleRepositoryImpl(this.dataSource);
 
