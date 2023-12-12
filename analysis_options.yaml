@@ -1,5 +1,8 @@
 include: package:very_good_analysis/analysis_options.yaml
 analyzer:
+  exclude:
+    - "lib/injection.config.dart"
+    - "lib/src/common/routes.dart"
   strong-mode:
     implicit-casts: true
     implicit-dynamic: true
@@ -7,5 +10,3 @@ linter:
   rules:
     public_member_api_docs: false
     lines_longer_than_80_chars: false
-    cascade_invocations:
-      injection.config.dart: false
